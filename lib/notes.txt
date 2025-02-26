@@ -1,0 +1,22 @@
+ - backend - return access token when register (backend)        done
+ - contact us (use the endpoint that used for suggestions)      done
+ - onTap on order history item                                  done
+ - tack order (new endpoint)                                    done
+  
+ -----------------------------------------------------------------------
+ - blog details (new endpoint)   done
+ - Our services (HTML)           done
+ - about us (HTML)               done
+ - search (backend implementation) done (product details case)
+ 
+
+------------------------------------------------------------------
+
+ - best selling products   done
+ - faqs                    done
+ - notifications
+ - bill                    done
+ - site reviews            done
+ 
+
+ 

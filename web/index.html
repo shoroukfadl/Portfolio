@@ -1,0 +1,96 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="web_app">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <title>web_app</title>
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+<!-- This script must be loaded first -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
+
+<script>
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyBkaLW3pW47RepTJ1z8boG_N0SSvbjxoD4",
+    authDomain: "rocklisnotify.firebaseapp.com",
+    projectId: "rocklisnotify",
+    storageBucket: "rocklisnotify.appspot.com",
+    messagingSenderId: "381464266397",
+    appId: "1:381464266397:web:280eb7386490f112c2b674"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Initialize FCM
+  const messaging = firebase.messaging();
+
+  // Request permission and get token
+  async function initializeFirebaseMessaging() {
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        // Get FCM token
+        const token = await messaging.getToken({
+          vapidKey: 'BKi4aYOMGfG3UeSiQpgTkaCtNz42K1nhHydvsUJS1apvjfML0g0TcA77oz9fCp-u7yhUB9j5dp_WOx5uRairYdQ' // Get this from Firebase Console
+        });
+        console.log('FCM Token:', token);
+
+        // Send token to your server
+        // await sendTokenToServer(token);
+      } else {
+        console.log('Notification permission denied');
+      }
+    } catch (error) {
+      console.error('Error initializing FCM:', error);
+    }
+  }
+
+  // Handle incoming messages when app is in foreground
+  messaging.onMessage((payload) => {
+    console.log('Received foreground message:', payload);
+
+    // Show custom notification
+    if (Notification.permission === 'granted') {
+      const notificationTitle = payload.notification.title;
+      const notificationOptions = {
+        body: payload.notification.body,
+        icon: payload.notification.icon || '/icon.png',
+        // Add more options as needed
+      };
+
+      new Notification(notificationTitle, notificationOptions);
+    }
+  });
+
+  // Register service worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/firebase-messaging-sw.js')
+        .then(function(registration) {
+          console.log('ServiceWorker registration successful');
+
+          // Initialize FCM after SW registration
+          initializeFirebaseMessaging();
+        })
+        .catch(function(err) {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+  }
+</script>
+
+<script src="flutter_bootstrap.js" defer></script>
+</body>
+</html>

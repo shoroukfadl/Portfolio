@@ -1,0 +1,66 @@
+name: rocklis
+description: "A new Flutter project."
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.1 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI & Utilities
+  cupertino_icons: ^1.0.6
+  ansicolor: ^2.0.2
+  http: ^1.2.1
+  provider: ^6.1.0
+  get_it: ^7.7.0
+  universal_html: ^2.2.4
+  shared_preferences: ^2.2.3
+  flutter_secure_storage: ^9.2.2
+  google_fonts: ^6.2.1
+  flutter_svg: ^2.0.10+1
+  go_router: ^14.2.0
+  flutter_staggered_animations: ^1.1.1
+  flutter_spinkit: ^5.2.1
+  mvc_pattern: ^8.12.0
+  change_app_package_name: ^1.4.0
+  cross_file: ^0.3.4+2
+  file_picker: ^8.1.1
+  path: ^1.9.0
+  dotted_line: ^3.2.3
+  data_table_2: ^2.5.16
+  smooth_page_indicator: ^1.2.0+3
+  flutter_xlider: ^3.5.0
+  flutter_screenutil: ^5.9.0
+  pinput: ^5.0.0
+  simple_tooltip: ^1.2.0
+  number_paginator: ^0.4.3
+  flutter_widget_from_html: ^0.10.0
+  firebase_core: ^3.11.0
+  skeletonizer: ^1.1.0
+  awesome_snackbar_content: ^0.1.3
+  video_player: ^2.9.2
+  network_info_plus: ^6.1.3
+  idb_shim: ^2.6.1+7
+  uuid: ^4.5.1
+  easy_stepper: ^0.8.5+1
+  firebase_messaging: ^15.2.2
+  firebase_messaging_web: ^3.10.2
+  flutter_local_notifications: ^18.0.1
+  url_strategy:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+    - assets/Languages/
+    - assets/icons/
