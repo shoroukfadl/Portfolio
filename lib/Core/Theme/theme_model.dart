@@ -20,8 +20,8 @@ class ThemeFactory {
   static const constFont1 = Color(0xFFF0F0F2);
   final Color primary;
   final Color primary75;
-  final Color primary25;
-  final Color darkPrimary;
+  final Color secondary;
+  final Color secondary300;
   final Color backgroundColor;
   final Color blackWhiteColor;
   final Color card;
@@ -39,26 +39,16 @@ class ThemeFactory {
   final Color yellow;
   final Color black;
   final Color grayColor;
-  final Color angry;
-  final Color sad;
-  final Color like;
-  final Color love;
-  final Color wow;
   final Color blackGray;
 
   ThemeFactory.light({
-    this.angry = const  Color(0xffFF6722),
-    this.sad = const  Color(0xffFFAE35),
-    this.like = const  Color(0xff096CD2),
-    this.love = const  Color(0xffEB001B),
-    this.wow = const  Color(0xffFFAE35),
-    this.primary = const Color(0xffC6352E),
-    this.primary75 = const Color(0xffD46862),
-    this.primary25 = const Color(0xffF0CCCA),
-    this.darkPrimary = const Color(0xff601A16),
+    this.primary = const Color(0xff2C3930),
+    this.primary75 = const Color(0xff3F4F44),
+    this.secondary = const Color(0xffA27B5C),
+    this.secondary300 = const Color(0xffDBB79B),
     this.yellow = const Color(0xfffacf21),
     this.tableBackground = const Color(0xffEFEFEF),
-    this.backgroundColor = const Color(0xffFFFFFF),
+    this.backgroundColor = const Color(0xffDCD7C9),
     this.blackWhiteColor = const Color(0xff000000),
     this.card = const Color(0xFFFFFFFF), //
     this.subCard = const Color(0xFFF1F1F1), //
@@ -78,13 +68,14 @@ class ThemeFactory {
 
   /// Handle Dark Theme Color
   ThemeFactory.dark({
-    this.primary = const Color(0xffC6352E),
-    this.primary75 = const Color(0xffD46862),
-    this.primary25 = const Color(0xffF0CCCA),
-    this.darkPrimary = const Color(0xff601A16),
-    this.backgroundColor = const Color(0xffFFFFFF),
-    this.blackWhiteColor = const Color(0xff000000),
+    this.primary = const Color(0xff2C3930),
+    this.primary75 = const Color(0xff3F4F44),
+    this.secondary = const Color(0xffA27B5C),
+    this.secondary300 = const Color(0xffDBB79B),
     this.yellow = const Color(0xfffacf21),
+    this.tableBackground = const Color(0xffEFEFEF),
+    this.backgroundColor = const Color(0xffDCD7C9),
+    this.blackWhiteColor = const Color(0xff000000),
     this.card = const Color(0xFFFFFFFF), //
     this.subCard = const Color(0xFFF1F1F1), //
     this.font1 = const Color(0xff000000), //
@@ -97,13 +88,7 @@ class ThemeFactory {
     this.successColor = const Color(0xff2DB224),
     this.dividerColor = const Color(0xFFE4E7E9),
     this.grayColor = const Color(0xFFD7D7D7),
-    this.tableBackground = const Color(0xffEFEFEF),
     this.black = const Color(0xff000000),
-    this.angry = const  Color(0xffFF6722),
-    this.sad = const  Color(0xffFFAE35),
-    this.like = const  Color(0xff096CD2),
-    this.love = const  Color(0xffEB001B),
-    this.wow = const  Color(0xffFFAE35),
     this.blackGray = const Color(0xff212121),
   }); // Safety check
 }
