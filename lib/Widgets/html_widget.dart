@@ -18,7 +18,7 @@ class CustomHtmlWidget extends StatelessWidget {
         return null;
       },
       renderMode: RenderMode.column,
-      textStyle: TextStyleHelper.of(context).regular16,
+      textStyle: TextStyleHandler.of(context).regular16,
     );
   }
 }

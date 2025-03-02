@@ -18,16 +18,6 @@ import 'Core/Theme/theme_provider.dart';
 import 'Utilities/git_it.dart';
 import 'Utilities/router_config.dart';
 
-Future<void> getFCMToken() async {
-  final messaging = FirebaseMessaging.instance;
-  String? token = await messaging.getToken(
-      vapidKey:
-          "BKi4aYOMGfG3UeSiQpgTkaCtNz42K1nhHydvsUJS1apvjfML0g0TcA77oz9fCp-u7yhUB9j5dp_WOx5uRairYdQ");
-  if (token != null) {
-  //  NotificationsDataHandler.updateDeviceToken(deviceToken: token);
-  }
-  print("FCM Token: $token");
-}
 
 void main() async {
   try {
@@ -121,7 +111,7 @@ class _EntryPointState extends State<EntryPoint> {
                 title: GoRouterConfig
                             .router.configuration.navigatorKey.currentContext ==
                         null
-                    ? "Rocklis"
+                    ? "Portfolio"
                     : html.window.location.href.split("/").last.translate,
               ),
             ),

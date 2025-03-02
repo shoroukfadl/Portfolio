@@ -71,7 +71,7 @@ class CustomDropDownWidget<T> extends StatelessWidget {
         if (title != null) ...[
           AppTextWidget(
             title!,
-            style: TextStyleHelper.of(context)
+            style: TextStyleHandler.of(context)
                 .regular16
                 .copyWith(color: ThemeFactory.of(context).font1),
           ),
@@ -94,7 +94,7 @@ class CustomDropDownWidget<T> extends StatelessWidget {
               validator: validate,
               iconSize: 0.0,
               value: selected,
-              style: TextStyleHelper.of(context).regular16,
+              style: TextStyleHandler.of(context).regular16,
               dropdownColor: ThemeFactory.of(context).backgroundColor,
               decoration: InputDecoration(
                 errorStyle: const TextStyle(height: 0),
@@ -154,12 +154,12 @@ class CustomDropDownWidget<T> extends StatelessWidget {
                 hintStyle: context.isSmall
                     ? hintStyle?.copyWith(
                             color: hintColor ?? hintStyle?.color, height: 1) ??
-                        TextStyleHelper.of(context)
+                        TextStyleHandler.of(context)
                             .semiBold12
                             .copyWith(color: ThemeFactory.of(context).font2)
                     : hintStyle?.copyWith(
                             color: hintColor ?? hintStyle?.color, height: 1) ??
-                        TextStyleHelper.of(context)
+                        TextStyleHandler.of(context)
                             .semiBold16
                             .copyWith(color: ThemeFactory.of(context).font2),
               ),

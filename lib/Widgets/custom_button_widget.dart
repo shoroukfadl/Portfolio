@@ -69,7 +69,7 @@ class CustomButtonWidget extends StatelessWidget {
             : child ??
                 AppTextWidget(
                   title ?? "",
-                  style: TextStyleHelper.of(context)
+                  style: TextStyleHandler.of(context)
                       .regular16
                       .copyWith(color: titleColor ?? ThemeFactory.constFont1),
                 ),

@@ -40,7 +40,7 @@ class EmptyDataWidget extends StatelessWidget {
         16.0.heightBox,
         AppTextWidget(
           title ?? Strings.noDataFound.translate,
-          style: TextStyleHelper.of(context).regular16.copyWith(
+          style: TextStyleHandler.of(context).regular16.copyWith(
               fontSize: titleFontSize ??
                   (context.isLarge
                       ? 20
@@ -52,7 +52,7 @@ class EmptyDataWidget extends StatelessWidget {
         if (subTitle != null)
           AppTextWidget(
             subTitle!,
-            style: TextStyleHelper.of(context).regular16.copyWith(
+            style: TextStyleHandler.of(context).regular16.copyWith(
                   fontSize: subTitleFontSize ?? 16,
                   color: ThemeFactory.of(context).font2,
                   height: 1.4,

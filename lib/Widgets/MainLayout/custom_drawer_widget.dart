@@ -195,7 +195,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                         8.0.widthBox,
                         AppTextWidget(
                           title,
-                          style: TextStyleHelper.of(context)
+                          style: TextStyleHandler.of(context)
                               .semiBold12
                               .copyWith(
                                   color: isSelected
@@ -268,7 +268,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                           8.0.widthBox,
                           AppTextWidget(
                             title,
-                            style: TextStyleHelper.of(context)
+                            style: TextStyleHandler.of(context)
                                 .semiBold12
                                 .copyWith(
                                     color: isSelected

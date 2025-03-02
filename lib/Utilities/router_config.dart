@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:universal_html/html.dart' as html;
 
+import '../Modules/Home/home_view.dart';
 import '../Modules/Splash/splash_view.dart';
 import '../Widgets/MainLayout/main_layout_widget.dart';
 
@@ -64,15 +65,15 @@ class GoRouterConfig {
           },
           routes: [
             //// --------------------------  Home --------------------------
-            // GoRoute(
-            //     name: HomeView.routeName,
-            //     path: "/${HomeView.routeName}",
-            //     pageBuilder: (_, GoRouterState state) {
-            //       return getCustomTransitionPage(
-            //         state: state,
-            //         child: const HomeView(),
-            //       );
-            //     },
+            GoRoute(
+                name: HomeView.routeName,
+                path: "/${HomeView.routeName}",
+                pageBuilder: (_, GoRouterState state) {
+                  return getCustomTransitionPage(
+                    state: state,
+                    child: const HomeView(),
+                  );
+                },)
             //     routes: <RouteBase>[
             //       //// --------------------------  Blog Details  --------------------------
             //       GoRoute(

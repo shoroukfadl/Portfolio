@@ -27,7 +27,7 @@ class TitleWithBookmarkWidget extends StatelessWidget {
         8.0.widthBox,
         Text(
          title ?? "",
-          style:titleStyle?? TextStyleHelper.of(context)
+          style:titleStyle?? TextStyleHandler.of(context)
               .bold16
               .copyWith(color: ThemeFactory.of(context).fontWhite),
         )

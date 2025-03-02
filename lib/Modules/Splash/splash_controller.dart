@@ -1,7 +1,9 @@
+import 'package:go_router/go_router.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:rocklis/Modules/Splash/support_interface.dart';
+import 'package:rocklis/Modules/Home/home_view.dart';
+import 'package:rocklis/Utilities/router_config.dart';
 
-class SplashController extends ControllerMVC implements SupportInterface {
+class SplashController extends ControllerMVC  {
   // singleton
   factory SplashController() {
     _this ??= SplashController._();
@@ -12,6 +14,10 @@ class SplashController extends ControllerMVC implements SupportInterface {
 
   SplashController._();
 
+
+ void goToHome(){
+     Future.delayed( const Duration(seconds: 2),()=> CURRENT_CONTEXT!.goNamed(HomeView.routeName));
+  }
 
 
 

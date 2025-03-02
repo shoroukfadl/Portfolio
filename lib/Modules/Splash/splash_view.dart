@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:rocklis/Modules/Splash/splash_controller.dart';
 
 import '../../Core/Theme/theme_model.dart';
-import 'splash_controller.dart';
 
 class SplashView extends StatefulWidget {
   static String routeName = "/";
@@ -23,6 +23,7 @@ class _SplashViewState extends StateMVC<SplashView> {
   @override
   void initState() {
     super.initState();
+    con.goToHome();
   }
 
   @override

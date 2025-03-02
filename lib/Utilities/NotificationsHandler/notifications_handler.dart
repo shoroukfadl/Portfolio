@@ -52,7 +52,7 @@ class NotificationsHandler {
                         const SizedBox(width: 10),
                         Text(
                           Strings.newNotification.tr,
-                          style: TextStyleHelper.of(context).bold18,
+                          style: TextStyleHandler.of(context).bold18,
                         ),
                       ],
                     ),
@@ -65,12 +65,12 @@ class NotificationsHandler {
                 children: [
                   Text(
                     title!,
-                    style: TextStyleHelper.of(context).bold18,
+                    style: TextStyleHandler.of(context).bold18,
                   ),
                   const SizedBox(height: 10),
                   Text(
                     body!,
-                    style: TextStyleHelper.of(context).regular16.copyWith(
+                    style: TextStyleHandler.of(context).regular16.copyWith(
                           color: ThemeFactory.of(context).font2,
                         ),
                   ),

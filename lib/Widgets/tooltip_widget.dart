@@ -36,7 +36,7 @@ class TooltipWidget extends StatelessWidget {
             toolTipTitle,
             maxLines: 2,
             textAlign: TextAlign.center,
-            style: TextStyleHelper.of(context).regular12.copyWith(
+            style: TextStyleHandler.of(context).regular12.copyWith(
                   decorationThickness: 0,
                   decoration: TextDecoration.none,
                   color: Colors.black,

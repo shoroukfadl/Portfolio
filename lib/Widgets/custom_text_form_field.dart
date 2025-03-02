@@ -117,7 +117,7 @@ class CustomTextFormField extends StatelessWidget {
       child: TextFormField(
         keyboardType: textInputType,
         onChanged: onchange,
-        style: TextStyleHelper.of(context).textFormFieldContent.copyWith(
+        style: TextStyleHandler.of(context).textFormFieldContent.copyWith(
               color: ThemeFactory.of(context).font1,
             ),
         enabled: enable,
@@ -158,11 +158,11 @@ class CustomTextFormField extends StatelessWidget {
               ),
           labelText: lableText,
           labelStyle:
-              TextStyleHelper.of(context).textFormFieldLableTitle.copyWith(
+              TextStyleHandler.of(context).textFormFieldLableTitle.copyWith(
                     color: ThemeFactory.of(context).font2,
                   ),
           errorStyle:
-              TextStyleHelper.of(context).textFormFieldErrorMessage.copyWith(
+              TextStyleHandler.of(context).textFormFieldErrorMessage.copyWith(
                     color: ThemeFactory.of(context).primary,
                   ),
           enabledBorder:
@@ -185,7 +185,7 @@ class CustomTextFormField extends StatelessWidget {
               EdgeInsets.symmetric(vertical: 14.0, horizontal: 12.w),
           prefixIcon: prefixIcon,
           hintStyle: hintStyle ??
-              TextStyleHelper.of(context).textFormFieldHint.copyWith(
+              TextStyleHandler.of(context).textFormFieldHint.copyWith(
                     color: ThemeFactory.of(context).font2,
                   ),
         ),
