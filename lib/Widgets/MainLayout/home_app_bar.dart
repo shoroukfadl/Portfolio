@@ -17,10 +17,18 @@ class HomeAppBar extends StatelessWidget {
     return  Row(
       spacing: 16,
       children: [
-        AppTextWidget(Strings.aboutMe.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20,),
-        AppTextWidget(Strings.skill.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20,),
-        AppTextWidget(Strings.projects.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20,),
-        AppTextWidget(Strings.contactMe.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20,),
+        AppTextWidget(Strings.aboutMe.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20.copyWith(
+          color: ThemeFactory.of(context).primary, decoration: TextDecoration.underline
+        ),),
+        AppTextWidget(Strings.skill.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20.copyWith(
+          color: ThemeFactory.of(context).primary, decoration: TextDecoration.underline
+        ),),
+        AppTextWidget(Strings.projects.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20.copyWith(
+          color: ThemeFactory.of(context).primary, decoration: TextDecoration.underline
+        ),),
+        AppTextWidget(Strings.contactMe.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20.copyWith(
+          color: ThemeFactory.of(context).primary, decoration: TextDecoration.underline
+        ),),
         const Spacer(),
 
         CustomButtonWidget(

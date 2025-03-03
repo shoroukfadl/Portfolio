@@ -7,6 +7,7 @@ class Assets {
   static const String iconsChevronDown = 'assets/icons/chevron-down.svg';
   static const String iconsDown = 'assets/icons/down.svg';
   static const String iconsDownload = 'assets/icons/download.svg';
+  static const String iconsGithub = 'assets/icons/Github.svg';
   static const String iconsLeft = 'assets/icons/left.svg';
   static const String iconsMaterialSymbolsMenu = 'assets/icons/material-symbols_menu.svg';
   static const String iconsRight = 'assets/icons/right.svg';

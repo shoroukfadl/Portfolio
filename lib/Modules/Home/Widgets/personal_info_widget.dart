@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rocklis/Core/Theme/theme_model.dart';
 import 'package:rocklis/Utilities/extensions.dart';
 import 'package:rocklis/Utilities/text_style_helper.dart';
 import 'package:rocklis/generated/assets.dart';
@@ -13,7 +14,6 @@ class PersonalInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SvgPicture.asset(Assets.imagesGirlbanner).expand,
         Column(
           children: [
             RichText(
@@ -31,27 +31,38 @@ class PersonalInfoWidget extends StatelessWidget {
                       style: TextStyleHandler.of(context)
                           .displayTextStyleExtraBold48,
                     ),
-
-
                     TextSpan(
                       text: "Developer\n",
                       style: TextStyleHandler.of(context)
                           .outLinedTextStyleExtraBold48,
                     ),
-
-              TextSpan(
-                  text:"${ Strings.basedIn.translate}",
-                  style: TextStyleHandler.of(context).displayTextStyleRegular48,),
-
+                    TextSpan(
+                      text: Strings.basedIn.translate,
+                      style: TextStyleHandler.of(context)
+                          .displayTextStyleRegular48,
+                    ),
                     TextSpan(
                       text: "Giza",
                       style: TextStyleHandler.of(context)
                           .displayTextStyleExtraBold48,
                     ),
                   ]),
+            ),
+            16.0.heightBox,
+            Text(
+              "I'm Flora Sheen Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to specimen book.",
+              style: TextStyleHandler.of(context).paragraphTextStyleBold20.copyWith(
+                color: ThemeFactory.of(context).secondary300
+              ),
             )
           ],
-        )
+        ),
+        expandFlex(2),
+        SvgPicture.asset(
+          Assets.imagesGirlbanner,
+          width: 200,
+          height: 200,
+        ).expand,
       ],
     );
   }

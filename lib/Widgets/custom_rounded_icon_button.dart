@@ -80,7 +80,7 @@ class _CustomRoundedIconButtonWithAnimationState
           height: widget.buttonSize ?? 40.h,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            shape: BoxShape.circle,
+            borderRadius: BorderRadius.all(Radius.circular(8)),
             color: widget.color ?? Theme.of(context).cardColor,
             boxShadow: [
               Constants.defaultBoxShadow

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:rocklis/Utilities/Constants/enums.dart';
 import 'package:rocklis/Utilities/text_style_helper.dart';
+import 'package:rocklis/Widgets/custom_rounded_icon_button.dart';
 
 import '../../Core/Theme/theme_model.dart';
+import '../../generated/assets.dart';
 import 'Widgets/personal_info_widget.dart';
 import 'home_controller.dart';
 
@@ -33,7 +35,14 @@ class _HomeViewState extends StateMVC<HomeView> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PersonalInfoWidget()
+        PersonalInfoWidget(),
+        Row(
+          children: [
+
+          //  CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconLinkedin),
+         //   CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconsGithub),
+          ],
+        )
       ],
     );
   }
