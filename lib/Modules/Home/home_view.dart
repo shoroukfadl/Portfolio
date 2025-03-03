@@ -4,6 +4,7 @@ import 'package:rocklis/Utilities/Constants/enums.dart';
 import 'package:rocklis/Utilities/text_style_helper.dart';
 
 import '../../Core/Theme/theme_model.dart';
+import 'Widgets/personal_info_widget.dart';
 import 'home_controller.dart';
 
 class HomeView extends StatefulWidget {
@@ -25,13 +26,15 @@ class _HomeViewState extends StateMVC<HomeView> {
   @override
   void initState() {
     super.initState();
+    con.getUserData();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: ThemeFactory.of(context).backgroundColor,
-      child: Text("Home" , style: TextStyleHandler.of(context).outLinedTextStyleRegular24,),
+    return Column(
+      children: [
+        PersonalInfoWidget()
+      ],
     );
   }
 }

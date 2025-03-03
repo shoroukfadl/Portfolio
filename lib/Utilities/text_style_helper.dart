@@ -143,7 +143,7 @@ class TextStyleHandler {
   TextStyle get headingTextStyleRegular20 => getTextStyle(fontSize: 20, fontWeight: FontWeight.w400);
   TextStyle get headingTextStyleSemiBold20 => getTextStyle(fontSize: 20, fontWeight: FontWeight.w600);
   TextStyle get headingTextStyleBold20 => getTextStyle(fontSize: 20, fontWeight: FontWeight.bold);
-  TextStyle get headingTextStyleExtraBold20 => getTextStyle(fontSize: 02, fontWeight: FontWeight.w800);
+  TextStyle get headingTextStyleExtraBold20 => getTextStyle(fontSize: 20, fontWeight: FontWeight.w800);
 
   TextStyle get headingTextStyleRegular16 => getTextStyle(fontSize: 16, fontWeight: FontWeight.w400);
   TextStyle get headingTextStyleSemiBold16 => getTextStyle(fontSize: 16, fontWeight: FontWeight.w600);

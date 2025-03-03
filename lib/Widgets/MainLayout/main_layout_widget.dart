@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rocklis/Utilities/extensions.dart';
 import 'package:rocklis/Widgets/MainLayout/custom_drawer_widget.dart';
+import 'package:rocklis/Widgets/MainLayout/home_app_bar.dart';
 
 import '../../Core/Language/app_languages.dart';
 import '../../Core/Theme/theme_model.dart';
@@ -49,6 +50,7 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
             : CustomDrawer(
                 currentPath: widget.currentPath,
               ),
+        appBar: const PreferredSize(preferredSize:Size.fromHeight(80), child: HomeAppBar()),
         key: GlobalKeys.scaffoldKey,
         floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
         body: CustomScrollView(
@@ -57,12 +59,13 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
             // Sliver AppBar for disappearing app bar
 
 
+           
 
             // Main content
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  widget.child,
+                  widget.child.paddingSymmetric(horizontal: 32),
                 ],
               ),
             ),

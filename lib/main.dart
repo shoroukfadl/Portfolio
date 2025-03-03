@@ -1,7 +1,6 @@
 
 import 'dart:ui';
-
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -17,17 +16,15 @@ import 'Core/Theme/theme_model.dart';
 import 'Core/Theme/theme_provider.dart';
 import 'Utilities/git_it.dart';
 import 'Utilities/router_config.dart';
+import 'firebase_options.dart';
 
 
 void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
-    setPathUrlStrategy();
-    // تهيئة Firebase
-
-
-
-
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
 
 

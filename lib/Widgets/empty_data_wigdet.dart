@@ -39,7 +39,7 @@ class EmptyDataWidget extends StatelessWidget {
         ),
         16.0.heightBox,
         AppTextWidget(
-          title ?? Strings.noDataFound.translate,
+          title ??"",
           style: TextStyleHandler.of(context).regular16.copyWith(
               fontSize: titleFontSize ??
                   (context.isLarge

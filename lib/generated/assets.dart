@@ -2,27 +2,23 @@
 class Assets {
   Assets._();
 
-  static const String imagesAmex = 'assets/images/amex.png';
-  static const String imagesAppStore = 'assets/images/appStore.png';
-  static const String imagesAuthWaterMark = 'assets/images/authWaterMark.png';
-  static const String imagesBottomWaterMark = 'assets/images/bottomWaterMark.png';
-  static const String imagesCancelOrder = 'assets/images/cancelOrder.png';
-  static const String imagesCreditCardBacground = 'assets/images/creditCardBacground.png';
-  static const String imagesDiscountBadge = 'assets/images/discount_badge.png';
-  static const String imagesDiscover = 'assets/images/discover.png';
-  static const String imagesGoogle = 'assets/images/google.png';
-  static const String imagesGooglePlay = 'assets/images/googlePlay.png';
-  static const String imagesItemDescriptionBackground = 'assets/images/item_description_background.png';
-  static const String imagesLoading = 'assets/images/loading.gif';
-  static const String imagesLoginWarinng = 'assets/images/loginWarinng.png';
-  static const String imagesMastercard = 'assets/images/mastercard.png';
-  static const String imagesNoResults = 'assets/images/no-results.png';
-  static const String imagesPaypal = 'assets/images/paypal.png';
-  static const String imagesRocklisImageAds = 'assets/images/rocklisImageAds.png';
-  static const String imagesSearch = 'assets/images/search.gif';
-  static const String imagesTopWaterMark = 'assets/images/topWaterMark.png';
-  static const String imagesVisa = 'assets/images/visa.png';
+  static const String iconFacebook = 'assets/icons/icon/facebook.svg';
+  static const String iconLinkedin = 'assets/icons/icon/linkedin.svg';
+  static const String iconsChevronDown = 'assets/icons/chevron-down.svg';
+  static const String iconsDown = 'assets/icons/down.svg';
+  static const String iconsDownload = 'assets/icons/download.svg';
+  static const String iconsLeft = 'assets/icons/left.svg';
+  static const String iconsMaterialSymbolsMenu = 'assets/icons/material-symbols_menu.svg';
+  static const String iconsRight = 'assets/icons/right.svg';
+  static const String iconsSecurityLock = 'assets/icons/security-lock.svg';
+  static const String iconsSocialIcon = 'assets/icons/SocialIcon.svg';
+  static const String iconsStar = 'assets/icons/star.svg';
+  static const String iconsUp = 'assets/icons/up.svg';
+  static const String iconsUpRight = 'assets/icons/upRight.svg';
+  static const String imagesGirlbanner = 'assets/images/girlbanner.svg';
+  static const String imagesGroup = 'assets/images/Group.svg';
   static const String languagesAr = 'assets/Languages/ar.json';
   static const String languagesEn = 'assets/Languages/en.json';
+  static const String linearExport = 'assets/icons/vuesax/linear/export.svg';
 
 }

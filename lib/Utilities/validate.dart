@@ -9,7 +9,7 @@ class Validate {
     if ((password?.length ?? 0) >= 8 /*&& passwordRegExp.hasMatch(password)*/) {
       return null;
     } else {
-      return Strings.enterValidPassword.translate;
+      return "";
     }
   }
 
@@ -20,7 +20,7 @@ class Validate {
     newPassword ??= '';
     var passwordRegExp = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
     if (newPassword.length >= 6 && passwordRegExp.hasMatch(newPassword)) {
-      return Strings.enterValidPassword.translate;
+      return "";
     } else {
       return null;
     }
@@ -34,7 +34,7 @@ class Validate {
     if (newPassword.characters == confPassword.characters) {
       return null;
     } else {
-      return Strings.passwordNotMatch.translate;
+      return "";
     }
   }
 /* 
@@ -54,13 +54,13 @@ class Validate {
     final regex = RegExp(pattern);
     if ((email?.isEmpty ?? true) ||
         !regex.hasMatch(email?.toLowerCase().trim() ?? '')) {
-      return Strings.enterValidEmail.translate;
+      return "";
     }
     return null;
   }
 
   static String? validateNormalString(String? text) {
-    if (text?.isEmpty ?? true) return Strings.thisFieldIsRequired.translate;
+    if (text?.isEmpty ?? true) return "";
     return null;
   }
 
@@ -70,33 +70,14 @@ class Validate {
 
   static String? validateNumber(String? text) {
     if (text?.isEmpty ?? true) {
-      return Strings.thisFieldIsRequired.translate;
+      return "";
     } else if (!isNumeric(text ?? '')) {
-      return Strings.enterValidNumber.translate;
+      return "";
     }
     return null;
   }
 
-  static String? validateCardNumber(String? text) {
-    if (text?.isEmpty ?? true) {
-      return Strings.thisFieldIsRequired.translate;
-    }
 
-    // Remove any spaces or special characters
-    final cleanNumber = text!.replaceAll(RegExp(r'\s+|\-'), '');
-
-    // Check if it's numeric
-    if (!isNumeric(cleanNumber)) {
-      return Strings.enterValidNumber.translate;
-    }
-
-    // Check length
-    if (cleanNumber.length != 16) {
-      return Strings.cardNumberMustBe16Digits.translate;
-    }
-
-    return null;
-  }
 
   static String? validateDropDown(dynamic value) {
     if (value == null || value.toString().isEmpty) return '';

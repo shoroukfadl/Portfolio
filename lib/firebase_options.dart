@@ -7,22 +7,24 @@ class DefaultFirebaseOptions {
       return web;
     }
     return const FirebaseOptions(
-      apiKey: "AIzaSyBkaLW3pW47RepTJ1z8boG_N0SSvbjxoD4",
-      authDomain: "rocklisnotify.firebaseapp.com",
-      projectId: "rocklisnotify",
-      storageBucket: "rocklisnotify.appspot.com",
-      messagingSenderId: "381464266397",
-      appId: "1:381464266397:web:280eb7386490f112c2b674",
-      measurementId: "G-49FE83V5CJ",
+          apiKey: "AIzaSyBXWJoNHVOu0-OaVvEkdUCZ1ak1R-QZkE0",
+          authDomain: "portofilo-dd5c6.firebaseapp.com",
+          projectId: "portofilo-dd5c6",
+          storageBucket: "portofilo-dd5c6.firebasestorage.app",
+          messagingSenderId: "308267064546",
+          appId: "1:308267064546:web:398fa35a70c23c2fb7d2bb",
+          measurementId: "G-2956X7JSKK"
+
     );
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBkaLW3pW47RepTJ1z8boG_N0SSvbjxoD4',
-    appId: '1:381464266397:web:280eb7386490f112c2b674',
-    messagingSenderId: '381464266397',
-    projectId: 'rocklisnotify',
-    authDomain: 'rocklisnotify.firebaseapp.com',
-    storageBucket: 'rocklisnotify.appspot.com',
+      apiKey: "AIzaSyBXWJoNHVOu0-OaVvEkdUCZ1ak1R-QZkE0",
+      authDomain: "portofilo-dd5c6.firebaseapp.com",
+      projectId: "portofilo-dd5c6",
+      storageBucket: "portofilo-dd5c6.firebasestorage.app",
+      messagingSenderId: "308267064546",
+      appId: "1:308267064546:web:398fa35a70c23c2fb7d2bb",
+      measurementId: "G-2956X7JSKK"
   );
 }
