@@ -12,4 +12,11 @@ class Strings {
  static const String mail="mail";
  static const String mySkill="mySkill";
  static const String myExperience="myExperience";
+ static const String name="name";
+ static const String email="email";
+ static const String message="message";
+ static const String send="send";
+ static const String yourPhone="yourPhone";
+
+
 }

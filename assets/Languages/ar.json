@@ -8,5 +8,10 @@
   "resume": "السيرة ذاتية",
   "mail": "الايميل",
   "mySkill": "مهاراتي",
-  "myExperience": "خبراتي"
+  "myExperience": "خبراتي",
+  "name": "الاسم",
+  "email": "الايميل",
+  "message": "الرسالة",
+  "send": "ارسل",
+  "yourPhone": "رقم الهاتف الخاص بك"
 }

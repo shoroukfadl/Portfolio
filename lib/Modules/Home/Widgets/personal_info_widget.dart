@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rocklis/Core/Theme/theme_model.dart';
-import 'package:rocklis/Utilities/extensions.dart';
-import 'package:rocklis/Utilities/text_style_helper.dart';
-import 'package:rocklis/generated/assets.dart';
+import 'package:portfolio/Core/Theme/theme_model.dart';
+import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Utilities/text_style_helper.dart';
+import 'package:portfolio/generated/assets.dart';
 
 import '../../../Utilities/Constants/strings.dart';
 
@@ -56,8 +56,7 @@ class PersonalInfoWidget extends StatelessWidget {
               ),
             )
           ],
-        ),
-        expandFlex(2),
+        ).expandFlex(2),
         SvgPicture.asset(
           Assets.imagesGirlbanner,
           width: 200,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rocklis/Core/Theme/theme_model.dart';
-import 'package:rocklis/Utilities/extensions.dart';
-import 'package:rocklis/Widgets/custom_rounded_icon_button.dart';
+import 'package:portfolio/Core/Theme/theme_model.dart';
+import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/custom_rounded_icon_button.dart';
 
 import '../../../Utilities/Constants/strings.dart';
 import '../../../Utilities/text_style_helper.dart';
@@ -12,6 +12,7 @@ class ExperienceCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 500,
       color: ThemeFactory.of(context).primary,
       child: Column(
         children: [
@@ -23,7 +24,7 @@ class ExperienceCardWidget extends StatelessWidget {
           ),
           16.0.heightBox,
           ListView.separated(itemBuilder: (context,i)=> const ExperienceItemCard(),
-              separatorBuilder: (context, index) => 16.0.heightBox, itemCount: 3)
+              separatorBuilder: (context, index) => 16.0.heightBox, itemCount: 3).expand
         ],
       ),
     );

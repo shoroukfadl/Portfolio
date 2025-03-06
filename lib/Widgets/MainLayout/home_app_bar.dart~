@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:portfolio/Core/Theme/theme_model.dart';
-import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/text_style_helper.dart';
-import 'package:portfolio/Widgets/app_text_widget.dart';
-import 'package:portfolio/Widgets/custom_button_widget.dart';
+import 'package:rocklis/Core/Theme/theme_model.dart';
+import 'package:rocklis/Utilities/extensions.dart';
+import 'package:rocklis/Utilities/text_style_helper.dart';
+import 'package:rocklis/Widgets/app_text_widget.dart';
+import 'package:rocklis/Widgets/custom_button_widget.dart';
 
 import '../../Utilities/Constants/strings.dart';
 import '../../generated/assets.dart';

@@ -9,5 +9,10 @@
   "resume":"Resume",
   "mail": "Mail",
   "mySkill": "My Skill",
-  "myExperience": "My Experience"
+  "myExperience": "My Experience",
+  "name": "Name",
+  "email": "Email",
+  "message": "Message",
+  "send": "Send",
+  "yourPhone": "Your Phone"
 }

@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:rocklis/Modules/Home/home_view.dart';
-import 'package:rocklis/Utilities/router_config.dart';
+import 'package:portfolio/Modules/Home/home_view.dart';
+import 'package:portfolio/Utilities/router_config.dart';
 
 class SplashController extends ControllerMVC  {
   // singleton

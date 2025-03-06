@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:rocklis/Core/Language/locales.dart';
+import 'package:portfolio/Core/Language/locales.dart';
 
 extension StringExtensions on String {
   String get translate {

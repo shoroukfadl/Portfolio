@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rocklis/Utilities/Constants/constants.dart';
+import 'package:portfolio/Utilities/Constants/constants.dart';
 
 import 'icon_with_rounded_background_widget.dart';
 

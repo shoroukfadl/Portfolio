@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:rocklis/Utilities/extensions.dart';
+import 'package:portfolio/Utilities/extensions.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_strategy/url_strategy.dart';
 
@@ -20,8 +20,8 @@ import 'firebase_options.dart';
 
 
 void main() async {
-  try {
     WidgetsFlutterBinding.ensureInitialized();
+  try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:rocklis/Utilities/Constants/enums.dart';
-import 'package:rocklis/Utilities/text_style_helper.dart';
-import 'package:rocklis/Widgets/custom_rounded_icon_button.dart';
+import 'package:portfolio/Modules/Home/Widgets/about_me_widget.dart';
+import 'package:portfolio/Modules/Home/Widgets/contact_me.dart';
+import 'package:portfolio/Modules/Home/Widgets/experince_card_widget.dart';
+import 'package:portfolio/Modules/Home/Widgets/my_skills.dart';
+import 'package:portfolio/Utilities/Constants/enums.dart';
+import 'package:portfolio/Utilities/text_style_helper.dart';
+import 'package:portfolio/Widgets/custom_rounded_icon_button.dart';
 
 import '../../Core/Theme/theme_model.dart';
 import '../../generated/assets.dart';
@@ -28,7 +32,7 @@ class _HomeViewState extends StateMVC<HomeView> {
   @override
   void initState() {
     super.initState();
-  // Future.delayed(Duration.zero ,()async=>  await con.getUserData());
+  Future.delayed(Duration.zero ,()async=>  await con.getUserData());
   }
 
   @override
@@ -39,10 +43,14 @@ class _HomeViewState extends StateMVC<HomeView> {
         Row(
           children: [
 
-          //  CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconLinkedin),
-         //   CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconsGithub),
+            CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconLinkedin),
+           CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconsGithub),
           ],
-        )
+        ),
+       // MySkillsWidget(),
+        //ExperienceCardWidget(),
+       // AboutMeWidget(),
+       // ContactMeWidget(con: con)
       ],
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/Core/Theme/theme_model.dart';
-import 'package:portfolio/Utilities/Constants/constants.dart';
+import 'package:rocklis/Core/Theme/theme_model.dart';
+import 'package:rocklis/Utilities/Constants/constants.dart';
 
 class CustomBaseCard extends StatelessWidget {
   final Widget child ;

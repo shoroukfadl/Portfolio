@@ -3,10 +3,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:portfolio/Core/Theme/theme_model.dart';
-import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/shared_preferences.dart';
-import 'package:portfolio/Widgets/tooltip_widget.dart';
+import 'package:rocklis/Core/Theme/theme_model.dart';
+import 'package:rocklis/Utilities/extensions.dart';
+import 'package:rocklis/Utilities/shared_preferences.dart';
+import 'package:rocklis/Widgets/tooltip_widget.dart';
 import 'package:simple_tooltip/simple_tooltip.dart';
 
 import '../../Core/Language/app_languages.dart';

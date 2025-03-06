@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:rocklis/Modules/Splash/splash_controller.dart';
+import 'package:portfolio/Modules/Splash/splash_controller.dart';
 
 import '../../Core/Theme/theme_model.dart';
 

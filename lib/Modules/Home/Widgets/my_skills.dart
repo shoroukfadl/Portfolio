@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rocklis/Utilities/extensions.dart';
+import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../../Core/Theme/theme_model.dart';
 import '../../../Utilities/Constants/strings.dart';
