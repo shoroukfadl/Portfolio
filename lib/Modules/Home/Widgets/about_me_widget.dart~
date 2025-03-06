@@ -9,12 +9,26 @@ import '../../../generated/assets.dart';
 
 class AboutMeWidget extends StatelessWidget {
   const AboutMeWidget({super.key});
+  hr@wasiljo.com
   @override
   Widget build(BuildContext context) {
     return  Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SvgPicture.asset(Assets.imagesGroup ,width: 480,height: 480,),
+        Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Container(
+              height: 500,
+              width: 480,
+              decoration: BoxDecoration(
+                border: Border.all(color: ThemeFactory.of(context).primary),
+                borderRadius: BorderRadius.circular(8)
+              ),
+            ),
+            SvgPicture.asset(Assets.imagesGroup ,width: 480,height: 480,),
+          ],
+        ),
         32.0.widthBox,
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

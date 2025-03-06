@@ -65,7 +65,7 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  widget.child.paddingSymmetric(horizontal: 32),
+                  widget.child,
                 ],
               ),
             ),

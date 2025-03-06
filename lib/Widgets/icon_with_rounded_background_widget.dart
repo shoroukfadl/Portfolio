@@ -15,7 +15,7 @@ class CustomIconWithBackgroundWidget extends StatelessWidget {
       this.color,
       this.iconColor,
       this.iconSize,
-      this.showShadow = true,
+      this.showShadow = false,
       this.buttonSize});
 
   @override
@@ -26,8 +26,9 @@ class CustomIconWithBackgroundWidget extends StatelessWidget {
       height: buttonSize ?? 40.0,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: color ?? ThemeFactory.of(context).card,
+          borderRadius: BorderRadius.circular(buttonSize != null ? buttonSize!/8 : 4),
+          color: color ?? ThemeFactory.of(context).backgroundColor,
+          border: Border.all(color: ThemeFactory.of(context).primary),
           boxShadow: [
             if (showShadow)
               BoxShadow(

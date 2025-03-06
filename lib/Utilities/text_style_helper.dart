@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/Core/Language/app_languages.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 import '../Core/Theme/theme_model.dart';
@@ -9,8 +10,8 @@ class TextStyleHandler {
   const TextStyleHandler._(this.context);
   static TextStyleHandler of(BuildContext context) =>
       TextStyleHandler._(context);
-  _fontFamily({GoogleFonts? font}) {
-    return font ?? GoogleFonts.sora;
+  _fontFamily() {
+    return appLangIsArabic(context: context) ? GoogleFonts.cairo : GoogleFonts.sora;
   }
 
   TextStyle getTextStyle({required double fontSize, FontWeight? fontWeight}) =>
@@ -18,7 +19,7 @@ class TextStyleHandler {
         fontSize: fontSize,
         fontWeight: fontWeight ?? FontWeight.w400,
         color: ThemeFactory.of(context).font1,
-        height: 1.0,
+        height: 1.4,
       );
 
   /// ************************** Display text ************************* ///

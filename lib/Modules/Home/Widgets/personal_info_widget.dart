@@ -6,6 +6,7 @@ import 'package:portfolio/Utilities/text_style_helper.dart';
 import 'package:portfolio/generated/assets.dart';
 
 import '../../../Utilities/Constants/strings.dart';
+import '../../../Widgets/custom_rounded_icon_button.dart';
 
 class PersonalInfoWidget extends StatelessWidget {
   const PersonalInfoWidget({super.key});
@@ -15,6 +16,7 @@ class PersonalInfoWidget extends StatelessWidget {
     return Row(
       children: [
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             RichText(
               text: TextSpan(
@@ -54,13 +56,22 @@ class PersonalInfoWidget extends StatelessWidget {
               style: TextStyleHandler.of(context).paragraphTextStyleBold20.copyWith(
                 color: ThemeFactory.of(context).secondary300
               ),
-            )
+            ),
+            32.0.heightBox,
+            Row(
+              children: [
+
+                CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconLinkedin),
+                16.0.widthBox,
+                CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconsGithub),
+              ],
+            ),
           ],
         ).expandFlex(2),
         SvgPicture.asset(
           Assets.imagesGirlbanner,
-          width: 200,
-          height: 200,
+          width: 400,
+          height: 400,
         ).expand,
       ],
     );

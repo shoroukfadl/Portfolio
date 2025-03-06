@@ -19,12 +19,16 @@ class HomeAppBar extends StatelessWidget {
         AppTextWidget(Strings.aboutMe.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20.copyWith(
           color: ThemeFactory.of(context).primary, decoration: TextDecoration.underline
         ),),
+
+        16.0.widthBox,
         AppTextWidget(Strings.skill.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20.copyWith(
           color: ThemeFactory.of(context).primary, decoration: TextDecoration.underline
         ),),
+        16.0.widthBox,
         AppTextWidget(Strings.projects.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20.copyWith(
           color: ThemeFactory.of(context).primary, decoration: TextDecoration.underline
         ),),
+        16.0.widthBox,
         AppTextWidget(Strings.contactMe.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20.copyWith(
           color: ThemeFactory.of(context).primary, decoration: TextDecoration.underline
         ),),
@@ -44,7 +48,7 @@ class HomeAppBar extends StatelessWidget {
           ),
         ),
 
-
+  16.0.widthBox,
         CustomButtonWidget(
           onPressed: (){},
           title: Strings.mail.translate,

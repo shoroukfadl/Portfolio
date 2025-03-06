@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:portfolio/Core/Layout/layout_handler.dart';
 import 'package:portfolio/Modules/Home/Widgets/about_me_widget.dart';
 import 'package:portfolio/Modules/Home/Widgets/contact_me.dart';
 import 'package:portfolio/Modules/Home/Widgets/experince_card_widget.dart';
 import 'package:portfolio/Modules/Home/Widgets/my_skills.dart';
 import 'package:portfolio/Utilities/Constants/enums.dart';
+import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/text_style_helper.dart';
 import 'package:portfolio/Widgets/custom_rounded_icon_button.dart';
 
@@ -39,17 +41,14 @@ class _HomeViewState extends StateMVC<HomeView> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PersonalInfoWidget(),
-        Row(
-          children: [
+        32.0.heightBox,
+        const PersonalInfoWidget().paddingSymmetric(horizontal: 32),
 
-            CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconLinkedin),
-           CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconsGithub),
-          ],
-        ),
-       // MySkillsWidget(),
-        //ExperienceCardWidget(),
-       // AboutMeWidget(),
+       64.0.heightBox,
+
+       const MySkillsWidget().paddingSymmetric(horizontal: 32),
+        const ExperienceCardWidget(),
+        AboutMeWidget(),
        // ContactMeWidget(con: con)
       ],
     );

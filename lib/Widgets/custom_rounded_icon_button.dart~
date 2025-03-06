@@ -24,8 +24,8 @@ class CustomRoundedIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: onPressed,
-        child: CustomIconWithBackgroundWidget(
+        onPressed: onPressed,
+        icon: CustomIconWithBackgroundWidget(
           buttonSize: buttonSize,
           iconPath: iconPath,
           color: color,

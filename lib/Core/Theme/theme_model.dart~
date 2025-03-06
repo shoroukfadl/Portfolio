@@ -76,7 +76,7 @@ class ThemeFactory {
     this.tableBackground = const Color(0xffEFEFEF),
     this.backgroundColor = const Color(0xffE4E4E7),
     this.blackWhiteColor = const Color(0xff000000),
-    this.card = const Color(0xFfDCD7C9), //
+    this.card = const Color(0xFFFFFFFF), //
     this.subCard = const Color(0xFFF1F1F1), //
     this.font1 = const Color(0xff000000), //
     this.font2 = const Color(0xFF7A7A7A), //

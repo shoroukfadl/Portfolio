@@ -29,8 +29,7 @@ class MySkillsWidget extends StatelessWidget {
              withPrim: i%2 == 0,
            )),
           ],
-        ),
-        32.0.heightBox,
+        )
       ],
     );
   }
