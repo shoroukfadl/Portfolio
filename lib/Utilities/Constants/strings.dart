@@ -11,4 +11,5 @@ class Strings {
  static const String resume="resume";
  static const String mail="mail";
  static const String mySkill="mySkill";
+ static const String myExperience="myExperience";
 }

@@ -15,7 +15,6 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Row(
-      spacing: 16,
       children: [
         AppTextWidget(Strings.aboutMe.translate , style: TextStyleHandler.of(context).headingTextStyleExtraBold20.copyWith(
           color: ThemeFactory.of(context).primary, decoration: TextDecoration.underline

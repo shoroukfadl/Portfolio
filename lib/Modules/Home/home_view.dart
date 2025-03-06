@@ -28,7 +28,7 @@ class _HomeViewState extends StateMVC<HomeView> {
   @override
   void initState() {
     super.initState();
-    con.getUserData();
+  // Future.delayed(Duration.zero ,()async=>  await con.getUserData());
   }
 
   @override
