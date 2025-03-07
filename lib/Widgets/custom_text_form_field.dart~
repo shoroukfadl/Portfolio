@@ -90,7 +90,7 @@ class CustomTextFormField extends StatelessWidget {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius ?? 0.0),
       borderSide: BorderSide(
-        color: color ?? ThemeFactory.of(context).primary,
+        color: color ?? ThemeFactory.of(context).font2,
         width: width ?? 1.0,
       ),
     );
@@ -118,7 +118,7 @@ class CustomTextFormField extends StatelessWidget {
         keyboardType: textInputType,
         onChanged: onchange,
         style: TextStyleHandler.of(context).textFormFieldContent.copyWith(
-              color: ThemeFactory.of(context).primary,
+              color: ThemeFactory.of(context).font1,
             ),
         enabled: enable,
         controller: controller,
@@ -159,11 +159,11 @@ class CustomTextFormField extends StatelessWidget {
           labelText: lableText,
           labelStyle:
               TextStyleHandler.of(context).textFormFieldLableTitle.copyWith(
-                    color: ThemeFactory.of(context).primary,
+                    color: ThemeFactory.of(context).font2,
                   ),
           errorStyle:
               TextStyleHandler.of(context).textFormFieldErrorMessage.copyWith(
-                    color: ThemeFactory.of(context).secondary,
+                    color: ThemeFactory.of(context).primary,
                   ),
           enabledBorder:
               getBorder(context, radius: borderRadiusValue, color: borderColor),
@@ -177,7 +177,7 @@ class CustomTextFormField extends StatelessWidget {
               radius: borderRadiusValue,
               color: ThemeFactory.of(context).primary),
           isDense: isDense ?? false,
-          fillColor: (backGroundColor ?? ThemeFactory.of(context).backgroundColor),
+          fillColor: (backGroundColor ?? ThemeFactory.of(context).subCard),
           filled: true,
           hintText: hint,
           alignLabelWithHint: alignLabelWithHint,
@@ -186,7 +186,7 @@ class CustomTextFormField extends StatelessWidget {
           prefixIcon: prefixIcon,
           hintStyle: hintStyle ??
               TextStyleHandler.of(context).textFormFieldHint.copyWith(
-                    color: ThemeFactory.of(context).primary75,
+                    color: ThemeFactory.of(context).font2,
                   ),
         ),
       ),

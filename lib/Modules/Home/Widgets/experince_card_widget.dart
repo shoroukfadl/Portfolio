@@ -5,6 +5,7 @@ import 'package:portfolio/Widgets/custom_rounded_icon_button.dart';
 
 import '../../../Utilities/Constants/strings.dart';
 import '../../../Utilities/text_style_helper.dart';
+import '../../../Widgets/sections_title_widget.dart';
 
 class ExperienceCardWidget extends StatelessWidget {
   const ExperienceCardWidget({super.key});
@@ -16,11 +17,8 @@ class ExperienceCardWidget extends StatelessWidget {
       color: ThemeFactory.of(context).primary,
       child: Column(
         children: [
-          Text(
-            Strings.myExperience.translate,
-            style: TextStyleHandler.of(context)
-                .headingTextStyleExtraBold20
-                .copyWith(color: ThemeFactory.of(context).secondary),
+          SectionsTitleWidget(
+           title: Strings.experience.translate,
           ),
           16.0.heightBox,
           ListView.separated(itemBuilder: (context,i)=> const ExperienceItemCard(),

@@ -17,6 +17,8 @@ class Strings {
  static const String message="message";
  static const String send="send";
  static const String yourPhone="yourPhone";
+ static const String my="my";
+ static const String experience="experience";
 
 
 }

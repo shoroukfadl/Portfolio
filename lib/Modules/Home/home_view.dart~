@@ -50,7 +50,7 @@ class _HomeViewState extends StateMVC<HomeView> {
        const MySkillsWidget().paddingSymmetric(horizontal: 32),
         const ExperienceCardWidget(),
         const AboutMeWidget(),
-        const MyProjectsWidget(),
+        const MyProjectsWidget()
         ContactMeWidget(con: con)
       ],
     );
