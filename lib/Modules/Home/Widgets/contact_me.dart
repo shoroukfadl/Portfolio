@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 
 import '../../../Core/Theme/theme_model.dart';
 import '../../../Utilities/Constants/strings.dart';
+import '../../../Utilities/text_style_helper.dart';
 import '../../../Widgets/custom_button_widget.dart';
 import '../../../Widgets/custom_text_form_field.dart';
 import '../home_controller.dart';
@@ -14,35 +16,36 @@ class ContactMeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return  Column(
       children: [
-        Column(
-          children: [
-
-            CustomTextFormField(
-              controller: con.nameController,
-              lableText: Strings.name.translate,
-            ),
-            16.0.heightBox,
-            CustomTextFormField(
-              controller: con.emailController,
-              lableText: Strings.email.translate,
-            ),
-            16.0.heightBox,
-            CustomTextFormField(
-              controller: con.phoneController,
-              lableText: Strings.yourPhone.translate,
-            ),
-            16.0.heightBox,
-            CustomTextFormField(
-              controller: con.messageController,
-              lableText: Strings.message.translate,
-            ),
-            16.0.heightBox,
-            CustomButtonWidget(onPressed: (){} , title: Strings.send.translate,)
-          ],
-        )
+        CustomTextFormField(
+          width: 1.sw,
+          controller: con.nameController,
+          lableText: Strings.name.translate,
+        ),
+        16.0.heightBox,
+        CustomTextFormField(
+          width: 1.sw,
+          controller: con.emailController,
+          lableText: Strings.email.translate,
+        ),
+        16.0.heightBox,
+        CustomTextFormField(
+          width: 1.sw,
+          controller: con.phoneController,
+          lableText: Strings.yourPhone.translate,
+        ),
+        16.0.heightBox,
+        CustomTextFormField(
+          controller: con.messageController,
+          lableText: Strings.message.translate,
+          width: 1.sw,
+          maxLine: 5,
+          minLines: 5,
+        ),
+        16.0.heightBox,
+        CustomButtonWidget(onPressed: (){} , title: Strings.send.translate,)
       ],
-    );
+    ).paddingSymmetric(horizontal: 32 , vertical: 40);
   }
 }
