@@ -53,7 +53,9 @@ class _HomeViewState extends StateMVC<HomeView> {
           skills: con.user?.data?.skills??[],
         ).paddingSymmetric(horizontal: 32),
         const ExperienceCardWidget(),
-        const AboutMeWidget(),
+         AboutMeWidget(
+           desc: con.user?.data?.personalData?.shortDesc??"",
+         ),
         const MyProjectsWidget(),
         ContactMeWidget(con: con)
       ],

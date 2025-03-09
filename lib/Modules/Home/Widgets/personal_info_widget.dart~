@@ -79,7 +79,7 @@ class PersonalInfoWidget extends StatelessWidget {
                 16.0.widthBox,
                 CustomRoundedIconButton(
                     onPressed: () {
-                      String gmailWebUri = "https://mail.google.com/mail/?view=cm&fs=1&to=${personalData?.links?.email}";
+                      String gmailWebUri = "https://mail.google.com/mail/?view=cm&fs=1&to=${personalData?.location.email}";
                       HelperFunctions.openUrl(gmailWebUri, context);
                     },
                     iconPath: Assets.iconsMail),

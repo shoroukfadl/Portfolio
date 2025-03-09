@@ -8,7 +8,8 @@ import '../../../Utilities/text_style_helper.dart';
 import '../../../generated/assets.dart';
 
 class AboutMeWidget extends StatelessWidget {
-  const AboutMeWidget({super.key});
+  final String desc;
+  const AboutMeWidget({super.key, required this.desc});
   @override
   Widget build(BuildContext context) {
     return  Row(
@@ -23,7 +24,7 @@ class AboutMeWidget extends StatelessWidget {
               color: ThemeFactory.of(context).primary
             ),),
             16.0.heightBox,
-            Text("description here , this is description ...............", style: TextStyleHandler.of(context).headingTextStyleBold20.copyWith(
+            Text(desc, style: TextStyleHandler.of(context).headingTextStyleBold20.copyWith(
               color: ThemeFactory.of(context).secondary
             ),)
           ],
