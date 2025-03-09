@@ -49,7 +49,9 @@ class _HomeViewState extends StateMVC<HomeView> {
 
        64.0.heightBox,
 
-       const MySkillsWidget().paddingSymmetric(horizontal: 32),
+        MySkillsWidget(
+          skills: con.user?.data?.skills??[],
+        ).paddingSymmetric(horizontal: 32),
         const ExperienceCardWidget(),
         const AboutMeWidget(),
         const MyProjectsWidget(),
