@@ -5,11 +5,13 @@ import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/text_style_helper.dart';
 import 'package:portfolio/generated/assets.dart';
 
+import '../../../Models/user_data_model.dart';
 import '../../../Utilities/Constants/strings.dart';
 import '../../../Widgets/custom_rounded_icon_button.dart';
 
 class PersonalInfoWidget extends StatelessWidget {
-  const PersonalInfoWidget({super.key});
+  final PersonalData?  personalData;
+  const PersonalInfoWidget({super.key,  this.personalData});
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +26,17 @@ class PersonalInfoWidget extends StatelessWidget {
                   style: TextStyleHandler.of(context).displayTextStyleRegular48,
                   children: [
                     TextSpan(
-                      text: "Shorouk Fadl\n",
+                      text: " ${personalData?.name??""}\n",
                       style: TextStyleHandler.of(context)
                           .displayTextStyleExtraBold48,
                     ),
                     TextSpan(
-                      text: "Flutter",
+                      text: "${personalData?.role??""}\n",
                       style: TextStyleHandler.of(context)
                           .displayTextStyleExtraBold48,
                     ),
                     TextSpan(
-                      text: "Developer\n",
+                      text: "${Strings.developer.translate}\n",
                       style: TextStyleHandler.of(context)
                           .outLinedTextStyleExtraBold48,
                     ),
@@ -44,7 +46,7 @@ class PersonalInfoWidget extends StatelessWidget {
                           .displayTextStyleRegular48,
                     ),
                     TextSpan(
-                      text: "Giza",
+                      text: " ${personalData?.location??""}\n",
                       style: TextStyleHandler.of(context)
                           .displayTextStyleExtraBold48,
                     ),
@@ -52,7 +54,7 @@ class PersonalInfoWidget extends StatelessWidget {
             ),
             16.0.heightBox,
             Text(
-              "I'm Flora Sheen Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to specimen book.",
+              "${personalData?.shortDesc??""}",
               style: TextStyleHandler.of(context).paragraphTextStyleBold20.copyWith(
                 color: ThemeFactory.of(context).secondary300
               ),

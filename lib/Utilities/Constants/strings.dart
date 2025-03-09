@@ -19,6 +19,7 @@ class Strings {
  static const String yourPhone="yourPhone";
  static const String my="my";
  static const String experience="experience";
+ static const String developer="developer";
 
 
 }

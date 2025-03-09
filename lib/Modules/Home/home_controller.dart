@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:portfolio/Models/user_data_model.dart';
 import 'home_interface.dart';
 
 class HomeController extends ControllerMVC implements HomeInterface {
@@ -15,7 +16,7 @@ class HomeController extends ControllerMVC implements HomeInterface {
   HomeController._();
   late TextEditingController nameController  , emailController , messageController  , phoneController;
 
-  List<QueryDocumentSnapshot> data = [];
+  UserDataModel? user;
 
 
   @override
@@ -41,8 +42,9 @@ class HomeController extends ControllerMVC implements HomeInterface {
   @override
   Future<void> getUserData() async {
    QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection("1").get();
-   data.addAll(querySnapshot.docs);
-   print("Data ::::::::::::::::::::::::::: >............. ${data.firstOrNull?["name"]}");
+   user = UserDataModel.fromJson(querySnapshot.docs.first.data() as Map<String, dynamic>);
+   print("Data ::::::::::::::::::::::::::: >............. ${user?.data?.toJson()}");
+
    setState((){});
   }
 

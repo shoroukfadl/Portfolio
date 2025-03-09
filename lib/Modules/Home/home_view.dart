@@ -43,7 +43,9 @@ class _HomeViewState extends StateMVC<HomeView> {
     return Column(
       children: [
         32.0.heightBox,
-        const PersonalInfoWidget().paddingSymmetric(horizontal: 32),
+         PersonalInfoWidget(
+           personalData: con.user?.data?.personalData,
+        ).paddingSymmetric(horizontal: 32),
 
        64.0.heightBox,
 
