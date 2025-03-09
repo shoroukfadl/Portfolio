@@ -1,6 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../Core/Theme/theme_model.dart';
 import 'text_style_helper.dart';
@@ -78,6 +79,15 @@ abstract class HelperFunctions {
     );
   }
 
+
+  static void openUrl(String url,BuildContext context) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+     await launchUrl(uri);
+    }
+
+    else showCustomToast(context , message: "Could not launch $url");
+  }
 
 
 

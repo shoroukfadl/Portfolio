@@ -52,6 +52,7 @@ dependencies:
   url_strategy:
   cloud_firestore: ^5.6.5
   firebase_storage: ^12.4.4
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:

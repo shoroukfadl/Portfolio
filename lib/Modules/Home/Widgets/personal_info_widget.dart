@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/Core/Theme/theme_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Utilities/helper_function.dart';
 import 'package:portfolio/Utilities/text_style_helper.dart';
 import 'package:portfolio/generated/assets.dart';
 
@@ -10,8 +11,8 @@ import '../../../Utilities/Constants/strings.dart';
 import '../../../Widgets/custom_rounded_icon_button.dart';
 
 class PersonalInfoWidget extends StatelessWidget {
-  final PersonalData?  personalData;
-  const PersonalInfoWidget({super.key,  this.personalData});
+  final PersonalData? personalData;
+  const PersonalInfoWidget({super.key, this.personalData});
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,12 @@ class PersonalInfoWidget extends StatelessWidget {
                   style: TextStyleHandler.of(context).displayTextStyleRegular48,
                   children: [
                     TextSpan(
-                      text: " ${personalData?.name??""}\n",
+                      text: " ${personalData?.name ?? ""}\n",
                       style: TextStyleHandler.of(context)
                           .displayTextStyleExtraBold48,
                     ),
                     TextSpan(
-                      text: "${personalData?.role??""}\n",
+                      text: "${personalData?.role ?? ""}\n",
                       style: TextStyleHandler.of(context)
                           .displayTextStyleExtraBold48,
                     ),
@@ -46,7 +47,7 @@ class PersonalInfoWidget extends StatelessWidget {
                           .displayTextStyleRegular48,
                     ),
                     TextSpan(
-                      text: " ${personalData?.location??""}\n",
+                      text: " ${personalData?.location ?? ""}\n",
                       style: TextStyleHandler.of(context)
                           .displayTextStyleExtraBold48,
                     ),
@@ -54,18 +55,35 @@ class PersonalInfoWidget extends StatelessWidget {
             ),
             16.0.heightBox,
             Text(
-              "${personalData?.shortDesc??""}",
-              style: TextStyleHandler.of(context).paragraphTextStyleBold20.copyWith(
-                color: ThemeFactory.of(context).secondary300
-              ),
+              personalData?.shortDesc ?? "",
+              style: TextStyleHandler.of(context)
+                  .paragraphTextStyleBold20
+                  .copyWith(color: ThemeFactory.of(context).secondary300),
             ),
             32.0.heightBox,
             Row(
               children: [
-
-                CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconLinkedin),
+                CustomRoundedIconButton(
+                    onPressed: () {
+                      HelperFunctions.openUrl(
+                          personalData?.links?.linkedIn ?? "", context);
+                    },
+                    iconPath: Assets.iconLinkedin),
                 16.0.widthBox,
-                CustomRoundedIconButton(onPressed: (){}, iconPath: Assets.iconsGithub),
+                CustomRoundedIconButton(
+                    onPressed: () {
+                      HelperFunctions.openUrl(
+                          personalData?.links?.github ?? "", context);
+                    },
+                    iconPath: Assets.iconsGithub),
+                16.0.widthBox,
+                CustomRoundedIconButton(
+                    onPressed: () {
+                      HelperFunctions.openUrl(
+                          personalData?.links?.email ?? "", context);
+                    },
+                    iconPath: Assets.iconsMail),
+
               ],
             ),
           ],
