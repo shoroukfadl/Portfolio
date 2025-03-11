@@ -76,6 +76,7 @@ class _EntryPointState extends State<EntryPoint> {
         }
         return Consumer<ThemeProvider>(builder: (context, themeProvider, _) {
           themeProvider.getCurrentTheme();
+          print(" app Size :: ${appSize} ---- ");
           return GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: ScreenUtilInit(

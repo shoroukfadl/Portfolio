@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:portfolio/Core/Layout/layout_handler.dart';
-import 'package:portfolio/Modules/Home/Widgets/about_me_widget.dart';
-import 'package:portfolio/Modules/Home/Widgets/contact_me.dart';
-import 'package:portfolio/Modules/Home/Widgets/experince_card_widget.dart';
-import 'package:portfolio/Modules/Home/Widgets/my_skills.dart';
+import 'package:portfolio/Modules/Home/Layouts/l_home_view.dart';
+import 'package:portfolio/Modules/Home/Layouts/m_home_view.dart';
 import 'package:portfolio/Utilities/Constants/enums.dart';
-import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/text_style_helper.dart';
-import 'package:portfolio/Widgets/custom_rounded_icon_button.dart';
-
-import '../../Core/Theme/theme_model.dart';
-import '../../generated/assets.dart';
-import 'Widgets/my_projects_widget.dart';
-import 'Widgets/personal_info_widget.dart';
 import 'home_controller.dart';
 
 class HomeView extends StatefulWidget {
@@ -26,7 +16,8 @@ class HomeView extends StatefulWidget {
   createState() => _HomeViewState();
 }
 
-class _HomeViewState extends StateMVC<HomeView> {
+class _HomeViewState extends StateMVC<HomeView>  with LayoutHandlerMixin {
+
   _HomeViewState() : super(HomeController()) {
     con = HomeController();
   }
@@ -38,29 +29,30 @@ class _HomeViewState extends StateMVC<HomeView> {
   Future.delayed(Duration.zero ,()async=>  await con.getUserData());
   }
 
+
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        32.0.heightBox,
-         PersonalInfoWidget(
-           personalData: con.user?.data?.personalData,
-        ).paddingSymmetric(horizontal: 32),
-
-       64.0.heightBox,
-
-        MySkillsWidget(
-          skills: con.user?.data?.skills??[],
-        ).paddingSymmetric(horizontal: 32),
-        const ExperienceCardWidget(),
-         AboutMeWidget(
-           desc: con.user?.data?.personalData?.shortDesc??"",
-         ),
-        const MyProjectsWidget(),
-        ContactMeWidget(con: con)
-      ],
-    );
+  return buildLayout(context);
   }
+
+  @override
+  Widget buildLargeScreen() {
+    return LargeHomeView(con: con);
+  }
+
+  @override
+  Widget buildMediumScreen() {
+    return MediumHomeView(con: con);
+  }
+
+  @override
+  Widget buildSmallScreen() {
+    return LargeHomeView(con: con);
+  }
+
+
+
 }
 
 

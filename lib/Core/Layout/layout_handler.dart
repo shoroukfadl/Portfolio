@@ -10,12 +10,16 @@ mixin LayoutHandlerMixin {
   //     1.sw > 768;
 
   Widget buildLayout(BuildContext context) {
+    print("herrr ,,,,");
     return LayoutBuilder(builder: (context, constraints) {
       if (context.isSmall) {
+    print("herrr ,,,, Small");
         return buildSmallScreen();
       } else if (context.isMedium) {
+    print("herrr ,,,, Medium");
         return buildMediumScreen();
       } else {
+    print("herrr ,,,, Large");
         return buildLargeScreen();
       }
     });

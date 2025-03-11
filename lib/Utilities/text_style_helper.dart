@@ -32,6 +32,13 @@ class TextStyleHandler {
   TextStyle get displayTextStyleExtraBold48 =>
       getTextStyle(fontSize: 48, fontWeight: FontWeight.w800);
 
+
+  TextStyle get displayTextStyleRegular32 => getTextStyle(fontSize: 32, fontWeight: FontWeight.w400);
+  TextStyle get displayTextStyleSemiBold32 => getTextStyle(fontSize: 32, fontWeight: FontWeight.w600);
+  TextStyle get displayTextStyleBold32 => getTextStyle(fontSize: 32, fontWeight: FontWeight.bold);
+  TextStyle get displayTextStyleExtraBold32 => getTextStyle(fontSize: 32, fontWeight: FontWeight.w800);
+
+
   TextStyle get displayTextStyleRegular24 =>
       getTextStyle(fontSize: 24, fontWeight: FontWeight.w400);
   TextStyle get displayTextStyleSemiBold24 =>
@@ -75,6 +82,39 @@ class TextStyleHandler {
           ..strokeWidth = 3,
       );
 
+
+  TextStyle get outLinedTextStyleRegular32 =>
+      getTextStyle(fontSize: 32, fontWeight: FontWeight.w400).copyWith(
+        foreground: Paint()
+          ..strokeJoin = StrokeJoin.round
+          ..color = ThemeFactory.of(context).font1
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2,
+      );
+  TextStyle get outLinedTextStyleSemiBold32 =>
+      getTextStyle(fontSize: 32, fontWeight: FontWeight.w600).copyWith(
+        foreground: Paint()
+          ..strokeJoin = StrokeJoin.round
+          ..color = ThemeFactory.of(context).font1
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2,
+      );
+  TextStyle get outLinedTextStyleBold32=>
+      getTextStyle(fontSize: 32, fontWeight: FontWeight.bold).copyWith(
+        foreground: Paint()
+          ..strokeJoin = StrokeJoin.round
+          ..color = ThemeFactory.of(context).font1
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2,
+      );
+  TextStyle get outLinedTextStyleExtraBold32 =>
+      getTextStyle(fontSize: 32, fontWeight: FontWeight.w800).copyWith(
+        foreground: Paint()
+          ..strokeJoin = StrokeJoin.round
+          ..color = ThemeFactory.of(context).font1
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2,
+      );
 
 
   TextStyle get outLinedTextStyleRegular24 =>

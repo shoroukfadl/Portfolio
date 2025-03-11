@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:portfolio/Core/Theme/theme_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/helper_function.dart';
 import 'package:portfolio/Utilities/text_style_helper.dart';
@@ -12,7 +11,9 @@ import '../../../Widgets/custom_rounded_icon_button.dart';
 
 class PersonalInfoWidget extends StatelessWidget {
   final PersonalData? personalData;
-  const PersonalInfoWidget({super.key, this.personalData});
+  final TextStyle? helloStyle , nameStyle , roleStyle , developerStyle , basedInStyle , locationStyle;
+  final double? imageSize , buttonSize;
+  const PersonalInfoWidget({super.key, this.personalData, this.helloStyle, this.nameStyle, this.roleStyle, this.developerStyle, this.basedInStyle, this.locationStyle, this.imageSize, this.buttonSize});
 
   @override
   Widget build(BuildContext context) {
@@ -24,31 +25,31 @@ class PersonalInfoWidget extends StatelessWidget {
             RichText(
               text: TextSpan(
                   text: Strings.helloIam.translate,
-                  style: TextStyleHandler.of(context).displayTextStyleRegular48,
+                  style: helloStyle ?? TextStyleHandler.of(context).displayTextStyleRegular48,
                   children: [
                     TextSpan(
                       text: " ${personalData?.name ?? ""}\n",
-                      style: TextStyleHandler.of(context)
+                      style: nameStyle ?? TextStyleHandler.of(context)
                           .displayTextStyleExtraBold48,
                     ),
                     TextSpan(
                       text: "${personalData?.role ?? ""}\n",
-                      style: TextStyleHandler.of(context)
+                      style: roleStyle ?? TextStyleHandler.of(context)
                           .displayTextStyleExtraBold48,
                     ),
                     TextSpan(
                       text: "${Strings.developer.translate}\n",
-                      style: TextStyleHandler.of(context)
+                      style: developerStyle?? TextStyleHandler.of(context)
                           .outLinedTextStyleExtraBold48,
                     ),
                     TextSpan(
                       text: Strings.basedIn.translate,
-                      style: TextStyleHandler.of(context)
+                      style: basedInStyle ?? TextStyleHandler.of(context)
                           .displayTextStyleRegular48,
                     ),
                     TextSpan(
                       text: " ${personalData?.location ?? ""}\n",
-                      style: TextStyleHandler.of(context)
+                      style: locationStyle ?? TextStyleHandler.of(context)
                           .displayTextStyleExtraBold48,
                     ),
                   ]),
@@ -68,6 +69,8 @@ class PersonalInfoWidget extends StatelessWidget {
                       HelperFunctions.openUrl(
                           personalData?.links?.linkedIn ?? "", context);
                     },
+                    buttonSize: buttonSize,
+                    iconSize:buttonSize == null ? null : buttonSize!-8,
                     iconPath: Assets.iconLinkedin),
                 16.0.widthBox,
                 CustomRoundedIconButton(
@@ -75,6 +78,8 @@ class PersonalInfoWidget extends StatelessWidget {
                       HelperFunctions.openUrl(
                           personalData?.links?.github ?? "", context);
                     },
+                    buttonSize: buttonSize,
+                    iconSize:buttonSize == null ? null : buttonSize!-8,
                     iconPath: Assets.iconsGithub),
                 16.0.widthBox,
                 CustomRoundedIconButton(
@@ -82,6 +87,8 @@ class PersonalInfoWidget extends StatelessWidget {
                       String gmailWebUri = "https://mail.google.com/mail/?view=cm&fs=1&to=${personalData?.links?.email}";
                       HelperFunctions.openUrl(gmailWebUri, context);
                     },
+                    buttonSize: buttonSize,
+                    iconSize:buttonSize == null ? null : buttonSize!-8,
                     iconPath: Assets.iconsMail),
 
               ],
@@ -90,8 +97,8 @@ class PersonalInfoWidget extends StatelessWidget {
         ).expandFlex(2),
         SvgPicture.asset(
           Assets.imagesGirlbanner,
-          width: 400,
-          height: 400,
+          width: imageSize ??400,
+          height:imageSize ??400,
         ).expand,
       ],
     );

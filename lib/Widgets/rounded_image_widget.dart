@@ -51,7 +51,7 @@ class RoundedImage extends StatelessWidget {
                   borderRadius: radiusValue == null
                       ? null
                       : BorderRadius.circular(radiusValue!),
-                  color: backgroundColor ?? ThemeFactory.of(context).font4,
+                  color: backgroundColor ?? ThemeFactory.of(context).card,
                 ))
             : Container(
                 padding: EdgeInsets.all(padding ?? 8),
@@ -64,7 +64,7 @@ class RoundedImage extends StatelessWidget {
                     borderRadius: radiusValue == null
                         ? null
                         : BorderRadius.circular(radiusValue!),
-                    color: backgroundColor ?? ThemeFactory.of(context).font4,
+                    color: backgroundColor ?? ThemeFactory.of(context).card,
                     border: borderColor == null
                         ? null
                         : Border.all(
