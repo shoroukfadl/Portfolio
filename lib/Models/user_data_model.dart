@@ -28,7 +28,7 @@ class Data {
   final String? email;
   final String? cv;
   final PersonalData? personalData;
-  final AboutMe? experience;
+  final List<Experince> experience;
 
   Data({
     this.skills = const [],
@@ -37,7 +37,7 @@ class Data {
     this.email,
     this.cv,
     this.personalData,
-    this.experience,
+    this.experience=const [],
   });
 
   Data copyWith({
@@ -47,7 +47,7 @@ class Data {
     String? email,
     String? cv,
     PersonalData? personalData,
-    AboutMe? experience,
+    List<Experince> ? experience,
   }) =>
       Data(
         skills: skills ?? this.skills,
@@ -72,19 +72,19 @@ class Data {
         personalData: json["personalData"] == null
             ? null
             : PersonalData.fromJson(json["personalData"]),
-        experience: json["experience"] == null
-            ? null
-            : AboutMe.fromJson(json["experience"]),
+        experience: json["experince"] == null
+            ? []
+            : List<Experince>.from(json["experince"]!.map((x) => Experince.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "skills": List<dynamic>.from(skills.map((x) => x.toJson())),
+        "experince": List<dynamic>.from(experience.map((x) => x.toJson())),
         "aboutMe": aboutMe?.toJson(),
         "project": project?.toJson(),
         "email": email,
         "cv": cv,
         "personalData": personalData?.toJson(),
-        "experience": experience?.toJson(),
       };
 }
 
@@ -214,3 +214,43 @@ class Skill {
         "icon": icon,
       };
 }
+
+
+class Experince {
+  final String? name;
+  final String? date;
+  final String? description;
+  final String? location;
+
+  Experince({this.name, this.date, this.description, this.location,});
+
+  Experince copyWith({
+    String? name,
+    String? date,
+    String? description,
+    String? location,
+  }) =>
+      Experince(
+        name: name ?? this.name,
+        date: date ?? this.date,
+        description: description ?? this.description,
+        location: location ?? this.location
+      );
+
+  factory Experince.fromJson(Map<String, dynamic> json) => Experince(
+        name: json["name"],
+        date: json["date"],
+        description: json["description"],
+        location: json["location"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "date": date,
+        "description": description,
+        "location": location
+      };
+}
+
+
+

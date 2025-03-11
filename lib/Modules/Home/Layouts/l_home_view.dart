@@ -31,7 +31,9 @@ class LargeHomeView extends StatelessWidget {
         MySkillsWidget(
           skills: con.user?.data?.skills??[],
         ).paddingSymmetric(horizontal: 32),
-        const ExperienceCardWidget(),
+         ExperienceCardWidget(
+           items: con.user?.data?.experience??[],
+         ),
         AboutMeWidget(
           desc: con.user?.data?.personalData?.shortDesc??"",
         ),
