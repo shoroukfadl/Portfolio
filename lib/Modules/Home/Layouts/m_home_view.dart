@@ -52,6 +52,9 @@ class MediumHomeView extends StatelessWidget {
         ),
         AboutMeWidget(
           desc: con.user?.data?.personalData?.shortDesc ?? "",
+          titleStyle: TextStyleHandler.of(context).displayTextStyleRegular32 ,
+          descStyle: TextStyleHandler.of(context).headingTextStyleBold16,
+          imageSize: 400 ,
         ),
         const MyProjectsWidget(),
         ContactMeWidget(con: con)
