@@ -7,20 +7,21 @@ import '../Utilities/text_style_helper.dart';
 
 class SectionsTitleWidget extends StatelessWidget {
   final String title;
-  const SectionsTitleWidget({super.key, required this.title});
+  final TextStyle? myStyle , titleStyle;
+  const SectionsTitleWidget({super.key, required this.title, this.myStyle, this.titleStyle});
 
   @override
   Widget build(BuildContext context) {
     return RichText(text: TextSpan(
      text: Strings.my.translate,
-      style: TextStyleHandler.of(context)
-          .displayTextStyleExtraBold48
+      style:( myStyle?? TextStyleHandler.of(context)
+          .displayTextStyleExtraBold48)
           .copyWith(color: ThemeFactory.of(context).secondary),
       children: [
         TextSpan(
-          text: title,
-          style: TextStyleHandler.of(context)
-              .displayTextStyleRegular48
+          text: " $title",
+          style: (titleStyle?? TextStyleHandler.of(context)
+              .displayTextStyleRegular48)
               .copyWith(color: ThemeFactory.of(context).secondary),
         ),
       ]

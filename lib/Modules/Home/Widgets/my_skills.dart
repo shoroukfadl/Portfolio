@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
+import 'package:portfolio/Widgets/sections_title_widget.dart';
 
 import '../../../Core/Theme/theme_model.dart';
 import '../../../Utilities/Constants/strings.dart';
 import '../../../Utilities/text_style_helper.dart';
-import '../../../Widgets/app_text_widget.dart';
-import '../../../generated/assets.dart';
 
 class MySkillsWidget extends StatelessWidget {
   final List<Skill> skills;
-
-  const MySkillsWidget({super.key, this.skills = const []});
+  final TextStyle? skillStyle,titleStyle,myStyle;
+  final double? skillSize;
+  const MySkillsWidget({super.key, this.skills = const [], this.skillStyle, this.titleStyle, this.skillSize, this.myStyle});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AppTextWidget(
-          Strings.mySkill.translate,
-          style: TextStyleHandler.of(context)
-              .displayTextStyleRegular48
-              .copyWith(color: ThemeFactory.of(context).primary),
+        SectionsTitleWidget(
+          title: Strings.skill.translate,
+          titleStyle: titleStyle,
+          myStyle: myStyle,
         ),
         32.0.heightBox,
         Wrap(
@@ -36,6 +34,8 @@ class MySkillsWidget extends StatelessWidget {
                 (i) => SkillCardWidget(
                       withPrim: i % 2 == 0,
                       skill: skills[i],
+                      skillSize: skillSize,
+                  skillStyle: skillStyle,
                     )),
           ],
         ),
@@ -48,7 +48,9 @@ class MySkillsWidget extends StatelessWidget {
 class SkillCardWidget extends StatelessWidget {
   final bool withPrim;
   final Skill? skill;
-  const SkillCardWidget({super.key, this.withPrim = false, this.skill});
+  final TextStyle? skillStyle;
+  final double? skillSize;
+  const SkillCardWidget({super.key, this.withPrim = false, this.skill, this.skillStyle, this.skillSize});
 
   @override
   Widget build(BuildContext context) {
@@ -70,8 +72,8 @@ class SkillCardWidget extends StatelessWidget {
         children: [
           RoundedImage(
             imagePath: skill?.icon ?? "",
-            width: 56,
-            height: 56,
+            width: skillSize?? 56,
+            height:skillSize?? 56,
           ),
 
           // colorFilter: ColorFilter.mode(withPrim ? ThemeFactory.of(context).card : ThemeFactory.of(context).primary, BlendMode.srcIn),),
@@ -80,7 +82,7 @@ class SkillCardWidget extends StatelessWidget {
             skill?.name ?? "",
             maxLines: 3,
             textAlign: TextAlign.center,
-            style: TextStyleHandler.of(context).headingTextStyleBold20.copyWith(
+            style:( skillStyle?? TextStyleHandler.of(context).headingTextStyleBold20).copyWith(
                 color: withPrim
                     ? ThemeFactory.of(context).card
                     : ThemeFactory.of(context).primary),

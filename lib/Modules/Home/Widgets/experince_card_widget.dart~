@@ -18,6 +18,7 @@ class ExperienceCardWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 64, horizontal: 32),
       color: ThemeFactory.of(context).primary,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SectionsTitleWidget(
            title: Strings.experience.translate,

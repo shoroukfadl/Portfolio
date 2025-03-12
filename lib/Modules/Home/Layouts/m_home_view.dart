@@ -10,13 +10,9 @@ import '../../../Utilities/text_style_helper.dart';
 import '../Widgets/my_projects_widget.dart';
 import '../Widgets/personal_info_widget.dart';
 
-
 class MediumHomeView extends StatelessWidget {
-  final  HomeController con;
-  const MediumHomeView({
-    super.key,
-  required  this.con
-  });
+  final HomeController con;
+  const MediumHomeView({super.key, required this.con});
 
   @override
   Widget build(BuildContext context) {
@@ -28,22 +24,34 @@ class MediumHomeView extends StatelessWidget {
           helloStyle: TextStyleHandler.of(context).displayTextStyleRegular32,
           nameStyle: TextStyleHandler.of(context).displayTextStyleExtraBold32,
           roleStyle: TextStyleHandler.of(context).displayTextStyleExtraBold32,
-          developerStyle: TextStyleHandler.of(context).outLinedTextStyleExtraBold32,
+          developerStyle:
+              TextStyleHandler.of(context).outLinedTextStyleExtraBold32,
           basedInStyle: TextStyleHandler.of(context).displayTextStyleRegular32,
           locationStyle: TextStyleHandler.of(context).displayTextStyleRegular32,
           buttonSize: 32,
           imageSize: 380,
-
         ).paddingSymmetric(horizontal: 32),
-
         64.0.heightBox,
-
         MySkillsWidget(
-          skills: con.user?.data?.skills??[],
+          skills: con.user?.data?.skills ?? [],
+          skillSize: 48,
+          myStyle: TextStyleHandler.of(context).displayTextStyleExtraBold32,
+
+          skillStyle: TextStyleHandler.of(context).headingTextStyleBold16,
+          titleStyle: TextStyleHandler.of(context).displayTextStyleRegular32,
         ).paddingSymmetric(horizontal: 32),
-        const ExperienceCardWidget(),
+        ExperienceCardWidget(
+          items: con.user?.data?.experience ?? [],
+          descriptionStyle:
+              TextStyleHandler.of(context).headingTextStyleRegular16,
+          myStyle: TextStyleHandler.of(context).displayTextStyleExtraBold32,
+          titleStyle: TextStyleHandler.of(context).displayTextStyleRegular32,
+          dateStyle: TextStyleHandler.of(context).headingTextStyleBold20,
+          locationStyle: TextStyleHandler.of(context).headingTextStyleBold20,
+          nameStyle: TextStyleHandler.of(context).headingTextStyleBold20,
+        ),
         AboutMeWidget(
-          desc: con.user?.data?.personalData?.shortDesc??"",
+          desc: con.user?.data?.personalData?.shortDesc ?? "",
         ),
         const MyProjectsWidget(),
         ContactMeWidget(con: con)
@@ -51,5 +59,3 @@ class MediumHomeView extends StatelessWidget {
     );
   }
 }
-
-
