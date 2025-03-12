@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Theme/theme_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import '../../../Models/user_data_model.dart';
+import '../../../Utilities/Constants/global_keys.dart';
 import '../../../Utilities/Constants/strings.dart';
 import '../../../Utilities/text_style_helper.dart';
 import '../../../Widgets/sections_title_widget.dart';
@@ -20,6 +21,7 @@ class ExperienceCardWidget extends StatelessWidget {
       child: Column(
         children: [
           SectionsTitleWidget(
+            key:  GlobalKeys.experince,
            title: Strings.experience.translate,
             titleStyle: titleStyle,
             myStyle: myStyle,

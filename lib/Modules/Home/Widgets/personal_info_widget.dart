@@ -6,6 +6,7 @@ import 'package:portfolio/Utilities/text_style_helper.dart';
 import 'package:portfolio/generated/assets.dart';
 
 import '../../../Models/user_data_model.dart';
+import '../../../Utilities/Constants/global_keys.dart';
 import '../../../Utilities/Constants/strings.dart';
 import '../../../Widgets/custom_rounded_icon_button.dart';
 
@@ -18,11 +19,13 @@ class PersonalInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             RichText(
+              key:  GlobalKeys.aboutMe,
               text: TextSpan(
                   text: Strings.helloIam.translate,
                   style: helloStyle ?? TextStyleHandler.of(context).displayTextStyleRegular48,

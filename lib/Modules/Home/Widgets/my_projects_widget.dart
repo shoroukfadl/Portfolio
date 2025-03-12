@@ -6,6 +6,7 @@ import 'package:portfolio/Utilities/text_style_helper.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
 
 import '../../../Core/Theme/theme_model.dart';
+import '../../../Utilities/Constants/global_keys.dart';
 import '../../../Utilities/Constants/strings.dart';
 import '../../../Widgets/sections_title_widget.dart';
 import '../../../generated/assets.dart';
@@ -21,6 +22,7 @@ class MyProjectsWidget extends StatelessWidget {
       child: Column(
         children: [
           SectionsTitleWidget(
+            key:  GlobalKeys.projects,
             title: Strings.projects.translate,
           ),
           16.0.heightBox,

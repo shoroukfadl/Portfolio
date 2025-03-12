@@ -4,6 +4,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 
 
 import '../../../Core/Theme/theme_model.dart';
+import '../../../Utilities/Constants/global_keys.dart';
 import '../../../Utilities/Constants/strings.dart';
 import '../../../Utilities/text_style_helper.dart';
 import '../../../Widgets/custom_button_widget.dart';
@@ -19,6 +20,7 @@ class ContactMeWidget extends StatelessWidget {
     return  Column(
       children: [
         CustomTextFormField(
+          key:  GlobalKeys.contactMe,
           width: 1.sw,
           controller: con.nameController,
           lableText: Strings.name.translate,

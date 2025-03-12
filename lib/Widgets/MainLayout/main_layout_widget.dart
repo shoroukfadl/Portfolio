@@ -50,16 +50,14 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
             : CustomDrawer(
                 currentPath: widget.currentPath,
               ),
-        appBar: const PreferredSize(preferredSize:Size.fromHeight(80), child: HomeAppBar()),
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(80), child: HomeAppBar()),
         key: GlobalKeys.scaffoldKey,
         floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
         body: CustomScrollView(
           controller: _scrollController,
           slivers: [
             // Sliver AppBar for disappearing app bar
-
-
-           
 
             // Main content
             SliverList(

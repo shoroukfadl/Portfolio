@@ -5,6 +5,7 @@ import 'package:portfolio/Widgets/rounded_image_widget.dart';
 import 'package:portfolio/Widgets/sections_title_widget.dart';
 
 import '../../../Core/Theme/theme_model.dart';
+import '../../../Utilities/Constants/global_keys.dart';
 import '../../../Utilities/Constants/strings.dart';
 import '../../../Utilities/text_style_helper.dart';
 
@@ -19,6 +20,7 @@ class MySkillsWidget extends StatelessWidget {
     return Column(
       children: [
         SectionsTitleWidget(
+          key:  GlobalKeys.skill,
           title: Strings.skill.translate,
           titleStyle: titleStyle,
           myStyle: myStyle,
