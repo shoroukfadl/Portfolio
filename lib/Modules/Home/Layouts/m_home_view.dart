@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:portfolio/Modules/Home/Widgets/about_me_widget.dart';
 import 'package:portfolio/Modules/Home/Widgets/contact_me.dart';
 import 'package:portfolio/Modules/Home/Widgets/experince_card_widget.dart';
 import 'package:portfolio/Modules/Home/Widgets/my_skills.dart';
 import 'package:portfolio/Modules/Home/home_controller.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+
 import '../../../Utilities/text_style_helper.dart';
 import '../Widgets/my_projects_widget.dart';
 import '../Widgets/personal_info_widget.dart';

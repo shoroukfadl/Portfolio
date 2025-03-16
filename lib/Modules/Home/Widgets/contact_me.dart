@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-
-import '../../../Core/Theme/theme_model.dart';
 import '../../../Utilities/Constants/global_keys.dart';
 import '../../../Utilities/Constants/strings.dart';
-import '../../../Utilities/text_style_helper.dart';
 import '../../../Widgets/custom_button_widget.dart';
 import '../../../Widgets/custom_text_form_field.dart';
 import '../home_controller.dart';

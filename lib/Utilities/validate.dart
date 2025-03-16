@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../Utilities/extensions.dart';
-import 'Constants/strings.dart';
-
 class Validate {
   static String? validatePassword(String? password) {
     //var passwordRegExp = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');

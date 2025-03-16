@@ -1,14 +1,14 @@
 
 import 'dart:ui';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:provider/provider.dart';
 import 'package:universal_html/html.dart' as html;
-import 'package:url_strategy/url_strategy.dart';
 
 import 'Core/Language/app_languages.dart';
 import 'Core/Language/locales.dart';
