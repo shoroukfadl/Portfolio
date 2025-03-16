@@ -24,7 +24,7 @@ class UserDataModel {
 class Data {
   final List<Skill> skills;
   final AboutMe? aboutMe;
-  final AboutMe? project;
+  final List<Project> project;
   final String? email;
   final String? cv;
   final PersonalData? personalData;
@@ -33,7 +33,7 @@ class Data {
   Data({
     this.skills = const [],
     this.aboutMe,
-    this.project,
+    this.project = const [],
     this.email,
     this.cv,
     this.personalData,
@@ -43,7 +43,7 @@ class Data {
   Data copyWith({
     List<Skill>? skills,
     AboutMe? aboutMe,
-    AboutMe? project,
+     List<Project>? project,
     String? email,
     String? cv,
     PersonalData? personalData,
@@ -65,8 +65,9 @@ class Data {
             : List<Skill>.from(json["skills"]!.map((x) => Skill.fromJson(x))),
         aboutMe:
             json["aboutMe"] == null ? null : AboutMe.fromJson(json["aboutMe"]),
-        project:
-            json["project"] == null ? null : AboutMe.fromJson(json["project"]),
+        project: json["projects"] == null
+            ? []
+            : List<Project>.from(json["projects"]!.map((x) => Project.fromJson(x))),
         email: json["email"],
         cv: json["cv"],
         personalData: json["personalData"] == null
@@ -81,7 +82,7 @@ class Data {
         "skills": List<dynamic>.from(skills.map((x) => x.toJson())),
         "experince": List<dynamic>.from(experience.map((x) => x.toJson())),
         "aboutMe": aboutMe?.toJson(),
-        "project": project?.toJson(),
+        "projects": List<dynamic>.from(project.map((x) => x.toJson())),
         "email": email,
         "cv": cv,
         "personalData": personalData?.toJson(),
@@ -253,4 +254,50 @@ class Experince {
 }
 
 
+class Project {
+  final String? companyName;
+  final String? description;
+  final String? projectName;
+  final String? type;
+  final List<String> links ;
 
+  Project({
+    this.companyName,
+    this.description,
+    this.projectName,
+    this.type,
+    this.links = const [],
+  });
+
+  Project copyWith({
+   String? companyName,
+   String? description,
+   String? projectName,
+   String? type,
+    List<String>? links
+  }) =>
+      Project(
+
+        companyName: companyName ?? this.companyName,
+        description: description ?? this.description,
+        projectName: projectName ?? this.projectName,
+        type: type ?? this.type,
+        links: links ?? this.links
+      );
+
+  factory Project.fromJson(Map<String, dynamic> json) => Project(
+    companyName: json["companyName"],
+    description: json["description"],
+    projectName: json["projectName"],
+    type: json["type"],
+    links: List<String>.from(json["links"].map((x) => x)),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "linkedIn": companyName,
+    "email": description,
+    "cv": projectName,
+    "github": type,
+    "links": List<dynamic>.from(links.map((x) => x)),
+  };
+}

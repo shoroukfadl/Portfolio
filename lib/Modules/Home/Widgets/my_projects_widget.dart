@@ -6,13 +6,15 @@ import 'package:portfolio/Utilities/text_style_helper.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
 
 import '../../../Core/Theme/theme_model.dart';
+import '../../../Models/user_data_model.dart';
 import '../../../Utilities/Constants/global_keys.dart';
 import '../../../Utilities/Constants/strings.dart';
 import '../../../Widgets/sections_title_widget.dart';
 import '../../../generated/assets.dart';
 
 class MyProjectsWidget extends StatelessWidget {
-  const MyProjectsWidget({super.key});
+  final List<Project> projects ;
+  const MyProjectsWidget({super.key, this.projects = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +30,10 @@ class MyProjectsWidget extends StatelessWidget {
           16.0.heightBox,
           ListView.separated(itemBuilder: (context,i)=>  ProjectItemCard(
             left: i%2 == 0,
+            project: projects[i],
+            index: i+1,
           ),
-            separatorBuilder: (context, index) => 32.0.heightBox, itemCount: 3,shrinkWrap: true,)
+            separatorBuilder: (context, index) => 32.0.heightBox, itemCount: projects.length,shrinkWrap: true,)
         ],
       ),
     );
@@ -39,7 +43,9 @@ class MyProjectsWidget extends StatelessWidget {
 
 class ProjectItemCard extends StatelessWidget {
   final bool left ;
-  const ProjectItemCard({super.key, this.left = false});
+  final Project?project;
+  final int index ;
+  const ProjectItemCard({super.key, this.left = false, this.project, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +66,16 @@ class ProjectItemCard extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("01" , style: TextStyleHandler.of(context).displayTextStyleExtraBold48.copyWith(color: ThemeFactory.of(context).card),),
+            Text("$index" , style: TextStyleHandler.of(context).displayTextStyleExtraBold48.copyWith(color: ThemeFactory.of(context).card),),
            16.0.heightBox,
-            Text("jjgkortopirommn jflkgkspdflpd " , style: TextStyleHandler.of(context).headingTextStyleBold20.copyWith(color: ThemeFactory.of(context).card),),
-           16.0.heightBox,
-            Text("jjgkortopirommn jflkgkspdflpd " , style: TextStyleHandler.of(context).paragraphTextStyleRegular16.copyWith(color: ThemeFactory.of(context).secondary300),),
+            Row(
+              children: [
+                Text(project?.projectName??"" , style: TextStyleHandler.of(context).headingTextStyleBold20.copyWith(color: ThemeFactory.of(context).card),),
+                Text("(${project?.type??"" })", style: TextStyleHandler.of(context).headingTextStyleBold16.copyWith(color: ThemeFactory.of(context).secondary300),),
+              ],
+            ),
+            16.0.heightBox,
+            Text(project?.description??"" , style: TextStyleHandler.of(context).paragraphTextStyleRegular16.copyWith(color: ThemeFactory.of(context).secondary300),),
            16.0.heightBox,
             InkWell(
               onTap: (){},
@@ -79,11 +90,16 @@ class ProjectItemCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("01" , style: TextStyleHandler.of(context).displayTextStyleExtraBold48.copyWith(color: ThemeFactory.of(context).card),),
+                Text("$index" , style: TextStyleHandler.of(context).displayTextStyleExtraBold48.copyWith(color: ThemeFactory.of(context).card),),
                 16.0.heightBox,
-                Text("jjgkortopirommn jflkgkspdflpd " , style: TextStyleHandler.of(context).headingTextStyleBold20.copyWith(color: ThemeFactory.of(context).card),),
+                Row(
+                  children: [
+                    Text(project?.projectName??"" , style: TextStyleHandler.of(context).headingTextStyleBold20.copyWith(color: ThemeFactory.of(context).card),),
+                    Text("(${project?.type??"" })", style: TextStyleHandler.of(context).headingTextStyleBold16.copyWith(color: ThemeFactory.of(context).secondary300),),
+                  ],
+                ),
                 16.0.heightBox,
-                Text("jjgkortopirommn jflkgkspdflpd " , style: TextStyleHandler.of(context).paragraphTextStyleRegular16.copyWith(color: ThemeFactory.of(context).secondary300),),
+                Text(project?.description??"" , style: TextStyleHandler.of(context).paragraphTextStyleRegular16.copyWith(color: ThemeFactory.of(context).secondary300),),
                 16.0.heightBox,
                 InkWell(
                   onTap: (){},

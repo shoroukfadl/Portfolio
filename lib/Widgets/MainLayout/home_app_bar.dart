@@ -60,6 +60,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
             GlobalKeys.projects.currentContext!,
             duration: Duration(seconds: 1),
             curve: Curves.easeInOut,
+
           );
         }, selectedIndex == 3, Strings.projects.translate, context),
         16.0.widthBox,
@@ -67,7 +68,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
           setIndex(4);
           Scrollable.ensureVisible(
             GlobalKeys.contactMe.currentContext!,
-            duration: Duration(seconds: 1),
+            duration: const Duration(seconds: 1),
             curve: Curves.easeInOut,
           );
         }, selectedIndex == 4, Strings.contactMe.translate, context),

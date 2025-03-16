@@ -37,7 +37,7 @@ class LargeHomeView extends StatelessWidget {
         AboutMeWidget(
           desc: con.user?.data?.personalData?.shortDesc??"",
         ),
-        const MyProjectsWidget(),
+         MyProjectsWidget(projects: con.user?.data?.project??[],),
         ContactMeWidget(con: con)
       ],
     );
