@@ -88,7 +88,7 @@ class CustomTextFormField extends StatelessWidget {
       {double? radius, Color? color, double? width}) {
     if (disableBorder) return null;
     return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(radius ?? 0.0),
+      borderRadius: BorderRadius.circular(radius ?? 16.0),
       borderSide: BorderSide(
         color: color ?? ThemeFactory.of(context).primary,
         width: width ?? 1.0,
