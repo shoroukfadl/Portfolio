@@ -5,6 +5,7 @@ import 'package:portfolio/Modules/Home/Layouts/l_home_view.dart';
 import 'package:portfolio/Modules/Home/Layouts/m_home_view.dart';
 import 'package:portfolio/Utilities/Constants/enums.dart';
 
+import 'Layouts/s_home_view.dart';
 import 'home_controller.dart';
 
 class HomeView extends StatefulWidget {
@@ -49,7 +50,7 @@ class _HomeViewState extends StateMVC<HomeView>  with LayoutHandlerMixin {
 
   @override
   Widget buildSmallScreen() {
-    return LargeHomeView(con: con);
+    return SmallHomeView(con: con);
   }
 
 

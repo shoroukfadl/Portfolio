@@ -10,9 +10,9 @@ import '../../../Utilities/text_style_helper.dart';
 import '../Widgets/my_projects_widget.dart';
 import '../Widgets/personal_info_widget.dart';
 
-class MediumHomeView extends StatelessWidget {
+class SmallHomeView extends StatelessWidget {
   final HomeController con;
-  const MediumHomeView({super.key, required this.con});
+  const SmallHomeView({super.key, required this.con});
 
   @override
   Widget build(BuildContext context) {

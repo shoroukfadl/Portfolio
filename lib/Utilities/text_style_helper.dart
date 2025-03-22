@@ -192,6 +192,16 @@ class TextStyleHandler {
   TextStyle get headingTextStyleExtraBold16 => getTextStyle(fontSize: 16, fontWeight: FontWeight.w800);
 
 
+  TextStyle get headingTextStyleRegular14 => getTextStyle(fontSize: 14, fontWeight: FontWeight.w400);
+  TextStyle get headingTextStyleSemiBold14 => getTextStyle(fontSize: 14, fontWeight: FontWeight.w600);
+  TextStyle get headingTextStyleBold14 => getTextStyle(fontSize: 14, fontWeight: FontWeight.bold);
+  TextStyle get headingTextStyleExtraBold14 => getTextStyle(fontSize: 14, fontWeight: FontWeight.w800);
+
+
+  TextStyle get headingTextStyleRegular12 => getTextStyle(fontSize: 12, fontWeight: FontWeight.w400);
+  TextStyle get headingTextStyleSemiBold12 => getTextStyle(fontSize: 12, fontWeight: FontWeight.w600);
+  TextStyle get headingTextStyleBold12 => getTextStyle(fontSize: 12, fontWeight: FontWeight.bold);
+  TextStyle get headingTextStyleExtraBold12 => getTextStyle(fontSize: 12, fontWeight: FontWeight.w800);
 
   /// **************************  Heading H text ************************* ///
   TextStyle get paragraphTextStyleRegular20 => getTextStyle(fontSize: 20, fontWeight: FontWeight.w400);
@@ -200,6 +210,7 @@ class TextStyleHandler {
   TextStyle get paragraphTextStyleExtraBold20 => getTextStyle(fontSize: 20, fontWeight: FontWeight.w800);
 
   TextStyle get paragraphTextStyleRegular16 => getTextStyle(fontSize: 16, fontWeight: FontWeight.w400);
+  TextStyle get paragraphTextStyleRegular14 => getTextStyle(fontSize: 14, fontWeight: FontWeight.w400);
   TextStyle get paragraphTextStyleSemiBold16 => getTextStyle(fontSize: 16, fontWeight: FontWeight.w600);
   TextStyle get paragraphTextStyleBold16 => getTextStyle(fontSize: 16, fontWeight: FontWeight.bold);
   TextStyle get paragraphTextStyleExtraBold16=> getTextStyle(fontSize: 16, fontWeight: FontWeight.w800);

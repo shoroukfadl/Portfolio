@@ -15,17 +15,16 @@ class ContactMeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 32),
       margin: const EdgeInsets.symmetric(vertical: 64, horizontal: 32),
       height: 500,
-
       child: Row(
         children: [
           Column(
             children: [
               CustomTextFormField(
-                key:  GlobalKeys.contactMe,
+                key: GlobalKeys.contactMe,
                 width: 1.sw,
                 controller: con.nameController,
                 lableText: Strings.name.translate,
@@ -51,9 +50,13 @@ class ContactMeWidget extends StatelessWidget {
                 minLines: 5,
               ),
               16.0.heightBox,
-              CustomButtonWidget(onPressed: (){
-                 con.sendMessage();
-              } , title: Strings.send.translate,width: 1.sw,)
+              CustomButtonWidget(
+                onPressed: () {
+                  con.sendMessage();
+                },
+                title: Strings.send.translate,
+                width: 1.sw,
+              )
             ],
           ).expand,
           8.0.widthBox,
@@ -65,9 +68,7 @@ class ContactMeWidget extends StatelessWidget {
           ),
           8.0.widthBox,
           const Column(
-            children: [
-
-            ],
+            children: [],
           ).expand
         ],
       ),

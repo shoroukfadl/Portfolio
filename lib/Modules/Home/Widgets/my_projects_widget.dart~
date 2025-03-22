@@ -33,24 +33,11 @@ class MyProjectsWidget extends StatelessWidget {
             myStyle: myStyle,
           ),
           16.0.heightBox,
-
-          ListView.separated(itemBuilder: (context,i)=>
-          (context.isLarge)?
-              ProjectItemCard.large(
+          ListView.separated(itemBuilder: (context,i)=>  ProjectItemCard.large(
             left: i%2 == 0,
             project: projects[i],
             index: i+1,
-          ) : context.isMedium?
-          ProjectItemCard.medium(
-            left: i%2 == 0,
-            project: projects[i],
-            index: i+1,
-          ): ProjectItemCard.small(
-            left: i%2 == 0,
-            project: projects[i],
-            index: i+1,
-          )
-            ,
+          ),
             separatorBuilder: (context, index) => 32.0.heightBox, itemCount: projects.length,shrinkWrap: true,)
         ],
       ),

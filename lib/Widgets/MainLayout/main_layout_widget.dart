@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/MainLayout/custom_drawer_widget.dart';
 import 'package:portfolio/Widgets/MainLayout/home_app_bar.dart';
@@ -9,6 +10,8 @@ import '../../Core/Theme/theme_model.dart';
 import '../../Core/Theme/theme_provider.dart';
 import '../../Utilities/Constants/enums.dart';
 import '../../Utilities/Constants/global_keys.dart';
+import '../../generated/assets.dart';
+import '../custom_rounded_icon_button.dart';
 
 class MainLayoutWidget extends StatefulWidget {
   static String routeName = ScreenRoutes.mainScreen.name;
@@ -45,13 +48,16 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
         builder: (context, themeProvider, appLang, _) {
       return Scaffold(
         backgroundColor: ThemeFactory.of(context).backgroundColor,
-        endDrawer: context.isLarge
-            ? null
-            : CustomDrawer(
+        endDrawer: context.isSmall
+            ? CustomDrawer(
                 currentPath: widget.currentPath,
-              ),
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(80), child: HomeAppBar()),
+                //currentIndex: ,
+              )
+            : null,
+        appBar: context.isSmall
+            ? null
+            : const PreferredSize(
+                preferredSize: Size.fromHeight(80), child: HomeAppBar()),
         key: GlobalKeys.scaffoldKey,
         floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
         body: CustomScrollView(
@@ -59,6 +65,16 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
           slivers: [
             // Sliver AppBar for disappearing app bar
 
+            if (context.isSmall)
+              SliverToBoxAdapter(
+                child: InkWell(
+                  onTap: () {
+                    GlobalKeys.scaffoldKey.currentState?.openEndDrawer();
+                  },
+                  child: SvgPicture.asset(Assets.iconsMaterialSymbolsMenu,
+                      width: 32, height: 32),
+                ),
+              ),
             // Main content
             SliverList(
               delegate: SliverChildListDelegate(
