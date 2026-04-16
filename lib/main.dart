@@ -1,59 +1,45 @@
-
 import 'dart:ui';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:provider/provider.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:universal_html/html.dart' as html;
+import 'package:url_strategy/url_strategy.dart';
 
 import 'Core/Language/app_languages.dart';
 import 'Core/Language/locales.dart';
+import 'Core/Theme/theme_cubit.dart';
 import 'Core/Theme/theme_model.dart';
-import 'Core/Theme/theme_provider.dart';
+import 'Utilities/app_themes.dart';
 import 'Utilities/git_it.dart';
 import 'Utilities/router_config.dart';
 import 'firebase_options.dart';
 
-
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-  try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    print("Hereee .....");
-
-
-
-  } catch (e) {
-    print("Error: $e");
-  }
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await GitIt.initGitIt();
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider()),
-    ChangeNotifierProvider<AppLanguage>(create: (_) => AppLanguage()),
+  setPathUrlStrategy();
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
+    BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
   ], child: const EntryPoint()));
 }
 
-
-
 class EntryPoint extends StatefulWidget {
   const EntryPoint({super.key});
-
-  static Size largeSize = const Size(1920, 1080);
-  static Size mediumSize = const Size(1280, 800);
-  static Size smallSize = const Size(428, 926);
 
   @override
   State<EntryPoint> createState() => _EntryPointState();
 }
 
 class _EntryPointState extends State<EntryPoint> {
-
   @override
   void initState() {
     super.initState();
@@ -61,71 +47,66 @@ class _EntryPointState extends State<EntryPoint> {
 
   @override
   Widget build(BuildContext context) {
-    final appLan = Provider.of<AppLanguage>(context);
-    appLan.fetchLocale(context);
-    Provider.of<ThemeProvider>(context).getCurrentTheme();
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        Size appSize = EntryPoint.largeSize;
-        if (constraints.maxWidth <= 768) {
-          appSize = EntryPoint.smallSize;
-        } else if (constraints.maxWidth <= 1200 && constraints.maxWidth > 768) {
-          appSize = EntryPoint.mediumSize;
-        } else {
-          appSize = EntryPoint.largeSize;
-        }
-        return Consumer<ThemeProvider>(builder: (context, themeProvider, _) {
-          themeProvider.getCurrentTheme();
-          print(" app Size :: ${appSize} ---- ");
-          return GestureDetector(
-            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-            child: ScreenUtilInit(
-              designSize: appSize,
-              builder: (_, __) => MaterialApp.router(
-                locale: Locale(appLan.appLang.name),
-                supportedLocales:
-                    Languages.values.map((e) => Locale(e.name)).toList(),
-                localizationsDelegates: const [
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                  DefaultCupertinoLocalizations.delegate,
-                ],
-                builder: (context, child) {
-                  return MediaQuery(
-                    data: MediaQuery.of(context).copyWith(
-                      textScaler: TextScaler.noScaling,
-                      boldText: false,
-                    ),
-                    child: child!,
-                  );
-                },
-                scrollBehavior: MyCustomScrollBehavior(),
-                routerConfig: GoRouterConfig.router,
-                theme: ThemeData(
-                  scaffoldBackgroundColor: ThemeFactory.of(context).primary,
-                ),
-                debugShowCheckedModeBanner: false,
-                title: GoRouterConfig
-                            .router.configuration.navigatorKey.currentContext ==
-                        null
-                    ? "Portfolio"
-                    : html.window.location.href.split("/").last.translate,
+    final appLan = context.read<AppLanguage>();
+    final bool isArabic = appLan.appLang.name == 'ar';
+
+    final themeState = context.watch<ThemeCubit>().state;
+    final bool isDark = themeState.isDark;
+
+    final currentTheme = AppThemes.createTheme(
+      isArabic: isArabic,
+      isDark: isDark,
+    );
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: ResponsiveBreakpoints.builder(
+        breakpoints: [
+          const Breakpoint(start: 0, end: 599, name: MOBILE),
+          const Breakpoint(start: 600, end: 1439, name: TABLET),
+          const Breakpoint(start: 1440, end: double.infinity, name: DESKTOP),
+        ],
+        child: MaterialApp.router(
+          locale: Locale(appLan.appLang.name),
+          supportedLocales:
+              Languages.values.map((e) => Locale(e.name)).toList(),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            DefaultCupertinoLocalizations.delegate,
+          ],
+          builder: (context, child) {
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(
+                textScaler: TextScaler.noScaling,
+                boldText: false,
               ),
-            ),
-          );
-        });
-      },
+              child: child!,
+            );
+          },
+          scrollBehavior: MyCustomScrollBehavior(),
+          routerConfig: GoRouterConfig.router,
+          darkTheme: AppTheme.dark,
+          theme: currentTheme,
+          themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+          debugShowCheckedModeBanner: false,
+          title:
+              GoRouterConfig.router.configuration.navigatorKey.currentContext ==
+                      null
+                  ? "Portfolio"
+                  : html.window.location.href.split("/").last.translate,
+        ),
+      ),
     );
   }
 }
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
-  // Override behavior methods and getters like dragDevices
   @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad
       };
 }

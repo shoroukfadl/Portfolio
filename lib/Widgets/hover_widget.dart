@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class HoverWidget extends StatefulWidget {
   final Widget Function(bool isHovered) builder;
+
   const HoverWidget({super.key, required this.builder});
 
   @override
@@ -10,6 +11,7 @@ class HoverWidget extends StatefulWidget {
 
 class _HoverWidgetState extends State<HoverWidget> {
   bool isHovered = false;
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(

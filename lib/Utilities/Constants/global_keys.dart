@@ -5,11 +5,9 @@ class GlobalKeys {
   static final skill = GlobalKey();
   static final experince = GlobalKey();
   static final projects = GlobalKey();
+  static final education = GlobalKey();
   static final contactMe = GlobalKey();
   static final appbarKey = GlobalKey();
   static final scaffoldKey = GlobalKey<ScaffoldState>();
   static final productsScaffoldKey = GlobalKey<ScaffoldState>();
-
-
-
 }

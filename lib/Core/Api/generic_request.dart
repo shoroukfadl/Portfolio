@@ -34,9 +34,6 @@ class GenericRequest<T> {
       response = await method.requestJson(printBody: printBody);
     }
     if (response["data"] is! Map) {
-      if (kDebugMode) {
-        print(';;;;;;;;;;$response');
-      }
       throw errorModel(response, "data is not compatible with expected data",
           response["errors"]["message"] ?? "", ExpectType.object);
     }
@@ -116,7 +113,6 @@ class GenericRequest<T> {
       }
       return result;
     } catch (e) {
-      print("ERROR When Get Response  >>  $e");
       throw errorModel(response, e.toString(),
           response["errors"]["message"] ?? "", ExpectType.other);
     }

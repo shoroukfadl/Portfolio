@@ -1,5 +1,5 @@
 {
-  "helloIam":"مرحبا انا",
+  "helloIam":"انا",
   "basedIn": "مقيمه في",
   "aboutMe": "عني",
   "skill": "المهارات",
@@ -17,5 +17,8 @@
   "my": "",
   "experience": "الخبرات",
   "let's": "",
-  "developer": "مطوره"
+  "developer": "مطوره",
+  "hireMe": "ترشيحي",
+  "education": "التعليم",
+  "hello": "مرحبا"
 }

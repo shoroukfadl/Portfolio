@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Core/Language/locales.dart';
+
+import '../Core/Theme/theme_colors.dart';
 
 extension StringExtensions on String {
   String get translate {
@@ -13,20 +15,25 @@ extension WidgetsExtensions on Widget {
         alignment: position,
         child: this,
       );
+
   Widget get expand => Expanded(child: this);
+
   Widget expandFlex(int flex) => Expanded(flex: flex, child: this);
+
   Widget paddingSymmetric({double vertical = 0.0, double horizontal = 0.0}) =>
       Padding(
         padding: EdgeInsets.symmetric(
           vertical: vertical,
-          horizontal: horizontal.w,
+          horizontal: horizontal,
         ),
         child: this,
       );
+
   Widget paddingAll({double padding = 0.0}) => Padding(
         padding: EdgeInsets.all(padding),
         child: this,
       );
+
   Widget paddingOnly({
     double start = 0.0,
     double end = 0.0,
@@ -35,7 +42,7 @@ extension WidgetsExtensions on Widget {
   }) =>
       Padding(
         padding: EdgeInsetsDirectional.only(
-            start: start.w, end: end.w, top: top, bottom: bottom),
+            start: start, end: end, top: top, bottom: bottom),
         child: this,
       );
 }
@@ -68,14 +75,17 @@ extension MapExtensions on Map {
 
 extension DoubleExtensions on double {
   Widget get heightBox => SizedBox(height: this);
-  Widget get widthBox => SizedBox(width: this.w);
+
+  Widget get widthBox => SizedBox(width: this);
 }
 
 extension LayoutExtensions on BuildContext {
   bool get isLarge => MediaQuery.of(this).size.width > 1200;
+
   bool get isMedium =>
       MediaQuery.of(this).size.width > 768 &&
       MediaQuery.of(this).size.width <= 1200;
+
   bool get isSmall => MediaQuery.of(this).size.width <= 768;
 
   double get authDialogWidth => isLarge
@@ -83,4 +93,10 @@ extension LayoutExtensions on BuildContext {
       : isMedium
           ? 350
           : 300;
+}
+
+extension ThemeHelper on BuildContext {
+  AppColors get colors => Theme.of(this).extension<AppColors>()!;
+
+  AppTextStyles get text => Theme.of(this).extension<AppTextStyles>()!;
 }

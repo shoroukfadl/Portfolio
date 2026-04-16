@@ -1,27 +1,26 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:portfolio/Utilities/extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../Core/Theme/theme_model.dart';
-import 'text_style_helper.dart';
+import '../Core/Language/app_styles.dart';
 
 abstract class HelperFunctions {
   static void showBottomSheet(BuildContext context,
       {required Widget widget,
       Color? backgroundColor,
       bool isFullScreen = true}) {
+    final colors = context.colors;
     showModalBottomSheet(
         useSafeArea: true,
         isScrollControlled: isFullScreen,
-        backgroundColor: backgroundColor ?? ThemeFactory.of(context).primary,
+        backgroundColor: backgroundColor ?? colors.accent,
         showDragHandle: true,
         context: context,
         builder: (context) {
           return BottomSheet(
               onClosing: () {},
-              backgroundColor:
-                  backgroundColor ?? ThemeFactory.of(context).primary,
+              backgroundColor: backgroundColor ?? colors.accent,
               builder: (context) {
                 return widget;
               });
@@ -34,6 +33,8 @@ abstract class HelperFunctions {
       AlignmentDirectional? alignment,
       final bool enablePadding = true,
       bool isFullScreen = true}) {
+    final colors = context.colors;
+
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -42,11 +43,10 @@ abstract class HelperFunctions {
                 borderSide: const BorderSide(color: Colors.transparent),
               ),
               alignment: alignment,
-              shadowColor: ThemeFactory.of(context).font1.withOpacity(0.25),
-              backgroundColor:
-                  backgroundColor ?? ThemeFactory.of(context).backgroundColor,
+              shadowColor: colors.textPrimary.withOpacity(0.25),
+              backgroundColor: backgroundColor ?? colors.background,
               contentPadding: enablePadding
-                  ? EdgeInsets.symmetric(horizontal: 24.w, vertical: 40.0)
+                  ? EdgeInsets.symmetric(horizontal: 24, vertical: 40.0)
                   : EdgeInsets.zero,
               content: contentWidget,
             ));
@@ -57,6 +57,8 @@ abstract class HelperFunctions {
     String? message,
     ContentType? type,
   }) {
+    final colors = context.colors;
+
     final snackBar = SnackBar(
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(
@@ -66,9 +68,9 @@ abstract class HelperFunctions {
       backgroundColor: Colors.transparent,
       content: AwesomeSnackbarContent(
         title: message ?? "",
-        titleTextStyle: TextStyleHandler.of(context).bold14.copyWith(
-              color: ThemeFactory.of(context).fontWhite,
-            ),
+        titleTextStyle: AppTextStyles.headingXL().copyWith(
+          color: Colors.white,
+        ),
         message: "",
         contentType: type ?? ContentType.success,
       ),
@@ -79,19 +81,11 @@ abstract class HelperFunctions {
     );
   }
 
-
-  static void openUrl(String url,BuildContext context) async {
+  static void openUrl(String url, BuildContext context) async {
     final Uri uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
-     await launchUrl(uri);
-    }
-
-    else showCustomToast(context , message: "Could not launch $url");
+      await launchUrl(uri);
+    } else
+      showCustomToast(context, message: "Could not launch $url");
   }
-
-
-
-
 }
-
-

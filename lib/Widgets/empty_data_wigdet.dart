@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/app_text_widget.dart';
+import 'package:portfolio/Widgets/Inputs/app_text_widget.dart';
 
-import '../Core/Theme/theme_model.dart';
-import '../Utilities/text_style_helper.dart';
+import '../Core/Language/app_styles.dart';
 
 class EmptyDataWidget extends StatelessWidget {
   const EmptyDataWidget(
@@ -17,6 +16,7 @@ class EmptyDataWidget extends StatelessWidget {
       this.subTitle,
       this.subTitleFontSize,
       this.actionButton});
+
   final String? title;
   final String? svgIconPath;
   final double? svgWidth;
@@ -28,18 +28,20 @@ class EmptyDataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SvgPicture.asset(
-          svgIconPath ??"",
+          svgIconPath ?? "",
           width: svgWidth ?? (context.isLarge ? 200 : 100),
           height: svgHeight ?? (context.isLarge ? 200 : 100),
         ),
         16.0.heightBox,
         AppTextWidget(
-          title ??"",
-          style: TextStyleHandler.of(context).regular16.copyWith(
+          title ?? "",
+          style: AppTextStyles.bodyM().copyWith(
               fontSize: titleFontSize ??
                   (context.isLarge
                       ? 20
@@ -51,11 +53,11 @@ class EmptyDataWidget extends StatelessWidget {
         if (subTitle != null)
           AppTextWidget(
             subTitle!,
-            style: TextStyleHandler.of(context).regular16.copyWith(
-                  fontSize: subTitleFontSize ?? 16,
-                  color: ThemeFactory.of(context).font2,
-                  height: 1.4,
-                ),
+            style: AppTextStyles.bodyM().copyWith(
+              fontSize: subTitleFontSize ?? 16,
+              color: colors.textSecondary,
+              height: 1.4,
+            ),
           ),
         if (actionButton != null) actionButton!.paddingSymmetric(vertical: 16),
       ],

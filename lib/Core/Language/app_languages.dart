@@ -1,20 +1,20 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../Utilities/router_config.dart';
 import '../../Utilities/shared_preferences.dart';
 
 enum Languages { en, ar }
 
 Languages appLan({BuildContext? context}) =>
-    Provider.of<AppLanguage>(context ?? CURRENT_CONTEXT!, listen: false)
-        .appLang;
+    context?.read<AppLanguage>().appLang ?? Languages.en;
 
 bool appLangIsArabic({BuildContext? context}) => appLan() == Languages.ar;
 
-class AppLanguage extends ChangeNotifier {
-  Languages _appLanguage = Languages.ar;
+class AppLanguage extends Cubit<Languages> {
+  Languages _appLanguage = Languages.en;
+
+  AppLanguage() : super(Languages.en);
 
   Languages get appLang => _appLanguage;
 
@@ -35,7 +35,7 @@ class AppLanguage extends ChangeNotifier {
 
   Future changeLanguage({Languages? language}) async {
     if (language == _appLanguage) return;
-    notifyListeners();
+    emit(state);
     switch (language) {
       case Languages.en:
         _appLanguage = Languages.en;
@@ -50,7 +50,7 @@ class AppLanguage extends ChangeNotifier {
     }
     await SharedPref.setLanguage(lang: _appLanguage.name);
     Future.delayed(const Duration(milliseconds: 100)).then((e) {
-      notifyListeners();
+      emit(state);
     });
   }
 }

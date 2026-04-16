@@ -1,5 +1,6 @@
 class ApiEndPoint {
   ApiEndPoint._();
+
   static Uri uri(
           {required String path, Map<String, dynamic>? queryParameters}) =>
       Uri(
@@ -34,7 +35,7 @@ class ApiEndPoint {
   static String submitComplaint = "$baseUrl/complaints/complaint";
   static String submitSupport = "$baseUrl/supports/support";
 
-  // ----------------- Home -----------------
+  // ----------------- Homel -----------------
 
   static String getHomeBanners = "$baseUrl/home/banners";
   static String getHomeVideo = "$baseUrl/home/mainVideo";

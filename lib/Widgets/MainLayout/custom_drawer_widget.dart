@@ -1,27 +1,24 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:portfolio/Core/Theme/theme_model.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/shared_preferences.dart';
 import 'package:portfolio/Widgets/tooltip_widget.dart';
 import 'package:simple_tooltip/simple_tooltip.dart';
 
 import '../../Core/Language/app_languages.dart';
-import '../../Modules/Home/home_controller.dart';
+import '../../Features/Homel/home_controller.dart';
 import '../../Utilities/Constants/global_keys.dart';
 import '../../Utilities/Constants/strings.dart';
 import '../../Utilities/helper_function.dart';
-import '../../Utilities/text_style_helper.dart';
-import '../../generated/assets.dart';
-import '../app_text_widget.dart';
-import '../custom_button_widget.dart';
+import '../Buttons/custom_button_widget.dart';
+import '../Inputs/app_text_widget.dart';
 
 class CustomDrawer extends StatefulWidget {
   final String? currentPath;
-  final int? currentIndex ;
-  const CustomDrawer({super.key, this.currentPath, this.currentIndex });
+  final int? currentIndex;
+
+  const CustomDrawer({super.key, this.currentPath, this.currentIndex});
 
   @override
   State<CustomDrawer> createState() => _CustomDrawerState();
@@ -29,7 +26,6 @@ class CustomDrawer extends StatefulWidget {
 
 class _CustomDrawerState extends State<CustomDrawer>
     with SingleTickerProviderStateMixin {
-
   late bool isMenuExpanded;
   int selectedIndex = 0;
 
@@ -37,7 +33,7 @@ class _CustomDrawerState extends State<CustomDrawer>
   void initState() {
     super.initState();
     isMenuExpanded = SharedPref.getMenuMode();
-    selectedIndex =  widget.currentIndex ??0 ;
+    selectedIndex = widget.currentIndex ?? 0;
   }
 
   void changeDrawerWidth() {
@@ -51,9 +47,11 @@ class _CustomDrawerState extends State<CustomDrawer>
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
+
     return Drawer(
-      width: 0.4.sw,
-      backgroundColor: ThemeFactory.of(context).backgroundColor,
+      width: 0.4,
+      backgroundColor: colors.background,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadiusDirectional.only(
               topStart: Radius.circular(8), bottomStart: Radius.circular(8))),
@@ -68,7 +66,7 @@ class _CustomDrawerState extends State<CustomDrawer>
               alignment: AlignmentDirectional.topStart,
               child: Icon(
                 Icons.close,
-                color: ThemeFactory.of(context).primary,
+                color: colors.accent,
                 size: context.isSmall ? 24 : 32,
               ),
             ),
@@ -124,28 +122,28 @@ class _CustomDrawerState extends State<CustomDrawer>
           const Spacer(),
           CustomButtonWidget(
             onPressed: () {
-              String? url = HomeController().user?.data?.cv;
+              String? url = HomeController().user?.cv;
               if (url != null) HelperFunctions.openUrl(url, context);
             },
-            btnColor: ThemeFactory.of(context).primary,
+            btnColor: colors.accent,
             width: 120,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   Strings.resume.translate,
-                  style: TextStyleHandler.of(context).regular16.copyWith(
-                        color: ThemeFactory.of(context).secondary300,
-                      ),
+                  style: AppTextStyles.bodyM().copyWith(
+                    color: colors.accentPurple,
+                  ),
                 ),
                 4.0.widthBox,
-                SvgPicture.asset(
-                  Assets.iconsDownload,
-                  colorFilter: ColorFilter.mode(
-                      ThemeFactory.of(context).secondary300, BlendMode.srcIn),
-                  width: 20,
-                  height: 20,
-                )
+                // SvgPicture.asset(
+                //   Assets.iconsDownload,
+                //   colorFilter: ColorFilter.mode(
+                //       colors.accentPurple, BlendMode.srcIn),
+                //   width: 16,
+                //   height: 16,
+                // )
               ],
             ),
           ),
@@ -153,34 +151,36 @@ class _CustomDrawerState extends State<CustomDrawer>
           CustomButtonWidget(
             onPressed: () {
               String gmailWebUri =
-                  "https://mail.google.com/mail/?view=cm&fs=1&to=${HomeController().user?.data?.email}";
+                  "https://mail.google.com/mail/?view=cm&fs=1&to=${HomeController().user?.email}";
               HelperFunctions.openUrl(gmailWebUri, context);
             },
-            title: Strings.mail.translate,
-            titleColor: ThemeFactory.of(context).primary,
-            btnColor: ThemeFactory.of(context).secondary300,
+            child: Text(
+              Strings.mail.translate,
+              style: AppTextStyles.bodyM().copyWith(
+                color: colors.accent,
+              ),
+            ),
+            btnColor: colors.accentPurple,
           ),
         ],
-      ).paddingSymmetric(
-          horizontal:  16,
-
-          vertical: 16),
+      ).paddingSymmetric(horizontal: 16, vertical: 16),
     );
   }
 
-  Widget item(Function() onTap, bool isSelected, String title,
-          BuildContext context) =>
-      InkWell(
-        onTap: onTap,
-        child: AppTextWidget(
-          title,
-          style: TextStyleHandler.of(context)
-              .headingTextStyleExtraBold14
-              .copyWith(
-                  color: ThemeFactory.of(context).primary,
-                  decoration: isSelected ? TextDecoration.underline : null),
-        ),
-      );
+  Widget item(
+      Function() onTap, bool isSelected, String title, BuildContext context) {
+    final colors = context.colors;
+
+    return InkWell(
+      onTap: onTap,
+      child: AppTextWidget(
+        title,
+        style: AppTextStyles.bodyL().copyWith(
+            color: colors.accent,
+            decoration: isSelected ? TextDecoration.underline : null),
+      ),
+    );
+  }
 }
 
 class LargeDrawerItemWidget extends StatelessWidget {
@@ -189,6 +189,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
   final bool isSelected;
   final Function() onTap;
   final bool isMenuExpanded;
+
   const LargeDrawerItemWidget(
       {super.key,
       required this.title,
@@ -199,6 +200,8 @@ class LargeDrawerItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
+
     return isMenuExpanded
         ? InkWell(
             onTap: onTap,
@@ -213,9 +216,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                       : 16),
               decoration: BoxDecoration(
                 shape: isMenuExpanded ? BoxShape.rectangle : BoxShape.circle,
-                color: !isSelected
-                    ? Colors.transparent
-                    : ThemeFactory.of(context).primary,
+                color: !isSelected ? Colors.transparent : colors.accent,
               ),
               child: isMenuExpanded
                   ? Row(
@@ -225,21 +226,17 @@ class LargeDrawerItemWidget extends StatelessWidget {
                           width: context.isSmall ? 24 : 32,
                           height: context.isSmall ? 24 : 32,
                           colorFilter: ColorFilter.mode(
-                              isSelected
-                                  ? ThemeFactory.of(context).fontWhite
-                                  : ThemeFactory.of(context).primary,
+                              isSelected ? colors.textOnAccent : colors.accent,
                               BlendMode.srcIn),
                         ),
                         8.0.widthBox,
                         AppTextWidget(
                           title,
-                          style: TextStyleHandler.of(context)
-                              .semiBold12
-                              .copyWith(
-                                  color: isSelected
-                                      ? ThemeFactory.of(context).fontWhite
-                                      : ThemeFactory.of(context).primary,
-                                  fontSize: context.isSmall ? 12 : 16),
+                          style: AppTextStyles.bodyM().copyWith(
+                              color: isSelected
+                                  ? colors.textOnAccent
+                                  : colors.accent,
+                              fontSize: context.isSmall ? 12 : 16),
                         ),
                         const Spacer(),
                         SvgPicture.asset(
@@ -247,9 +244,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                           width: context.isSmall ? 24 : 32,
                           height: context.isSmall ? 24 : 32,
                           colorFilter: ColorFilter.mode(
-                              isSelected
-                                  ? ThemeFactory.of(context).fontWhite
-                                  : ThemeFactory.of(context).primary,
+                              isSelected ? colors.textOnAccent : colors.accent,
                               BlendMode.srcIn),
                         ),
                       ],
@@ -260,9 +255,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                         width: context.isSmall ? 24 : 32,
                         height: context.isSmall ? 24 : 32,
                         colorFilter: ColorFilter.mode(
-                            isSelected
-                                ? ThemeFactory.of(context).fontWhite
-                                : ThemeFactory.of(context).primary,
+                            isSelected ? colors.textOnAccent : colors.accent,
                             BlendMode.srcIn),
                       ),
                     ),
@@ -286,9 +279,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                         : 16),
                 decoration: BoxDecoration(
                   shape: isMenuExpanded ? BoxShape.rectangle : BoxShape.circle,
-                  color: !isSelected
-                      ? Colors.transparent
-                      : ThemeFactory.of(context).primary,
+                  color: !isSelected ? Colors.transparent : colors.accent,
                 ),
                 child: isMenuExpanded
                     ? Row(
@@ -299,20 +290,18 @@ class LargeDrawerItemWidget extends StatelessWidget {
                             height: context.isSmall ? 24 : 32,
                             colorFilter: ColorFilter.mode(
                                 isSelected
-                                    ? ThemeFactory.of(context).fontWhite
-                                    : ThemeFactory.of(context).primary,
+                                    ? colors.textOnAccent
+                                    : colors.accent,
                                 BlendMode.srcIn),
                           ),
                           8.0.widthBox,
                           AppTextWidget(
                             title,
-                            style: TextStyleHandler.of(context)
-                                .semiBold12
-                                .copyWith(
-                                    color: isSelected
-                                        ? ThemeFactory.of(context).fontWhite
-                                        : ThemeFactory.of(context).primary,
-                                    fontSize: context.isSmall ? 12 : 16),
+                            style: AppTextStyles.bodyM().copyWith(
+                                color: isSelected
+                                    ? colors.textOnAccent
+                                    : colors.accent,
+                                fontSize: context.isSmall ? 12 : 16),
                           ),
                           const Spacer(),
                           SvgPicture.asset(
@@ -321,8 +310,8 @@ class LargeDrawerItemWidget extends StatelessWidget {
                             height: context.isSmall ? 24 : 32,
                             colorFilter: ColorFilter.mode(
                                 isSelected
-                                    ? ThemeFactory.of(context).fontWhite
-                                    : ThemeFactory.of(context).primary,
+                                    ? colors.textOnAccent
+                                    : colors.accent,
                                 BlendMode.srcIn),
                           ),
                         ],
@@ -333,9 +322,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                           width: context.isSmall ? 24 : 32,
                           height: context.isSmall ? 24 : 32,
                           colorFilter: ColorFilter.mode(
-                              isSelected
-                                  ? ThemeFactory.of(context).fontWhite
-                                  : ThemeFactory.of(context).primary,
+                              isSelected ? colors.textOnAccent : colors.accent,
                               BlendMode.srcIn),
                         ),
                       ),

@@ -1,94 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:provider/provider.dart';
+import 'package:portfolio/Core/Theme/theme_colors.dart';
 
-import 'theme_provider.dart';
+class AppTheme {
+  static final light = ThemeData(
+    brightness: Brightness.light,
+    useMaterial3: true,
+    extensions: const [
+      AppColors(
+        background: Color(0xFFF5F8FF),
+        // Ice White
+        surface: Color(0xFFFFFFFF),
+        // Soft Cloud
+        surfaceElevated: Color(0xFFEDF1FB),
+        // Lavender Mist
+        border: Color(0xFFC8D3EF),
+        // Periwinkle
+        accent: Color(0xFF027DFD),
+        // Flutter Blue (same across themes)
+        accentCyan: Color(0xFF0099CC),
+        // Ocean Cyan (adjusted for light bg)
+        accentPurple: Color(0xFF6200EE),
+        // Dart Purple (deeper for light bg)
+        success: Color(0xFF00C48C),
+        // Adjusted Mint
+        warning: Color(0xFFFFB300),
+        // Amber
+        danger: Color(0xFFFF4757),
+        // Coral Red
+        textPrimary: Color(0xFF0D1B3E),
+        // Midnight
+        textSecondary: Color(0xFF4A5878),
+        // Slate
+        textMuted: Color(0xFFA0AECA),
+        // Fog (light variant)
+        textOnAccent: Color(0xFFFFFFFF), // Pure White
+      )
+    ],
+  );
 
-class ThemeFactory {
-  static ThemeFactory of(BuildContext context) =>
-      Provider.of<ThemeProvider>(context, listen: false).isDark
-          ? ThemeFactory.dark()
-          : ThemeFactory.light();
-  static ThemeFactory get defaultTheme {
-    Brightness brightness =
-        SchedulerBinding.instance.platformDispatcher.platformBrightness;
-    return brightness == Brightness.dark
-        ? ThemeFactory.dark()
-        : ThemeFactory.light();
-  }
-
-  static const constFont1 = Color(0xFFF0F0F2);
-  final Color primary;
-  final Color primary75;
-  final Color secondary;
-  final Color secondary300;
-  final Color backgroundColor;
-  final Color blackWhiteColor;
-  final Color card;
-  final Color subCard;
-  final Color tableBackground;
-  final Color font1;
-  final Color font2;
-  final Color font3;
-  final Color font4;
-  final Color fontWhite;
-  final Color additional;
-  final Color danger;
-  final Color successColor;
-  final Color dividerColor;
-  final Color yellow;
-  final Color black;
-  final Color grayColor;
-  final Color blackGray;
-
-  ThemeFactory.light({
-    this.primary = const Color(0xff2C3930),
-    this.primary75 = const Color(0xff3F4F44),
-    this.secondary = const Color(0xffA27B5C),
-    this.secondary300 = const Color(0xffDBB79B),
-    this.yellow = const Color(0xfffacf21),
-    this.tableBackground = const Color(0xffEFEFEF),
-    this.backgroundColor = const Color(0xffE4E4E7),
-    this.blackWhiteColor = const Color(0xff000000),
-    this.card = const Color(0xFfDCD7C9), //
-    this.subCard = const Color(0xFFF1F1F1), //
-    this.font1 = const Color(0xff000000), //
-    this.font2 = const Color(0xFF7A7A7A), //
-    this.fontWhite = const Color(0xFFFFFFFF), //
-    this.font3 = const Color(0xFF5C5F68), //
-    this.font4 = const Color(0xFF97A1AD), //
-    this.additional = const Color(0xFFFACF21),
-    this.danger = const Color(0xFFF04940), //
-    this.successColor = const Color(0xff2DB224),
-    this.dividerColor = const Color(0xFFE4E7E9),
-    this.grayColor = const Color(0xFFD7D7D7),
-    this.black = const Color(0xff000000),
-    this.blackGray = const Color(0xff212121),
-  }); // Safety check
-
-  /// Handle Dark Theme Color
-  ThemeFactory.dark({
-    this.primary = const Color(0xff2C3930),
-    this.primary75 = const Color(0xff3F4F44),
-    this.secondary = const Color(0xffA27B5C),
-    this.secondary300 = const Color(0xffDBB79B),
-    this.yellow = const Color(0xfffacf21),
-    this.tableBackground = const Color(0xffEFEFEF),
-    this.backgroundColor = const Color(0xffE4E4E7),
-    this.blackWhiteColor = const Color(0xff000000),
-    this.card = const Color(0xFfDCD7C9), //
-    this.subCard = const Color(0xFFF1F1F1), //
-    this.font1 = const Color(0xff000000), //
-    this.font2 = const Color(0xFF7A7A7A), //
-    this.fontWhite = const Color(0xFFFFFFFF), //
-    this.font3 = const Color(0xFF5C5F68), //
-    this.font4 = const Color(0xFF97A1AD), //
-    this.additional = const Color(0xFFFACF21),
-    this.danger = const Color(0xFFF04940), //
-    this.successColor = const Color(0xff2DB224),
-    this.dividerColor = const Color(0xFFE4E7E9),
-    this.grayColor = const Color(0xFFD7D7D7),
-    this.black = const Color(0xff000000),
-    this.blackGray = const Color(0xff212121),
-  }); // Safety check
+  static final dark = ThemeData(
+    brightness: Brightness.dark,
+    useMaterial3: true,
+    extensions: const [
+      AppColors(
+        background: Color(0xFF0A0E17),
+        // Void Black
+        surface: Color(0xFF0F1629),
+        // Deep Navy
+        surfaceElevated: Color(0xFF1A2340),
+        // Slate Blue
+        border: Color(0xFF2A3555),
+        // Steel
+        accent: Color(0xFF027DFD),
+        // Flutter Blue
+        accentCyan: Color(0xFF00D4FF),
+        // Electric Cyan
+        accentPurple: Color(0xFF7C4DFF),
+        // Dart Purple
+        success: Color(0xFF00E5A0),
+        // Mint
+        warning: Color(0xFFFFB300),
+        // Amber
+        danger: Color(0xFFFF4757),
+        // Coral Red
+        textPrimary: Color(0xFFE8EDF8),
+        // Cloud White
+        textSecondary: Color(0xFF7A8BB0),
+        // Steel Grey
+        textMuted: Color(0xFF3D4F72),
+        // Fog
+        textOnAccent: Color(0xFFFFFFFF), // Pure White (text on colored buttons)
+      )
+    ],
+  );
 }

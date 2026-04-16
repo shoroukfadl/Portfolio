@@ -34,7 +34,8 @@ class Validate {
       return "";
     }
   }
-/* 
+
+/*
   static String? validatePhone(String phone) {
     if (phone.isEmpty) return Strings.enterYourPhone.translate;
     return null;
@@ -59,6 +60,8 @@ class Validate {
   static String? validateNormalString(String? text) {
     if (text?.isEmpty ?? true) return "";
     return null;
+    if (text?.isEmpty ?? true) return "";
+    return null;
   }
 
   static bool isNumeric(String s) {
@@ -73,8 +76,6 @@ class Validate {
     }
     return null;
   }
-
-
 
   static String? validateDropDown(dynamic value) {
     if (value == null || value.toString().isEmpty) return '';

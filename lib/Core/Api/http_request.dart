@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:ansicolor/ansicolor.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -60,6 +59,7 @@ class HttpRequestHandler {
   })  : method = "POST",
         files = [],
         body = {};
+
   HttpRequestHandler.putJsonUri({
     required this.uri,
     required this.bodyJson,
@@ -151,14 +151,11 @@ class _ApiBaseHelper {
       BaseRequest request, HttpRequestHandler requestApi) async {
     StreamedResponse response;
     try {
-
       request.headers.addAll({
         'Accept': '*/*',
         'content-type': 'application/json',
       });
 
-      AnsiPen pen = AnsiPen()..green(bold: true);
-      debugPrint(pen("The header of request : ${request.headers}"));
       response = await request.send().timeout(const Duration(seconds: 60));
     } on SocketException {
       throw ServerException(
@@ -231,9 +228,6 @@ class _ApiBaseHelper {
             }),
       );
     }
-    AnsiPen pen = AnsiPen()..green(bold: true);
-    debugPrint(pen(
-        " gggggggggggggggggggggg{${requestApi.uri.toString()}}  $jsonResponse"));
 
     switch (response.statusCode) {
       case 200:

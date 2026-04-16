@@ -7,6 +7,7 @@ class PushNotifications {
   static final _firebaseMessaging = FirebaseMessaging.instance;
   static final FlutterLocalNotificationsPlugin
       _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
   // request notification permission
   static Future init() async {
     await _firebaseMessaging.requestPermission(

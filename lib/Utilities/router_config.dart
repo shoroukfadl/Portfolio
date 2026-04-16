@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:universal_html/html.dart' as html;
 
-import '../Modules/Home/home_view.dart';
-import '../Modules/Splash/splash_view.dart';
+import '../Features/Splash/splash_view.dart';
+import '../Features/home/presentation/pages/home_view.dart';
 import '../Widgets/MainLayout/main_layout_widget.dart';
 
 BuildContext? get CURRENT_CONTEXT =>
@@ -55,7 +55,6 @@ class GoRouterConfig {
         },
         routes: const <RouteBase>[],
       ),
-
       ShellRoute(
           builder: (context, state, child) {
             return MainLayoutWidget(
@@ -66,14 +65,15 @@ class GoRouterConfig {
           routes: [
             //// --------------------------  Home --------------------------
             GoRoute(
-                name: HomeView.routeName,
-                path: "/${HomeView.routeName}",
-                pageBuilder: (_, GoRouterState state) {
-                  return getCustomTransitionPage(
-                    state: state,
-                    child: const HomeView(),
-                  );
-                },)
+              name: HomeView.routeName,
+              path: "/${HomeView.routeName}",
+              pageBuilder: (_, GoRouterState state) {
+                return getCustomTransitionPage(
+                  state: state,
+                  child: const HomeView(),
+                );
+              },
+            )
             //     routes: <RouteBase>[
             //       //// --------------------------  Blog Details  --------------------------
             //       GoRoute(
@@ -176,13 +176,10 @@ class GoRouterConfig {
             //         routes: const <RouteBase>[],
             //       ),
             //     ]),
-
-
           ]),
     ],
     redirect: (BuildContext context, GoRouterState state) {
       print("redirecting to ${state.fullPath}");
-
     },
   );
 

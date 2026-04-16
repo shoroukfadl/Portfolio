@@ -1,21 +1,12 @@
-
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class SharedPref {
   static SharedPreferences get prefs => GetIt.instance.get<SharedPreferences>();
-  static FlutterSecureStorage secureStorage = const FlutterSecureStorage();
   static const String loginStatusKey = "loginStatus";
   static const String _theme = "theme";
   static const String menuModeKey = "menuMode";
   static const String _language = "language";
-
-
-  // currny user dat
-
-
 
   static String? getLanguage() {
     return prefs.getString(_language);
@@ -25,9 +16,6 @@ class SharedPref {
     await prefs.setString(_language, lang);
   }
 
-
-
-
   static Future<void> setTheme(bool themeValue) async {
     await prefs.setBool(_theme, themeValue);
   }
@@ -36,10 +24,8 @@ class SharedPref {
     return prefs.getBool(_theme) ?? true;
   }
 
-
   static Future setMenuMode(bool menuModeValue) async =>
       await prefs.setBool(menuModeKey, menuModeValue);
 
   static bool getMenuMode() => prefs.getBool(menuModeKey) ?? false;
-
 }

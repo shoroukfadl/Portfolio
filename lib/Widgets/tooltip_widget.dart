@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:simple_tooltip/simple_tooltip.dart';
 
 import '../Core/Language/app_languages.dart';
-import '../Core/Theme/theme_model.dart';
-import '../Utilities/text_style_helper.dart';
-import 'app_text_widget.dart';
+import '../Core/Language/app_styles.dart';
+import '../Utilities/extensions.dart';
+import 'Inputs/app_text_widget.dart';
 import 'hover_widget.dart';
 
 class TooltipWidget extends StatelessWidget {
@@ -22,6 +21,8 @@ class TooltipWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
+
     return HoverWidget(
       builder: (hovered) {
         return SimpleTooltip(
@@ -36,16 +37,16 @@ class TooltipWidget extends StatelessWidget {
             toolTipTitle,
             maxLines: 2,
             textAlign: TextAlign.center,
-            style: TextStyleHandler.of(context).regular12.copyWith(
-                  decorationThickness: 0,
-                  decoration: TextDecoration.none,
-                  color: Colors.black,
-                ),
+            style: AppTextStyles.bodyM().copyWith(
+              decorationThickness: 0,
+              decoration: TextDecoration.none,
+              color: Colors.black,
+            ),
           ),
-          arrowBaseWidth: 10.w,
+          arrowBaseWidth: 10,
           arrowTipDistance: 0,
-          borderWidth: 1.w,
-          borderColor: ThemeFactory.of(context).font1,
+          borderWidth: 1,
+          borderColor: colors.textPrimary,
           maxHeight: 60,
           minHeight: 20,
           minimumOutSidePadding: 0,

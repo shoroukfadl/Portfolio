@@ -1,6 +1,6 @@
 {
 
-  "helloIam": "Hello I'm",
+  "helloIam": "I'm",
   "basedIn":"Based In",
   "aboutMe": "About Me",
   "skill": "Skill",
@@ -17,5 +17,8 @@
   "yourPhone": "Your Phone",
   "my": "My",
   "experience": "Experience",
-  "developer": "Developer"
+  "developer": "Developer",
+  "hireMe": "Hire Me",
+  "education": "Education",
+  "hello": "Hello"
 }

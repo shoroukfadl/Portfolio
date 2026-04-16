@@ -1,151 +1,59 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'user_data_model.g.dart';
+
+@JsonSerializable()
 class UserDataModel {
-  final Data? data;
+  final List<SkillModel> skills;
+  final List<ProjectModel> project;
+  final String? email;
+  final String? linkedIn;
+  final String? github;
+  final String? cv;
+  final String? name;
+  final String? jobName;
+  final String? location;
+  final String? summary;
+  final List<ExperienceModel> experience;
+  final EductionModel? eduction;
 
   UserDataModel({
-    this.data,
-  });
-
-  UserDataModel copyWith({
-    Data? data,
-  }) =>
-      UserDataModel(
-        data: data ?? this.data,
-      );
-
-  factory UserDataModel.fromJson(Map<String, dynamic> json) => UserDataModel(
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "data": data?.toJson(),
-      };
-}
-
-class Data {
-  final List<Skill> skills;
-  final AboutMe? aboutMe;
-  final List<Project> project;
-  final String? email;
-  final String? cv;
-  final PersonalData? personalData;
-  final List<Experince> experience;
-
-  Data({
     this.skills = const [],
-    this.aboutMe,
     this.project = const [],
     this.email,
     this.cv,
-    this.personalData,
-    this.experience=const [],
+    this.summary,
+    this.experience = const [],
+    this.linkedIn,
+    this.github,
+    this.name,
+    this.jobName,
+    this.location,
+    this.eduction,
   });
 
-  Data copyWith({
-    List<Skill>? skills,
-    AboutMe? aboutMe,
-     List<Project>? project,
+  UserDataModel copyWith({
+    List<SkillModel>? skills,
+    List<ProjectModel>? project,
     String? email,
     String? cv,
-    PersonalData? personalData,
-    List<Experince> ? experience,
+    List<ExperienceModel>? experience,
   }) =>
-      Data(
+      UserDataModel(
         skills: skills ?? this.skills,
-        aboutMe: aboutMe ?? this.aboutMe,
         project: project ?? this.project,
         email: email ?? this.email,
         cv: cv ?? this.cv,
-        personalData: personalData ?? this.personalData,
         experience: experience ?? this.experience,
       );
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        skills: json["skills"] == null
-            ? []
-            : List<Skill>.from(json["skills"]!.map((x) => Skill.fromJson(x))),
-        aboutMe:
-            json["aboutMe"] == null ? null : AboutMe.fromJson(json["aboutMe"]),
-        project: json["projects"] == null
-            ? []
-            : List<Project>.from(json["projects"]!.map((x) => Project.fromJson(x))),
-        email: json["email"],
-        cv: json["cv"],
-        personalData: json["personalData"] == null
-            ? null
-            : PersonalData.fromJson(json["personalData"]),
-        experience: json["experince"] == null
-            ? []
-            : List<Experince>.from(json["experince"]!.map((x) => Experince.fromJson(x))),
-      );
+  factory UserDataModel.fromJson(Map<String, dynamic> json) =>
+      _$UserDataModelFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "skills": List<dynamic>.from(skills.map((x) => x.toJson())),
-        "experince": List<dynamic>.from(experience.map((x) => x.toJson())),
-        "aboutMe": aboutMe?.toJson(),
-        "projects": List<dynamic>.from(project.map((x) => x.toJson())),
-        "email": email,
-        "cv": cv,
-        "personalData": personalData?.toJson(),
-      };
+  Map<String, dynamic> toJson() => _$UserDataModelToJson(this);
 }
 
-class AboutMe {
-  AboutMe();
-
-  AboutMe copyWith() => AboutMe();
-
-  factory AboutMe.fromJson(Map<String, dynamic> json) => AboutMe();
-
-  Map<String, dynamic> toJson() => {};
-}
-
-class PersonalData {
-  final Links? links;
-  final String? name;
-  final String? role;
-  final String? shortDesc;
-  final String? location;
-
-  PersonalData({
-    this.links,
-    this.name,
-    this.role,
-    this.shortDesc,
-    this.location
-  });
-
-  PersonalData copyWith({
-    Links? links,
-    String? name,
-    String? role,
-    String? shortDesc,
-    String? location
-  }) =>
-      PersonalData(
-        links: links ?? this.links,
-        name: name ?? this.name,
-        role: role ?? this.role,
-        shortDesc: shortDesc ?? this.shortDesc,
-        location: location ?? this.location
-      );
-
-  factory PersonalData.fromJson(Map<String, dynamic> json) => PersonalData(
-        links: json["links"] == null ? null : Links.fromJson(json["links"]),
-        name: json["name"],
-        role: json["role"],
-        shortDesc: json["shortDesc"],
-        location: json["location"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "links": links?.toJson(),
-        "name": name,
-        "role": role,
-        "shortDesc": shortDesc,
-        "location": location
-      };
-}
-
+@JsonSerializable()
 class Links {
   final String? linkedIn;
   final String? email;
@@ -172,132 +80,149 @@ class Links {
         github: github ?? this.github,
       );
 
-  factory Links.fromJson(Map<String, dynamic> json) => Links(
-        linkedIn: json["linkedIn"],
-        email: json["email"],
-        cv: json["cv"],
-        github: json["github"],
-      );
+  factory Links.fromJson(Map<String, dynamic> json) => _$LinksFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "linkedIn": linkedIn,
-        "email": email,
-        "cv": cv,
-        "github": github,
-      };
+  Map<String, dynamic> toJson() => _$LinksToJson(this);
 }
 
-class Skill {
-  final String? name;
-  final String? icon;
+@JsonSerializable()
+class SkillModel {
+  final String? skillTitle;
+  final List<String> skills;
 
-  Skill({
-    this.name,
-    this.icon,
+  SkillModel({
+    this.skillTitle,
+    this.skills = const [],
   });
 
-  Skill copyWith({
-    String? name,
-    String? icon,
+  SkillModel copyWith({
+    String? skillTitle,
+    List<String>? skills,
   }) =>
-      Skill(
-        name: name ?? this.name,
-        icon: icon ?? this.icon,
+      SkillModel(
+        skillTitle: skillTitle ?? this.skillTitle,
+        skills: skills ?? this.skills,
       );
 
-  factory Skill.fromJson(Map<String, dynamic> json) => Skill(
-        name: json["name"],
-        icon: json["icon"],
-      );
+  factory SkillModel.fromJson(Map<String, dynamic> json) =>
+      _$SkillModelFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "icon": icon,
-      };
+  Map<String, dynamic> toJson() => _$SkillModelToJson(this);
 }
 
-
-class Experince {
-  final String? name;
+@JsonSerializable()
+class ExperienceModel {
+  final String? companyName;
   final String? date;
   final String? description;
-  final String? location;
+  final String? companyUrl;
+  final String? roleName;
+  final String? companyLocation;
 
-  Experince({this.name, this.date, this.description, this.location,});
+  ExperienceModel({
+    this.companyName,
+    this.date,
+    this.description,
+    this.companyLocation,
+    this.companyUrl,
+    this.roleName,
+  });
 
-  Experince copyWith({
-    String? name,
+  ExperienceModel copyWith({
+    String? companyName,
     String? date,
     String? description,
-    String? location,
+    String? companyUrl,
+    String? roleName,
+    String? companyLocation,
   }) =>
-      Experince(
-        name: name ?? this.name,
-        date: date ?? this.date,
-        description: description ?? this.description,
-        location: location ?? this.location
-      );
+      ExperienceModel(
+          companyName: companyName ?? this.companyName,
+          date: date ?? this.date,
+          description: description ?? this.description,
+          companyUrl: companyUrl ?? this.companyUrl,
+          roleName: roleName ?? this.roleName,
+          companyLocation: companyLocation ?? this.companyLocation);
 
-  factory Experince.fromJson(Map<String, dynamic> json) => Experince(
-        name: json["name"],
-        date: json["date"],
-        description: json["description"],
-        location: json["location"],
-      );
+  factory ExperienceModel.fromJson(Map<String, dynamic> json) =>
+      _$ExperienceModelFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "date": date,
-        "description": description,
-        "location": location
-      };
+  Map<String, dynamic> toJson() => _$ExperienceModelToJson(this);
 }
 
-
-class Project {
+@JsonSerializable()
+class ProjectModel {
   final String? companyName;
   final String? description;
   final String? projectName;
-  final String? type;
-  final List<String> links ;
+  final String? link;
+  final String? projectType;
+  final List<String> images;
 
-  Project({
+  ProjectModel({
     this.companyName,
     this.description,
     this.projectName,
-    this.type,
-    this.links = const [],
+    this.link,
+    this.images = const [],
+    this.projectType,
   });
 
-  Project copyWith({
-   String? companyName,
-   String? description,
-   String? projectName,
-   String? type,
-    List<String>? links
+  ProjectModel copyWith({
+    String? companyName,
+    String? description,
+    String? projectName,
+    String? link,
+    String? projectType,
+    List<String>? images,
   }) =>
-      Project(
+      ProjectModel(
+          companyName: companyName ?? this.companyName,
+          description: description ?? this.description,
+          projectName: projectName ?? this.projectName,
+          link: link ?? this.link,
+          projectType: projectType ?? this.projectType,
+          images: images ?? this.images);
 
-        companyName: companyName ?? this.companyName,
-        description: description ?? this.description,
-        projectName: projectName ?? this.projectName,
-        type: type ?? this.type,
-        links: links ?? this.links
+  factory ProjectModel.fromJson(Map<String, dynamic> json) =>
+      _$ProjectModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProjectModelToJson(this);
+}
+
+@JsonSerializable()
+class EductionModel {
+  final String? uniName;
+  final String? country;
+  final String? link;
+  final String? date;
+  final String? desc;
+
+  EductionModel({
+    this.uniName,
+    this.country,
+    this.link,
+    this.date,
+    this.desc,
+  });
+
+  EductionModel copyWith({
+    String? uniName,
+    String? country,
+    String? link,
+    String? date,
+    String? desc,
+  }) =>
+      EductionModel(
+        uniName: uniName ?? this.uniName,
+        country: country ?? this.country,
+        link: link ?? this.link,
+        date: date ?? this.date,
+        desc: desc ?? this.desc,
       );
 
-  factory Project.fromJson(Map<String, dynamic> json) => Project(
-    companyName: json["companyName"],
-    description: json["description"],
-    projectName: json["projectName"],
-    type: json["type"],
-    links: List<String>.from(json["links"].map((x) => x)),
-  );
+  factory EductionModel.fromJson(Map<String, dynamic> json) =>
+      _$EductionModelFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-    "linkedIn": companyName,
-    "email": description,
-    "cv": projectName,
-    "github": type,
-    "links": List<dynamic>.from(links.map((x) => x)),
-  };
+  Map<String, dynamic> toJson() => _$EductionModelToJson(this);
 }
