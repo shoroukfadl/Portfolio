@@ -3,6 +3,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/MainLayout/AppBar/home_app_bar.dart';
 
 import '../../Utilities/Constants/global_keys.dart';
+import '../Portfilio/animated_background.dart';
 
 class MainLayoutWidget extends StatefulWidget {
   final Widget child;
@@ -20,10 +21,15 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
     return Scaffold(
       key: GlobalKeys.scaffoldKey,
       floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
-      body: Row(
+      body: Stack(
         children: [
-          const HomeAppBar(),
-          widget.child.expand,
+          const AnimatedBackground(),
+          Column(
+            children: [
+               HomeAppBar(),
+              widget.child.expand,
+            ],
+          ),
         ],
       ),
     );

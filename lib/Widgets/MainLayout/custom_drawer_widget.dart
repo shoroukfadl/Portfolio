@@ -132,15 +132,15 @@ class _CustomDrawerState extends State<CustomDrawer>
               children: [
                 Text(
                   Strings.resume.translate,
-                  style: AppTextStyles.bodyM().copyWith(
-                    color: colors.accentPurple,
+                  style: AppTextStyles.regular14().copyWith(
+                    color: colors.secondary,
                   ),
                 ),
                 4.0.widthBox,
                 // SvgPicture.asset(
                 //   Assets.iconsDownload,
                 //   colorFilter: ColorFilter.mode(
-                //       colors.accentPurple, BlendMode.srcIn),
+                //       colors.secondary, BlendMode.srcIn),
                 //   width: 16,
                 //   height: 16,
                 // )
@@ -156,11 +156,11 @@ class _CustomDrawerState extends State<CustomDrawer>
             },
             child: Text(
               Strings.mail.translate,
-              style: AppTextStyles.bodyM().copyWith(
+              style: AppTextStyles.regular14().copyWith(
                 color: colors.accent,
               ),
             ),
-            btnColor: colors.accentPurple,
+            btnColor: colors.secondary,
           ),
         ],
       ).paddingSymmetric(horizontal: 16, vertical: 16),
@@ -175,7 +175,7 @@ class _CustomDrawerState extends State<CustomDrawer>
       onTap: onTap,
       child: AppTextWidget(
         title,
-        style: AppTextStyles.bodyL().copyWith(
+        style: AppTextStyles.regular16().copyWith(
             color: colors.accent,
             decoration: isSelected ? TextDecoration.underline : null),
       ),
@@ -226,15 +226,15 @@ class LargeDrawerItemWidget extends StatelessWidget {
                           width: context.isSmall ? 24 : 32,
                           height: context.isSmall ? 24 : 32,
                           colorFilter: ColorFilter.mode(
-                              isSelected ? colors.textOnAccent : colors.accent,
+                              isSelected ? colors.textSecondary : colors.accent,
                               BlendMode.srcIn),
                         ),
                         8.0.widthBox,
                         AppTextWidget(
                           title,
-                          style: AppTextStyles.bodyM().copyWith(
+                          style: AppTextStyles.regular14().copyWith(
                               color: isSelected
-                                  ? colors.textOnAccent
+                                  ? colors.textSecondary
                                   : colors.accent,
                               fontSize: context.isSmall ? 12 : 16),
                         ),
@@ -244,7 +244,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                           width: context.isSmall ? 24 : 32,
                           height: context.isSmall ? 24 : 32,
                           colorFilter: ColorFilter.mode(
-                              isSelected ? colors.textOnAccent : colors.accent,
+                              isSelected ? colors.textSecondary : colors.accent,
                               BlendMode.srcIn),
                         ),
                       ],
@@ -255,7 +255,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                         width: context.isSmall ? 24 : 32,
                         height: context.isSmall ? 24 : 32,
                         colorFilter: ColorFilter.mode(
-                            isSelected ? colors.textOnAccent : colors.accent,
+                            isSelected ? colors.textSecondary : colors.accent,
                             BlendMode.srcIn),
                       ),
                     ),
@@ -290,16 +290,16 @@ class LargeDrawerItemWidget extends StatelessWidget {
                             height: context.isSmall ? 24 : 32,
                             colorFilter: ColorFilter.mode(
                                 isSelected
-                                    ? colors.textOnAccent
+                                    ? colors.textSecondary
                                     : colors.accent,
                                 BlendMode.srcIn),
                           ),
                           8.0.widthBox,
                           AppTextWidget(
                             title,
-                            style: AppTextStyles.bodyM().copyWith(
+                            style: AppTextStyles.regular14().copyWith(
                                 color: isSelected
-                                    ? colors.textOnAccent
+                                    ? colors.textSecondary
                                     : colors.accent,
                                 fontSize: context.isSmall ? 12 : 16),
                           ),
@@ -310,7 +310,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                             height: context.isSmall ? 24 : 32,
                             colorFilter: ColorFilter.mode(
                                 isSelected
-                                    ? colors.textOnAccent
+                                    ? colors.textSecondary
                                     : colors.accent,
                                 BlendMode.srcIn),
                           ),
@@ -322,7 +322,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                           width: context.isSmall ? 24 : 32,
                           height: context.isSmall ? 24 : 32,
                           colorFilter: ColorFilter.mode(
-                              isSelected ? colors.textOnAccent : colors.accent,
+                              isSelected ? colors.textSecondary : colors.accent,
                               BlendMode.srcIn),
                         ),
                       ),

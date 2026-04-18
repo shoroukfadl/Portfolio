@@ -24,12 +24,12 @@ class SectionsTitleWidget extends StatelessWidget {
       key: key,
       text: TextSpan(
           text: enableMy ? Strings.my.translate : "",
-          style: (myStyle ?? AppTextStyles.displayM())
+          style: (myStyle ?? AppTextStyles.extraBold40())
               .copyWith(color: colors.textPrimary),
           children: [
             TextSpan(
               text: " $title",
-              style: (titleStyle ?? AppTextStyles.displayM())
+              style: (titleStyle ?? AppTextStyles.extraBold40())
                   .copyWith(color: colors.accent),
             ),
           ]),

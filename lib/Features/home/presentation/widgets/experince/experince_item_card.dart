@@ -32,7 +32,7 @@ class ExperienceItemCard extends StatelessWidget {
           children: [
             Text(
               item?.companyName ?? "",
-              style: (nameStyle ?? AppTextStyles.headingL())
+              style: (nameStyle ?? AppTextStyles.semiBold24())
                   .copyWith(color: colors.accent),
             ),
             Row(
@@ -41,13 +41,13 @@ class ExperienceItemCard extends StatelessWidget {
               children: [
                 Text(
                   item?.date ?? "",
-                  style: (dateStyle ?? AppTextStyles.labelM())
-                      .copyWith(color: colors.accentPurple),
+                  style: (dateStyle ?? AppTextStyles.medium14())
+                      .copyWith(color: colors.secondary),
                 ),
                 Text(
                   item?.companyLocation ?? "",
-                  style: (locationStyle ?? AppTextStyles.labelM())
-                      .copyWith(color: colors.accentPurple),
+                  style: (locationStyle ?? AppTextStyles.medium14())
+                      .copyWith(color: colors.secondary),
                 ),
               ],
             ),
@@ -56,7 +56,7 @@ class ExperienceItemCard extends StatelessWidget {
         const CustomDashedLineWidget().expand,
         Text(
           item?.description ?? "",
-          style: (descriptionStyle ?? AppTextStyles.bodyM())
+          style: (descriptionStyle ?? AppTextStyles.regular14())
               .copyWith(color: colors.textPrimary),
         ).expand,
       ],

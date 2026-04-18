@@ -93,7 +93,7 @@ class ProjectItemCard extends StatelessWidget {
                 project?.projectName ?? "",
                 maxLines: 3,
                 textAlign: TextAlign.center,
-                style: (projectNameStyle ?? AppTextStyles.displayS())
+                style: (projectNameStyle ?? AppTextStyles.extraBold32())
                     .copyWith(color: colors.textPrimary),
               ).paddingSymmetric(horizontal: 20),
             ),
@@ -106,13 +106,13 @@ class ProjectItemCard extends StatelessWidget {
                 Text(
                   project?.projectType ?? "",
                   style:
-                      AppTextStyles.codeL().copyWith(color: colors.textPrimary),
+                      AppTextStyles.medium10().copyWith(color: colors.textPrimary),
                 ),
               ],
             ).paddingSymmetric(horizontal: 20),
             Text(
               project?.description ?? "",
-              style: AppTextStyles.codeM().copyWith(color: colors.textPrimary),
+              style: AppTextStyles.medium10().copyWith(color: colors.textPrimary),
             ).paddingSymmetric(horizontal: 20),
             ClipPath(
               clipper: SmoothNotchedClipper(),

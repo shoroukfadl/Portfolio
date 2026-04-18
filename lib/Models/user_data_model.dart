@@ -87,21 +87,23 @@ class Links {
 
 @JsonSerializable()
 class SkillModel {
-  final String? skillTitle;
-  final List<String> skills;
+  final String? title;
+  final String? icon;
+  final String? description;
 
   SkillModel({
-    this.skillTitle,
-    this.skills = const [],
+    this.title, this.icon,  this.description,
   });
 
   SkillModel copyWith({
-    String? skillTitle,
-    List<String>? skills,
+    String? title,
+    String? icon,
+    String? description,
   }) =>
       SkillModel(
-        skillTitle: skillTitle ?? this.skillTitle,
-        skills: skills ?? this.skills,
+        title: title??this.title,
+        icon: icon??this.icon,
+        description: description??this.description
       );
 
   factory SkillModel.fromJson(Map<String, dynamic> json) =>

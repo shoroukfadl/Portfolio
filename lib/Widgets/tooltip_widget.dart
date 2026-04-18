@@ -37,7 +37,7 @@ class TooltipWidget extends StatelessWidget {
             toolTipTitle,
             maxLines: 2,
             textAlign: TextAlign.center,
-            style: AppTextStyles.bodyM().copyWith(
+            style: AppTextStyles.regular10().copyWith(
               decorationThickness: 0,
               decoration: TextDecoration.none,
               color: Colors.black,
@@ -46,7 +46,7 @@ class TooltipWidget extends StatelessWidget {
           arrowBaseWidth: 10,
           arrowTipDistance: 0,
           borderWidth: 1,
-          borderColor: colors.textPrimary,
+          borderColor: colors.background,
           maxHeight: 60,
           minHeight: 20,
           minimumOutSidePadding: 0,

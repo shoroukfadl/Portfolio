@@ -24,18 +24,18 @@ class MediumHomeView extends StatelessWidget {
 
         64.0.heightBox,
 
-        MySkillsWidget(
-          skills: con.user?.skills ?? [],
-        ).paddingSymmetric(horizontal: 32),
+        SliverToBoxAdapter(
+            child: SkillsSection(
+            )).paddingSymmetric(horizontal: 32),
         ExperienceCardWidget(
           items: con.user?.experience ?? [],
         ),
-        AboutMeWidget(
-          name: con.user?.name ?? "",
-          role: con.user?.jobName ?? "",
-          desc: con.user?.summary ??
-              "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
-        ),
+        // AboutMeWidget(
+        //   name: con.user?.name ?? "",
+        //   role: con.user?.jobName ?? "",
+        //   desc: con.user?.summary ??
+        //       "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
+        // ),
         MyProjectsWidget(
           projects: con.user?.project ?? [],
         ),

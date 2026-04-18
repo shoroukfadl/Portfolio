@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
 import '../../../../Homel/home_controller.dart';
+import '../../widgets/aboutMe/about_me_title.dart';
 import '../../widgets/aboutMe/about_me_widget.dart';
 import '../../widgets/contact_me.dart';
 import '../../widgets/education/education_widget.dart';
@@ -24,31 +26,17 @@ class LargeHomeView extends StatelessWidget {
       children: [
         // 32.0.heightBox,
         SliverToBoxAdapter(
-          child: AboutMeWidget(
-            name: con.user?.name ?? "shorouk fadl",
-            role: con.user?.jobName ?? "flutter developer",
-            desc: con.user?.summary ??
-                "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
+          child: SummarySection(
+            // name: con.user?.name ?? "shorouk fadl",
+            // role: con.user?.jobName ?? "flutter developer",
+            // desc: con.user?.summary ??
+            //     "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
           ),
         ),
         // 64.0.heightBox,
         //
         SliverToBoxAdapter(
-            child: MySkillsWidget(
-          skills: [
-            SkillModel(
-                skillTitle: 'FrameWork', skills: ['Flutter', 'Flutter Web']),
-            SkillModel(
-                skillTitle: 'FrameWork', skills: ['Flutter', 'Flutter Web']),
-            SkillModel(
-                skillTitle: 'FrameWork', skills: ['Flutter', 'Flutter Web']),
-            SkillModel(
-                skillTitle: 'FrameWork', skills: ['Flutter', 'Flutter Web']),
-            SkillModel(
-                skillTitle: 'FrameWork', skills: ['Flutter', 'Flutter Web']),
-            SkillModel(
-                skillTitle: 'FrameWork', skills: ['Flutter', 'Flutter Web']),
-          ],
+            child: SkillsSection(
         )),
         // 64.0.heightBox,
         //
@@ -59,7 +47,8 @@ class LargeHomeView extends StatelessWidget {
         // 64.0.heightBox,
         SliverPadding(
           padding: const EdgeInsets.all(Constants.desktopHozPadding),
-          sliver: SliverToBoxAdapter(
+          sliver:
+          SliverToBoxAdapter(
             child: EducationWidget(
               item: con.user?.eduction ??
                   EductionModel(
@@ -95,6 +84,146 @@ class LargeHomeView extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+class ModernStackPortfolio extends StatefulWidget {
+  const ModernStackPortfolio({super.key});
+
+  @override
+  State<ModernStackPortfolio> createState() => _ModernStackPortfolioState();
+}
+
+class _ModernStackPortfolioState extends State<ModernStackPortfolio> {
+  final ScrollController _scrollController = ScrollController();
+
+  // البيانات اللي هتظهر في الكروت
+  final List<Map<String, dynamic>> sections = [
+    {"title": "Experience", "color": Color(0xFF1E293B), "content": "Senior Flutter Developer at Jana Pack..."},
+    {"title": "Selected Projects", "color": Color(0xFF0F172A), "content": "E-commerce App, Portfolio, Logic Libs..."},
+    {"title": "Education", "color": Color(0xFF161E2E), "content": "CS Degree, Mobile Nanodegree..."},
+    {"title": "Contact", "color": Color(0xFF1E293B), "content": "Let's build something great together."},
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFF0A0F1A),
+      body: Row(
+        children: [
+          // الجانب الأيسر الثابت - Minimalist Text
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: const EdgeInsets.all(40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                   Text("JANA\nDEV.",
+                      style: TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.w900, height: 0.9)),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("SUMMARY", style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold, fontSize: 12)),
+                      const SizedBox(height: 10),
+                      Text("Architecting high-performance\nbilingual Flutter applications\nwith Clean Architecture.",
+                          style: TextStyle(color: Colors.white.withOpacity(0.6), height: 1.5)),
+                    ],
+                  ),
+                  const Text("© 2026", style: TextStyle(color: Colors.white24, fontSize: 12)),
+                ],
+              ),
+            ),
+          ),
+
+          // الجانب الأيمن المتحرك - Stacking Layers
+          Expanded(
+            flex: 2,
+            child: ListView.builder(
+              controller: _scrollController,
+              itemCount: sections.length,
+              itemBuilder: (context, index) {
+                return StackCard(
+                  index: index,
+                  data: sections[index],
+                  controller: _scrollController,
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class StackCard extends StatelessWidget {
+  final int index;
+  final Map<String, dynamic> data;
+  final ScrollController controller;
+
+  const StackCard({super.key, required this.index, required this.data, required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (context, child) {
+        // حساب الـ "Stacking" - كل كارت بيفضل مكانه لما يوصل فوق
+        double cardHeight = MediaQuery.of(context).size.height * 0.8;
+        double scrollOffset = controller.hasClients ? controller.offset : 0.0;
+        double cardPosition = (index * cardHeight);
+
+        // الـ Logic السحري هنا:
+        double topPadding = (cardPosition - scrollOffset).clamp(0.0, double.infinity);
+
+        return Container(
+          height: cardHeight,
+          margin: EdgeInsets.only(top: index == 0 ? 0 : 0), // إلغاء المسافات بين الكروت
+          padding: EdgeInsets.only(top: topPadding > 0 ? 0 : 0),
+          child: Transform.translate(
+            offset: Offset(0, topPadding > 0 ? 0 : 0),
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: data['color'],
+                border: const Border(top: BorderSide(color: Colors.white10, width: 0.5)),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 40, offset: const Offset(0, -20))
+                ],
+              ),
+              padding: const EdgeInsets.all(50),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("0${index + 1}", style: const TextStyle(color: Colors.blueAccent, fontFamily: 'monospace')),
+                  const SizedBox(height: 20),
+                  Text(data['title'], style: const TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 30),
+                  Text(data['content'], style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 18)),
+                  const Spacer(),
+                  const Align(
+                    alignment: Alignment.bottomRight,
+                    child: Icon(Icons.arrow_downward, color: Colors.white10, size: 40),
+                  )
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+
+
+
 
 class DNASkillsView extends StatefulWidget {
   @override

@@ -23,7 +23,7 @@ class CustomHtmlWidget extends StatelessWidget {
         return null;
       },
       renderMode: RenderMode.column,
-      textStyle: AppTextStyles.bodyM(),
+      textStyle: AppTextStyles.regular14(),
     );
   }
 }

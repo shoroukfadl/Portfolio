@@ -64,17 +64,16 @@ Map<String, dynamic> _$LinksToJson(Links instance) => <String, dynamic>{
     };
 
 SkillModel _$SkillModelFromJson(Map<String, dynamic> json) => SkillModel(
-      skillTitle: json['skillTitle'] as String?,
-      skills: (json['skills'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
+      title: json['title'] as String?,
+      icon: json['icon'] as String?,
+      description: json['description'] as String?,
     );
 
 Map<String, dynamic> _$SkillModelToJson(SkillModel instance) =>
     <String, dynamic>{
-      'skillTitle': instance.skillTitle,
-      'skills': instance.skills,
+      'title': instance.title,
+      'icon': instance.icon,
+      'description': instance.description,
     };
 
 ExperienceModel _$ExperienceModelFromJson(Map<String, dynamic> json) =>
