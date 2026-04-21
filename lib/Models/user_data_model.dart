@@ -92,7 +92,9 @@ class SkillModel {
   final String? description;
 
   SkillModel({
-    this.title, this.icon,  this.description,
+    this.title,
+    this.icon,
+    this.description,
   });
 
   SkillModel copyWith({
@@ -101,10 +103,9 @@ class SkillModel {
     String? description,
   }) =>
       SkillModel(
-        title: title??this.title,
-        icon: icon??this.icon,
-        description: description??this.description
-      );
+          title: title ?? this.title,
+          icon: icon ?? this.icon,
+          description: description ?? this.description);
 
   factory SkillModel.fromJson(Map<String, dynamic> json) =>
       _$SkillModelFromJson(json);
@@ -114,37 +115,46 @@ class SkillModel {
 
 @JsonSerializable()
 class ExperienceModel {
-  final String? companyName;
-  final String? date;
+  final String? position;
+  final String? company;
+  final String? duration;
   final String? description;
-  final String? companyUrl;
-  final String? roleName;
-  final String? companyLocation;
+  final List<String> achievements;
+  final List<String> technologies;
+  final String? icon;
+  final int? color;
 
   ExperienceModel({
-    this.companyName,
-    this.date,
-    this.description,
-    this.companyLocation,
-    this.companyUrl,
-    this.roleName,
-  });
+      this.position,
+      this.company,
+      this.duration,
+      this.description,
+      this.achievements = const [],
+      this.technologies = const [],
+      this.icon,
+      this.color});
 
   ExperienceModel copyWith({
-    String? companyName,
-    String? date,
+    String? position,
+    String? company,
+    String? duration,
     String? description,
-    String? companyUrl,
-    String? roleName,
-    String? companyLocation,
+    List<String>? achievements,
+    List<String>? technologies,
+    String? icon,
+    int? color,
   }) =>
       ExperienceModel(
-          companyName: companyName ?? this.companyName,
-          date: date ?? this.date,
-          description: description ?? this.description,
-          companyUrl: companyUrl ?? this.companyUrl,
-          roleName: roleName ?? this.roleName,
-          companyLocation: companyLocation ?? this.companyLocation);
+          position:position??this.position,
+          company:company??this.company,
+          duration:duration??this.duration,
+          description:description??this.description,
+          achievements:achievements??this.achievements,
+          technologies:technologies??this.technologies,
+          icon:icon??this.icon,
+          color:color??this.color,
+
+      );
 
   factory ExperienceModel.fromJson(Map<String, dynamic> json) =>
       _$ExperienceModelFromJson(json);
@@ -194,33 +204,40 @@ class ProjectModel {
 
 @JsonSerializable()
 class EductionModel {
-  final String? uniName;
-  final String? country;
-  final String? link;
-  final String? date;
-  final String? desc;
+  final String? degree;
+  final String? field;
+  final String? institution;
+  final String? year;
+  final String? description;
+  final String? details;
+  final String? icon;
 
-  EductionModel({
-    this.uniName,
-    this.country,
-    this.link,
-    this.date,
-    this.desc,
-  });
+  EductionModel(
+      {this.degree,
+      this.field,
+      this.institution,
+      this.year,
+      this.description,
+      this.details,
+      this.icon});
 
   EductionModel copyWith({
-    String? uniName,
-    String? country,
-    String? link,
-    String? date,
-    String? desc,
+    String? degree,
+    String? field,
+    String? institution,
+    String? year,
+    String? description,
+    String? details,
+    String? icon,
   }) =>
       EductionModel(
-        uniName: uniName ?? this.uniName,
-        country: country ?? this.country,
-        link: link ?? this.link,
-        date: date ?? this.date,
-        desc: desc ?? this.desc,
+        degree: degree ?? this.degree,
+        field: field ?? this.field,
+        institution: institution ?? this.institution,
+        year: year ?? this.year,
+        description: description ?? this.description,
+        details: details ?? this.details,
+        icon: icon ?? this.icon,
       );
 
   factory EductionModel.fromJson(Map<String, dynamic> json) =>

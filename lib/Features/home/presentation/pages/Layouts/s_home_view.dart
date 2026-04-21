@@ -25,18 +25,13 @@ class SmallHomeView extends StatelessWidget {
         64.0.heightBox,
 
 
-        ExperienceCardWidget(
-          items: con.user?.experience ?? [],
-        ),
         // AboutMeWidget(
         //   name: con.user?.name ?? "",
         //   role: con.user?.jobName ?? "",
         //   desc: con.user?.summary ??
         //       "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
         // ),
-        MyProjectsWidget(
-          projects: con.user?.project ?? [],
-        ),
+
         ContactMeWidget(con: con)
       ],
     );

@@ -12,7 +12,7 @@ class AppColors extends ThemeExtension<AppColors> {
     // Slate Blue
     border: Color(0xFF2A3555),
     // Steel
-    accent: Color(0xFF818CF8),
+    accent: Color(0xFF8763F1),
     // Flutter Blue
     secondary: Color(0xFF38BDF8),
     // Electric Cyan
@@ -42,7 +42,7 @@ class AppColors extends ThemeExtension<AppColors> {
     // Lavender Mist
     border: Color(0xFFC8D3EF),
     // Periwinkle
-    accent: Color(0xFF6366F1),
+    accent: Color(0xFF8763F1),
     // Flutter Blue (same across themes)
     secondary: Color(0xFF0EA5E9),
     // Ocean Cyan (adjusted for light bg)

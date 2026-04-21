@@ -66,12 +66,7 @@ class _SummarySectionState extends State<SummarySection>
             FloatingCards(
               floatController: _floatController,
               cardControllers: _cardControllers,
-              eduction:  EductionModel(
-                      country: 'Egp',
-                      date: '2023',
-                      desc:
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales ',
-                      uniName: 'FCGS OF COMPAUTER '),
+              eduction:  EductionModel(),
               isMobile: true,
             ),
           ],
@@ -92,11 +87,7 @@ class _SummarySectionState extends State<SummarySection>
                 floatController: _floatController,
                 cardControllers: _cardControllers,
                 eduction:  EductionModel(
-                      country: 'Egp',
-                      date: '2023',
-                      desc:
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales ',
-                      uniName: 'FCGS OF COMPAUTER '),
+                      ),
                 isMobile: false,
               ),
             ),

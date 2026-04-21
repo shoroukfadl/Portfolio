@@ -78,22 +78,32 @@ Map<String, dynamic> _$SkillModelToJson(SkillModel instance) =>
 
 ExperienceModel _$ExperienceModelFromJson(Map<String, dynamic> json) =>
     ExperienceModel(
-      companyName: json['companyName'] as String?,
-      date: json['date'] as String?,
+      position: json['position'] as String?,
+      company: json['company'] as String?,
+      duration: json['duration'] as String?,
       description: json['description'] as String?,
-      companyLocation: json['companyLocation'] as String?,
-      companyUrl: json['companyUrl'] as String?,
-      roleName: json['roleName'] as String?,
+      achievements: (json['achievements'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      technologies: (json['technologies'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const [],
+      icon: json['icon'] as String?,
+      color: (json['color'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ExperienceModelToJson(ExperienceModel instance) =>
     <String, dynamic>{
-      'companyName': instance.companyName,
-      'date': instance.date,
+      'position': instance.position,
+      'company': instance.company,
+      'duration': instance.duration,
       'description': instance.description,
-      'companyUrl': instance.companyUrl,
-      'roleName': instance.roleName,
-      'companyLocation': instance.companyLocation,
+      'achievements': instance.achievements,
+      'technologies': instance.technologies,
+      'icon': instance.icon,
+      'color': instance.color,
     };
 
 ProjectModel _$ProjectModelFromJson(Map<String, dynamic> json) => ProjectModel(
@@ -120,18 +130,22 @@ Map<String, dynamic> _$ProjectModelToJson(ProjectModel instance) =>
 
 EductionModel _$EductionModelFromJson(Map<String, dynamic> json) =>
     EductionModel(
-      uniName: json['uniName'] as String?,
-      country: json['country'] as String?,
-      link: json['link'] as String?,
-      date: json['date'] as String?,
-      desc: json['desc'] as String?,
+      degree: json['degree'] as String?,
+      field: json['field'] as String?,
+      institution: json['institution'] as String?,
+      year: json['year'] as String?,
+      description: json['description'] as String?,
+      details: json['details'] as String?,
+      icon: json['icon'] as String?,
     );
 
 Map<String, dynamic> _$EductionModelToJson(EductionModel instance) =>
     <String, dynamic>{
-      'uniName': instance.uniName,
-      'country': instance.country,
-      'link': instance.link,
-      'date': instance.date,
-      'desc': instance.desc,
+      'degree': instance.degree,
+      'field': instance.field,
+      'institution': instance.institution,
+      'year': instance.year,
+      'description': instance.description,
+      'details': instance.details,
+      'icon': instance.icon,
     };

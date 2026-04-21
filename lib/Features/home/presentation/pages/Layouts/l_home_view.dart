@@ -6,6 +6,7 @@ import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
+import '../../../../../Utilities/extensions.dart';
 import '../../../../Homel/home_controller.dart';
 import '../../widgets/aboutMe/about_me_title.dart';
 import '../../widgets/aboutMe/about_me_widget.dart';
@@ -37,26 +38,61 @@ class LargeHomeView extends StatelessWidget {
         //
         SliverToBoxAdapter(
             child: SkillsSection(
+              skills: [
+                SkillModel(
+                  icon: '📱',
+                  title: 'Flutter',
+                  description:
+                  'Expert in building cross-platform mobile applications with Flutter.',
+                ),
+                SkillModel(
+                  icon: '🎨',
+                  title: 'UI/UX Design',
+                  description: 'Creating beautiful and intuitive user interfaces.',
+                ),
+                SkillModel(
+                  icon: '🔧',
+                  title: 'Backend Integration',
+                  description: 'Proficient in REST APIs, Firebase, and real-time databases.',
+                ),
+                SkillModel(
+                  icon: '🐙',
+                  title: 'Version Control',
+                  description:
+                  'Git workflows, collaborative development, and clean histories.',
+                ),
+                SkillModel(
+                  icon: '🧪',
+                  title: 'Testing',
+                  description:
+                  'Unit testing, widget testing, and integration testing.',
+                ),
+                SkillModel(
+                  icon: '📊',
+                  title: 'Performance',
+                  description:
+                  'App optimization, memory profiling, and battery efficiency.',
+                ),
+              ],
         )),
-        // 64.0.heightBox,
+        SliverToBoxAdapter(child: 64.0.heightBox),
         //
         SliverToBoxAdapter(
-            child: ExperienceCardWidget(
-          items: con.user?.experience ?? [],
+            child: ExperienceSection(
         )),
         // 64.0.heightBox,
         SliverPadding(
           padding: const EdgeInsets.all(Constants.desktopHozPadding),
           sliver:
           SliverToBoxAdapter(
-            child: EducationWidget(
-              item: con.user?.eduction ??
-                  EductionModel(
-                      country: 'Egp',
-                      date: '2023',
-                      desc:
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales ',
-                      uniName: 'FCGS OF COMPAUTER '),
+            child: EducationSection(
+              // item: con.user?.eduction ??
+              //     EductionModel(
+              //         country: 'Egp',
+              //         date: '2023',
+              //         desc:
+              //             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales ',
+              //         uniName: 'FCGS OF COMPAUTER '),
             ),
           ),
         ),

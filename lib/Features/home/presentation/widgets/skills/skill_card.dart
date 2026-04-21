@@ -7,7 +7,7 @@ class SkillCard extends StatefulWidget {
   final SkillModel skill;
   final int index;
 
-  const SkillCard({
+  const SkillCard({super.key,
     required this.skill,
     required this.index,
   });
@@ -38,6 +38,7 @@ class _SkillCardState extends State<SkillCard>
 
   @override
   Widget build(BuildContext context) {
+    final colors =context.colors;
     return MouseRegion(
       onEnter: (_) {
         setState(() => _isHovered = true);
@@ -53,30 +54,38 @@ class _SkillCardState extends State<SkillCard>
           return Transform.translate(
             offset: Offset(0, -10 * _hoverController.value),
             child: Container(
+
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(44),
+                  bottomLeft: Radius.circular(44),
+                  bottomRight: Radius.circular(16),
+                ),
+                // borderRadius: BorderRadius.circular(15),
                 border: Border.all(
-                  color: const Color(0xFFff006e).withOpacity(
+                  color:colors.accent.withValues(alpha:
                     0.2 + (0.2 * _hoverController.value),
                   ),
                   width: 1,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: const Color(0xFFff006e).withOpacity(
-                      0.1 * _hoverController.value,
+                    color:colors.accent.withValues(alpha:
+                    0.1 * _hoverController.value,
                     ),
                     blurRadius: 30,
                     spreadRadius: 5,
                   ),
                 ],
-                color: const Color(0xFFff006e).withOpacity(
-                  0.05 + (0.05 * _hoverController.value),
+                color:colors.accent.withValues(alpha:
+                0.05 + (0.05 * _hoverController.value),
                 ),
               ),
-              padding: const EdgeInsets.all(30),
+              padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
@@ -86,20 +95,16 @@ class _SkillCardState extends State<SkillCard>
                   const SizedBox(height: 15),
                   Text(
                     widget.skill.title??"",
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF00d9ff),
+                    style: AppTextStyles.semiBold16(
+                      color:colors.accent,
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
                     widget.skill.description??"",
-                    style: TextStyle(
-                      fontSize: 13,
-                      height: 1.5,
-                      color: Colors.white.withOpacity(0.7),
-                    ),
+                     style: AppTextStyles.regular14(
+                    color:colors.textSecondary,
+                  ),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
