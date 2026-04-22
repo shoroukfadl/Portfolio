@@ -37,7 +37,7 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(widget.title, style: AppTextStyles.semiBold14(
-              color: _isHovered ?colors.accent: colors.textPrimary
+              color: _isHovered ?colors.accent: colors.fontColor1
             ),),
             if (_isHovered)
               Container(

@@ -14,7 +14,7 @@ class RoundedDotedWidget extends StatelessWidget {
 
     return DottedBorder(
       options: CircularDottedBorderOptions(
-          color: colors.textSecondary,
+          color: colors.fontColor2,
           borderPadding: EdgeInsets.zero,
           padding: EdgeInsets.all(padding),
           stackFit: StackFit.passthrough),

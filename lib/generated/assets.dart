@@ -44,7 +44,7 @@ class $AssetsIconsGen {
       const SvgGenImage('assets/icons/location_on.svg');
   final SvgGenImage materialSymbolsMenu =
       const SvgGenImage('assets/icons/material-symbols_menu.svg');
-  final String portifilo = 'assets/icons/portifilo.ttf';
+  final String portfolio = 'assets/icons/portfolio.ttf';
   final SvgGenImage right = const SvgGenImage('assets/icons/right.svg');
   final SvgGenImage securityLock =
       const SvgGenImage('assets/icons/security-lock.svg');

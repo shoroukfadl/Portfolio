@@ -163,7 +163,7 @@ class _ExperienceItemCardState extends State<ExperienceItemCard>
     return Wrap(
       spacing: 15,
       children: [
-        _metaIconText(Portfolio.date, widget.item?.duration ?? "", colors),
+        //_metaIconText(Portfolio.date, widget.item?.duration ?? "", colors),
         _metaIconText(null, widget.item?.position ?? "", colors),
       ],
     );
@@ -174,10 +174,10 @@ class _ExperienceItemCardState extends State<ExperienceItemCard>
       mainAxisSize: MainAxisSize.min,
       spacing: 4,
       children: [
-        if (icon != null) Icon(icon, size: 14, color: colors.textSecondary),
+        if (icon != null) Icon(icon, size: 14, color: colors.fontColor2),
         Text(text,
             style: (widget.dateStyle ??
-                AppTextStyles.regular12(color: colors.textSecondary))),
+                AppTextStyles.regular12(color: colors.fontColor2))),
       ],
     );
   }
@@ -187,7 +187,7 @@ class _ExperienceItemCardState extends State<ExperienceItemCard>
       widget.item?.description ?? "",
       style: (widget.descriptionStyle ?? AppTextStyles.regular14())
           .copyWith(
-        color: colors.textSecondary.withOpacity(0.7),
+        color: colors.fontColor2.withOpacity(0.7),
         height: 1.6,
       ),
     );

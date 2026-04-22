@@ -60,7 +60,7 @@ class CustomDropDownWidget<T> extends StatelessWidget {
       return OutlineInputBorder(
         borderRadius: BorderRadius.circular(radius ?? 12.0),
         borderSide: BorderSide(
-          color: color ?? colors.textSecondary,
+          color: color ?? colors.fontColor2,
         ),
       );
     }
@@ -71,7 +71,7 @@ class CustomDropDownWidget<T> extends StatelessWidget {
         if (title != null) ...[
           AppTextWidget(
             title!,
-            style: AppTextStyles.regular14().copyWith(color: colors.textPrimary),
+            style: AppTextStyles.regular14().copyWith(color: colors.fontColor1),
           ),
           20.0.heightBox
         ],
@@ -139,23 +139,23 @@ class CustomDropDownWidget<T> extends StatelessWidget {
                             SvgPicture.asset(
                               "",
                               colorFilter: ColorFilter.mode(
-                                hintColor ?? colors.textPrimary,
+                                hintColor ?? colors.fontColor1,
                                 BlendMode.srcIn,
                               ),
                             ),
                       ),
                 filled: true,
-                fillColor: enable ? colors.surface : colors.textSecondary,
+                fillColor: enable ? colors.surface : colors.fontColor2,
                 hintText: hint,
                 hintStyle: context.isSmall
                     ? hintStyle?.copyWith(
                             color: hintColor ?? hintStyle?.color, height: 1) ??
                         AppTextStyles.regular14()
-                            .copyWith(color: colors.textSecondary)
+                            .copyWith(color: colors.fontColor2)
                     : hintStyle?.copyWith(
                             color: hintColor ?? hintStyle?.color, height: 1) ??
                         AppTextStyles.regular14()
-                            .copyWith(color: colors.textSecondary),
+                            .copyWith(color: colors.fontColor2),
               ),
               items: items,
               onChanged: enable ? onChange : null,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/helper_function.dart';
@@ -7,6 +8,9 @@ import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
 
 import '../../../Core/Language/app_styles.dart';
 import '../../../Features/Homel/home_controller.dart';
+import '../../../Features/home/presentation/cubit/cubit.dart';
+import '../../../Features/home/presentation/cubit/state.dart';
+import '../../../Features/home/presentation/widgets/aboutMe/about_me_widget.dart';
 import '../../../Utilities/Constants/strings.dart';
 import 'home_app_bar_item.dart';
 
@@ -95,31 +99,37 @@ class HomeAppBar extends StatelessWidget {
 
 
           Row(
-            spacing: 4,
+            spacing: 8,
             children: [
               CustomButtonWidget(
                 onPressed: () {
                   String? url = HomeController().user?.cv;
                   if (url != null) HelperFunctions.openUrl(url, context);
                 },
-                title: Strings.resume.translate,
-                titleColor: colors.accent,
-                btnColor: colors.background,
-                width: 120,
-              ),
-              CustomButtonWidget(
+                btnColor: colors.accent,
                 width: 32,
                 height: 32,
-                borderRadiusValue: 100,
-                onPressed: () {},
+                borderRadiusValue: 8,
                 child: Icon(
-                  Icons.light_mode_outlined,
+                  Portfolio.cv,
                   color: colors.surface,
                   size: 16,
                 ),
               ),
+              CustomButtonWidget.outLined(
+                width: 32,
+                height: 32,
+                borderRadiusValue: 8,
+                borderColor: colors.accent,
+                onPressed: () {},
+                child: Icon(
+                  Icons.light_mode_outlined,
+                  color: colors.accent,
+                  size: 16,
+                ),
+              ),
             ],
-          )
+          ),
         ],
       ),
     );

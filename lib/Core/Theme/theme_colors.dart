@@ -5,27 +5,19 @@ class AppColors extends ThemeExtension<AppColors> {
   // ─── Dark Theme (Primary) ────────────────────────────────────────────────
   static const darkValues = AppColors(
     background: Color(0xFF0F172A),
-    // Void Black
     surface: Color(0xFF0F1629),
-    // Deep Navy
     surfaceElevated: Color(0xFF1A2340),
-    // Slate Blue
-    border: Color(0xFF2A3555),
-    // Steel
-    accent: Color(0xFF24C5BF),
-    // Flutter Blue (same across themes)
-    secondary: Color(0xFF3467B5),
-    // Electric Cyan
-    success: Color(0xFF00E5A0),
-    // Mint
+    border: Color(0xFFC8D3EF),
+    accent: Color(0xFF274c77),
+    secondary: Color(0xFF8b8c89),
+    success: Color(0xFF00C48C),
     warning: Color(0xFFFFB300),
-    // Amber
     danger: Color(0xFFFF4757),
-    // Coral Red
-    textPrimary: Color(0xFFF1F5F9),
-    // Cloud White
-    textSecondary: Color(0xFF7A8BB0),
-    // Steel Grey
+    fontColor1: Color(0xFF0B2950),
+    fontColor2: Color(0xFF303C50),
+    accent50: Color(0xFF6096ba),
+    accent25: Color(0xFFa3cef1),
+    fontColor3: Color(0xffbcbcbc),
   );
 
   // Shared
@@ -34,27 +26,20 @@ class AppColors extends ThemeExtension<AppColors> {
   static const Color error = Color(0xFFDC2626);
   // ─── Light Theme ─────────────────────────────────────────────────────────
   static const lightValues = AppColors(
-    background: Color(0xFFF8F9FD),
-    // Ice White
-    surface: Color(0xFFFFFFFF),
-    // Soft Cloud
+    background: Color(0xFFe7ecef),
+    surface: Color(0xfff0f2f4),
     surfaceElevated: Color(0xFFEDF1FB),
-    // Lavender Mist
-    border: Color(0xFFC8D3EF),
-    // Periwinkle
-    accent: Color(0xFF24C5BF),
-    // Flutter Blue (same across themes)
-    secondary: Color(0xFF3467B5),
-    // Ocean Cyan (adjusted for light bg)
+    border: Color(0xFF0B2950),
+    accent: Color(0xFF274c77),
+    secondary: Color(0xFF8b8c89),
     success: Color(0xFF00C48C),
-    // Adjusted Mint
     warning: Color(0xFFFFB300),
-    // Amber
     danger: Color(0xFFFF4757),
-    // Coral Red
-    textPrimary: Color(0xFF1F2937),
-    // Midnight
-    textSecondary: Color(0xFF4A5878),
+    fontColor1: Color(0xFF0B2950),
+    fontColor2: Color(0xFF303C50),
+    accent50: Color(0xFF6096ba),
+    accent25: Color(0xFFa3cef1),
+    fontColor3: Color(0xffbcbcbc),
     // Slate
   );
 
@@ -64,12 +49,15 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color surfaceElevated;
   final Color border;
   final Color accent;
+  final Color accent50;
+  final Color accent25;
   final Color secondary;
   final Color success;
   final Color warning;
   final Color danger;
-  final Color textPrimary;
-  final Color textSecondary;
+  final Color fontColor1;
+  final Color fontColor2;
+  final Color fontColor3;
 
   const AppColors({
     required this.background,
@@ -81,8 +69,11 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.success,
     required this.warning,
     required this.danger,
-    required this.textPrimary,
-    required this.textSecondary,
+    required this.fontColor1,
+    required this.fontColor2,
+    required this.accent50,
+    required this.accent25,
+    required this.fontColor3,
   });
 
   // ─── Gradient Helpers ─────────────────────────────────────────────────────
@@ -135,6 +126,8 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? warning,
     Color? danger,
     Color? textPrimary,
+    Color? accent50,
+    Color? fontColor3,
     Color? textSecondary,
   }) {
     return AppColors(
@@ -147,8 +140,11 @@ class AppColors extends ThemeExtension<AppColors> {
       success: success ?? this.success,
       warning: warning ?? this.warning,
       danger: danger ?? this.danger,
-      textPrimary: textPrimary ?? this.textPrimary,
-      textSecondary: textSecondary ?? this.textSecondary,
+      fontColor1: textPrimary ?? this.fontColor1,
+      fontColor2: textSecondary ?? this.fontColor2,
+      accent25: accent25??this.accent25,
+      accent50:accent50??this.accent50,
+      fontColor3:fontColor3??this.fontColor3,
     );
   }
 
@@ -166,8 +162,11 @@ class AppColors extends ThemeExtension<AppColors> {
       success: Color.lerp(success, other.success, t)!,
       warning: Color.lerp(warning, other.warning, t)!,
       danger: Color.lerp(danger, other.danger, t)!,
-      textPrimary: Color.lerp(textPrimary, other.textPrimary, t)!,
-      textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,
+      fontColor1: Color.lerp(fontColor1, other.fontColor1, t)!,
+      fontColor2: Color.lerp(fontColor2, other.fontColor2, t)!,
+      accent50: Color.lerp(accent50, other.accent50, t)!,
+      fontColor3: Color.lerp(fontColor3, other.fontColor3, t)!,
+      accent25: Color.lerp(accent25, other.accent25, t)!
     );
   }
 }

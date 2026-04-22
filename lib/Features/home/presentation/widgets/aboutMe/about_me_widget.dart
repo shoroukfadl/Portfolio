@@ -5,6 +5,7 @@ import 'package:portfolio/Features/home/presentation/widgets/aboutMe/about_me_ti
 import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/shared_preferences.dart';
+import 'package:portfolio/Widgets/rounded_image_widget.dart';
 
 import 'floating_card_widget.dart';
 
@@ -18,70 +19,32 @@ class SummarySection extends StatelessWidget {
      final colors = context.colors;
     return Column(
       children: [
-        ShaderMask(
-          shaderCallback: (bounds) =>  LinearGradient(
-            colors: [
-             colors.accent,
-              colors.secondary
-            ],
-          ).createShader(bounds),
-          child: const Text(
-            'PASS ✓',
-            style: TextStyle(
-              fontSize: 64,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
+        RoundedImage(
+          width: 140,
+          height: 140,
+          imagePath: profile?.image,
         ),
-        const SizedBox(height: 24),
         Text(
           profile?.firstName??"",
-          style: AppTextStyles.extraBold32(
-            color:colors.textPrimary,
+          style: AppTextStyles.bold24(color:colors.accent,),
+        ), Text(
+          profile?.lastName??"",
+          style: AppTextStyles.bold20(
+            color:colors.accent,
           ),
         ),
         const SizedBox(height: 12),
         Text(
-          'Senior Software QC Engineer',
-          style: TextStyle(
-            fontSize: 18,
-            color: colors.accent.withValues(alpha: 0.7),
-            fontWeight: FontWeight.bold,
+          profile?.jobTitle??"",
+          style:  AppTextStyles.medium20(
+            color:colors.accent,
           ),
         ),
         const SizedBox(height: 24),
-        Container(
-          padding:
-          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: colors.accent.withValues(alpha: 0.7),
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            'SYSTEM STATUS: OPERATIONAL ✓',
-            style: TextStyle(
-              fontFamily: 'monospace',
-              fontWeight: FontWeight.bold,
-              color: colors.accent.withValues(alpha: 0.7),
-              fontSize: 14,
-            ),
-          ),
-        ),
-        const SizedBox(height: 24),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            '3+ years of expertise in comprehensive software testing, automation engineering, and quality assurance excellence',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 16,
-              color: colors.accent.withValues(alpha: 0.7),
-              height: 1.6,
-            ),
+        Text(
+          profile?.summary??"",
+          style:  AppTextStyles.medium20(
+            color:colors.secondary,
           ),
         ),
       ],

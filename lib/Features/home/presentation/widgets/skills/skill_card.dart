@@ -46,7 +46,7 @@ class SkillCard extends StatelessWidget {
             Text(
               skill.category??"",
               style: AppTextStyles.medium12(
-                color: colors.textPrimary,
+                color: colors.fontColor1,
 
               )),
 
@@ -56,7 +56,7 @@ class SkillCard extends StatelessWidget {
                ...skill.skillName.map((e)=> Text(
                   e??"",
                   style: AppTextStyles.medium12(
-                    color: colors.textPrimary,
+                    color: colors.fontColor1,
 
                   ),
                 )),

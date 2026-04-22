@@ -144,7 +144,7 @@ class _EducationCardState extends State<EducationCard>
                         Text(
                           widget.item.institution??"",
                           style: AppTextStyles.medium14(
-                            color: colors.textSecondary,
+                            color: colors.fontColor2,
                           ),
                         ),
                         Container(
@@ -194,7 +194,7 @@ class _EducationCardState extends State<EducationCard>
                             Text(
                               widget.item.description??"",
                               style: AppTextStyles.regular12(
-                                color:colors.textSecondary.withValues(alpha: 0.8),
+                                color:colors.fontColor2.withValues(alpha: 0.8),
                               ),
                             ),
                             const SizedBox(height: 12),

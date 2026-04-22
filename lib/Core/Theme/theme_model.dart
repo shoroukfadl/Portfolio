@@ -7,30 +7,20 @@ class AppTheme {
     useMaterial3: true,
     extensions: const [
       AppColors(
-        background: Color(0xFFF8F9FD),
-        // Ice White
-        surface: Color(0xFFFFFFFF),
-        // Soft Cloud
+        background: Color(0xFFe7ecef),
+        surface: Color(0xfff0f2f4),
         surfaceElevated: Color(0xFFEDF1FB),
-        // Lavender Mist
         border: Color(0xFFC8D3EF),
-        // Periwinkle
-        accent: Color(0xFF6366F1),
-        // Flutter Blue (same across themes)
-        secondary: Color(0xFF0EA5E9),
-        // Ocean Cyan (adjusted for light bg)
-        // Dart Purple (deeper for light bg)
+        accent: Color(0xFF274c77),
+        secondary: Color(0xFF8b8c89),
         success: Color(0xFF00C48C),
-        // Adjusted Mint
         warning: Color(0xFFFFB300),
-        // Amber
         danger: Color(0xFFFF4757),
-        // Coral Red
-        textPrimary: Color(0xFF1F2937),
-        // Midnight
-        textSecondary: Color(0xFF4A5878),
-        // Slate
-        // Fog (light variant)
+        fontColor1: Color(0xFF0B2950),
+        fontColor2: Color(0xFF303C50),
+        accent50: Color(0xFF6096ba),
+        accent25: Color(0xFFa3cef1),
+        fontColor3: Color(0xffbcbcbc),
       )    ],
   );
 
@@ -40,27 +30,19 @@ class AppTheme {
     extensions: const [
       AppColors(
         background: Color(0xFF0F172A),
-        // Void Black
         surface: Color(0xFF0F1629),
-        // Deep Navy
         surfaceElevated: Color(0xFF1A2340),
-        // Slate Blue
-        border: Color(0xFF2A3555),
-        // Steel
-        accent: Color(0xFF818CF8),
-        // Flutter Blue
-        secondary: Color(0xFF38BDF8),
-        // Electric Cyan
-        success: Color(0xFF00E5A0),
-        // Mint
+        border: Color(0xFFC8D3EF),
+        accent: Color(0xFF274c77),
+        secondary: Color(0xFF8b8c89),
+        success: Color(0xFF00C48C),
         warning: Color(0xFFFFB300),
-        // Amber
         danger: Color(0xFFFF4757),
-        // Coral Red
-        textPrimary: Color(0xFFF1F5F9),
-        // Cloud White
-        textSecondary: Color(0xFF7A8BB0),
-        // Steel Grey
+        fontColor1: Color(0xFF0B2950),
+        fontColor2: Color(0xFF303C50),
+        accent50: Color(0xFF6096ba),
+        accent25: Color(0xFFa3cef1),
+        fontColor3: Color(0xffbcbcbc),
       )    ],
   );
 }

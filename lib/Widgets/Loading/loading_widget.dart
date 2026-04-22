@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../Utilities/extensions.dart';
 
@@ -14,7 +13,7 @@ class LoadingWidget extends StatelessWidget {
     final colors = context.colors;
 
     return !isLoading
-        ? SpinKitCubeGrid(
+        ? CircularProgressIndicator(
             color: colors.accent,
           )
         : child;

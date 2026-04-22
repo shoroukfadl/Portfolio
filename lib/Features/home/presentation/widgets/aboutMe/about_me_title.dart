@@ -58,7 +58,7 @@ class SummaryContent extends StatelessWidget {
         const SizedBox(height: 20),
          Text(
            summary,
-           style: AppTextStyles.regular14(color: colors.textSecondary).copyWith(
+           style: AppTextStyles.regular14(color: colors.fontColor2).copyWith(
             height: 1.8,
           ),
           maxLines: 4,
@@ -86,7 +86,7 @@ class SummaryContent extends StatelessWidget {
                       color: Colors.white
                     ),
                   ),
-                  Icon(Portfolio.download,size: 14,color: Colors.white,),
+                  const Icon(Portfolio.cv,size: 14,color: Colors.white,),
 
                 ],
               ),

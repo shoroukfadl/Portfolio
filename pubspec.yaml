@@ -22,11 +22,7 @@ dependencies:
   shared_preferences: ^2.2.3
   google_fonts:
   go_router: ^14.2.0
-  flutter_staggered_animations: ^1.1.1
-  flutter_spinkit: ^5.2.1
   change_app_package_name: ^1.4.0
-  path: ^1.9.0
-  flutter_xlider: ^3.5.0
   simple_tooltip: ^1.2.0
   flutter_widget_from_html: ^0.10.0
   skeletonizer: ^1.1.0
@@ -61,7 +57,7 @@ flutter:
     - assets/Languages/
     - assets/icons/
   fonts:
-    - family: portifilo
+    - family: portfolio
       fonts:
-        - asset: assets/icons/portifilo.ttf
+        - asset: assets/icons/portfolio.ttf
 

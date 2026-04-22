@@ -226,7 +226,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                           width: context.isSmall ? 24 : 32,
                           height: context.isSmall ? 24 : 32,
                           colorFilter: ColorFilter.mode(
-                              isSelected ? colors.textSecondary : colors.accent,
+                              isSelected ? colors.fontColor2 : colors.accent,
                               BlendMode.srcIn),
                         ),
                         8.0.widthBox,
@@ -234,7 +234,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                           title,
                           style: AppTextStyles.regular14().copyWith(
                               color: isSelected
-                                  ? colors.textSecondary
+                                  ? colors.fontColor2
                                   : colors.accent,
                               fontSize: context.isSmall ? 12 : 16),
                         ),
@@ -244,7 +244,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                           width: context.isSmall ? 24 : 32,
                           height: context.isSmall ? 24 : 32,
                           colorFilter: ColorFilter.mode(
-                              isSelected ? colors.textSecondary : colors.accent,
+                              isSelected ? colors.fontColor2 : colors.accent,
                               BlendMode.srcIn),
                         ),
                       ],
@@ -255,7 +255,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                         width: context.isSmall ? 24 : 32,
                         height: context.isSmall ? 24 : 32,
                         colorFilter: ColorFilter.mode(
-                            isSelected ? colors.textSecondary : colors.accent,
+                            isSelected ? colors.fontColor2 : colors.accent,
                             BlendMode.srcIn),
                       ),
                     ),
@@ -290,7 +290,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                             height: context.isSmall ? 24 : 32,
                             colorFilter: ColorFilter.mode(
                                 isSelected
-                                    ? colors.textSecondary
+                                    ? colors.fontColor2
                                     : colors.accent,
                                 BlendMode.srcIn),
                           ),
@@ -299,7 +299,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                             title,
                             style: AppTextStyles.regular14().copyWith(
                                 color: isSelected
-                                    ? colors.textSecondary
+                                    ? colors.fontColor2
                                     : colors.accent,
                                 fontSize: context.isSmall ? 12 : 16),
                           ),
@@ -310,7 +310,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                             height: context.isSmall ? 24 : 32,
                             colorFilter: ColorFilter.mode(
                                 isSelected
-                                    ? colors.textSecondary
+                                    ? colors.fontColor2
                                     : colors.accent,
                                 BlendMode.srcIn),
                           ),
@@ -322,7 +322,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                           width: context.isSmall ? 24 : 32,
                           height: context.isSmall ? 24 : 32,
                           colorFilter: ColorFilter.mode(
-                              isSelected ? colors.textSecondary : colors.accent,
+                              isSelected ? colors.fontColor2 : colors.accent,
                               BlendMode.srcIn),
                         ),
                       ),

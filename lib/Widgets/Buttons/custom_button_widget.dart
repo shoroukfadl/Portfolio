@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../Core/Language/app_styles.dart';
 import '../../Utilities/extensions.dart';
@@ -68,12 +67,12 @@ class CustomButtonWidget extends StatelessWidget {
         child: isLoading
             ? Center(
                 child:
-                    SpinKitThreeBounce(color: colors.textSecondary, size: 24.0))
+                    CircularProgressIndicator(color: colors.fontColor2,))
             : child ??
                 AppTextWidget(
                   title ?? "",
                   style: AppTextStyles.regular14()
-                      .copyWith(color: titleColor ?? colors.textPrimary),
+                      .copyWith(color: titleColor ?? colors.fontColor1),
                 ),
       ),
     );
