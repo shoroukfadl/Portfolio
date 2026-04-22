@@ -1,0 +1,96 @@
+import 'package:portfolio/Features/home/data/models/profile_model.dart';
+import 'package:portfolio/Features/home/data/models/project_model.dart';
+import 'package:portfolio/Features/home/data/models/tech_skill_model.dart';
+import 'package:portfolio/Features/home/domain/entities/portfilio_entity.dart';
+
+import 'certificate_model.dart';
+import 'education_model.dart';
+import 'experince_model.dart';
+import 'methodologies_model.dart';
+
+class PortfolioModel {
+  final ProfileModel? profile;
+  final List<EducationModel> education;
+  final List<ExperienceModel> experience;
+  final List<ProjectModel> projects;
+  final List<CertificateModel> certificates;
+  final List<TechnicalSkillModel> skills;
+  final List<MethodologyModel> methodologies;
+
+  PortfolioModel({
+    this.profile,
+    this.education = const [],
+    this.projects = const [],
+    this.experience = const [],
+    this.certificates = const [],
+    this.skills = const [],
+    this.methodologies = const [],
+  });
+
+  factory PortfolioModel.fromJson(Map<String, dynamic> json) => PortfolioModel(
+        profile: json['profile'] == null
+            ? null
+            : ProfileModel.fromJson(json['profile']),
+        education: json['education'] == null
+            ? []
+            : (json['education'] as List)
+                .map((e) => EducationModel.fromJson(e))
+                .toList(),
+        projects: json['projects'] == null
+            ? []
+            : (json['projects'] as List)
+                .map((e) => ProjectModel.fromJson(e))
+                .toList(),
+        experience: json['experience'] == null
+            ? []
+            : (json['experience'] as List)
+                .map((e) => ExperienceModel.fromJson(e))
+                .toList(),
+        certificates: json['certificates'] == null
+            ? []
+            : (json['certificates'] as List)
+                .map((e) => CertificateModel.fromJson(e))
+                .toList(),
+        methodologies: json['methodologies'] == null
+            ? []
+            : (json['methodologies'] as List)
+                .map((e) => MethodologyModel.fromJson(e))
+                .toList(),
+        // skills: json['skills'] == null
+        //     ? []
+        //     : (json['skills'] as List)
+        //         .map((e) => TechnicalSkillModel.fromJson(e))
+        //         .toList(),
+      );
+  Map<String, dynamic> toFullJson() => {
+        'profile_id': profile?.id,
+        'education': education.map((e) => e.toJson()).toList(),
+        'experience': experience.map((e) => e.toJson()).toList(),
+        'projects': projects.map((e) => e.toJson()).toList(),
+        'certificates': certificates.map((e) => e.toJson()).toList(),
+       // 'skills': skills.map((e) => e.toJson()).toList(),
+        'methodologies': methodologies.map((e) => e.toJson()).toList(),
+      };
+
+
+   PortfolioEntity fromModel() => PortfolioEntity(
+    profile:profile?.toEntity() ,
+    education:education.map((e)=>e.fromModel()).toList() ,
+    projects:projects.map((e)=>e.fromModel()).toList() ,
+    experience:experience.map((e)=>e.fromModel()).toList() ,
+    certificates:certificates.map((e)=>e.fromModel()).toList() ,
+    methodologies:methodologies.map((e)=>e.fromModel()).toList(),
+    skills:skills.map((e)=>e.toEntity()).toList() ,
+  );
+
+
+  PortfolioModel toModel() => PortfolioModel(
+    profile:profile?.toModel() ,
+    education:education.map((e)=>e.toModel()).toList() ,
+    projects:projects.map((e)=>e.toModel()).toList() ,
+    experience:experience.map((e)=>e.toModel()).toList() ,
+    certificates:certificates.map((e)=>e.toModel()).toList() ,
+    methodologies:methodologies.map((e)=>e.toModel()).toList(),
+    skills:skills.map((e)=>e.toModel()).toList() ,
+  );
+}

@@ -20,7 +20,7 @@ void main(List<String> args) {
     '$baseDir/domain/entities',
     '$baseDir/domain/repositories',
     '$baseDir/domain/usecases',
-    '$baseDir/presentation/bloc',
+    '$baseDir/presentation/cubit',
     '$baseDir/presentation/pages',
     '$baseDir/presentation/widgets',
   ];

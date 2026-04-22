@@ -1,99 +1,90 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
+import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/about_me_title.dart';
 import 'package:portfolio/Models/user_data_model.dart';
+import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Utilities/shared_preferences.dart';
 
 import 'floating_card_widget.dart';
 
-class SummarySection extends StatefulWidget {
-  const SummarySection({super.key});
-
-  @override
-  State<SummarySection> createState() => _SummarySectionState();
-}
-
-class _SummarySectionState extends State<SummarySection>
-    with TickerProviderStateMixin {
-  late AnimationController _floatController;
-  late List<AnimationController> _cardControllers;
-
-  @override
-  void initState() {
-    super.initState();
-    _floatController = AnimationController(
-      duration: const Duration(seconds: 6),
-      vsync: this,
-    )..repeat(reverse: true);
-
-    _cardControllers = List.generate(
-      3,
-          (index) => AnimationController(
-        duration: Duration(seconds: 7 + (index * 1)),
-        vsync: this,
-      )..repeat(reverse: true),
-    );
-  }
-
-  @override
-  void dispose() {
-    _floatController.dispose();
-    for (var controller in _cardControllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
+class SummarySection extends StatelessWidget {
+  final ProfileEntity? profile;
+  const SummarySection({super.key, required this.profile});
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 768;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: SizedBox(
-        height: isMobile ? 600 : 500,
-        child: isMobile
-            ? Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-             SummaryContent(
-               lastName: "fadl",
-               firstName: "shorouk",
-               role: "flutter developer",
-                summary:
-                   "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
-
-             ),
-            const SizedBox(height: 40),
-            FloatingCards(
-              floatController: _floatController,
-              cardControllers: _cardControllers,
-              eduction:  EductionModel(),
-              isMobile: true,
+     final colors = context.colors;
+    return Column(
+      children: [
+        ShaderMask(
+          shaderCallback: (bounds) =>  LinearGradient(
+            colors: [
+             colors.accent,
+              colors.secondary
+            ],
+          ).createShader(bounds),
+          child: const Text(
+            'PASS ✓',
+            style: TextStyle(
+              fontSize: 64,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
-          ],
-        )
-            : Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Expanded(child: SummaryContent(    lastName: "fadl",
-              firstName: "shorouk",
-              role: "flutter developer",
-              summary:
-              "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
-
-            ),),
-            const SizedBox(width: 60),
-            Expanded(
-              child: FloatingCards(
-                floatController: _floatController,
-                cardControllers: _cardControllers,
-                eduction:  EductionModel(
-                      ),
-                isMobile: false,
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
+        const SizedBox(height: 24),
+        Text(
+          profile?.firstName??"",
+          style: AppTextStyles.extraBold32(
+            color:colors.textPrimary,
+          ),
+        ),
+        const SizedBox(height: 12),
+        Text(
+          'Senior Software QC Engineer',
+          style: TextStyle(
+            fontSize: 18,
+            color: colors.accent.withValues(alpha: 0.7),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 24),
+        Container(
+          padding:
+          const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: colors.accent.withValues(alpha: 0.7),
+              width: 2,
+            ),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Text(
+            'SYSTEM STATUS: OPERATIONAL ✓',
+            style: TextStyle(
+              fontFamily: 'monospace',
+              fontWeight: FontWeight.bold,
+              color: colors.accent.withValues(alpha: 0.7),
+              fontSize: 14,
+            ),
+          ),
+        ),
+        const SizedBox(height: 24),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            '3+ years of expertise in comprehensive software testing, automation engineering, and quality assurance excellence',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 16,
+              color: colors.accent.withValues(alpha: 0.7),
+              height: 1.6,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

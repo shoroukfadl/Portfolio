@@ -9,33 +9,13 @@ import '../../widgets/my_projects_widget.dart';
 import '../../widgets/skills/my_skills.dart';
 
 class MediumHomeView extends StatelessWidget {
-  final HomeController con;
 
-  const MediumHomeView({super.key, required this.con});
+  const MediumHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        32.0.heightBox,
-        // PersonalInfoWidget(
-        //   personalData: con.user?.summary,
-        // ).paddingSymmetric(horizontal: 32),
-
-        64.0.heightBox,
-
-        SliverToBoxAdapter(
-            child: SkillsSection(
-            )).paddingSymmetric(horizontal: 32),
-
-        // AboutMeWidget(
-        //   name: con.user?.name ?? "",
-        //   role: con.user?.jobName ?? "",
-        //   desc: con.user?.summary ??
-        //       "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
-        // ),
-
-        ContactMeWidget(con: con)
       ],
     );
   }

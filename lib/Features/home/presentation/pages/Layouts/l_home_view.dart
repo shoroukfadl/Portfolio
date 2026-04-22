@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
+import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
@@ -17,330 +21,509 @@ import '../../widgets/my_projects_widget.dart';
 import '../../widgets/skills/my_skills.dart';
 
 class LargeHomeView extends StatelessWidget {
-  final HomeController con;
-
-  const LargeHomeView({super.key, required this.con});
+  const LargeHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ScreenLayoutWidget(
       children: [
-        // 32.0.heightBox,
         SliverToBoxAdapter(
-          child: SummarySection(
-            // name: con.user?.name ?? "shorouk fadl",
-            // role: con.user?.jobName ?? "flutter developer",
-            // desc: con.user?.summary ??
-            //     "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
-          ),
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => c.data?.profile != p.data?.profile,
+              builder: (context, state) {
+                return SummarySection(
+                  profile: state.data?.profile,
+                );
+              }),
         ),
         // 64.0.heightBox,
         //
+
         SliverToBoxAdapter(
-            child: SkillsSection(
-              skills: [
-                SkillModel(
-                  icon: '📱',
-                  title: 'Flutter',
-                  description:
-                  'Expert in building cross-platform mobile applications with Flutter.',
-                ),
-                SkillModel(
-                  icon: '🎨',
-                  title: 'UI/UX Design',
-                  description: 'Creating beautiful and intuitive user interfaces.',
-                ),
-                SkillModel(
-                  icon: '🔧',
-                  title: 'Backend Integration',
-                  description: 'Proficient in REST APIs, Firebase, and real-time databases.',
-                ),
-                SkillModel(
-                  icon: '🐙',
-                  title: 'Version Control',
-                  description:
-                  'Git workflows, collaborative development, and clean histories.',
-                ),
-                SkillModel(
-                  icon: '🧪',
-                  title: 'Testing',
-                  description:
-                  'Unit testing, widget testing, and integration testing.',
-                ),
-                SkillModel(
-                  icon: '📊',
-                  title: 'Performance',
-                  description:
-                  'App optimization, memory profiling, and battery efficiency.',
-                ),
-              ],
-        )),
-        SliverToBoxAdapter(child: 64.0.heightBox),
-        //
+            child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (c, p) => c.data?.skills != p.data?.skills,
+                builder: (context, state) {
+                  return SkillsSection(
+                    skills: state.data?.skills ?? [],
+                  );
+                })),
         SliverToBoxAdapter(
-            child: ExperienceSection(
-        )),
-        // 64.0.heightBox,
-        SliverPadding(
-          padding: const EdgeInsets.all(Constants.desktopHozPadding),
-          sliver:
-          SliverToBoxAdapter(
-            child: EducationSection(
-              // item: con.user?.eduction ??
-              //     EductionModel(
-              //         country: 'Egp',
-              //         date: '2023',
-              //         desc:
-              //             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales ',
-              //         uniName: 'FCGS OF COMPAUTER '),
-            ),
-          ),
-        ),
-        //
-        SliverPadding(
-            padding: const EdgeInsets.all(Constants.desktopHozPadding),
-            sliver: SliverToBoxAdapter(
-                child: MyProjectsWidget(
-              projects: con.user?.project ??
-                  [
-                    ProjectModel(
-                        description: 'fuiewru',
-                        companyName: 'ddwrs comf',
-                        images: [
-                          'https://tse2.mm.bing.net/th/id/OIP.e6voHjED4omwbyU6TqoCmwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3',
-                          'https://tse2.mm.bing.net/th/id/OIP.e6voHjED4omwbyU6TqoCmwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3'
-                        ],
-                        link: '',
-                        projectName: 'detts',
-                        projectType: 'web')
-                  ],
-            ))),
-        SliverToBoxAdapter(child: ContactMeWidget(con: con))
+            child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (c, p) => c.data?.experience != p.data?.experience,
+                builder: (context, state) {
+                  return ExperienceSection(
+                    experiences: state.data?.experience ?? [],
+                  );
+                })),
+        // // 64.0.heightBox,
+        // SliverPadding(
+        //   padding: const EdgeInsets.all(Constants.desktopHozPadding),
+        //   sliver:
+        //   SliverToBoxAdapter(
+        //     child: EducationSection(
+        //       // item: con.user?.eduction ??
+        //       //     EductionModel(
+        //       //         country: 'Egp',
+        //       //         date: '2023',
+        //       //         desc:
+        //       //             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales ',
+        //       //         uniName: 'FCGS OF COMPAUTER '),
+        //     ),
+        //   ),
+        // ),
+        // //
+        // SliverPadding(
+        //     padding: const EdgeInsets.all(Constants.desktopHozPadding),
+        //     sliver: SliverToBoxAdapter(
+        //         child: MyProjectsWidget(
+        //       projects: []
+        //     ))),
+        // //SliverToBoxAdapter(child: ContactMeWidget(con: con))
       ],
     );
   }
 }
 
-
-
-
-
-
-
-class ModernStackPortfolio extends StatefulWidget {
-  const ModernStackPortfolio({super.key});
+class QADashboardHome extends StatefulWidget {
+  const QADashboardHome({Key? key}) : super(key: key);
 
   @override
-  State<ModernStackPortfolio> createState() => _ModernStackPortfolioState();
+  State<QADashboardHome> createState() => _QADashboardHomeState();
 }
 
-class _ModernStackPortfolioState extends State<ModernStackPortfolio> {
-  final ScrollController _scrollController = ScrollController();
-
-  // البيانات اللي هتظهر في الكروت
-  final List<Map<String, dynamic>> sections = [
-    {"title": "Experience", "color": Color(0xFF1E293B), "content": "Senior Flutter Developer at Jana Pack..."},
-    {"title": "Selected Projects", "color": Color(0xFF0F172A), "content": "E-commerce App, Portfolio, Logic Libs..."},
-    {"title": "Education", "color": Color(0xFF161E2E), "content": "CS Degree, Mobile Nanodegree..."},
-    {"title": "Contact", "color": Color(0xFF1E293B), "content": "Let's build something great together."},
+class _QADashboardHomeState extends State<QADashboardHome>
+    with TickerProviderStateMixin {
+  bool darkMode = true;
+  int currentSection = 0;
+  bool systemScanning = true;
+  double scanProgress = 0;
+  int? selectedProjectIndex;
+  bool terminalOpen = false;
+  final TextEditingController terminalController = TextEditingController();
+  final List<String> terminalOutput = [
+    'QA_SYSTEM v1.0 initialized...',
+    'Type "help" for commands'
   ];
+  late ScrollController scrollController;
+  late AnimationController scanAnimController;
+
+  final List<String> sections = [
+    'System',
+    'Skills',
+    'Experience',
+    'Projects',
+    'Pipeline'
+  ];
+
+  final Map<String, String> terminalCommands = {
+    'help':
+        'Commands: skills, exp, projects, certs, contact, about, status, clear',
+    'skills':
+        'TECHNICAL_SKILLS = {Testing_Tools: [Selenium, Postman, JMeter], Languages: [Java, Dart, JavaScript]}',
+    'exp':
+        'WORK_EXPERIENCE = [{Gulf Grid Company, QC Engineer, Jan2025-Present}, {Noouh Company, Test Engineer, Sep2024-Jan2025}]',
+    'projects':
+        'PROJECTS = [E-commerce, ERP System, HR Management, Banking App, Payment Gateway, Cryptocurrency Wallet]',
+    'about':
+        'PROFILE = {Name: Mohamed Mamdouh, Title: Senior QC Engineer, Experience: 3+ years, Location: Giza, Egypt}',
+    'certs':
+        'CERTIFICATIONS = [IBM - Web Development, University of Minnesota - Software Testing, Google - Agile]',
+    'contact':
+        'CONTACT = {Email: elnomrosymohamed@gmail.com, Phone: +20 1118712681, LinkedIn: Mohamed-Mamdouh}',
+    'status':
+        'System Status: OPERATIONAL | Memory: 45% | Performance: EXCELLENT',
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController = ScrollController();
+    scanAnimController = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+
+    // Start system scan animation
+    _startSystemScan();
+  }
+
+  void _startSystemScan() {
+    Timer.periodic(const Duration(milliseconds: 600), (timer) {
+      if (mounted) {
+        setState(() {
+          scanProgress += (10 + (DateTime.now().microsecond % 20)).toDouble();
+          if (scanProgress >= 100) {
+            scanProgress = 100;
+            systemScanning = false;
+            timer.cancel();
+          }
+        });
+      }
+    });
+  }
+
+  void _handleTerminalCommand(String command) {
+    final cmd = command.toLowerCase().trim();
+    if (cmd == 'clear') {
+      setState(() {
+        terminalOutput.clear();
+        terminalOutput.addAll(
+            ['QA_SYSTEM v1.0 initialized...', 'Type "help" for commands']);
+      });
+    } else {
+      String response =
+          terminalCommands[cmd] ?? 'Command not found: $cmd. Type help.';
+      setState(() {
+        terminalOutput.add('\$ $command');
+        terminalOutput.add(response);
+      });
+    }
+    terminalController.clear();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    scanAnimController.dispose();
+    terminalController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0A0F1A),
-      body: Row(
-        children: [
-          // الجانب الأيسر الثابت - Minimalist Text
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: const EdgeInsets.all(40),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                   Text("JANA\nDEV.",
-                      style: TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.w900, height: 0.9)),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("SUMMARY", style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold, fontSize: 12)),
-                      const SizedBox(height: 10),
-                      Text("Architecting high-performance\nbilingual Flutter applications\nwith Clean Architecture.",
-                          style: TextStyle(color: Colors.white.withOpacity(0.6), height: 1.5)),
-                    ],
-                  ),
-                  const Text("© 2026", style: TextStyle(color: Colors.white24, fontSize: 12)),
-                ],
+      appBar: AppBar(
+        backgroundColor: darkMode
+            ? const Color(0xFF1a1a2e).withOpacity(0.8)
+            : const Color(0xFFF5F5F5).withOpacity(0.9),
+        elevation: 0,
+        title: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF00D4FF), Color(0xFF0EA5E9)],
+                ),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Center(
+                child: Text('🧪',
+                    style:
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               ),
             ),
+            const SizedBox(width: 12),
+            Text(
+              'QA_DASHBOARD',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: darkMode ? const Color(0xFF00D4FF) : Colors.cyan[700],
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              darkMode ? Icons.light_mode : Icons.dark_mode,
+              color: darkMode ? const Color(0xFF00D4FF) : Colors.cyan[700],
+            ),
+            onPressed: () => setState(() => darkMode = !darkMode),
+            tooltip: 'Manual/Automation Toggle',
           ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        controller: scrollController,
+        child: Column(
+          children: [
+            // Terminal Widget
+            const SizedBox(height: 20),
 
-          // الجانب الأيمن المتحرك - Stacking Layers
-          Expanded(
-            flex: 2,
-            child: ListView.builder(
-              controller: _scrollController,
-              itemCount: sections.length,
-              itemBuilder: (context, index) {
-                return StackCard(
-                  index: index,
-                  data: sections[index],
-                  controller: _scrollController,
-                );
-              },
+            // Contact Section
+            _buildContactSection(),
+            const SizedBox(height: 20),
+
+            // Footer
+            _buildFooter(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPipelineSection() {
+    final stages = [
+      {
+        'phase': 'REQUIREMENTS',
+        'title': 'Educational Foundation',
+        'items': [
+          'BSC Software Engineering - ACU (2018-2022)',
+          'Grade: Very Good (B+) | GPA: 3.31/4',
+          'Graduation Project: Student Registration App (Grade: A)'
+        ]
+      },
+      {
+        'phase': 'TESTING & EXECUTION',
+        'title': 'Professional Experience',
+        'items': [
+          'Software QC Engineer - Gulf Grid Company (Jan 2025)',
+          'Software Test Engineer - Noouh Company (Sep 2024)',
+          'Testing Instructor - DEPI (Apr 2024)'
+        ]
+      },
+      {
+        'phase': 'RELEASE',
+        'title': 'Certifications & Recognition',
+        'items': [
+          'IBM - Web Development Certificate',
+          'University of Minnesota - Software Testing',
+          'Google - Agile Project Management'
+        ]
+      },
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'CI/CD Pipeline',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: darkMode ? const Color(0xFF00D4FF) : Colors.cyan[700],
+            ),
+          ),
+          const SizedBox(height: 24),
+          ...stages.asMap().entries.map((entry) {
+            final idx = entry.key;
+            final stage = entry.value;
+            return Column(
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: darkMode
+                                ? const Color(0xFF00D4FF).withOpacity(0.2)
+                                : Colors.cyan[200],
+                          ),
+                          child: Center(
+                            child: Text(
+                              '${idx + 1}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: darkMode
+                                    ? const Color(0xFF00D4FF)
+                                    : Colors.cyan[700],
+                              ),
+                            ),
+                          ),
+                        ),
+                        if (idx < stages.length - 1)
+                          Container(
+                            width: 2,
+                            height: 100,
+                            color: darkMode
+                                ? const Color(0xFF00D4FF).withOpacity(0.3)
+                                : Colors.cyan[300]!.withOpacity(0.3),
+                          ),
+                      ],
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 12, vertical: 6),
+                            decoration: BoxDecoration(
+                              color: darkMode
+                                  ? const Color(0xFF00D4FF).withOpacity(0.2)
+                                  : Colors.cyan[200],
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Text(
+                              'p-[lp',
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                                color: darkMode
+                                    ? const Color(0xFF00D4FF)
+                                    : Colors.cyan[700],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'kijiji',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          ...(stage['items'] as List<String>).map((item) {
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.check_circle,
+                                    size: 16,
+                                    color: Colors.green[400],
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text(
+                                      item,
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: darkMode
+                                            ? Colors.white70
+                                            : Colors.grey[800],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }).toList(),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          }).toList(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContactSection() {
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          Text(
+            'Initiate Connection',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: darkMode ? const Color(0xFF00D4FF) : Colors.cyan[700],
+            ),
+          ),
+          const SizedBox(height: 24),
+          GridView.count(
+            crossAxisCount: 3,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            mainAxisSpacing: 12,
+            crossAxisSpacing: 12,
+            children: [
+              _buildContactCard('📧', 'Email', 'elnomrosymohamed@gmail.com'),
+              _buildContactCard('📱', 'Phone', '+20 1118712681'),
+              _buildContactCard('🔗', 'LinkedIn', 'Mohamed Mamdouh'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContactCard(String emoji, String label, String value) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: darkMode
+              ? const Color(0xFF00D4FF).withOpacity(0.3)
+              : Colors.cyan[300]!.withOpacity(0.3),
+        ),
+        borderRadius: BorderRadius.circular(12),
+        color: darkMode ? Colors.white.withOpacity(0.05) : Colors.grey[200],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            emoji,
+            style: const TextStyle(fontSize: 24),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              color: darkMode ? Colors.white70 : Colors.grey[700],
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.bold,
+              color: darkMode ? Colors.white : Colors.black,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFooter() {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: darkMode
+                ? const Color(0xFF00D4FF).withOpacity(0.2)
+                : Colors.cyan[300]!.withOpacity(0.2),
+          ),
+        ),
+        color: darkMode ? Colors.white.withOpacity(0.02) : Colors.grey[100],
+      ),
+      child: Column(
+        children: [
+          Text(
+            '© 2025 QA_DASHBOARD v1.0',
+            style: TextStyle(
+              fontFamily: 'monospace',
+              fontSize: 12,
+              color: darkMode ? Colors.white38 : Colors.grey[600],
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Crafted with precision and quality',
+            style: TextStyle(
+              fontSize: 12,
+              color: darkMode
+                  ? const Color(0xFF00D4FF).withOpacity(0.6)
+                  : Colors.cyan[700],
             ),
           ),
         ],
       ),
     );
   }
-}
-
-class StackCard extends StatelessWidget {
-  final int index;
-  final Map<String, dynamic> data;
-  final ScrollController controller;
-
-  const StackCard({super.key, required this.index, required this.data, required this.controller});
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: controller,
-      builder: (context, child) {
-        // حساب الـ "Stacking" - كل كارت بيفضل مكانه لما يوصل فوق
-        double cardHeight = MediaQuery.of(context).size.height * 0.8;
-        double scrollOffset = controller.hasClients ? controller.offset : 0.0;
-        double cardPosition = (index * cardHeight);
-
-        // الـ Logic السحري هنا:
-        double topPadding = (cardPosition - scrollOffset).clamp(0.0, double.infinity);
-
-        return Container(
-          height: cardHeight,
-          margin: EdgeInsets.only(top: index == 0 ? 0 : 0), // إلغاء المسافات بين الكروت
-          padding: EdgeInsets.only(top: topPadding > 0 ? 0 : 0),
-          child: Transform.translate(
-            offset: Offset(0, topPadding > 0 ? 0 : 0),
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: data['color'],
-                border: const Border(top: BorderSide(color: Colors.white10, width: 0.5)),
-                boxShadow: [
-                  BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 40, offset: const Offset(0, -20))
-                ],
-              ),
-              padding: const EdgeInsets.all(50),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("0${index + 1}", style: const TextStyle(color: Colors.blueAccent, fontFamily: 'monospace')),
-                  const SizedBox(height: 20),
-                  Text(data['title'], style: const TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
-                  const SizedBox(height: 30),
-                  Text(data['content'], style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 18)),
-                  const Spacer(),
-                  const Align(
-                    alignment: Alignment.bottomRight,
-                    child: Icon(Icons.arrow_downward, color: Colors.white10, size: 40),
-                  )
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-
-
-
-
-class DNASkillsView extends StatefulWidget {
-  @override
-  _DNASkillsViewState createState() => _DNASkillsViewState();
-}
-
-class _DNASkillsViewState extends State<DNASkillsView>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 5))
-          ..repeat();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return CustomPaint(
-          size: const Size(double.infinity, 400),
-          painter: DNAPainter(_controller.value),
-        );
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-}
-
-class DNAPainter extends CustomPainter {
-  final double animationValue;
-
-  DNAPainter(this.animationValue);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint1 = Paint()..strokeWidth = 3.0;
-    final paint2 = Paint()..strokeWidth = 3.0;
-    final linePaint = Paint()
-      ..color = Colors.white24
-      ..strokeWidth = 1.0;
-
-    int pointsCount = 15;
-    double verticalSpacing = size.height / pointsCount;
-
-    for (int i = 0; i < pointsCount; i++) {
-      // الموجة الأولى
-      double angle = (i / pointsCount) * 2 * pi + (animationValue * 2 * pi);
-      double x1 = (size.width / 2) + sin(angle) * 80;
-      double y1 = i * verticalSpacing + 20;
-
-      // الموجة الثانية (عكس الأولى)
-      double x2 = (size.width / 2) + sin(angle + pi) * 80;
-      double y2 = i * verticalSpacing + 20;
-
-      // تحديد الألوان حسب العمق (عشان تبان 3D)
-      double depth1 = cos(angle);
-      double depth2 = cos(angle + pi);
-
-      // رسم الخط الرابط بين المهرتين
-      canvas.drawLine(Offset(x1, y1), Offset(x2, y2), linePaint);
-
-      // رسم "نقطة المهارة" الأولى
-      paint1.color = Colors.blue.withOpacity(depth1 > 0 ? 1 : 0.3);
-      canvas.drawCircle(Offset(x1, y1), 6 + (depth1 * 2), paint1);
-
-      // رسم "نقطة المهارة" الثانية
-      paint2.color = Colors.cyan.withOpacity(depth2 > 0 ? 1 : 0.3);
-      canvas.drawCircle(Offset(x2, y2), 6 + (depth2 * 2), paint2);
-    }
-  }
-
-  @override
-  bool shouldRepaint(DNAPainter oldDelegate) => true;
 }

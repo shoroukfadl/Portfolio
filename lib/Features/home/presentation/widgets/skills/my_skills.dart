@@ -1,53 +1,105 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Core/Language/app_styles.dart';
+import 'dart:math' as math;
+
+import 'package:portfolio/Features/home/domain/entities/tech_skill_entity.dart';
+import 'package:portfolio/Features/home/presentation/widgets/skills/shield_widget.dart';
 import 'package:portfolio/Features/home/presentation/widgets/skills/skill_card.dart';
-import 'package:portfolio/Models/user_data_model.dart';
-import 'package:portfolio/Utilities/extensions.dart';
-import '../../../../../Utilities/Constants/strings.dart';
-class SkillsSection extends StatelessWidget {
-  final List<SkillModel> skills;
-  const SkillsSection({super.key, this.skills = const []});
+
+
+
+class SkillsSection extends StatefulWidget {
+  final List<TechnicalSkillEntity> skills;
+  final double  shieldSize , orbitRadius ;
+  const SkillsSection({super.key,  this.skills =const [],this.orbitRadius=160,this.shieldSize=160});
+
+  @override
+  State<SkillsSection> createState() => _SkillsSectionState();
+}
+
+class _SkillsSectionState extends State<SkillsSection> {
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          Text(
-            Strings.skill.translate,
-            style: AppTextStyles.extraBold40(color: colors.accent),
-          ),
-          ShaderMask(
-            shaderCallback: (bounds) =>
-                LinearGradient(colors: [colors.accent, colors.secondary])
-                    .createShader(bounds),
-            child:Container(height: 4,
-              width: 40,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(100)
-              ),
-            )
-          ),
-          const SizedBox(height: 60),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: MediaQuery.of(context).size.width > 768 ? 4 : 1,
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20,
-              childAspectRatio: 2,
-            ),
-            itemCount: skills.length,
-            itemBuilder: (context, index) {
-              return SkillCard(skill: skills[index], index: index);
-            },
-          ),
-        ],
-      ),
+    return ListView.builder(
+      itemCount: widget.skills.length,
+      shrinkWrap: true,
+      itemBuilder: (c,i)=>
+       SkillCard(
+          radius: widget.orbitRadius,
+          skill: widget.skills[i],
+          color: Colors.greenAccent,
+          index: i,
+        ),
+
+
+
     );
   }
+
+
 }
+
+// class SkillsSection extends StatefulWidget {
+//   final List<TechnicalSkillEntity> skills;
+//   final double  shieldSize , orbitRadius ;
+//   const SkillsSection({super.key,  this.skills =const [],this.orbitRadius=160,this.shieldSize=160});
+//
+//   @override
+//   State<SkillsSection> createState() => _SkillsSectionState();
+// }
+//
+// class _SkillsSectionState extends State<SkillsSection>
+//     with TickerProviderStateMixin {
+//   late final AnimationController _orbitController;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//
+//     _orbitController = AnimationController(
+//       vsync: this,
+//       duration: const Duration(seconds: 15),
+//     )..repeat();
+//
+//
+//   }
+//
+//   @override
+//   void dispose() {
+//     _orbitController.dispose();
+//     super.dispose();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//
+//
+//     return Row(
+//       spacing: 40,
+//       children: [
+//         const ShieldWidget(),
+//
+//         Column(
+//           spacing: 16,
+//               children: [
+//               ...List.generate(widget.skills.length, (i)=> SkillCard(
+//                 radius: widget.orbitRadius,
+//                 skill: widget.skills[i],
+//                 color: Colors.greenAccent,
+//                 index: i,
+//               ),)
+//
+//
+//               ],
+//         ),
+//
+//       ],
+//     );
+//   }
+//
+//
+// }

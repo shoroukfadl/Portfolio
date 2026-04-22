@@ -12,9 +12,9 @@ class AppColors extends ThemeExtension<AppColors> {
     // Slate Blue
     border: Color(0xFF2A3555),
     // Steel
-    accent: Color(0xFF8763F1),
-    // Flutter Blue
-    secondary: Color(0xFF38BDF8),
+    accent: Color(0xFF24C5BF),
+    // Flutter Blue (same across themes)
+    secondary: Color(0xFF3467B5),
     // Electric Cyan
     success: Color(0xFF00E5A0),
     // Mint
@@ -42,11 +42,10 @@ class AppColors extends ThemeExtension<AppColors> {
     // Lavender Mist
     border: Color(0xFFC8D3EF),
     // Periwinkle
-    accent: Color(0xFF8763F1),
+    accent: Color(0xFF24C5BF),
     // Flutter Blue (same across themes)
-    secondary: Color(0xFF0EA5E9),
+    secondary: Color(0xFF3467B5),
     // Ocean Cyan (adjusted for light bg)
-    // Dart Purple (deeper for light bg)
     success: Color(0xFF00C48C),
     // Adjusted Mint
     warning: Color(0xFFFFB300),
@@ -57,7 +56,6 @@ class AppColors extends ThemeExtension<AppColors> {
     // Midnight
     textSecondary: Color(0xFF4A5878),
     // Slate
-    // Fog (light variant)
   );
 
   // ─── Fields ───────────────────────────────────────────────────────────────
@@ -132,7 +130,6 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? surfaceElevated,
     Color? border,
     Color? accent,
-    Color? accentCyan,
     Color? secondary,
     Color? success,
     Color? warning,
@@ -146,7 +143,7 @@ class AppColors extends ThemeExtension<AppColors> {
       surfaceElevated: surfaceElevated ?? this.surfaceElevated,
       border: border ?? this.border,
       accent: accent ?? this.accent,
-      secondary: accentCyan ?? this.secondary,
+      secondary: secondary ?? this.secondary,
       success: success ?? this.success,
       warning: warning ?? this.warning,
       danger: danger ?? this.danger,

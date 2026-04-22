@@ -1,10 +1,9 @@
 import 'dart:ui';
-
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:universal_html/html.dart' as html;
@@ -17,18 +16,20 @@ import 'Core/Theme/theme_model.dart';
 import 'Utilities/app_themes.dart';
 import 'Utilities/git_it.dart';
 import 'Utilities/router_config.dart';
-import 'firebase_options.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+  await Supabase.initialize(
+    url: 'https://zljhjxsdlidmfpfwmvpa.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsamhqeHNkbGlkbWZwZndtdnBhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3Njk3NzQsImV4cCI6MjA5MjM0NTc3NH0.Vv0wRPesQi7BG-iw5SECV_yUmHeZ8IYqlGJreN0thu4'
   );
   await GitIt.initGitIt();
   setPathUrlStrategy();
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
     BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
+    BlocProvider<PortfolioCubit>(create: (_) =>PortfolioCubit(getDataUseCase: sl())),
   ], child: const EntryPoint()));
 }
 

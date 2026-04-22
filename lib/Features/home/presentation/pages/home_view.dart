@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:portfolio/Core/Layout/layout_handler.dart';
+import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Utilities/Constants/enums.dart';
 
 import '../../../Homel/home_controller.dart';
@@ -19,19 +21,14 @@ class HomeView extends StatefulWidget {
   createState() => _HomeViewState();
 }
 
-class _HomeViewState extends StateMVC<HomeView> with LayoutHandlerMixin {
-  _HomeViewState() : super(HomeController()) {
-    con = HomeController();
-  }
+class _HomeViewState extends State<HomeView> with LayoutHandlerMixin {
 
-  late HomeController con;
 
   @override
   void initState() {
+    Future.delayed(Duration.zero ,()async=>await context.read<PortfolioCubit>().getData());
     super.initState();
-    Future.delayed(Duration.zero, () async => await con.getUserData());
   }
-
   @override
   Widget build(BuildContext context) {
     return buildLayout(context);
@@ -39,16 +36,16 @@ class _HomeViewState extends StateMVC<HomeView> with LayoutHandlerMixin {
 
   @override
   Widget buildLargeScreen() {
-    return LargeHomeView(con: con);
+    return LargeHomeView();
   }
 
   @override
   Widget buildMediumScreen() {
-    return MediumHomeView(con: con);
+    return MediumHomeView();
   }
 
   @override
   Widget buildSmallScreen() {
-    return SmallHomeView(con: con);
+    return SmallHomeView();
   }
 }

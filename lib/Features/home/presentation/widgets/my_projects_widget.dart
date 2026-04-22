@@ -131,3 +131,242 @@ class ProjectItemCard extends StatelessWidget {
     );
   }
 }
+
+/*
+* Padding(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Project Testing Reports',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: darkMode ? const Color(0xFF00D4FF) : Colors.cyan[700],
+            ),
+          ),
+          const SizedBox(height: 16),
+          ...projects.asMap().entries.map((entry) {
+            final idx = entry.key;
+            final project = entry.value;
+            final isSelected = selectedProjectIndex == idx;
+
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: GestureDetector(
+                onTap: () => setState(
+                    () => selectedProjectIndex = isSelected ? null : idx),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: darkMode
+                          ? const Color(0xFF00D4FF).withOpacity(0.3)
+                          : Colors.cyan[300]!.withOpacity(0.3),
+                    ),
+                    borderRadius: BorderRadius.circular(12),
+                    color: darkMode
+                        ? Colors.white.withOpacity(0.05)
+                        : Colors.grey[200],
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              project['name']?.toString()??'',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: darkMode
+                                    ? const Color(0xFF00D4FF)
+                                    : Colors.cyan[700],
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      color: Colors.red.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          'Bugs Found',
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                        Text(
+                                          '${project['bugs']}',
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: Container(
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text(
+                                          'Test Cases',
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            color: Colors.blue,
+                                          ),
+                                        ),
+                                        Text(
+                                          '${project['tests']}',
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.blue,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            SizedBox(
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Colors.purple.withOpacity(0.2),
+                                  foregroundColor: Colors.purple[200],
+                                  elevation: 0,
+                                ),
+                                onPressed: () => setState(() =>
+                                    selectedProjectIndex =
+                                        isSelected ? null : idx),
+                                child: Text(
+                                    'View Found Bugs (${project['bugs']})'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (isSelected)
+                        Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border(
+                              top: BorderSide(
+                                color: darkMode
+                                    ? const Color(0xFF00D4FF).withOpacity(0.3)
+                                    : Colors.cyan[300]!.withOpacity(0.3),
+                              ),
+                            ),
+                          ),
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Defect Report',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: darkMode
+                                      ? Colors.cyan[300]
+                                      : Colors.cyan[700],
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              ...((project['bugs_found'] as List<Map>)
+                                  .map((bug) {
+                                final severityColor =
+                                    bug['severity'] == 'Critical'
+                                        ? Colors.red
+                                        : bug['severity'] == 'High'
+                                            ? Colors.orange
+                                            : Colors.yellow;
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 8),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border(
+                                        left: BorderSide(
+                                          color: severityColor,
+                                          width: 3,
+                                        ),
+                                      ),
+                                      color: darkMode
+                                          ? Colors.white.withOpacity(0.05)
+                                          : Colors.grey[300],
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                    padding: const EdgeInsets.all(12),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          bug['id'],
+                                          style: const TextStyle(
+                                            fontSize: 11,
+                                            fontFamily: 'monospace',
+                                            color: Colors.white54,
+                                          ),
+                                        ),
+                                        Text(
+                                          bug['title'],
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.bold,
+                                            color: darkMode
+                                                ? Colors.white
+                                                : Colors.black,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Text(
+                                          '✓ ${bug['status']}',
+                                          style: const TextStyle(
+                                            fontSize: 11,
+                                            color: Colors.green,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }).toList()),
+                            ],
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }).toList(),
+        ],
+      ),
+    )*/
