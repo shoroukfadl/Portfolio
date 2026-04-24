@@ -6,6 +6,7 @@ class CertificateModel {
   final String? courseName;
   final String? provider;
   final String? issueDate;
+  final String? certificateImageUrl;
   final String? credentialUrl;
 
   CertificateModel({
@@ -15,6 +16,7 @@ class CertificateModel {
     this.provider,
     this.issueDate,
     this.credentialUrl,
+    this.certificateImageUrl,
   });
 
   factory CertificateModel.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class CertificateModel {
       provider: json['provider'] as String,
       issueDate: json['issue_date'] as String,
       credentialUrl: json['credential_url'] as String,
+      certificateImageUrl: json['certificate_image_url'] as String,
     );
   }
 
@@ -34,20 +37,22 @@ class CertificateModel {
       'provider': provider,
       'issue_date': issueDate,
       'credential_url': credentialUrl,
+      'certificate_image_url': certificateImageUrl
     };
   }
 
   CertificateEntity fromModel() => CertificateEntity(
-        id: id,
-        profileId: profileId,
-        courseName: courseName,
-        provider: provider,
-        issueDate: issueDate,
-        credentialUrl: credentialUrl,
-      );
+      id: id,
+      profileId: profileId,
+      courseName: courseName,
+      provider: provider,
+      issueDate: issueDate,
+      credentialUrl: credentialUrl,
+      certificateImageUrl: certificateImageUrl);
   CertificateModel toModel() => CertificateModel(
         id: id,
         profileId: profileId,
+        certificateImageUrl: certificateImageUrl,
         courseName: courseName,
         provider: provider,
         issueDate: issueDate,

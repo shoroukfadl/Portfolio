@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/portifilo_icons.dart';
-import 'dart:math';
-import 'dart:ui';
-
 import '../../../../../Utilities/Constants/strings.dart';
 import '../../../../../Utilities/helper_function.dart';
 import '../../../../../Widgets/Buttons/custom_button_widget.dart';

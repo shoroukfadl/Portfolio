@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 import '../Core/Language/app_styles.dart';
-import '../Utilities/Constants/strings.dart';
 
 class SectionsTitleWidget extends StatelessWidget {
   final String title;
@@ -20,26 +19,10 @@ class SectionsTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Column(
-      spacing: 8,
-      children: [
-        Text(
-          title,
-          style: (titleStyle ?? AppTextStyles.extraBold40())
-              .copyWith(color: colors.accent),
-        ),
-        ShaderMask(
-            shaderCallback: (bounds) =>
-                LinearGradient(colors: [colors.accent, colors.secondary])
-                    .createShader(bounds),
-            child: Container(
-              height: 4,
-              width: 100,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(100)),
-            )),
-      ],
+    return Text(
+      title,
+      style: (titleStyle ?? AppTextStyles.extraBold32())
+          .copyWith(color: colors.secondary),
     );
   }
 }

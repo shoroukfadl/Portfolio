@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
-import 'package:portfolio/Features/home/presentation/widgets/aboutMe/about_me_title.dart';
-import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/shared_preferences.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
-
-import 'floating_card_widget.dart';
-
 class SummarySection extends StatelessWidget {
   final ProfileEntity? profile;
   const SummarySection({super.key, required this.profile});

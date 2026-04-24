@@ -1,23 +1,13 @@
 import 'dart:async';
-import 'dart:math';
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
-import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
-
-import '../../../../../Utilities/extensions.dart';
-import '../../../../Homel/home_controller.dart';
-import '../../widgets/aboutMe/about_me_title.dart';
-import '../../widgets/aboutMe/about_me_widget.dart';
-import '../../widgets/contact_me.dart';
+import '../../widgets/certification/certification_widget.dart';
 import '../../widgets/education/education_widget.dart';
 import '../../widgets/experince/experince_card_widget.dart';
-import '../../widgets/my_projects_widget.dart';
 import '../../widgets/skills/my_skills.dart';
 
 class LargeHomeView extends StatelessWidget {
@@ -53,6 +43,18 @@ class LargeHomeView extends StatelessWidget {
     builder: (context, state) {
     return EducationSection(
                education:state.data?.education??[]
+            );
+          }),
+        )),
+        SliverPadding(
+          padding: const EdgeInsets.all(Constants.desktopHozPadding),
+          sliver:
+          SliverToBoxAdapter(
+            child:  BlocBuilder<PortfolioCubit, PortfolioState>(
+    buildWhen: (c, p) => c.data?.certificates!= p.data?.certificates,
+    builder: (context, state) {
+    return CertificationSection(
+               data:state.data?.certificates??[]
             );
           }),
         )),

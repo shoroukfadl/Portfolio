@@ -7,6 +7,7 @@ class CertificateEntity extends Equatable {
   final String? provider;
   final String? issueDate;
   final String? credentialUrl;
+  final String? certificateImageUrl;
 
   const CertificateEntity({
     this.id,
@@ -14,7 +15,7 @@ class CertificateEntity extends Equatable {
     this.courseName,
     this.provider,
     this.issueDate,
-    this.credentialUrl,
+    this.credentialUrl, this.certificateImageUrl,
   });
 
   @override
@@ -26,5 +27,6 @@ class CertificateEntity extends Equatable {
     provider,
     issueDate,
     credentialUrl,
+    credentialUrl
   ];
 }

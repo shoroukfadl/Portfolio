@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
-
 import 'package:portfolio/Features/home/domain/entities/tech_skill_entity.dart';
-import 'package:portfolio/Features/home/presentation/widgets/skills/shield_widget.dart';
 import 'package:portfolio/Features/home/presentation/widgets/skills/skill_card.dart';
 
 

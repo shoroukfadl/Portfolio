@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/Inputs/app_text_widget.dart';
-import 'package:portfolio/Widgets/tooltip_widget.dart';
 
 import '../../../Core/Language/app_styles.dart';
 

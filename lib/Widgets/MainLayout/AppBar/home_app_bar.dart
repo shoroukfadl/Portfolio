@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/helper_function.dart';
 import 'package:portfolio/Utilities/portifilo_icons.dart';
 import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
-
-import '../../../Core/Language/app_styles.dart';
-import '../../../Features/Homel/home_controller.dart';
-import '../../../Features/home/presentation/cubit/cubit.dart';
-import '../../../Features/home/presentation/cubit/state.dart';
-import '../../../Features/home/presentation/widgets/aboutMe/about_me_widget.dart';
 import '../../../Utilities/Constants/strings.dart';
 import 'home_app_bar_item.dart';
 

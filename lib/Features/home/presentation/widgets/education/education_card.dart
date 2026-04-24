@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/education_entity.dart';
-import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/portifilo_icons.dart';
 
-import 'education_widget.dart';
-
-class EducationCard extends StatefulWidget {
+class EducationCard extends StatelessWidget {
   final EducationEntity item;
   final int index;
   final int totalItems;
@@ -19,19 +15,12 @@ class EducationCard extends StatefulWidget {
   });
 
   @override
-  State<EducationCard> createState() => _EducationCardState();
-}
-
-class _EducationCardState extends State<EducationCard> {
-  @override
-  void initState() {}
-
-  @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 16,
       children: [
         Column(
           spacing: 8,
@@ -67,14 +56,14 @@ class _EducationCardState extends State<EducationCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.item.degree ?? "",
+                        item.degree ?? "",
                         style: AppTextStyles.semiBold16(
                           color: colors.accent,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        widget.item.university ?? "",
+                        item.university ?? "",
                         style: AppTextStyles.regular14(
                           color: colors.secondary,
                         ),
@@ -83,29 +72,54 @@ class _EducationCardState extends State<EducationCard> {
                   ),
                 ),
                 Text(
-                  widget.item.duration ?? "",
+                  item.duration ?? "",
                   style: AppTextStyles.regular14(
                     color: colors.secondary,
                   ),
                 ),
               ],
             ),
-
             const SizedBox(height: 12),
-
             Text(
-              ( widget.item.gradProjectTitle ?? ""),
+              (item.gradProjectTitle ?? ""),
               style: AppTextStyles.medium16(
-                color: colors.fontColor2,
+                color: colors.secondary,
               ),
             ),
-
-            ...List.generate(widget.item.gradProjectTech.length, (i)=>Text(
-              ( widget.item.gradProjectTech[i] ?? ""),
+            const SizedBox(height: 4),
+            Text(
+              'Grade: ${item.grade ?? ""}',
               style: AppTextStyles.medium16(
-                color: colors.fontColor2,
+                color: colors.secondary,
               ),
-            ),)
+            ),
+            const SizedBox(height: 12),
+
+
+            Wrap(
+              spacing: 8,
+              runSpacing: 16,
+              children: [
+                ...List.generate(
+                  item.gradProjectTech.length,
+                      (i) => Container(
+                    padding:
+                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(100)),
+                      color: colors.accent25.withValues(alpha: 0.4),
+                    ),
+                    child: Text(
+                      (item.gradProjectTech[i] ?? ""),
+                      style: AppTextStyles.medium16(
+                        color: colors.fontColor2,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            )
+
           ],
         ).expand,
       ],

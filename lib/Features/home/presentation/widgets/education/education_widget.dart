@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/education_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-
-import '../../../../../Core/Language/app_styles.dart';
-import '../../../../../Models/user_data_model.dart';
-import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
-import '../../../../../Widgets/Custom/rounded_doted_widget.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
-
-import 'package:flutter/material.dart';
 
 import 'education_card.dart';
 
 class EducationSection extends StatelessWidget {
   final List<EducationEntity> education;
-  const EducationSection({Key? key,  this.education =const []}) : super(key: key);
+  const EducationSection({super.key,  this.education =const []});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +16,8 @@ class EducationSection extends StatelessWidget {
 
     final colors = context.colors;
     return Column(
-      spacing: 60,
+      spacing: 16,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
        SectionsTitleWidget(title: Strings.education.translate),
         ListView.builder(

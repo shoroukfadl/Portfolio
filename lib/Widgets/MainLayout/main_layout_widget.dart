@@ -11,7 +11,6 @@ import '../../Utilities/Constants/global_keys.dart';
 import '../../Utilities/helper_function.dart';
 import '../../Utilities/portifilo_icons.dart';
 import '../Buttons/custom_button_widget.dart';
-import '../Portfilio/animated_background.dart';
 
 class MainLayoutWidget extends StatefulWidget {
   final Widget child;
