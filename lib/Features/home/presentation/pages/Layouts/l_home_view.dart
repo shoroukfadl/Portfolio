@@ -28,18 +28,6 @@ class LargeHomeView extends StatelessWidget {
     return ScreenLayoutWidget(
       children: [
         SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              buildWhen: (c, p) => c.data?.profile != p.data?.profile,
-              builder: (context, state) {
-                return SummarySection(
-                  profile: state.data?.profile,
-                );
-              }),
-        ),
-        // 64.0.heightBox,
-        //
-
-        SliverToBoxAdapter(
             child: BlocBuilder<PortfolioCubit, PortfolioState>(
                 buildWhen: (c, p) => c.data?.skills != p.data?.skills,
                 builder: (context, state) {
@@ -56,21 +44,18 @@ class LargeHomeView extends StatelessWidget {
                   );
                 })),
         // // 64.0.heightBox,
-        // SliverPadding(
-        //   padding: const EdgeInsets.all(Constants.desktopHozPadding),
-        //   sliver:
-        //   SliverToBoxAdapter(
-        //     child: EducationSection(
-        //       // item: con.user?.eduction ??
-        //       //     EductionModel(
-        //       //         country: 'Egp',
-        //       //         date: '2023',
-        //       //         desc:
-        //       //             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales ',
-        //       //         uniName: 'FCGS OF COMPAUTER '),
-        //     ),
-        //   ),
-        // ),
+        SliverPadding(
+          padding: const EdgeInsets.all(Constants.desktopHozPadding),
+          sliver:
+          SliverToBoxAdapter(
+            child:  BlocBuilder<PortfolioCubit, PortfolioState>(
+    buildWhen: (c, p) => c.data?.education!= p.data?.education,
+    builder: (context, state) {
+    return EducationSection(
+               education:state.data?.education??[]
+            );
+          }),
+        )),
         // //
         // SliverPadding(
         //     padding: const EdgeInsets.all(Constants.desktopHozPadding),

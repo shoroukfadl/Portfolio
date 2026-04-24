@@ -40,7 +40,7 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
             decoration: BoxDecoration(
                 color: colors.surface,
                 boxShadow: [BoxShadow(
-                    color: colors.secondary.withAlpha(30),
+                    color: colors.accent25.withAlpha(90),
                     blurRadius: 2,
                     spreadRadius: 2
                 )],

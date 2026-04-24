@@ -34,7 +34,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         color: color ?? Colors.black,
       );
   static TextStyle extraBold28({Color? color}) => mainFont.copyWith(
-        fontSize: 48,
+        fontSize: 28,
         fontWeight: FontWeight.w900,
         color: color ?? Colors.black,
       );

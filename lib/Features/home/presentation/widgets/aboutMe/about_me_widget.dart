@@ -43,7 +43,7 @@ class SummarySection extends StatelessWidget {
         const SizedBox(height: 24),
         Text(
           profile?.summary??"",
-          style:  AppTextStyles.medium20(
+          style:  AppTextStyles.medium18(
             color:colors.secondary,
           ),
         ),

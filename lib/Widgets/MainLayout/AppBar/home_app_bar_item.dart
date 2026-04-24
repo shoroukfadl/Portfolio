@@ -36,7 +36,7 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(widget.title, style: AppTextStyles.semiBold14(
+            Text(widget.title, style: AppTextStyles.medium20(
               color: _isHovered ?colors.accent: colors.fontColor1
             ),),
             if (_isHovered)

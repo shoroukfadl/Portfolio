@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Features/home/domain/entities/education_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
@@ -12,27 +13,13 @@ import 'package:flutter/material.dart';
 
 import 'education_card.dart';
 
-class EducationSection extends StatefulWidget {
-  const EducationSection({Key? key}) : super(key: key);
+class EducationSection extends StatelessWidget {
+  final List<EducationEntity> education;
+  const EducationSection({Key? key,  this.education =const []}) : super(key: key);
 
-  @override
-  State<EducationSection> createState() => _EducationSectionState();
-}
-
-class _EducationSectionState extends State<EducationSection> {
   @override
   Widget build(BuildContext context) {
-    final education = [
-      EductionModel(
-        degree: 'Bachelor of Science',
-        field: 'Computer Science',
-        institution: 'Cairo University',
-        year: '2018 - 2022',
-        description: 'Focus on mobile development and software engineering principles.',
-        details: 'GPA: 3.8/4.0 | Dean\'s List',
-        icon: '🎓',
-      ),
-    ];
+
 
     final colors = context.colors;
     return Column(
