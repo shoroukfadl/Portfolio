@@ -5,7 +5,7 @@ import 'package:portfolio/Features/home/presentation/widgets/skills/skill_card.d
 
 
 class SkillsSection extends StatefulWidget {
-  final List<TechnicalSkillEntity> skills;
+  final List<SkillEntity> skills;
   final double  shieldSize , orbitRadius ;
   const SkillsSection({super.key,  this.skills =const [],this.orbitRadius=160,this.shieldSize=160});
 
@@ -21,6 +21,7 @@ class _SkillsSectionState extends State<SkillsSection> {
 
   @override
   Widget build(BuildContext context) {
+    print('Skills  :: ${widget.skills.length}');
     return ListView.builder(
       itemCount: widget.skills.length,
       shrinkWrap: true,

@@ -16,7 +16,7 @@ class PortfolioEntity extends Equatable {
   final List<ExperienceEntity> experience;
   final List<ProjectEntity> projects;
   final List<CertificateEntity> certificates;
-  final List<TechnicalSkillEntity> skills;
+  final TechnicalSkillEntity? skills;
   final List<MethodologyEntity> methodologies;
 
   PortfolioEntity({
@@ -25,7 +25,7 @@ class PortfolioEntity extends Equatable {
     this.projects = const [],
     this.experience = const [],
     this.certificates = const [],
-    this.skills = const [],
+    this.skills ,
     this.methodologies = const [],
   });
 

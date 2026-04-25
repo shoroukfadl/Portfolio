@@ -22,7 +22,7 @@ class LargeHomeView extends StatelessWidget {
                 buildWhen: (c, p) => c.data?.skills != p.data?.skills,
                 builder: (context, state) {
                   return SkillsSection(
-                    skills: state.data?.skills ?? [],
+                    skills: state.data?.skills?.skills ?? [],
                   );
                 })),
         SliverToBoxAdapter(
@@ -35,29 +35,26 @@ class LargeHomeView extends StatelessWidget {
                 })),
         // // 64.0.heightBox,
         SliverPadding(
-          padding: const EdgeInsets.all(Constants.desktopHozPadding),
-          sliver:
-          SliverToBoxAdapter(
-            child:  BlocBuilder<PortfolioCubit, PortfolioState>(
-    buildWhen: (c, p) => c.data?.education!= p.data?.education,
-    builder: (context, state) {
-    return EducationSection(
-               education:state.data?.education??[]
-            );
-          }),
-        )),
+            padding: const EdgeInsets.all(Constants.desktopHozPadding),
+            sliver: SliverToBoxAdapter(
+              child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                  buildWhen: (c, p) => c.data?.education != p.data?.education,
+                  builder: (context, state) {
+                    return EducationSection(
+                        education: state.data?.education ?? []);
+                  }),
+            )),
         SliverPadding(
-          padding: const EdgeInsets.all(Constants.desktopHozPadding),
-          sliver:
-          SliverToBoxAdapter(
-            child:  BlocBuilder<PortfolioCubit, PortfolioState>(
-    buildWhen: (c, p) => c.data?.certificates!= p.data?.certificates,
-    builder: (context, state) {
-    return CertificationSection(
-               data:state.data?.certificates??[]
-            );
-          }),
-        )),
+            padding: const EdgeInsets.all(Constants.desktopHozPadding),
+            sliver: SliverToBoxAdapter(
+              child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                  buildWhen: (c, p) =>
+                      c.data?.certificates != p.data?.certificates,
+                  builder: (context, state) {
+                    return CertificationSection(
+                        data: state.data?.certificates ?? []);
+                  }),
+            )),
         // //
         // SliverPadding(
         //     padding: const EdgeInsets.all(Constants.desktopHozPadding),

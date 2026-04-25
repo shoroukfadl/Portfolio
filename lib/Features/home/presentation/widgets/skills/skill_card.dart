@@ -7,7 +7,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 import '../../../../../Core/Language/app_styles.dart';
 
 class SkillCard extends StatelessWidget {
-  final TechnicalSkillEntity skill;
+  final SkillEntity skill;
   final int index;
   final double radius;
   final Color color;
@@ -53,13 +53,13 @@ class SkillCard extends StatelessWidget {
 
             Wrap(
               children: [
-               ...skill.skillName.map((e)=> Text(
-                  e??"",
+                Text(
+                 skill?.skillName??"",
                   style: AppTextStyles.medium12(
                     color: colors.fontColor1,
 
                   ),
-                )),
+                ),
               ],
             )
 

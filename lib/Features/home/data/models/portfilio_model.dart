@@ -14,7 +14,7 @@ class PortfolioModel {
   final List<ExperienceModel> experience;
   final List<ProjectModel> projects;
   final List<CertificateModel> certificates;
-  final List<TechnicalSkillModel> skills;
+  final TechnicalSkillModel? skills;
   final List<MethodologyModel> methodologies;
 
   PortfolioModel({
@@ -23,7 +23,7 @@ class PortfolioModel {
     this.projects = const [],
     this.experience = const [],
     this.certificates = const [],
-    this.skills = const [],
+    this.skills ,
     this.methodologies = const [],
   });
 
@@ -56,11 +56,9 @@ class PortfolioModel {
             : (json['methodologies'] as List)
                 .map((e) => MethodologyModel.fromJson(e))
                 .toList(),
-        // skills: json['skills'] == null
-        //     ? []
-        //     : (json['skills'] as List)
-        //         .map((e) => TechnicalSkillModel.fromJson(e))
-        //         .toList(),
+        skills: json['skills'] == null
+            ? null
+            : TechnicalSkillModel.fromJson(json['skills']),
       );
   Map<String, dynamic> toFullJson() => {
         'profile_id': profile?.id,
@@ -68,7 +66,7 @@ class PortfolioModel {
         'experience': experience.map((e) => e.toJson()).toList(),
         'projects': projects.map((e) => e.toJson()).toList(),
         'certificates': certificates.map((e) => e.toJson()).toList(),
-       // 'skills': skills.map((e) => e.toJson()).toList(),
+        'skills': skills?.toJson(),
         'methodologies': methodologies.map((e) => e.toJson()).toList(),
       };
 
@@ -80,7 +78,7 @@ class PortfolioModel {
     experience:experience.map((e)=>e.fromModel()).toList() ,
     certificates:certificates.map((e)=>e.fromModel()).toList() ,
     methodologies:methodologies.map((e)=>e.fromModel()).toList(),
-    skills:skills.map((e)=>e.toEntity()).toList() ,
+    skills:skills?.toEntity() ,
   );
 
 
@@ -91,6 +89,6 @@ class PortfolioModel {
     experience:experience.map((e)=>e.toModel()).toList() ,
     certificates:certificates.map((e)=>e.toModel()).toList() ,
     methodologies:methodologies.map((e)=>e.toModel()).toList(),
-    skills:skills.map((e)=>e.toModel()).toList() ,
+    skills:skills?.toModel() ,
   );
 }
