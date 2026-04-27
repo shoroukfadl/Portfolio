@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
+import 'package:portfolio/Features/home/domain/entities/tech_skill_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/skills/skill_card.dart';
 import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+
 import '../../../../../Utilities/Constants/strings.dart';
 class SkillsSection extends StatelessWidget {
-  final List<SkillModel> skills;
-  const SkillsSection({super.key, this.skills = const []});
+  final TechnicalSkillEntity? skills;
+  const SkillsSection({super.key, this.skills});
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +43,9 @@ class SkillsSection extends StatelessWidget {
               crossAxisSpacing: 20,
               childAspectRatio: 2,
             ),
-            itemCount: skills.length,
+            itemCount: skills?.skills.length,
             itemBuilder: (context, index) {
-              return SkillCard(skill: skills[index], index: index);
+              return SkillCard(skill: skills?.skills[index], index: index);
             },
           ),
         ],

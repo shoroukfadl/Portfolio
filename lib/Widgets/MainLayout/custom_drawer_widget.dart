@@ -7,10 +7,8 @@ import 'package:portfolio/Widgets/tooltip_widget.dart';
 import 'package:simple_tooltip/simple_tooltip.dart';
 
 import '../../Core/Language/app_languages.dart';
-import '../../Features/Homel/home_controller.dart';
 import '../../Utilities/Constants/global_keys.dart';
 import '../../Utilities/Constants/strings.dart';
-import '../../Utilities/helper_function.dart';
 import '../Buttons/custom_button_widget.dart';
 import '../Inputs/app_text_widget.dart';
 
@@ -122,8 +120,8 @@ class _CustomDrawerState extends State<CustomDrawer>
           const Spacer(),
           CustomButtonWidget(
             onPressed: () {
-              String? url = HomeController().user?.cv;
-              if (url != null) HelperFunctions.openUrl(url, context);
+              // String? url = HomeController().user?.cv;
+              // if (url != null) HelperFunctions.openUrl(url, context);
             },
             btnColor: colors.accent,
             width: 120,
@@ -150,9 +148,9 @@ class _CustomDrawerState extends State<CustomDrawer>
           16.0.heightBox,
           CustomButtonWidget(
             onPressed: () {
-              String gmailWebUri =
-                  "https://mail.google.com/mail/?view=cm&fs=1&to=${HomeController().user?.email}";
-              HelperFunctions.openUrl(gmailWebUri, context);
+              // String gmailWebUri =
+              //     "https://mail.google.com/mail/?view=cm&fs=1&to=${HomeController().user?.email}";
+              // HelperFunctions.openUrl(gmailWebUri, context);
             },
             child: Text(
               Strings.mail.translate,

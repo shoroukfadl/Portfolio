@@ -3,8 +3,6 @@ import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-import 'education_widget.dart';
-
 class EducationCard extends StatefulWidget {
   final EductionModel item;
   final int index;

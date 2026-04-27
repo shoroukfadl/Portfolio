@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-import '../../../../../Core/Language/app_styles.dart';
 import '../../../../../Models/user_data_model.dart';
-import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
-import '../../../../../Widgets/Custom/rounded_doted_widget.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
-
-import 'package:flutter/material.dart';
-
 import 'education_card.dart';
 
 class EducationSection extends StatefulWidget {

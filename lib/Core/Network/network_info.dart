@@ -7,7 +7,7 @@
 // class NetworkInfoImplementation implements NetworkInfo {
 //   final InternetConnection connectionChecker;
 //
-//   NetworkInfoImplementation({required this.connectionChecker});
+//   NetworkInfoImplementation({nectionChecker});
 //
 //   @override
 //   Future<bool> get isConnected => connectionChecker.hasInternetAccess;

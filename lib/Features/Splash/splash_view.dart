@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:portfolio/Features/Splash/splash_controller.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../Utilities/extensions.dart';
+import '../../Utilities/router_config.dart';
+import '../home/presentation/pages/home_view.dart';
 
 class SplashView extends StatefulWidget {
   static String routeName = "/";
@@ -15,17 +16,18 @@ class SplashView extends StatefulWidget {
   createState() => _SplashViewState();
 }
 
-class _SplashViewState extends StateMVC<SplashView> {
-  _SplashViewState() : super(SplashController()) {
-    con = SplashController();
-  }
+class _SplashViewState extends State<SplashView> {
 
-  late SplashController con;
 
   @override
   void initState() {
     super.initState();
-    con.goToHome();
+    goToHome();
+  }
+
+  void goToHome() {
+    Future.delayed(const Duration(seconds: 2),
+            () => CURRENT_CONTEXT!.goNamed(HomeView.routeName));
   }
 
   @override

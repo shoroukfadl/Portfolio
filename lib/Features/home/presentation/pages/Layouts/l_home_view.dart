@@ -1,14 +1,14 @@
-import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
+import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
 import '../../../../../Utilities/extensions.dart';
-import '../../../../Homel/home_controller.dart';
-import '../../widgets/aboutMe/about_me_title.dart';
 import '../../widgets/aboutMe/about_me_widget.dart';
 import '../../widgets/contact_me.dart';
 import '../../widgets/education/education_widget.dart';
@@ -17,9 +17,9 @@ import '../../widgets/my_projects_widget.dart';
 import '../../widgets/skills/my_skills.dart';
 
 class LargeHomeView extends StatelessWidget {
-  final HomeController con;
-
-  const LargeHomeView({super.key, required this.con});
+  const LargeHomeView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,73 +27,40 @@ class LargeHomeView extends StatelessWidget {
       children: [
         // 32.0.heightBox,
         SliverToBoxAdapter(
-          child: SummarySection(
-            // name: con.user?.name ?? "shorouk fadl",
-            // role: con.user?.jobName ?? "flutter developer",
-            // desc: con.user?.summary ??
-            //     "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
-          ),
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => p.data?.profile != c.data?.profile,
+              builder: (context, s) {
+                return SummarySection(
+                  profile: s.data?.profile,
+                );
+              }),
         ),
         // 64.0.heightBox,
         //
         SliverToBoxAdapter(
-            child: SkillsSection(
-              skills: [
-                SkillModel(
-                  icon: '📱',
-                  title: 'Flutter',
-                  description:
-                  'Expert in building cross-platform mobile applications with Flutter.',
-                ),
-                SkillModel(
-                  icon: '🎨',
-                  title: 'UI/UX Design',
-                  description: 'Creating beautiful and intuitive user interfaces.',
-                ),
-                SkillModel(
-                  icon: '🔧',
-                  title: 'Backend Integration',
-                  description: 'Proficient in REST APIs, Firebase, and real-time databases.',
-                ),
-                SkillModel(
-                  icon: '🐙',
-                  title: 'Version Control',
-                  description:
-                  'Git workflows, collaborative development, and clean histories.',
-                ),
-                SkillModel(
-                  icon: '🧪',
-                  title: 'Testing',
-                  description:
-                  'Unit testing, widget testing, and integration testing.',
-                ),
-                SkillModel(
-                  icon: '📊',
-                  title: 'Performance',
-                  description:
-                  'App optimization, memory profiling, and battery efficiency.',
-                ),
-              ],
-        )),
+            child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (c, p) => p.data?.profile != c.data?.profile,
+                builder: (context, s) {
+                  return SkillsSection(
+                    skills: s.data?.skills ,
+                  );
+                })),
         SliverToBoxAdapter(child: 64.0.heightBox),
         //
-        SliverToBoxAdapter(
-            child: ExperienceSection(
-        )),
+        SliverToBoxAdapter(child: ExperienceSection()),
         // 64.0.heightBox,
         SliverPadding(
           padding: const EdgeInsets.all(Constants.desktopHozPadding),
-          sliver:
-          SliverToBoxAdapter(
+          sliver: SliverToBoxAdapter(
             child: EducationSection(
-              // item: con.user?.eduction ??
-              //     EductionModel(
-              //         country: 'Egp',
-              //         date: '2023',
-              //         desc:
-              //             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales ',
-              //         uniName: 'FCGS OF COMPAUTER '),
-            ),
+                // item: con.user?.eduction ??
+                //     EductionModel(
+                //         country: 'Egp',
+                //         date: '2023',
+                //         desc:
+                //             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales ',
+                //         uniName: 'FCGS OF COMPAUTER '),
+                ),
           ),
         ),
         //
@@ -101,31 +68,24 @@ class LargeHomeView extends StatelessWidget {
             padding: const EdgeInsets.all(Constants.desktopHozPadding),
             sliver: SliverToBoxAdapter(
                 child: MyProjectsWidget(
-              projects: con.user?.project ??
-                  [
-                    ProjectModel(
-                        description: 'fuiewru',
-                        companyName: 'ddwrs comf',
-                        images: [
-                          'https://tse2.mm.bing.net/th/id/OIP.e6voHjED4omwbyU6TqoCmwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3',
-                          'https://tse2.mm.bing.net/th/id/OIP.e6voHjED4omwbyU6TqoCmwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3'
-                        ],
-                        link: '',
-                        projectName: 'detts',
-                        projectType: 'web')
-                  ],
+              projects: [
+                ProjectModel(
+                    description: 'fuiewru',
+                    companyName: 'ddwrs comf',
+                    images: [
+                      'https://tse2.mm.bing.net/th/id/OIP.e6voHjED4omwbyU6TqoCmwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3',
+                      'https://tse2.mm.bing.net/th/id/OIP.e6voHjED4omwbyU6TqoCmwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3'
+                    ],
+                    link: '',
+                    projectName: 'detts',
+                    projectType: 'web')
+              ],
             ))),
-        SliverToBoxAdapter(child: ContactMeWidget(con: con))
+        SliverToBoxAdapter(child: ContactMeWidget())
       ],
     );
   }
 }
-
-
-
-
-
-
 
 class ModernStackPortfolio extends StatefulWidget {
   const ModernStackPortfolio({super.key});
@@ -139,10 +99,26 @@ class _ModernStackPortfolioState extends State<ModernStackPortfolio> {
 
   // البيانات اللي هتظهر في الكروت
   final List<Map<String, dynamic>> sections = [
-    {"title": "Experience", "color": Color(0xFF1E293B), "content": "Senior Flutter Developer at Jana Pack..."},
-    {"title": "Selected Projects", "color": Color(0xFF0F172A), "content": "E-commerce App, Portfolio, Logic Libs..."},
-    {"title": "Education", "color": Color(0xFF161E2E), "content": "CS Degree, Mobile Nanodegree..."},
-    {"title": "Contact", "color": Color(0xFF1E293B), "content": "Let's build something great together."},
+    {
+      "title": "Experience",
+      "color": Color(0xFF1E293B),
+      "content": "Senior Flutter Developer at Jana Pack..."
+    },
+    {
+      "title": "Selected Projects",
+      "color": Color(0xFF0F172A),
+      "content": "E-commerce App, Portfolio, Logic Libs..."
+    },
+    {
+      "title": "Education",
+      "color": Color(0xFF161E2E),
+      "content": "CS Degree, Mobile Nanodegree..."
+    },
+    {
+      "title": "Contact",
+      "color": Color(0xFF1E293B),
+      "content": "Let's build something great together."
+    },
   ];
 
   @override
@@ -160,18 +136,30 @@ class _ModernStackPortfolioState extends State<ModernStackPortfolio> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                   Text("JANA\nDEV.",
-                      style: TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.w900, height: 0.9)),
+                  Text("JANA\nDEV.",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 60,
+                          fontWeight: FontWeight.w900,
+                          height: 0.9)),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text("SUMMARY", style: TextStyle(color: Colors.blueAccent, fontWeight: FontWeight.bold, fontSize: 12)),
+                      const Text("SUMMARY",
+                          style: TextStyle(
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12)),
                       const SizedBox(height: 10),
-                      Text("Architecting high-performance\nbilingual Flutter applications\nwith Clean Architecture.",
-                          style: TextStyle(color: Colors.white.withOpacity(0.6), height: 1.5)),
+                      Text(
+                          "Architecting high-performance\nbilingual Flutter applications\nwith Clean Architecture.",
+                          style: TextStyle(
+                              color: Colors.white.withOpacity(0.6),
+                              height: 1.5)),
                     ],
                   ),
-                  const Text("© 2026", style: TextStyle(color: Colors.white24, fontSize: 12)),
+                  const Text("© 2026",
+                      style: TextStyle(color: Colors.white24, fontSize: 12)),
                 ],
               ),
             ),
@@ -203,7 +191,12 @@ class StackCard extends StatelessWidget {
   final Map<String, dynamic> data;
   final ScrollController controller;
 
-  const StackCard({super.key, required this.index, required this.data, required this.controller});
+  const StackCard({
+    super.key,
+    required this.index,
+    required this.data,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -216,11 +209,13 @@ class StackCard extends StatelessWidget {
         double cardPosition = (index * cardHeight);
 
         // الـ Logic السحري هنا:
-        double topPadding = (cardPosition - scrollOffset).clamp(0.0, double.infinity);
+        double topPadding =
+            (cardPosition - scrollOffset).clamp(0.0, double.infinity);
 
         return Container(
           height: cardHeight,
-          margin: EdgeInsets.only(top: index == 0 ? 0 : 0), // إلغاء المسافات بين الكروت
+          margin: EdgeInsets.only(
+              top: index == 0 ? 0 : 0), // إلغاء المسافات بين الكروت
           padding: EdgeInsets.only(top: topPadding > 0 ? 0 : 0),
           child: Transform.translate(
             offset: Offset(0, topPadding > 0 ? 0 : 0),
@@ -228,24 +223,37 @@ class StackCard extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: data['color'],
-                border: const Border(top: BorderSide(color: Colors.white10, width: 0.5)),
+                border: const Border(
+                    top: BorderSide(color: Colors.white10, width: 0.5)),
                 boxShadow: [
-                  BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 40, offset: const Offset(0, -20))
+                  BoxShadow(
+                      color: Colors.black.withOpacity(0.5),
+                      blurRadius: 40,
+                      offset: const Offset(0, -20))
                 ],
               ),
               padding: const EdgeInsets.all(50),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("0${index + 1}", style: const TextStyle(color: Colors.blueAccent, fontFamily: 'monospace')),
+                  Text("0${index + 1}",
+                      style: const TextStyle(
+                          color: Colors.blueAccent, fontFamily: 'monospace')),
                   const SizedBox(height: 20),
-                  Text(data['title'], style: const TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
+                  Text(data['title'],
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold)),
                   const SizedBox(height: 30),
-                  Text(data['content'], style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 18)),
+                  Text(data['content'],
+                      style: TextStyle(
+                          color: Colors.white.withOpacity(0.5), fontSize: 18)),
                   const Spacer(),
                   const Align(
                     alignment: Alignment.bottomRight,
-                    child: Icon(Icons.arrow_downward, color: Colors.white10, size: 40),
+                    child: Icon(Icons.arrow_downward,
+                        color: Colors.white10, size: 40),
                   )
                 ],
               ),
@@ -256,10 +264,6 @@ class StackCard extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 class DNASkillsView extends StatefulWidget {
   @override

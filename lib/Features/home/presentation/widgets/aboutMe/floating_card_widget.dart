@@ -62,12 +62,11 @@ class _AnimatedCard extends StatelessWidget {
   final double rotation;
 
   const _AnimatedCard({
-    required this.controller,
     required this.title,
     required this.description,
     required this.color,
     required this.position,
-    required this.rotation,
+    required this.rotation, required this.controller,
   });
 
   @override

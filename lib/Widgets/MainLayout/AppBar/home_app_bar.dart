@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/helper_function.dart';
-import 'package:portfolio/Utilities/portifilo_icons.dart';
 import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
 
-import '../../../Core/Language/app_styles.dart';
-import '../../../Features/Homel/home_controller.dart';
 import '../../../Utilities/Constants/strings.dart';
 import 'home_app_bar_item.dart';
 
@@ -99,8 +95,8 @@ class HomeAppBar extends StatelessWidget {
             children: [
               CustomButtonWidget(
                 onPressed: () {
-                  String? url = HomeController().user?.cv;
-                  if (url != null) HelperFunctions.openUrl(url, context);
+                  // String? url = HomeController().user?.cv;
+                  // if (url != null) HelperFunctions.openUrl(url, context);
                 },
                 title: Strings.resume.translate,
                 titleColor: colors.accent,

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
+import 'package:portfolio/Features/home/domain/entities/tech_skill_entity.dart';
 import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 class SkillCard extends StatefulWidget {
-  final SkillModel skill;
+  final SkillEntity? skill;
   final int index;
 
   const SkillCard({super.key,
@@ -88,20 +89,20 @@ class _SkillCardState extends State<SkillCard>
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.skill.icon??"",
-                    style: const TextStyle(fontSize: 36),
-                  ),
+                  // Text(
+                  //   widget.skill.icon??"",
+                  //   style: const TextStyle(fontSize: 36),
+                  // ),
                   const SizedBox(height: 15),
                   Text(
-                    widget.skill.title??"",
+                    widget.skill?.category??"",
                     style: AppTextStyles.semiBold16(
                       color:colors.accent,
                     ),
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    widget.skill.description??"",
+                    widget.skill?.skillName??"",
                      style: AppTextStyles.regular14(
                     color:colors.textSecondary,
                   ),

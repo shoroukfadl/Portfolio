@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/portifilo_icons.dart';
-import 'dart:math';
-import 'dart:ui';
 
 import '../../../../../Utilities/Constants/strings.dart';
-import '../../../../../Utilities/helper_function.dart';
 import '../../../../../Widgets/Buttons/custom_button_widget.dart';
-import '../../../../Homel/home_controller.dart';
 
 class SummaryContent extends StatelessWidget {
   final String firstName,lastName, role, summary;
@@ -70,8 +66,8 @@ class SummaryContent extends StatelessWidget {
           children: [
             CustomButtonWidget(
               onPressed: () {
-                String? url = HomeController().user?.cv;
-                if (url != null) HelperFunctions.openUrl(url, context);
+                // String? url = HomeController().user?.cv;
+                // if (url != null) HelperFunctions.openUrl(url, context);
               },
               btnColor: colors.accent,
               width: 140,
@@ -94,9 +90,9 @@ class SummaryContent extends StatelessWidget {
             CustomButtonWidget.outLined(
 
               onPressed: () {
-                String gmailWebUri =
-                    "https://mail.google.com/mail/?view=cm&fs=1&to=${HomeController().user?.email}";
-                HelperFunctions.openUrl(gmailWebUri, context);
+                // String gmailWebUri =
+                //     "https://mail.google.com/mail/?view=cm&fs=1&to=${HomeController().user?.email}";
+                // HelperFunctions.openUrl(gmailWebUri, context);
               },
               borderColor: colors.secondary,
               width: 40,
