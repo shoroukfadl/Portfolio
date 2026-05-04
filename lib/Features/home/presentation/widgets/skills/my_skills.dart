@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/tech_skill_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/skills/skill_card.dart';
-import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../../../../Utilities/Constants/strings.dart';

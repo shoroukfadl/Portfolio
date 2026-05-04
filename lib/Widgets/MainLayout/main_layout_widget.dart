@@ -24,9 +24,9 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
       body: Stack(
         children: [
           const AnimatedBackground(),
-          Column(
+          Row(
             children: [
-               HomeAppBar(),
+               const HomeAppBar(),
               widget.child.expand,
             ],
           ),

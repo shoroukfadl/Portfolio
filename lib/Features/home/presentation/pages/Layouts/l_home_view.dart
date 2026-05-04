@@ -10,11 +10,10 @@ import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
 import '../../../../../Utilities/extensions.dart';
 import '../../widgets/aboutMe/about_me_widget.dart';
-import '../../widgets/contact_me.dart';
+import '../../widgets/contact/contact_me.dart';
 import '../../widgets/education/education_widget.dart';
 import '../../widgets/experince/experince_card_widget.dart';
 import '../../widgets/my_projects_widget.dart';
-import '../../widgets/skills/my_skills.dart';
 
 class LargeHomeView extends StatelessWidget {
   const LargeHomeView({
@@ -35,33 +34,34 @@ class LargeHomeView extends StatelessWidget {
                 );
               }),
         ),
-        // 64.0.heightBox,
-        //
-        SliverToBoxAdapter(
-            child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                buildWhen: (c, p) => p.data?.profile != c.data?.profile,
-                builder: (context, s) {
-                  return SkillsSection(
-                    skills: s.data?.skills ,
-                  );
-                })),
+        //64.0.heightBox,
+
+        // SliverToBoxAdapter(
+        //     child: BlocBuilder<PortfolioCubit, PortfolioState>(
+        //         buildWhen: (c, p) => p.data?.skills != c.data?.skills,
+        //         builder: (context, s) {
+        //           return SkillsSection(
+        //             skills: s.data?.skills ,
+        //           );
+        //         })),
         SliverToBoxAdapter(child: 64.0.heightBox),
         //
-        SliverToBoxAdapter(child: ExperienceSection()),
+        SliverToBoxAdapter(
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => p.data?.experience != c.data?.experience,
+              builder: (context, s) {
+                return ExperienceSection(
+                  experiences: s.data?.experience ?? [],
+                );
+              }),
+        ),
+
         // 64.0.heightBox,
-        SliverPadding(
-          padding: const EdgeInsets.all(Constants.desktopHozPadding),
-          sliver: SliverToBoxAdapter(
-            child: EducationSection(
-                // item: con.user?.eduction ??
-                //     EductionModel(
-                //         country: 'Egp',
-                //         date: '2023',
-                //         desc:
-                //             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales ',
-                //         uniName: 'FCGS OF COMPAUTER '),
-                ),
-          ),
+        SliverToBoxAdapter(
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => p.data?.education != c.data?.education,
+              builder: (c, s) =>
+                  EducationSection(education: s.data?.education.firstOrNull)),
         ),
         //
         SliverPadding(
@@ -81,7 +81,15 @@ class LargeHomeView extends StatelessWidget {
                     projectType: 'web')
               ],
             ))),
-        SliverToBoxAdapter(child: ContactMeWidget())
+        SliverToBoxAdapter(
+            child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (c, p) => p.data?.profile != c.data?.profile,
+                builder: (c, s) => ContactMeWidget(
+                      email: s.data?.profile?.email ?? "",
+                      linkedIN: s.data?.profile?.linkedin ?? "",
+                      phoneNumber: s.data?.profile?.phone ?? "",
+                      github: s.data?.profile?.github ?? "",
+                    )))
       ],
     );
   }

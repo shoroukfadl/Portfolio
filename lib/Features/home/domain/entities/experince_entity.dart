@@ -1,34 +1,42 @@
 import 'package:equatable/equatable.dart';
 
-class ExperienceEntity extends Equatable{
+class ExperienceEntity extends Equatable {
   final String? id;
-  final String? profileId;
-  final String? jobTitle;
+  final String? userId;
+  final String? positionTitle;
   final String? companyName;
+  final String? employmentType;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final bool isCurrent; // Non-optional
   final String? location;
-  final bool status;
-  final String? period;
-  final List<String> responsibilities;
+  final String? description;
+  final String? seniorityLevel;
+  final int? displayOrder;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
-  ExperienceEntity({
+  const ExperienceEntity({
     this.id,
-    this.profileId,
-    this.jobTitle,
+    this.userId,
+    this.positionTitle,
     this.companyName,
+    this.employmentType,
+    this.startDate,
+    this.endDate,
+    this.isCurrent = false,
     this.location,
-    this.period,
-    this.responsibilities=const [], this.status=false,
+    this.description,
+    this.seniorityLevel,
+    this.displayOrder,
+    this.createdAt,
+    this.updatedAt,
   });
 
-
+  @override
   List<Object?> get props => [
-    id,
-    profileId,
-    jobTitle,
-    companyName,
-    location,
-    period,
-    responsibilities,
-    status
+    id, userId, positionTitle, companyName, employmentType,
+    startDate, endDate, isCurrent, location, description,
+    seniorityLevel, displayOrder, createdAt, updatedAt,
   ];
 }

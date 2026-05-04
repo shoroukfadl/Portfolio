@@ -1,64 +1,111 @@
-import 'package:portfolio/Features/home/domain/entities/experince_entity.dart';
+import '../../domain/entities/experince_entity.dart';
 
 class ExperienceModel {
   final String? id;
-  final String? profileId;
-  final String? jobTitle;
+  final String? userId;
+  final String? positionTitle;
   final String? companyName;
+  final String? employmentType;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final bool isCurrent;
   final String? location;
-  final String? period;
-  final bool status;
-  final List<String> responsibilities;
+  final String? description;
+  final String? seniorityLevel;
+  final int? displayOrder;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   ExperienceModel({
     this.id,
-    this.profileId,
-    this.jobTitle,
+    this.userId,
+    this.positionTitle,
     this.companyName,
+    this.employmentType,
+    this.startDate,
+    this.endDate,
+    this.isCurrent = false,
     this.location,
-    this.period,
-    this.responsibilities=const [],
-    this.status=false
+    this.description,
+    this.seniorityLevel,
+    this.displayOrder,
+    this.createdAt,
+    this.updatedAt,
   });
 
-  factory ExperienceModel.fromJson(Map<String, dynamic> json) => ExperienceModel(
-    id: json['id']?.toString(),
-    profileId: json['profile_id'],
-    jobTitle: json['job_title'],
-    companyName: json['company_name'],
-    location: json['location'],
-    period: json['period'],
-    status: json['status']??false,
-    responsibilities: List<String>.from(json['responsibilities'] ?? []),
-  );
+  // Convert Model to Entity
+  ExperienceEntity toEntity() {
+    return ExperienceEntity(
+      id: id,
+      userId: userId,
+      positionTitle: positionTitle,
+      companyName: companyName,
+      employmentType: employmentType,
+      startDate: startDate,
+      endDate: endDate,
+      isCurrent: isCurrent,
+      location: location,
+      description: description,
+      seniorityLevel: seniorityLevel,
+      displayOrder: displayOrder,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
+  }
 
-  Map<String, dynamic> toJson() => {
-    'job_title': jobTitle,
-    'company_name': companyName,
-    'location': location,
-    'period': period,
-    'responsibilities': responsibilities,
-  };
+  // Convert Entity to Model (Static factory)
+  factory ExperienceModel.fromEntity(ExperienceEntity entity) {
+    return ExperienceModel(
+      id: entity.id,
+      userId: entity.userId,
+      positionTitle: entity.positionTitle,
+      companyName: entity.companyName,
+      employmentType: entity.employmentType,
+      startDate: entity.startDate,
+      endDate: entity.endDate,
+      isCurrent: entity.isCurrent,
+      location: entity.location,
+      description: entity.description,
+      seniorityLevel: entity.seniorityLevel,
+      displayOrder: entity.displayOrder,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
+    );
+  }
 
-   ExperienceModel toModel() => ExperienceModel(
-    id:id ,
-    profileId:profileId,
-    jobTitle:jobTitle,
-    companyName:companyName ,
-    location:location ,
-    period:period ,
-    responsibilities:responsibilities ,
-     status: status
-  );
-   ExperienceEntity fromModel() => ExperienceEntity(
-    id:id ,
-    profileId:profileId,
-    jobTitle:jobTitle,
-    companyName:companyName ,
-    location:location ,
-    period:period ,
-    status: status,
-    responsibilities:responsibilities ,
-  );
+  // JSON Mapping for Supabase
+  factory ExperienceModel.fromJson(Map<String, dynamic> json) {
+    return ExperienceModel(
+      id: json['id'],
+      userId: json['user_id'],
+      positionTitle: json['position_title'],
+      companyName: json['company_name'],
+      employmentType: json['employment_type'],
+      startDate: json['start_date'] != null ? DateTime.parse(json['start_date']) : null,
+      endDate: json['end_date'] != null ? DateTime.parse(json['end_date']) : null,
+      isCurrent: json['is_current'] ?? false,
+      location: json['location'],
+      description: json['description'],
+      seniorityLevel: json['seniority_level'],
+      displayOrder: json['display_order'],
+      createdAt: json['created_at'] != null ? DateTime.parse(json['created_at']) : null,
+      updatedAt: json['updated_at'] != null ? DateTime.parse(json['updated_at']) : null,
+    );
+  }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'user_id': userId,
+      'position_title': positionTitle,
+      'company_name': companyName,
+      'employment_type': employmentType,
+      'start_date': startDate?.toIso8601String(),
+      'end_date': endDate?.toIso8601String(),
+      'is_current': isCurrent,
+      'location': location,
+      'description': description,
+      'seniority_level': seniorityLevel,
+      'display_order': displayOrder,
+    };
+  }
 }

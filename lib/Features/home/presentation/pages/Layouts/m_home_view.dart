@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-import '../../widgets/contact_me.dart';
 import '../../widgets/skills/my_skills.dart';
 
 class MediumHomeView extends StatelessWidget {
@@ -30,7 +29,6 @@ class MediumHomeView extends StatelessWidget {
         //       "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
         // ),
 
-        ContactMeWidget()
       ],
     );
   }

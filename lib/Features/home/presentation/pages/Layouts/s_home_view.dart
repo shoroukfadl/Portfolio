@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-import '../../widgets/contact_me.dart';
-
 class SmallHomeView extends StatelessWidget {
 
   const SmallHomeView({super.key, });
@@ -26,7 +24,6 @@ class SmallHomeView extends StatelessWidget {
         //       "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
         // ),
 
-        ContactMeWidget()
       ],
     );
   }

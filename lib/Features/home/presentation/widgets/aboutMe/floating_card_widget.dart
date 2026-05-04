@@ -44,7 +44,7 @@ class FloatingCards extends StatelessWidget {
           controller: cardControllers[2],
           title: '🚀 Modern',
           description: 'Latest Flutter patterns and best practices',
-          color: const Color(0xffbe60c5),
+          color: colors.border,
           position: const Offset(-30, 120),
           rotation: 0,
         ),

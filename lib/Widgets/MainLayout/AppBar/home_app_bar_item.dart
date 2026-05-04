@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-import '../../../Core/Language/app_styles.dart';
-
 class HomeAppBarItem extends StatefulWidget {
   final Function() onTap;
-  final String title;
+  final IconData icon;
+  final String label; // أضفت نص بجانب الأيقونة إذا أردت
 
   const HomeAppBarItem({
     super.key,
     required this.onTap,
-    required this.title,
+    required this.icon,
+    this.label = "",
   });
 
   @override
@@ -23,36 +23,48 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+
+    // الألوان بناءً على حالة الـ Hover
+    final activeColor = colors.accent; // اللون عند الـ Hover
+    final idleColor = colors.surface.withOpacity(0.7); // اللون الافتراضي
+
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedDefaultTextStyle(
-        duration: const Duration(milliseconds: 300),
-        style:AppTextStyles.semiBold14().copyWith(
-          color: _isHovered ? const Color(0xFF00d9ff) : Colors.white70,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(widget.title, style: AppTextStyles.semiBold14(
-              color: _isHovered ?colors.accent: colors.textPrimary
-            ),),
-            if (_isHovered)
-              Container(
-                height: 2,
-                width: 80,
-                margin: const EdgeInsets.only(top: 4),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                    colors.accent,
-                      colors.secondary
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(1),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // أنميشن للأيقونة (تغيير الحجم واللون)
+              AnimatedScale(
+                scale: _isHovered ? 1.2 : 1.0,
+                duration: const Duration(milliseconds: 200),
+                child: Icon(
+                  widget.icon,
+                  color: _isHovered ? activeColor : idleColor,
+                  size: 24,
                 ),
               ),
-          ],
+
+              const SizedBox(height: 4),
+
+              // أنميشن للمؤشر السفلي (Container يتمدد)
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+                width: _isHovered ? 20 : 0, // يتمدد من 0 إلى 20
+                height: 3,
+                decoration: BoxDecoration(
+                  color: activeColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

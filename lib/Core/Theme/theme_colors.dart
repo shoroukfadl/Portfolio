@@ -4,28 +4,17 @@ import 'package:flutter/material.dart';
 class AppColors extends ThemeExtension<AppColors> {
   // ─── Dark Theme (Primary) ────────────────────────────────────────────────
   static const darkValues = AppColors(
-    background: Color(0xFF0F172A),
-    // Void Black
-    surface: Color(0xFF0F1629),
-    // Deep Navy
-    surfaceElevated: Color(0xFF1A2340),
-    // Slate Blue
-    border: Color(0xFF2A3555),
-    // Steel
-    accent: Color(0xFF8763F1),
-    // Flutter Blue
-    secondary: Color(0xFF38BDF8),
-    // Electric Cyan
-    success: Color(0xFF00E5A0),
-    // Mint
+    background: Color(0xff0d1019),
+    surface: Color(0xff000000),
+    surfaceElevated: Color(0xff040303),
+    border: Color(0xff636261),
+    secondary: Color(0xff918D8A),
+    accent: Color(0xff464243),
+    success: Color(0xFF05B367),
     warning: Color(0xFFFFB300),
-    // Amber
     danger: Color(0xFFFF4757),
-    // Coral Red
-    textPrimary: Color(0xFFF1F5F9),
-    // Cloud White
-    textSecondary: Color(0xFF7A8BB0),
-    // Steel Grey
+    textPrimary: Color(0xff636261),
+    textSecondary: Color(0xffADADAD),
   );
 
   // Shared
@@ -34,30 +23,17 @@ class AppColors extends ThemeExtension<AppColors> {
   static const Color error = Color(0xFFDC2626);
   // ─── Light Theme ─────────────────────────────────────────────────────────
   static const lightValues = AppColors(
-    background: Color(0xFFF8F9FD),
-    // Ice White
-    surface: Color(0xFFFFFFFF),
-    // Soft Cloud
-    surfaceElevated: Color(0xFFEDF1FB),
-    // Lavender Mist
-    border: Color(0xFFC8D3EF),
-    // Periwinkle
-    accent: Color(0xFF8763F1),
-    // Flutter Blue (same across themes)
-    secondary: Color(0xFF0EA5E9),
-    // Ocean Cyan (adjusted for light bg)
-    // Dart Purple (deeper for light bg)
-    success: Color(0xFF00C48C),
-    // Adjusted Mint
+    background: Color(0xffE8E8E6),
+    surface: Color(0xffADADAD),
+    surfaceElevated: Color(0xffdcdada),
+    border: Color(0xff636261),
+    secondary: Color(0xff918D8A),
+    accent: Color(0xff464243),
+    success: Color(0xFF05B367),
     warning: Color(0xFFFFB300),
-    // Amber
     danger: Color(0xFFFF4757),
-    // Coral Red
-    textPrimary: Color(0xFF1F2937),
-    // Midnight
-    textSecondary: Color(0xFF4A5878),
-    // Slate
-    // Fog (light variant)
+    textPrimary: Color(0xff636261),
+    textSecondary: Color(0xffADADAD),
   );
 
   // ─── Fields ───────────────────────────────────────────────────────────────

@@ -2,35 +2,45 @@ import 'package:equatable/equatable.dart';
 
 class EducationEntity extends Equatable {
   final String? id;
-  final String? profileId;
+  final String? userId;
   final String? degree;
-  final String? university;
-  final String? grade;
-  final String? duration;
-  final String? gradProjectTitle;
-  final List<String> gradProjectTech;
+  final String? fieldOfStudy;
+  final String? institution;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final bool isCurrent;
+  final double? gpa;
+  final String? description;
+  final int displayOrder;
+  final String? icon;
 
-  EducationEntity({
+  const EducationEntity({
     this.id,
-    this.profileId,
+    this.userId,
     this.degree,
-    this.university,
-    this.grade,
-    this.duration,
-    this.gradProjectTitle,
-    this.gradProjectTech = const [],
+    this.fieldOfStudy,
+    this.institution,
+    this.startDate,
+    this.endDate,
+    this.isCurrent = false,
+    this.gpa,
+    this.description,
+    this.displayOrder = 0, this.icon,
   });
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
-        id,
-        profileId,
-        degree,
-        university,
-        grade,
-        duration,
-        gradProjectTitle,
-        gradProjectTech,
-      ];
+    id,
+    userId,
+    degree,
+    fieldOfStudy,
+    institution,
+    startDate,
+    endDate,
+    isCurrent,
+    gpa,
+    description,
+    displayOrder,
+    icon
+  ];
 }

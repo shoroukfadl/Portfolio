@@ -57,8 +57,6 @@ abstract class HelperFunctions {
     String? message,
     ContentType? type,
   }) {
-    final colors = context.colors;
-
     final snackBar = SnackBar(
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(
@@ -68,9 +66,7 @@ abstract class HelperFunctions {
       backgroundColor: Colors.transparent,
       content: AwesomeSnackbarContent(
         title: message ?? "",
-        titleTextStyle: AppTextStyles.semiBold28().copyWith(
-          color: Colors.white,
-        ),
+        titleTextStyle: AppTextStyles.semiBold14(color: Colors.white,),
         message: "",
         contentType: type ?? ContentType.success,
       ),
@@ -86,6 +82,31 @@ abstract class HelperFunctions {
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
     } else
-      showCustomToast(context, message: "Could not launch $url");
+      showCustomToast(context, message: "Could not launch $url" ,type: ContentType.failure);
+  }
+
+
+  static Future<void> openWhatsApp({
+    required String phoneNumber,
+    String message = '',
+  }) async {
+    try {
+      String cleanPhone = phoneNumber
+          .replaceAll('+', '').replaceAll(' ', '')
+          .replaceAll('-', '').replaceAll('(', '')
+          .replaceAll(')', '').replaceAll(RegExp(r'[^0-9]'), '');
+
+      String url = 'https://wa.me/$cleanPhone';
+      if (message.isNotEmpty) {
+        url += '?text=${Uri.encodeComponent(message)}';
+      }
+
+      final Uri whatsappUri = Uri.parse(url);
+      if (await canLaunchUrl(whatsappUri)) {
+        await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 }
