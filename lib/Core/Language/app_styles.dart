@@ -7,9 +7,11 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   static TextStyle get mainFamily => GoogleFonts.poppins();
   static TextStyle get secondaryFamily => GoogleFonts.iceland();
 
-
-
-  static TextStyle extraBold72({Color? color}) => mainFamily.copyWith(fontSize: 72, fontWeight: FontWeight.w800, color: color ?? Colors.black,);
+  static TextStyle extraBold72({Color? color}) => mainFamily.copyWith(
+        fontSize: 72,
+        fontWeight: FontWeight.w800,
+        color: color ?? Colors.black,
+      );
 
   static TextStyle extraBold56({Color? color}) => mainFamily.copyWith(
         fontSize: 56,
@@ -29,6 +31,34 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         color: color ?? Colors.black,
       );
 
+  static TextStyle extraBold16({Color? color}) => mainFamily.copyWith(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: color ?? Colors.black,
+        height: 1.15,
+        letterSpacing: -1.0,
+      );
+  static TextStyle extraBold18({Color? color}) => mainFamily.copyWith(
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+        color: color ?? Colors.black,
+        height: 1.15,
+        letterSpacing: -1.0,
+      );
+ static TextStyle extraBold24({Color? color}) => mainFamily.copyWith(
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        color: color ?? Colors.black,
+        height: 1.15,
+        letterSpacing: -1.0,
+      ); static TextStyle extraBold20({Color? color}) => mainFamily.copyWith(
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        color: color ?? Colors.black,
+        height: 1.15,
+        letterSpacing: -1.0,
+      );
+
   static TextStyle extraBold14({Color? color}) => mainFamily.copyWith(
         fontSize: 14,
         fontWeight: FontWeight.w700,
@@ -36,7 +66,6 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         height: 1.15,
         letterSpacing: -1.0,
       );
-
 
   static TextStyle semiBold28({Color? color}) => mainFamily.copyWith(
         fontSize: 28,
@@ -84,16 +113,19 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         color: color ?? Colors.black,
         height: 1.4,
         letterSpacing: 0,
+      );  static TextStyle semiBold12({Color? color}) => mainFamily.copyWith(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: color ?? Colors.black,
+        height: 1.4,
+        letterSpacing: 0,
       );
-
-
 
   /// 18px · w400 — Long-form reading body
   static TextStyle regular18({Color? color}) => secondaryFamily.copyWith(
         fontSize: 18,
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
-
       );
 
   /// 16px · w400 — Standard body / descriptions
@@ -143,7 +175,8 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         color: color ?? Colors.black,
         height: 1.0,
         letterSpacing: 0.3,
-      );  static TextStyle medium20({Color? color}) => secondaryFamily.copyWith(
+      );
+  static TextStyle medium20({Color? color}) => secondaryFamily.copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w500,
         color: color ?? Colors.black,

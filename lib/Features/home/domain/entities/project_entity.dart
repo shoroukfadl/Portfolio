@@ -1,34 +1,62 @@
 import 'package:equatable/equatable.dart';
 
 class ProjectEntity extends Equatable {
+  final List<String> images;
+  final String? company;
+  final String? profileId;
   final String? id;
-  final String ?profileId;
-  final String ?title;
-  final String ?projectType;
-  final String ?platform;
-  final List<String> keyTasks;
-  final bool isManual;
+  final String? industry;
+  final List<LinkEntity> iosLinks;
+  final List<LinkEntity> webLinks;
+  final List<LinkEntity> androidLinks;
+  final String? projectName;
+  final String? projectType;
+  final String? description;
+  final List<String> technicalTools;
 
   ProjectEntity({
     this.id,
     this.profileId,
-    this.title,
+    this.projectName,
     this.projectType,
-    this.platform,
-    this.keyTasks=const [],
-    this.isManual=false,
+    this.technicalTools = const [],
+    this.images = const [],
+    this.company,
+    this.industry,
+    this.iosLinks = const [],
+    this.webLinks = const [],
+    this.androidLinks = const [],
+    this.description,
   });
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-    id,
-    profileId,
-    title,
-    projectType,
-    platform,
-    keyTasks,
-    isManual,
-  ];
+        id,
+        profileId,
+        projectName,
+        projectType,
+        technicalTools,
+        androidLinks,
+        iosLinks,
+        webLinks,
+        images,
+        company,
+        industry,
+        description,
+      ];
+}
 
+class LinkEntity extends Equatable {
+  final String? url;
+  final String? name;
+
+  LinkEntity({
+    this.url,
+    this.name,
+  });
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [url, name];
 }

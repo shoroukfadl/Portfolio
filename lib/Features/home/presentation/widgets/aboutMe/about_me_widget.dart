@@ -52,26 +52,7 @@ class _SummarySectionState extends State<SummarySection>
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SizedBox(
         height: isMobile ? 600 : 500,
-        child: isMobile
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SummaryContent(
-                    firstName: widget.profile?.firstName ?? "",
-                    lastName: widget.profile?.lastName ?? "",
-                    role: widget.profile?.jobTitle ?? "",
-                    summary: widget.profile?.summary ?? "",
-                  ),
-                  const SizedBox(height: 40),
-                  FloatingCards(
-                    floatController: _floatController,
-                    cardControllers: _cardControllers,
-                    eduction: EductionModel(),
-                    isMobile: true,
-                  ),
-                ],
-              )
-            : Row(
+        child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
@@ -80,6 +61,8 @@ class _SummarySectionState extends State<SummarySection>
                       lastName: widget.profile?.lastName ?? "",
                       role: widget.profile?.jobTitle ?? "",
                       summary: widget.profile?.summary ?? "",
+                      cv: widget.profile?.cv??"",
+                      email: widget.profile?.email??"",
                     ),
                   ),
                   const SizedBox(width: 60),

@@ -1,58 +1,89 @@
 import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
 
 class ProjectModel {
-  final String? id;
+  final List<String> images;
+  final String? company;
   final String? profileId;
-  final String? title;
+  final String? id;
+  final String? industry;
+  final List<LinkModel> iosLinks;
+  final List<LinkModel> webLinks;
+  final List<LinkModel> androidLinks;
+  final String? projectName;
   final String? projectType;
-  final String? platform;
-  final List<String> keyTasks;
-  final bool isManual;
+  final String? description;
+  final List<String> technicalTools;
 
   ProjectModel({
     this.id,
     this.profileId,
-    this.title,
+    this.projectName,
     this.projectType,
-    this.platform,
-    this.keyTasks = const [],
-    this.isManual = false,
+    this.technicalTools = const [],
+    this.images = const [],
+    this.company,
+    this.industry,
+    this.iosLinks = const [],
+    this.webLinks = const [],
+    this.androidLinks = const [],
+    this.description,
   });
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) => ProjectModel(
-        id: json['id']?.toString(),
+        id: json['project_id']?.toString(),
         profileId: json['profile_id'],
-        title: json['title'],
+        projectName: json['project_name'],
         projectType: json['project_type'],
-        platform: json['platform'],
-        keyTasks: List<String>.from(json['key_tasks'] ?? []),
-        isManual: json['manual'] ?? true,
+        technicalTools: List<String>.from(json['technical_tools'] ?? []),
+        androidLinks: json['android_links']== null ? []: (json['android_links']  as List).map((e)=>LinkModel.fromJson(e)).toList(),
+        iosLinks: json['ios_links']== null ? []: (json['ios_links']  as List).map((e)=>LinkModel.fromJson(e)).toList(),
+        webLinks: json['web_links']== null ? []: (json['web_links']  as List).map((e)=>LinkModel.fromJson(e)).toList(),
+        images: List<String>.from(json['images'] ?? []),
+        company: json['company'],
+        industry: json['industry'],
+        description: json['description'],
       );
-
-  Map<String, dynamic> toJson() => {
-        'title': title,
-        'project_type': projectType,
-        'platform': platform,
-        'key_tasks': keyTasks,
-        'manual': isManual,
-      };
 
   ProjectModel toModel() => ProjectModel(
-        id: id,
-        profileId: profileId,
-        title: title,
-        projectType: projectType,
-        platform: platform,
-        keyTasks: keyTasks,
-        isManual: isManual,
+      id:id,
+      profileId:profileId,
+      projectName:projectName,
+      projectType:projectType,
+      technicalTools:technicalTools,
+      androidLinks:androidLinks,
+      iosLinks:iosLinks,
+      webLinks:webLinks,
+      images:images,
+      company:company,
+      industry:industry,
+      description:description,
       );
   ProjectEntity fromModel() => ProjectEntity(
-        id: id,
-        profileId: profileId,
-        title: title,
-        projectType: projectType,
-        platform: platform,
-        keyTasks: keyTasks,
-        isManual: isManual,
+      id:id,
+      profileId:profileId,
+      projectName:projectName,
+      projectType:projectType,
+      technicalTools:technicalTools,
+      androidLinks:androidLinks.map((e)=> e.toEntity()).toList(),
+      iosLinks:iosLinks.map((e)=> e.toEntity()).toList(),
+      webLinks:webLinks.map((e)=> e.toEntity()).toList(),
+      images:images,
+      company:company,
+      industry:industry,
+      description:description,
       );
+}
+
+class LinkModel{
+  final String? url;
+  final String? name;
+  const  LinkModel({this.url, this.name});
+
+  factory LinkModel.fromJson(Map<String, dynamic> json)=> LinkModel(
+    url: json['url'],
+    name: json['name']
+  );
+
+  LinkModel toModel(LinkEntity entity)=> LinkModel(url: entity.url, name: entity.name);
+  LinkEntity toEntity()=> LinkEntity(url: url, name: name);
 }

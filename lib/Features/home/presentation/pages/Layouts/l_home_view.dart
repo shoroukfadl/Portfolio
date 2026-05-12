@@ -13,7 +13,8 @@ import '../../widgets/aboutMe/about_me_widget.dart';
 import '../../widgets/contact/contact_me.dart';
 import '../../widgets/education/education_widget.dart';
 import '../../widgets/experince/experince_card_widget.dart';
-import '../../widgets/my_projects_widget.dart';
+import '../../widgets/project/my_projects_widget.dart';
+import '../../widgets/skills/my_skills.dart';
 
 class LargeHomeView extends StatelessWidget {
   const LargeHomeView({
@@ -24,28 +25,29 @@ class LargeHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenLayoutWidget(
       children: [
-        // 32.0.heightBox,
+        /// about
         SliverToBoxAdapter(
           child: BlocBuilder<PortfolioCubit, PortfolioState>(
               buildWhen: (c, p) => p.data?.profile != c.data?.profile,
               builder: (context, s) {
                 return SummarySection(
                   profile: s.data?.profile,
-                );
+                ).paddingSymmetric(horizontal: Constants.desktopHozPadding);
               }),
         ),
-        //64.0.heightBox,
 
-        // SliverToBoxAdapter(
-        //     child: BlocBuilder<PortfolioCubit, PortfolioState>(
-        //         buildWhen: (c, p) => p.data?.skills != c.data?.skills,
-        //         builder: (context, s) {
-        //           return SkillsSection(
-        //             skills: s.data?.skills ,
-        //           );
-        //         })),
+        /// skills
+        SliverToBoxAdapter(
+            child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (c, p) => p.data?.skills != c.data?.skills,
+                builder: (context, s) {
+                  return SkillsSection(
+                    skills: s.data?.skills ??[],
+                  );
+                })),
         SliverToBoxAdapter(child: 64.0.heightBox),
-        //
+
+        /// experince
         SliverToBoxAdapter(
           child: BlocBuilder<PortfolioCubit, PortfolioState>(
               buildWhen: (c, p) => p.data?.experience != c.data?.experience,
@@ -56,7 +58,8 @@ class LargeHomeView extends StatelessWidget {
               }),
         ),
 
-        // 64.0.heightBox,
+
+        /// education
         SliverToBoxAdapter(
           child: BlocBuilder<PortfolioCubit, PortfolioState>(
               buildWhen: (c, p) => p.data?.education != c.data?.education,
@@ -67,20 +70,11 @@ class LargeHomeView extends StatelessWidget {
         SliverPadding(
             padding: const EdgeInsets.all(Constants.desktopHozPadding),
             sliver: SliverToBoxAdapter(
-                child: MyProjectsWidget(
-              projects: [
-                ProjectModel(
-                    description: 'fuiewru',
-                    companyName: 'ddwrs comf',
-                    images: [
-                      'https://tse2.mm.bing.net/th/id/OIP.e6voHjED4omwbyU6TqoCmwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3',
-                      'https://tse2.mm.bing.net/th/id/OIP.e6voHjED4omwbyU6TqoCmwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3'
-                    ],
-                    link: '',
-                    projectName: 'detts',
-                    projectType: 'web')
-              ],
-            ))),
+                child:BlocBuilder<PortfolioCubit, PortfolioState>(
+    buildWhen: (c, p) => p.data?.projects != c.data?.projects,
+    builder: (c, s) => MyProjectsWidget(
+              projects:s.data?.projects??[],
+            )))),
         SliverToBoxAdapter(
             child: BlocBuilder<PortfolioCubit, PortfolioState>(
                 buildWhen: (c, p) => p.data?.profile != c.data?.profile,
@@ -95,104 +89,7 @@ class LargeHomeView extends StatelessWidget {
   }
 }
 
-class ModernStackPortfolio extends StatefulWidget {
-  const ModernStackPortfolio({super.key});
 
-  @override
-  State<ModernStackPortfolio> createState() => _ModernStackPortfolioState();
-}
-
-class _ModernStackPortfolioState extends State<ModernStackPortfolio> {
-  final ScrollController _scrollController = ScrollController();
-
-  // البيانات اللي هتظهر في الكروت
-  final List<Map<String, dynamic>> sections = [
-    {
-      "title": "Experience",
-      "color": Color(0xFF1E293B),
-      "content": "Senior Flutter Developer at Jana Pack..."
-    },
-    {
-      "title": "Selected Projects",
-      "color": Color(0xFF0F172A),
-      "content": "E-commerce App, Portfolio, Logic Libs..."
-    },
-    {
-      "title": "Education",
-      "color": Color(0xFF161E2E),
-      "content": "CS Degree, Mobile Nanodegree..."
-    },
-    {
-      "title": "Contact",
-      "color": Color(0xFF1E293B),
-      "content": "Let's build something great together."
-    },
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF0A0F1A),
-      body: Row(
-        children: [
-          // الجانب الأيسر الثابت - Minimalist Text
-          Expanded(
-            flex: 1,
-            child: Container(
-              padding: const EdgeInsets.all(40),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("JANA\nDEV.",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 60,
-                          fontWeight: FontWeight.w900,
-                          height: 0.9)),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("SUMMARY",
-                          style: TextStyle(
-                              color: Colors.blueAccent,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12)),
-                      const SizedBox(height: 10),
-                      Text(
-                          "Architecting high-performance\nbilingual Flutter applications\nwith Clean Architecture.",
-                          style: TextStyle(
-                              color: Colors.white.withOpacity(0.6),
-                              height: 1.5)),
-                    ],
-                  ),
-                  const Text("© 2026",
-                      style: TextStyle(color: Colors.white24, fontSize: 12)),
-                ],
-              ),
-            ),
-          ),
-
-          // الجانب الأيمن المتحرك - Stacking Layers
-          Expanded(
-            flex: 2,
-            child: ListView.builder(
-              controller: _scrollController,
-              itemCount: sections.length,
-              itemBuilder: (context, index) {
-                return StackCard(
-                  index: index,
-                  data: sections[index],
-                  controller: _scrollController,
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 class StackCard extends StatelessWidget {
   final int index;

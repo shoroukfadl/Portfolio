@@ -14,7 +14,7 @@ class PortfolioModel {
   final List<ExperienceModel> experience;
   final List<ProjectModel> projects;
   final List<CertificateModel> certificates;
-  final TechnicalSkillModel? skills;
+  final List<TechnicalSkillModel> skills;
   final List<MethodologyModel> methodologies;
 
   PortfolioModel({
@@ -23,12 +23,11 @@ class PortfolioModel {
     this.projects = const [],
     this.experience = const [],
     this.certificates = const [],
-    this.skills ,
+    this.skills =const [],
     this.methodologies = const [],
   });
 
   factory PortfolioModel.fromJson(Map<String, dynamic> json) {
-    print('Json :: ${json}');
     return  PortfolioModel(
       profile: json['profile'] == null
           ? null
@@ -59,17 +58,19 @@ class PortfolioModel {
           .map((e) => MethodologyModel.fromJson(e))
           .toList(),
       skills: json['skills'] == null
-          ? null
-          : TechnicalSkillModel.fromJson(json['skills']),
+          ? []
+          : (json['skills'] as List)
+          .map((e) => TechnicalSkillModel.fromJson(e))
+          .toList(),
     );
   }
   Map<String, dynamic> toFullJson() => {
         'profile_id': profile?.id,
         'education': education.map((e) => e.toJson()).toList(),
         'experience': experience.map((e) => e.toJson()).toList(),
-        'projects': projects.map((e) => e.toJson()).toList(),
+        //'projects': projects.map((e) => e.toJson()).toList(),
         'certificates': certificates.map((e) => e.toJson()).toList(),
-        'skills': skills?.toJson(),
+        'skills': skills.map((e) => e.toJson()).toList(),
         'methodologies': methodologies.map((e) => e.toJson()).toList(),
       };
 
@@ -81,7 +82,7 @@ class PortfolioModel {
     experience:experience.map((e)=>e.toEntity()).toList() ,
     certificates:certificates.map((e)=>e.fromModel()).toList() ,
     methodologies:methodologies.map((e)=>e.fromModel()).toList(),
-    skills:skills?.toEntity() ,
+    skills:skills.map((e)=>e.toEntity()).toList(),
   );
 
 
@@ -92,6 +93,6 @@ class PortfolioModel {
     experience:experience.map((e)=>e).toList() ,
     certificates:certificates.map((e)=>e.toModel()).toList() ,
     methodologies:methodologies.map((e)=>e.toModel()).toList(),
-    skills:skills?.toModel() ,
+    skills:skills.map((e)=>e.toModel()).toList(),
   );
 }

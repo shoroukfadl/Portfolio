@@ -4,13 +4,15 @@ import 'package:portfolio/Utilities/extensions.dart';
 class HomeAppBarItem extends StatefulWidget {
   final Function() onTap;
   final IconData icon;
-  final String label; // أضفت نص بجانب الأيقونة إذا أردت
+  final String label;
+  final bool isSelected;
 
   const HomeAppBarItem({
     super.key,
     required this.onTap,
     required this.icon,
     this.label = "",
+    this.isSelected=false
   });
 
   @override
@@ -24,9 +26,8 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    // الألوان بناءً على حالة الـ Hover
-    final activeColor = colors.accent; // اللون عند الـ Hover
-    final idleColor = colors.surface.withOpacity(0.7); // اللون الافتراضي
+    final activeColor = colors.accent;
+    final idleColor = colors.surface;
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -39,24 +40,22 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // أنميشن للأيقونة (تغيير الحجم واللون)
               AnimatedScale(
                 scale: _isHovered ? 1.2 : 1.0,
                 duration: const Duration(milliseconds: 200),
                 child: Icon(
                   widget.icon,
-                  color: _isHovered ? activeColor : idleColor,
-                  size: 24,
+                  color: _isHovered || widget.isSelected ? activeColor : idleColor,
+                  size: 20,
                 ),
               ),
 
               const SizedBox(height: 4),
 
-              // أنميشن للمؤشر السفلي (Container يتمدد)
               AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
-                width: _isHovered ? 20 : 0, // يتمدد من 0 إلى 20
+                width: _isHovered || widget.isSelected ? 20 : 0, // يتمدد من 0 إلى 20
                 height: 3,
                 decoration: BoxDecoration(
                   color: activeColor,

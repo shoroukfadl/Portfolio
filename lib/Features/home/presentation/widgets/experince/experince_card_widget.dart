@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/experince_entity.dart';
+import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
+import '../../../../../Utilities/Constants/strings.dart';
+import '../../../../../Widgets/sections_title_widget.dart';
 
 class ExperienceSection extends StatelessWidget {
   final List<ExperienceEntity> experiences;
@@ -10,25 +13,26 @@ class ExperienceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: experiences.length,
-            itemBuilder: (context, index) {
-              return ExperienceCard(
-                item: experiences[index],
-                index: index,
-                totalItems: experiences.length,
-              );
-            },
-          ),
-        ],
-      ),
-    );
+    return Column(
+      spacing: 16,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SectionsTitleWidget(title: Strings.experience.translate),
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: experiences.length,
+          separatorBuilder: (c,i)=>16.0.heightBox,
+          itemBuilder: (context, index) {
+            return ExperienceCard(
+              item: experiences[index],
+              index: index,
+              totalItems: experiences.length,
+            );
+          },
+        ),
+      ],
+    ).paddingSymmetric(horizontal: Constants.desktopHozPadding);
   }
 }
 
@@ -52,71 +56,73 @@ class _ExperienceCardState extends State<ExperienceCard> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Padding(
-        padding: const EdgeInsets.only(bottom: 30),
-        child: Container(
+    return Row(
+      spacing: 12,
+      children: [
+        Container(
+          width: 160,
+          height: 64,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 12,
+            vertical: 6,
+          ),
+          decoration: BoxDecoration(
+            color: colors.accent,
+            borderRadius: BorderRadius.circular(16),
+
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 4,
+            children: [
+              Text(
+                widget.item.employmentType ?? '',
+                style: AppTextStyles.medium12(
+                    color: Colors.white
+                ),
+              ),
+
+              Text(
+                "${widget.item.location ?? ""} ",
+                style: AppTextStyles.medium14(
+                  color: colors.secondary,
+                ),
+              ),
+              Text(
+                "${ widget.item.startDate?.year.toString() ?? ""} - ${widget.item.endDate?.year.toString() ?? ""}",
+                style: AppTextStyles.medium14(
+                  color: colors.secondary,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: colors.accent,
+              color: colors.surface,
               width: 1,
             ),
-            color: colors.accent.withValues(alpha: 0.05),
+            color: colors.surfaceElevated,
           ),
-          padding: const EdgeInsets.all(20),
+          height: 64,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 12,
+            vertical: 6,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.item.positionTitle ?? "",
-                        style: AppTextStyles.semiBold20(
-                          color: colors.accent,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        widget.item.companyName ?? "",
-                        style:
-                            AppTextStyles.semiBold14(color: colors.textPrimary),
-                      ),
-                      Text(
-                        "${widget.item.location ?? ""}  ${ widget.item.startDate?.year.toString() ?? ""} - ${widget.item.endDate?.year.toString() ?? ""}",
-                        style: AppTextStyles.medium14(
-                          color: colors.secondary,
-                        ),
-                      ),
-                    ],
-                  ).expand,
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: colors.secondary,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: colors.secondary,
-                        width: 1,
-                      ),
-                    ),
-                    child: Text(
-                      widget.item.employmentType ?? '',
-                      style: AppTextStyles.medium12(
-                        color: Colors.white
-                      ),
-                    ),
-                  ),
-                ],
+              Text(
+                (widget.item.positionTitle ?? "") +(" | ${widget.item.companyName ?? ""}"),
+                style: AppTextStyles.semiBold18(
+                  color: colors.textPrimary,
+                ),
               ),
+              const SizedBox(height: 4),
 
-              // const SizedBox(height: 12),
               // Text(
               //   widget.item.description??"",
               //   style:AppTextStyles.medium16(
@@ -125,6 +131,8 @@ class _ExperienceCardState extends State<ExperienceCard> {
               // ),
             ],
           ),
-        ));
+        ).expand,
+      ],
+    );
   }
 }

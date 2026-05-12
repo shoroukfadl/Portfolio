@@ -8,6 +8,7 @@ import '../Inputs/app_text_widget.dart';
 class CustomButtonWidget extends StatelessWidget {
   final bool isLoading;
   final Function()? onPressed;
+  final Function(bool hover)? onHover;
 
   final double? width, height, borderRadiusValue;
   final String? title;
@@ -27,7 +28,7 @@ class CustomButtonWidget extends StatelessWidget {
       this.isLoading = false,
       this.btnColor,
       this.borderColor,
-      this.titleColor});
+      this.titleColor, this.onHover});
 
   const CustomButtonWidget.outLined(
       {super.key,
@@ -39,6 +40,7 @@ class CustomButtonWidget extends StatelessWidget {
       this.focusNode,
       this.borderRadiusValue,
       this.isLoading = false,
+        this.onHover,
       this.borderColor,
       this.titleColor})
       : btnColor = Colors.transparent;
@@ -54,6 +56,7 @@ class CustomButtonWidget extends StatelessWidget {
         isLoading: isLoading,
         onPressed: onPressed,
       ),
+      onHover: onHover,
       hoverColor: Colors.transparent,
       splashColor: Colors.transparent,
       child: Container(

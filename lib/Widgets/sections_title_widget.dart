@@ -21,23 +21,20 @@ class SectionsTitleWidget extends StatelessWidget {
 
     return Column(
       spacing: 8,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          title,
+          title.toUpperCase(),
           style: (titleStyle ?? AppTextStyles.extraBold40())
               .copyWith(color: colors.accent),
         ),
-        ShaderMask(
-            shaderCallback: (bounds) =>
-                LinearGradient(colors: [colors.accent, colors.secondary])
-                    .createShader(bounds),
-            child: Container(
-              height: 4,
-              width: 100,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(100)),
-            )),
+        Container(
+          height: 2,
+          width: 100,
+          decoration: BoxDecoration(
+              color:colors.accent,
+              borderRadius: BorderRadius.circular(2)),
+        ),
       ],
     );
   }

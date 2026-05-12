@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/MainLayout/AppBar/home_app_bar.dart';
 
@@ -24,9 +25,9 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
       body: Stack(
         children: [
           const AnimatedBackground(),
-          Row(
+          Column(
             children: [
-               const HomeAppBar(),
+               const HomeAppBar().paddingSymmetric(vertical: 40, horizontal: Constants.desktopHozPadding),
               widget.child.expand,
             ],
           ),
