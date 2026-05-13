@@ -25,7 +25,7 @@ jobs:
 
       - name: Build Web
         # Replace 'YOUR_REPO_NAME' with your actual GitHub repository name
-        run: flutter build web --release --base-href "https://github.com/shoroukfadl/Portfolio.git"
+        run: flutter build web --base-href "/portfolio/"
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
