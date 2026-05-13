@@ -17,6 +17,8 @@ class ProjectItemCard extends StatelessWidget {
     this.project,
     this.imageWidthSize = 600,
     this.imageHeightSize = 220,
+    this.cardWidth = 600,
+    this.cardHeight = 220,
     this.indexStyle,
     this.projectNameStyle,
     this.projectTypeStyle,
@@ -27,7 +29,7 @@ class ProjectItemCard extends StatelessWidget {
       projectNameStyle,
       projectTypeStyle,
       descriptionStyle;
-  final double imageWidthSize, imageHeightSize;
+  final double imageWidthSize, imageHeightSize, cardHeight, cardWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,8 @@ class ProjectItemCard extends StatelessWidget {
   Widget  _image (bool isMobile , AppColors colors)=>  Stack(
     children: [
       RoundedImage(
-        imagePath: "",
+        imagePath: project?.cover??"",
+        fit: BoxFit.fill,
         height:isMobile ?  double.infinity:200,
         width:isMobile ?  (imageWidthSize / 2.5):imageWidthSize,
         radiusValue: 16,
@@ -81,13 +84,12 @@ class ProjectItemCard extends StatelessWidget {
       Container(
         width: 40,
         height: 40,
+        margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: isMobile ? colors.secondary : colors.accent,
-            borderRadius: const BorderRadiusDirectional.only(
-              topEnd: Radius.circular(44),
-              topStart: Radius.circular(16),
-              bottomStart: Radius.circular(100),
-              bottomEnd: Radius.circular(100),
+            borderRadius: const BorderRadiusDirectional.all(
+              Radius.circular(100),
+
             )),
         child: Icon(
           isMobile ? Portfolio.phone : Portfolio.web,

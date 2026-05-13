@@ -182,6 +182,12 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         color: color ?? Colors.black,
         height: 1.0,
         letterSpacing: 0.3,
+      );static TextStyle medium24({Color? color}) => secondaryFamily.copyWith(
+        fontSize: 24,
+        fontWeight: FontWeight.w500,
+        color: color ?? Colors.black,
+        height: 1.0,
+        letterSpacing: 0.3,
       );
   static TextStyle medium16({Color? color}) => secondaryFamily.copyWith(
         fontSize: 16,

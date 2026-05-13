@@ -8,33 +8,41 @@ import '../../../../../Widgets/sections_title_widget.dart';
 
 class MyProjectsWidget extends StatelessWidget {
   final List<ProjectEntity> projects;
-
   final TextStyle? myStyle, titleStyle;
+  final TextStyle? indexStyle,
+      projectNameStyle,
+      projectTypeStyle,
+      descriptionStyle;
+  final double cardHeight, cardWidth, imageHeight, imageWidth, padding;
 
   const MyProjectsWidget(
-      {super.key, this.projects = const [], this.myStyle, this.titleStyle});
+      {super.key,this.padding = 32, this.projects = const [],this.cardHeight = 400,this.cardWidth=400,this.imageHeight=200,this.imageWidth=300, this.myStyle, this.titleStyle, this.indexStyle, this.projectNameStyle, this.projectTypeStyle, this.descriptionStyle});
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     return Column(
       children: [
         SectionsTitleWidget(
           key: GlobalKeys.projects,
           title: Strings.projects.translate,
           titleStyle: titleStyle,
-          myStyle: myStyle,
         ),
         16.0.heightBox,
         SizedBox(
-          height: 400,
+          height: cardHeight,
           child: ListView.separated(
             itemBuilder: (context, i) => ProjectItemCard(
               project: projects[i],
-
+              cardHeight: cardHeight,
+              cardWidth: cardWidth,
+              descriptionStyle: descriptionStyle,
+              imageHeightSize: imageHeight,
+              imageWidthSize: imageWidth,
+              projectNameStyle: projectNameStyle,
+              projectTypeStyle: projectTypeStyle,
             ),
             scrollDirection: Axis.horizontal,
-            separatorBuilder: (context, index) => 32.0.heightBox,
+            separatorBuilder: (context, index) => padding.heightBox,
             itemCount: projects.length,
           ),
         )
@@ -42,4 +50,3 @@ class MyProjectsWidget extends StatelessWidget {
     );
   }
 }
-

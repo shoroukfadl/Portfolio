@@ -27,7 +27,7 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
           const AnimatedBackground(),
           Column(
             children: [
-               const HomeAppBar().paddingSymmetric(vertical: 40, horizontal: Constants.desktopHozPadding),
+               const HomeAppBar().paddingSymmetric(vertical: 40, horizontal: context.isLarge ?  Constants.desktopHozPadding:Constants.tabletHozPadding),
               widget.child.expand,
             ],
           ),

@@ -7,11 +7,16 @@ import 'package:portfolio/Widgets/rounded_image_widget.dart';
 class SkillCard extends StatefulWidget {
   final TechnicalSkillEntity? skill;
   final int index;
+  final TextStyle? nameStyle, contentStyle;
+  final double iconSize;
 
   const SkillCard({
     super.key,
     required this.skill,
+    this.iconSize = 40,
     required this.index,
+    this.nameStyle,
+    this.contentStyle,
   });
 
   @override
@@ -72,14 +77,14 @@ class _SkillCardState extends State<SkillCard> {
             children: [
               RoundedImage(
                 imagePath: widget.skill?.icon ?? "",
-                width: 40,
-                height: 40,
+                width: widget.iconSize,
+                height: widget.iconSize,
                 radiusValue: 0,
                 backgroundColor: Colors.transparent,
               ),
               Text(
                 widget.skill?.category ?? "",
-                style: AppTextStyles.semiBold16(
+                style: widget.nameStyle?? AppTextStyles.semiBold16(
                   color: colors.textPrimary,
                 ),
               ),
@@ -91,7 +96,7 @@ class _SkillCardState extends State<SkillCard> {
                       widget.skill?.skills.length ?? 0,
                       (i) => Text(
                             (widget.skill?.skills[i].skillName ?? ""),
-                            style: AppTextStyles.regular16(
+                            style:widget.contentStyle?? AppTextStyles.regular16(
                               color: colors.textSecondary,
                             ),
                             maxLines: 3,

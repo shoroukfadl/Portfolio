@@ -5,14 +5,11 @@ import '../Core/Language/app_styles.dart';
 
 class SectionsTitleWidget extends StatelessWidget {
   final String title;
-  final bool enableMy;
-  final TextStyle? myStyle, titleStyle;
+  final TextStyle? titleStyle;
 
   const SectionsTitleWidget(
       {super.key,
-      this.enableMy = true,
       required this.title,
-      this.myStyle,
       this.titleStyle});
 
   @override

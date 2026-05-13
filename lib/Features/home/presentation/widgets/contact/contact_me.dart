@@ -10,12 +10,16 @@ import '../../../../../Utilities/portifilo_icons.dart';
 
 class ContactMeWidget extends StatelessWidget {
   final String linkedIN, github, email, phoneNumber;
+  final double iconSize ;
+  final TextStyle? copyRightStyle , contactMeStyle;
   const ContactMeWidget({
     super.key,
     required this.linkedIN,
     required this.github,
     required this.email,
     required this.phoneNumber,
+    this.iconSize=20,
+    this.copyRightStyle, this.contactMeStyle,
   });
 
   @override
@@ -31,7 +35,7 @@ class ContactMeWidget extends StatelessWidget {
         children: [
           Text(
             Strings.contactMe.translate,
-            style: AppTextStyles.medium28(color: colors.accent),
+            style: contactMeStyle??AppTextStyles.medium28(color: colors.accent),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +50,7 @@ class ContactMeWidget extends StatelessWidget {
                 },
                 btnColor: colors.background,
                 borderColor: colors.accent,
-                size: 20,
+                size: iconSize,
                 icon: Portfolio.email,
                 iconColor: colors.accent,
               ),
@@ -56,7 +60,7 @@ class ContactMeWidget extends StatelessWidget {
                 },
                 btnColor: colors.background,
                 borderColor: colors.accent,
-                size: 20,
+                size: iconSize,
                 icon: Portfolio.linkedIn,
                 iconColor: colors.accent,
               ),
@@ -66,7 +70,7 @@ class ContactMeWidget extends StatelessWidget {
                 },
                 btnColor: colors.background,
                 borderColor: colors.accent,
-                size: 20,
+                size: iconSize,
                 icon: Portfolio.github,
                 iconColor: colors.accent,
               ),
@@ -76,7 +80,7 @@ class ContactMeWidget extends StatelessWidget {
                 },
                 btnColor: colors.background,
                 borderColor: colors.accent,
-                size: 20,
+                size: iconSize,
                 icon: Portfolio.phone,
                 iconColor: colors.accent,
               ),
@@ -84,7 +88,7 @@ class ContactMeWidget extends StatelessWidget {
           ),
           Text(
             '© 2026 Shorouk Fadl. Built with Flutter. All rights reserved.',
-            style: AppTextStyles.medium16(color: colors.textPrimary),
+            style: copyRightStyle?? AppTextStyles.medium16(color: colors.textPrimary),
           ),
         ],
       ),

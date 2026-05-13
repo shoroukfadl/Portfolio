@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Core/Language/locales.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import '../Core/Theme/theme_colors.dart';
 
@@ -80,13 +81,11 @@ extension DoubleExtensions on double {
 }
 
 extension LayoutExtensions on BuildContext {
-  bool get isLarge => MediaQuery.of(this).size.width > 1200;
+  bool get isLarge => ResponsiveBreakpoints.of(this).isDesktop;
 
-  bool get isMedium =>
-      MediaQuery.of(this).size.width > 768 &&
-      MediaQuery.of(this).size.width <= 1200;
+  bool get isMedium => ResponsiveBreakpoints.of(this).isTablet;
 
-  bool get isSmall => MediaQuery.of(this).size.width <= 768;
+  bool get isSmall =>  ResponsiveBreakpoints.of(this).isPhone|| ResponsiveBreakpoints.of(this).isMobile;
 
   double get authDialogWidth => isLarge
       ? 450

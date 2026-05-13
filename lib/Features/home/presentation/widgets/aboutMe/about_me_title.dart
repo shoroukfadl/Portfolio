@@ -44,7 +44,7 @@ class SummaryContent extends StatelessWidget {
           ).createShader(bounds),
           child: Text(
             '$firstName\n$lastName',
-            style: AppTextStyles.extraBold56(color: colors.accent).copyWith(
+            style:nameStyle?? AppTextStyles.extraBold56(color: colors.accent).copyWith(
               height: 1.1,
               letterSpacing: -2,
               color: Colors.white,
@@ -54,12 +54,12 @@ class SummaryContent extends StatelessWidget {
         const SizedBox(height: 5),
         Text(
           role,
-          style: AppTextStyles.semiBold24(color: colors.accent),
+          style:roleStyle?? AppTextStyles.semiBold24(color: colors.accent),
         ),
         const SizedBox(height: 20),
         Text(
           summary,
-          style: AppTextStyles.regular16(color: colors.textPrimary).copyWith(
+          style:summaryStyle?? AppTextStyles.regular16(color: colors.textPrimary).copyWith(
             height: 1.8,
           ),
         ),

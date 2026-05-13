@@ -15,4 +15,5 @@ class Constants {
       );
 
   static const desktopHozPadding = 80.0;
+  static const tabletHozPadding = 40.0;
 }

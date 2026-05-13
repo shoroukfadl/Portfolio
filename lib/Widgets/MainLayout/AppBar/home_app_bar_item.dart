@@ -27,7 +27,7 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
     final colors = context.colors;
 
     final activeColor = colors.accent;
-    final idleColor = colors.surface;
+    final idleColor = colors.textPrimary;
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,

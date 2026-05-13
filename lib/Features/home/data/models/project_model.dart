@@ -3,6 +3,7 @@ import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
 class ProjectModel {
   final List<String> images;
   final String? company;
+  final String? cover;
   final String? profileId;
   final String? id;
   final String? industry;
@@ -27,6 +28,7 @@ class ProjectModel {
     this.webLinks = const [],
     this.androidLinks = const [],
     this.description,
+    this.cover
   });
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) => ProjectModel(
@@ -42,6 +44,7 @@ class ProjectModel {
         company: json['company'],
         industry: json['industry'],
         description: json['description'],
+        cover: json['cover'],
       );
 
   ProjectModel toModel() => ProjectModel(
@@ -57,6 +60,7 @@ class ProjectModel {
       company:company,
       industry:industry,
       description:description,
+    cover: cover
       );
   ProjectEntity fromModel() => ProjectEntity(
       id:id,
@@ -71,6 +75,7 @@ class ProjectModel {
       company:company,
       industry:industry,
       description:description,
+    cover: cover
       );
 }
 

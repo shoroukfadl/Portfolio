@@ -1,34 +1,129 @@
-import 'package:flutter/material.dart';
-import 'package:portfolio/Utilities/extensions.dart';
+import 'dart:math';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
+import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
+import 'package:portfolio/Features/home/presentation/cubit/state.dart';
+import 'package:portfolio/Models/user_data_model.dart';
+import 'package:portfolio/Utilities/Constants/constants.dart';
+import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
+
+import '../../../../../Utilities/extensions.dart';
+import '../../widgets/aboutMe/about_me_widget.dart';
+import '../../widgets/contact/contact_me.dart';
+import '../../widgets/education/education_widget.dart';
+import '../../widgets/experince/experince_card_widget.dart';
+import '../../widgets/project/my_projects_widget.dart';
 import '../../widgets/skills/my_skills.dart';
 
 class MediumHomeView extends StatelessWidget {
-
-  const MediumHomeView({super.key, });
+  const MediumHomeView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    debugPrint('In Medium ....');
+    final colors = context.colors;
+    return ScreenLayoutWidget(
       children: [
-        32.0.heightBox,
-        // PersonalInfoWidget(
-        //   personalData: con.user?.summary,
-        // ).paddingSymmetric(horizontal: 32),
-
-        64.0.heightBox,
-
+        /// about
         SliverToBoxAdapter(
-            child: SkillsSection(
-            )).paddingSymmetric(horizontal: 32),
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => p.data?.profile != c.data?.profile,
+              builder: (context, s) {
+                return SummarySection(
+                  profile: s.data?.profile,
+                  roleStyle: AppTextStyles.semiBold20(color: colors.accent),
+                  summaryStyle:
+                      AppTextStyles.regular14(color: colors.textPrimary)
+                          .copyWith(
+                    height: 1.8,
+                  ),
+                  nameStyle:
+                      AppTextStyles.extraBold40(color: colors.accent).copyWith(
+                    height: 1.1,
+                    letterSpacing: -2,
+                    color: Colors.white,
+                  ),
+                ).paddingSymmetric(horizontal: Constants.tabletHozPadding);
+              }),
+        ),
 
-        // AboutMeWidget(
-        //   name: con.user?.name ?? "",
-        //   role: con.user?.jobName ?? "",
-        //   desc: con.user?.summary ??
-        //       "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
-        // ),
+        SliverToBoxAdapter(child: 40.0.heightBox),
 
+        /// skills
+        SliverToBoxAdapter(
+            child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (c, p) => p.data?.skills != c.data?.skills,
+                builder: (context, s) {
+                  return SkillsSection(
+                    titleStyle: AppTextStyles.extraBold32(),
+                    skills: s.data?.skills ?? [],
+                    padding: Constants.tabletHozPadding,
+                    iconSize: 32,
+                    nameStyle: AppTextStyles.semiBold14(color: colors.textPrimary,),
+                    contentStyle: AppTextStyles.regular14(color: colors.textSecondary,),
+                  );
+                })),
+        SliverToBoxAdapter(child: 40.0.heightBox),
+
+        /// experince
+        SliverToBoxAdapter(
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => p.data?.experience != c.data?.experience,
+              builder: (context, s) {
+                return ExperienceSection(
+                  experiences: s.data?.experience ?? [],
+                  titleStyle: AppTextStyles.extraBold32(),
+                  padding: Constants.tabletHozPadding,
+                  employeeTypeStyle: AppTextStyles.medium10(color: Colors.white),
+                  roleStyle: AppTextStyles.semiBold16(
+                    color: colors.textPrimary,
+                  ),
+                  dateStyle: AppTextStyles.medium12(
+                    color: colors.secondary,
+                  ),
+                );
+              }),
+        ),
+
+        /// education
+        SliverToBoxAdapter(
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => p.data?.education != c.data?.education,
+              builder: (c, s) => EducationSection(
+                    education: s.data?.education.firstOrNull,
+                    titleStyle: AppTextStyles.extraBold32(),
+                    padding: Constants.tabletHozPadding,
+                  )),
+        ),
+        //
+        SliverPadding(
+            padding: const EdgeInsets.all(Constants.tabletHozPadding),
+            sliver: SliverToBoxAdapter(
+                child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                    buildWhen: (c, p) => p.data?.projects != c.data?.projects,
+                    builder: (c, s) => MyProjectsWidget(
+                          projects: s.data?.projects ?? [],
+                        )))),
+
+        /// contact me
+        SliverToBoxAdapter(
+            child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (c, p) => p.data?.profile != c.data?.profile,
+                builder: (c, s) => ContactMeWidget(
+                      email: s.data?.profile?.email ?? "",
+                      linkedIN: s.data?.profile?.linkedin ?? "",
+                      phoneNumber: s.data?.profile?.phone ?? "",
+                      github: s.data?.profile?.github ?? "",
+                      iconSize: 16,
+                      contactMeStyle:
+                          AppTextStyles.medium24(color: colors.accent),
+                      copyRightStyle:
+                          AppTextStyles.medium14(color: colors.textPrimary),
+                    )))
       ],
     );
   }

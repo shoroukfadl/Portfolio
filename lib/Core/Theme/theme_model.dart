@@ -27,17 +27,17 @@ class AppTheme {
     useMaterial3: true,
     extensions: const [
       AppColors(
-        background: Color(0xff0d1019),
-        surface: Color(0xff000000),
-        surfaceElevated: Color(0xff040303),
-        border: Color(0xff636261),
-        secondary: Color(0xff918D8A),
-        accent: Color(0xff464243),
+        background: Color(0xff021437),
+        surfaceElevated: Color(0xff020f29),
+        surface: Color(0xff121f39),
+        border: Color(0xffb2c2d2),
+        secondary: Color(0xff8CA4BB),
+        accent: Color(0xff516E89),
         success: Color(0xFF05B367),
         warning: Color(0xFFFFB300),
         danger: Color(0xFFFF4757),
-        textPrimary: Color(0xff636261),
-        textSecondary: Color(0xffADADAD),
+        textPrimary: Color(0xffd2e1f1),
+        textSecondary: Color(0xffe3d8d8),
       )
     ],
   );

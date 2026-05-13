@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 class AppColors extends ThemeExtension<AppColors> {
   // ─── Dark Theme (Primary) ────────────────────────────────────────────────
   static const darkValues = AppColors(
-    background: Color(0xff0d1019),
-    surfaceElevated: Color(0xffD9E1E9),
-    surface: Color(0xffB2C2D2),
+    background: Color(0xff021437),
+    surfaceElevated: Color(0xff020f29),
+    surface: Color(0xff121f39),
     border: Color(0xffb2c2d2),
     secondary: Color(0xff8CA4BB),
     accent: Color(0xff516E89),
     success: Color(0xFF05B367),
     warning: Color(0xFFFFB300),
     danger: Color(0xFFFF4757),
-    textPrimary: Color(0xff092745),
-    textSecondary: Color(0xff6A89A7),
+    textPrimary: Color(0xffd2e1f1),
+    textSecondary: Color(0xffe3d8d8),
   );
 
   // Shared
@@ -82,7 +82,7 @@ class AppColors extends ThemeExtension<AppColors> {
   /// Subtle card depth (dark theme only)
   static const gradientCardDark = LinearGradient(
     colors: [
-      Color(0xFF050812),
+      Color(0xff021437),
       Color(0xFF1a1f3a),
       Color(0xFF0a0e27),
     ],

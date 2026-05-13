@@ -7,26 +7,23 @@ import '../../../../../Utilities/Constants/strings.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
 import 'education_card.dart';
 
-class EducationSection extends StatefulWidget {
+class EducationSection extends StatelessWidget {
   final EducationEntity? education;
-  const EducationSection({super.key, this.education});
+  final double padding;
+  final TextStyle? titleStyle;
+  const EducationSection({super.key, this.education,  this.padding=Constants.desktopHozPadding, this.titleStyle});
 
-  @override
-  State<EducationSection> createState() => _EducationSectionState();
-}
-
-class _EducationSectionState extends State<EducationSection> {
   @override
   Widget build(BuildContext context) {
     return Column(
       spacing: 16,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SectionsTitleWidget(title: Strings.education.translate),
+        SectionsTitleWidget(title: Strings.education.translate,titleStyle: titleStyle,),
         EducationCard(
-          item: widget.education,
+          item: education,
         )
       ],
-    ).paddingSymmetric(vertical: 40, horizontal: Constants.desktopHozPadding);
+    ).paddingSymmetric(vertical: 40, horizontal:padding );
   }
 }
