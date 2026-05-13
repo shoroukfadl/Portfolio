@@ -26,7 +26,7 @@ void main() async {
       anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml0cHVvaXJzb3p4aXFybG5ndmx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MTczODgsImV4cCI6MjA5MTQ5MzM4OH0.Dkgdkqf8YXkNQ09XlxvOSsTiv0Bmuvc9PXR5rPPIPe8"
   );
   await GitIt.initGitIt();
-  setPathUrlStrategy();
+  setHashUrlStrategy();
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
     BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
