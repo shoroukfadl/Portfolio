@@ -12,8 +12,8 @@ class ProjectEntity extends Equatable {
   final List<LinkEntity> androidLinks;
   final String? projectName;
   final String? projectType;
-  final String? description;
   final List<String> technicalTools;
+  final List<String> content;
 
   ProjectEntity({
     this.id,
@@ -27,7 +27,8 @@ class ProjectEntity extends Equatable {
     this.iosLinks = const [],
     this.webLinks = const [],
     this.androidLinks = const [],
-    this.description, this.cover,
+    this.content = const [],
+    this.cover,
   });
 
   @override
@@ -44,7 +45,7 @@ class ProjectEntity extends Equatable {
         images,
         company,
         industry,
-        description,
+        content,
     cover
       ];
 }

@@ -16,7 +16,19 @@ class MyProjectsWidget extends StatelessWidget {
   final double cardHeight, cardWidth, imageHeight, imageWidth, padding;
 
   const MyProjectsWidget(
-      {super.key,this.padding = 32, this.projects = const [],this.cardHeight = 400,this.cardWidth=400,this.imageHeight=200,this.imageWidth=300, this.myStyle, this.titleStyle, this.indexStyle, this.projectNameStyle, this.projectTypeStyle, this.descriptionStyle});
+      {super.key,
+      this.padding = 32,
+      this.projects = const [],
+      this.cardHeight = 500,
+      this.cardWidth = 600,
+      this.imageHeight = 200,
+      this.imageWidth = 200,
+      this.myStyle,
+      this.titleStyle,
+      this.indexStyle,
+      this.projectNameStyle,
+      this.projectTypeStyle,
+      this.descriptionStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +40,20 @@ class MyProjectsWidget extends StatelessWidget {
           titleStyle: titleStyle,
         ),
         16.0.heightBox,
-        SizedBox(
-          height: cardHeight,
-          child: ListView.separated(
-            itemBuilder: (context, i) => ProjectItemCard(
-              project: projects[i],
-              cardHeight: cardHeight,
-              cardWidth: cardWidth,
-              descriptionStyle: descriptionStyle,
-              imageHeightSize: imageHeight,
-              imageWidthSize: imageWidth,
-              projectNameStyle: projectNameStyle,
-              projectTypeStyle: projectTypeStyle,
-            ),
-            scrollDirection: Axis.horizontal,
-            separatorBuilder: (context, index) => padding.heightBox,
-            itemCount: projects.length,
-          ),
-        )
+        Wrap(
+          spacing: 16,
+          runSpacing: 16,
+          children: [
+            ...List.generate(projects.length, (i) => ProjectItemCard(
+            project: projects[i],
+            descriptionStyle: descriptionStyle,
+            imageHeightSize: imageHeight,
+            imageWidthSize: imageWidth,
+            cardHeight: cardHeight,
+            cardWidth: cardWidth,
+            projectNameStyle: projectNameStyle,
+            projectTypeStyle: projectTypeStyle,
+          ))]),
       ],
     );
   }
