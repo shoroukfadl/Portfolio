@@ -60,7 +60,15 @@ class _HomeAppBarState extends State<HomeAppBar> {
           height: 56,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: colors.surfaceElevated,
+            color: colors.background,
+            boxShadow: [
+              BoxShadow(
+                color: colors.surfaceElevated,
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: const Offset(0, 4)
+              )
+            ],
             borderRadius: const BorderRadius.all(Radius.circular(32))
           ),
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 0),
@@ -147,6 +155,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
                 onPressed: () {
                   context.read<ThemeCubit>().changeTheme();
                 },
+                btnColor: colors.secondary,
                 child: Icon(
                   theme.isDark ? Portfolio.sun:  Portfolio.moon,
                   color: Colors.white,

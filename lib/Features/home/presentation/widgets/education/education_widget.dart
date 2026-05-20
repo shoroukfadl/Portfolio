@@ -17,7 +17,6 @@ class EducationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       spacing: 16,
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionsTitleWidget(title: Strings.education.translate,titleStyle: titleStyle,),
         EducationCard(

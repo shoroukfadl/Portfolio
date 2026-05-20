@@ -61,8 +61,8 @@ class _SkillCardState extends State<SkillCard> {
             boxShadow: _isHovered
                 ? [
                     BoxShadow(
-                      color: colors.secondary,
-                      blurRadius: 10,
+                      color: colors.secondary.withValues(alpha: 0.1),
+                      blurRadius: 8,
                       spreadRadius: 4,
                     ),
                   ]

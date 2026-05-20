@@ -15,6 +15,8 @@ class AppColors extends ThemeExtension<AppColors> {
     danger: Color(0xFFFF4757),
     textPrimary: Color(0xffd2e1f1),
     textSecondary: Color(0xffe3d8d8),
+    secondaryEv: Color(0xffc2121f),
+
   );
 
   // Shared
@@ -23,17 +25,18 @@ class AppColors extends ThemeExtension<AppColors> {
   static const Color error = Color(0xFFDC2626);
   // ─── Light Theme ─────────────────────────────────────────────────────────
   static const lightValues = AppColors(
-    background: Color(0xffF5F5F5),
-    surfaceElevated: Color(0xffD9E1E9),
-    surface: Color(0xffB2C2D2),
-    border: Color(0xffb2c2d2),
-    secondary: Color(0xff8CA4BB),
-    accent: Color(0xff516E89),
+    background: Color(0xfffdfcfc),
+    surface: Color(0xffe4d8c0),
+    surfaceElevated: Color(0xffe6e1d7),
+    border: Color(0xff011825),
+    secondary: Color(0xff780000),
+    accent: Color(0xff003049),
     success: Color(0xFF05B367),
     warning: Color(0xFFFFB300),
     danger: Color(0xFFFF4757),
-    textPrimary: Color(0xff092745),
-    textSecondary: Color(0xff6A89A7),
+    textPrimary: Color(0xff011825),
+    textSecondary: Color(0xff669BBC),
+    secondaryEv: Color(0xffc2121f),
   );
 
   // ─── Fields ───────────────────────────────────────────────────────────────
@@ -43,6 +46,7 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color border;
   final Color accent;
   final Color secondary;
+  final Color secondaryEv;
   final Color success;
   final Color warning;
   final Color danger;
@@ -60,24 +64,11 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.warning,
     required this.danger,
     required this.textPrimary,
-    required this.textSecondary,
+    required this.textSecondary, required this.secondaryEv,
   });
 
   // ─── Gradient Helpers ─────────────────────────────────────────────────────
 
-  /// Flutter Blue → Dart Purple  (hero banners, CTAs)
-  static const gradientHero = LinearGradient(
-    colors: [Color(0xFF027DFD), Color(0xFF7C4DFF)],
-    begin: Alignment.centerLeft,
-    end: Alignment.centerRight,
-  );
-
-  /// Electric Cyan → Flutter Blue  (glow effects, highlights)
-  static const gradientGlow = LinearGradient(
-    colors: [Color(0xFF00D4FF), Color(0xFF027DFD)],
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-  );
 
   /// Subtle card depth (dark theme only)
   static const gradientCardDark = LinearGradient(
@@ -92,9 +83,8 @@ class AppColors extends ThemeExtension<AppColors> {
 
   static const gradientCardLight = LinearGradient(
     colors: [
-      Color(0xFFF6F5F5),
-      Color(0xFFEDF1FB),
-      Color(0xFFEDF1FB),
+      Color(0xfffdfcfc),
+      Color(0xffe6e1d7),
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -115,6 +105,7 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? danger,
     Color? textPrimary,
     Color? textSecondary,
+    Color? secondaryEv,
   }) {
     return AppColors(
       background: background ?? this.background,
@@ -128,6 +119,7 @@ class AppColors extends ThemeExtension<AppColors> {
       danger: danger ?? this.danger,
       textPrimary: textPrimary ?? this.textPrimary,
       textSecondary: textSecondary ?? this.textSecondary,
+      secondaryEv: secondaryEv??this.secondaryEv,
     );
   }
 
@@ -147,6 +139,7 @@ class AppColors extends ThemeExtension<AppColors> {
       danger: Color.lerp(danger, other.danger, t)!,
       textPrimary: Color.lerp(textPrimary, other.textPrimary, t)!,
       textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,
+      secondaryEv: Color.lerp(secondaryEv, other.secondaryEv, t)!,
     );
   }
 }

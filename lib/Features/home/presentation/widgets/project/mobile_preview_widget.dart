@@ -9,47 +9,36 @@ class MobilePreviewWidget extends StatelessWidget {
   final String image;
   const MobilePreviewWidget(
       {super.key,
-      this.border = 32,
-      this.width = 480,
+      this.border = 16,
+      this.width = 200,
       this.height = 48,
       required this.image});
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Container(
-      width: width,
-      height: height,
-      alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(horizontal: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadiusDirectional.all(
-        Radius.circular(border),
-
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        RoundedImage(
+          imagePath: image,
+          fit: BoxFit.fill,
+          height: height,
+          width: width - 4,
+          radiusValue: border,
+          radius: 0,
+          borderColor: colors.accent,
+          borderWidth: 2,
         ),
-        color: colors.textPrimary,
-      ),
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          RoundedImage(
-            imagePath: image,
-            fit: BoxFit.fill,
-            height: height - 16,
-            width: width - 16,
-            radiusValue: border,
-            radius: 0,
-          ),
-          Container(
-            width: 48,
-            height: 8,
-            margin: const EdgeInsets.symmetric(vertical: 8),
-            decoration: BoxDecoration(
-                color: colors.textPrimary,
-                borderRadius: BorderRadius.circular(100)),
-          )
-        ],
-      ),
+        Container(
+          width: 32,
+          height: 6,
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          decoration: BoxDecoration(
+              color: colors.textPrimary,
+              borderRadius: BorderRadius.circular(100)),
+        )
+      ],
     );
   }
 }

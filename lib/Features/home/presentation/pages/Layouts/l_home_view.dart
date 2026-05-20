@@ -35,6 +35,7 @@ class LargeHomeView extends StatelessWidget {
                 ).paddingSymmetric(horizontal: Constants.desktopHozPadding);
               }),
         ),
+        SliverToBoxAdapter(child: 40.0.heightBox),
 
         /// skills
         SliverToBoxAdapter(
@@ -58,6 +59,7 @@ class LargeHomeView extends StatelessWidget {
               }),
         ),
 
+        SliverToBoxAdapter(child: 64.0.heightBox),
 
         /// education
         SliverToBoxAdapter(

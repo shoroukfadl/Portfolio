@@ -13,16 +13,15 @@ class MyProjectsWidget extends StatelessWidget {
       projectNameStyle,
       projectTypeStyle,
       descriptionStyle;
-  final double cardHeight, cardWidth, imageHeight, imageWidth, padding;
+  final double cardHeight, cardWidth, imageWidth, padding;
 
   const MyProjectsWidget(
       {super.key,
       this.padding = 32,
       this.projects = const [],
-      this.cardHeight = 500,
-      this.cardWidth = 600,
-      this.imageHeight = 200,
-      this.imageWidth = 200,
+      this.cardHeight = 420,
+      this.cardWidth = 440,
+      this.imageWidth = 100,
       this.myStyle,
       this.titleStyle,
       this.indexStyle,
@@ -33,6 +32,8 @@ class MyProjectsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 16,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionsTitleWidget(
           key: GlobalKeys.projects,
@@ -47,11 +48,9 @@ class MyProjectsWidget extends StatelessWidget {
             ...List.generate(projects.length, (i) => ProjectItemCard(
             project: projects[i],
             descriptionStyle: descriptionStyle,
-            imageHeightSize: imageHeight,
             imageWidthSize: imageWidth,
             cardHeight: cardHeight,
             cardWidth: cardWidth,
-
             projectNameStyle: projectNameStyle,
             projectTypeStyle: projectTypeStyle,
           ))]),

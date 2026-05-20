@@ -71,7 +71,8 @@ class _CvButtonState extends State<CvButton> with SingleTickerProviderStateMixin
                   Container(
                     width: _widthAnimation.value * 140,
                     height: 40,
-                    color: colors.accent,
+                    color: colors.secondaryEv,
+
                   ),
                   Center(child: child),
                 ],

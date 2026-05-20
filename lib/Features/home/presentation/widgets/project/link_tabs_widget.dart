@@ -38,66 +38,19 @@ class _LinkTabsWidgetState extends State<LinkTabsWidget> {
 
     final colors = context.colors;
 
-    // إذا كانت كل القوائم فارغة
     if (availablePlatforms.isEmpty) return const SizedBox.shrink();
 
-    // جلب البيانات الحالية بناءً على المنصات المتاحة فقط
     final currentPlatform = availablePlatforms[currentIndex];
     final List<LinkEntity> activeList = currentPlatform['links'];
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // --- Tab Bar Header ---
-        Row(
-          children: List.generate(
-            availablePlatforms.length,
-                (i) => _buildTabItem(availablePlatforms[i]['title'], i),
-          ),
-        ),
-        const SizedBox(height: 16),
-
-        // --- Content Area ---
-        AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          child: Wrap(
-            spacing: 12,
-            runSpacing: 10,
-            key: ValueKey<int>(currentIndex),
-            children: activeList.map((link) => _buildLinkCard(link, currentPlatform['icon'])).toList(),
-          ),
-        ),
-      ],
+    return Wrap(
+      spacing: 12,
+      runSpacing: 10,
+      key: ValueKey<int>(currentIndex),
+      children: activeList.map((link) => _buildLinkCard(link, currentPlatform['icon'])).toList(),
     );
   }
 
-  Widget _buildTabItem(String title, int index) {
-    final isSelected = currentIndex == index;
-    final colors = context.colors;
-
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => setState(() => currentIndex = index),
-        child: Column(
-          children: [
-            Text(
-              title,
-              style: AppTextStyles.semiBold12(
-                color: isSelected ? colors.textPrimary : colors.textPrimary.withValues(alpha: 0.5),
-              ),
-            ),
-            Container(
-              height: 2,
-              decoration: BoxDecoration(
-                color: isSelected ? colors.textPrimary : Colors.transparent,
-                borderRadius: BorderRadius.circular(12),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
 
   Widget _buildLinkCard(LinkEntity link, IconData icon) {
     final colors = context.colors;
@@ -120,7 +73,7 @@ class _LinkTabsWidgetState extends State<LinkTabsWidget> {
             overflow: TextOverflow.ellipsis,
             style: AppTextStyles.regular12(color: colors.textPrimary),
           ),
-            const Icon(Portfolio.link, size: 14),
+             Icon(icon, size: 14),
           ]
         ),
       ),

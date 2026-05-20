@@ -10,7 +10,7 @@ class WebPreviewWidget extends StatelessWidget {
       this.border = 16,
       this.width = 480,
       this.circleRadius = 6,
-      this.height = 48,
+      this.height = 40,
       required this.projectName});
 
   @override
@@ -47,15 +47,15 @@ class WebPreviewWidget extends StatelessWidget {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-            color: colors.textSecondary,
+            color: colors.surfaceElevated,
               borderRadius: BorderRadius.circular(6)
               
             ),
-            padding: EdgeInsets.symmetric(horizontal: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             alignment: AlignmentDirectional.centerStart,
             child: Text(
               projectName,
-              style: AppTextStyles.medium14(color: colors.border),
+              style: AppTextStyles.medium14(color: colors.textPrimary),
             ),
           ).expand
         ],

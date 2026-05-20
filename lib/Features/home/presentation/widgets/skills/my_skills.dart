@@ -30,7 +30,6 @@ class SkillsSection extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: padding),
       child: Column(
         spacing: 16,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SectionsTitleWidget(
             title: Strings.skill.translate,

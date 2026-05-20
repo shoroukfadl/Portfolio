@@ -83,22 +83,21 @@ class _ExperienceCardState extends State<ExperienceCard> {
     final colors = context.colors;
     return HoverWidget(builder: (hover) {
       return Row(
-        spacing: 12,
         children: [
           AnimatedContainer(
             duration: const Duration(milliseconds: 400),
             width: 160,
-            height: 64,
+            height: 56,
             padding: const EdgeInsets.symmetric(
               horizontal: 12,
               vertical: 6,
             ),
             decoration: BoxDecoration(
-              color: colors.accent,
+              color: colors.secondary.withValues(alpha: 0.3),
               boxShadow: hover
                   ? [
                       BoxShadow(
-                        color: colors.accent,
+                        color: colors.secondary.withValues(alpha: 0.2),
                         blurRadius: 4,
                         offset: const Offset(0, 4),
                       ),
@@ -115,13 +114,10 @@ class _ExperienceCardState extends State<ExperienceCard> {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               spacing: 4,
               children: [
-                Text(
-                  widget.item.employmentType ?? '',
-                  style: widget.employeeTypeStyle ??
-                      AppTextStyles.medium12(color: Colors.white),
-                ),
+
                 Text(
                   "${widget.item.location ?? ""} ",
                   style: widget.dateStyle ??
@@ -144,12 +140,12 @@ class _ExperienceCardState extends State<ExperienceCard> {
             decoration: BoxDecoration(
               boxShadow: hover
                   ? [
-                BoxShadow(
-                  color: colors.accent,
-                  blurRadius: 4,
-                  offset: const Offset(0, 4),
-                ),
-              ]
+                      BoxShadow(
+                        color: colors.secondary.withValues(alpha: 0.1),
+                        blurRadius: 4,
+                        offset: const Offset(0, 4),
+                      ),
+                    ]
                   : null,
               borderRadius: hover
                   ? const BorderRadiusDirectional.only(
@@ -165,7 +161,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
               ),
               color: colors.surfaceElevated,
             ),
-            height: 64,
+            height: 56,
             padding: const EdgeInsets.symmetric(
               horizontal: 12,
               vertical: 6,
@@ -183,13 +179,11 @@ class _ExperienceCardState extends State<ExperienceCard> {
                       ),
                 ),
                 const SizedBox(height: 4),
-
-                // Text(
-                //   widget.item.description??"",
-                //   style:AppTextStyles.medium16(
-                //     color:colors.textPrimary
-                //   ),
-                // ),
+                Text(
+                  widget.item.employmentType ?? '',
+                  style: widget.employeeTypeStyle ??
+                      AppTextStyles.medium14(color: colors.accent),
+                ),
               ],
             ),
           ).expand,
