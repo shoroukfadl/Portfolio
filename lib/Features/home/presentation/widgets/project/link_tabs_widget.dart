@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
-import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
-import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/portifilo_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -26,7 +24,6 @@ class LinkTabsWidget extends StatefulWidget {
 class _LinkTabsWidgetState extends State<LinkTabsWidget> {
   int currentIndex = 0;
 
-  // قائمة تحتوي فقط على المنصات التي تمتلك روابط
   List<Map<String, dynamic>> get availablePlatforms => [
     if (widget.web.isNotEmpty) {'title': 'Web', 'links': widget.web, 'icon': Icons.language},
     if (widget.android.isNotEmpty) {'title': 'Android', 'links': widget.android, 'icon': Icons.android},
@@ -35,7 +32,6 @@ class _LinkTabsWidgetState extends State<LinkTabsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // التأكد من أن الـ index لا يتخطى عدد المنصات المتاحة (في حالة تغيرت البيانات فجأة)
     if (currentIndex >= availablePlatforms.length && availablePlatforms.isNotEmpty) {
       currentIndex = 0;
     }

@@ -51,6 +51,7 @@ class MyProjectsWidget extends StatelessWidget {
             imageWidthSize: imageWidth,
             cardHeight: cardHeight,
             cardWidth: cardWidth,
+
             projectNameStyle: projectNameStyle,
             projectTypeStyle: projectTypeStyle,
           ))]),
