@@ -50,6 +50,7 @@ dependencies:
   intl:
   flutter_animate:
   visibility_detector:
+  flutter_dotenv:
 
 
 dev_dependencies:
@@ -66,6 +67,7 @@ flutter:
     - assets/images/
     - assets/Languages/
     - assets/icons/
+    - .env
   fonts:
     - family: portifilo
       fonts:

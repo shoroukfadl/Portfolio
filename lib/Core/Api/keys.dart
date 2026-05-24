@@ -1,3 +1,6 @@
-const String subbaseKey = 'https://itpuoirsozxiqrlngvlw.supabase.co';
-const String subbaseAnonKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml0cHVvaXJzb3p4aXFybG5ndmx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MTczODgsImV4cCI6MjA5MTQ5MzM4OH0.Dkgdkqf8YXkNQ09XlxvOSsTiv0Bmuvc9PXR5rPPIPe8";
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+class ApiService {
+  static String subbaseKey = dotenv.env['subbaseKey']??"" ;
+  static String subbaseAnonKey = dotenv.env['subbaseAnonKey'] ??"";
+}

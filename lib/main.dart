@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:portfolio/Core/Api/keys.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
@@ -22,9 +23,10 @@ import 'Utilities/router_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Supabase.initialize(
-      url: subbaseKey,
-      anonKey:subbaseAnonKey
+      url: ApiService.subbaseKey,
+      anonKey:ApiService.subbaseAnonKey
   );
   await GitIt.initGitIt();
   setHashUrlStrategy();
