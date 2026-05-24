@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 class AppColors extends ThemeExtension<AppColors> {
   // ─── Dark Theme (Primary) ────────────────────────────────────────────────
   static const darkValues = AppColors(
-    background: Color(0xff021437),
-    surfaceElevated: Color(0xff020f29),
-    surface: Color(0xff121f39),
-    border: Color(0xffb2c2d2),
-    secondary: Color(0xff8CA4BB),
-    accent: Color(0xff516E89),
+    background: Color(0xFF131412),
+    surface: Color(0xff1C1B18),
+    surfaceElevated: Color(0xff242320),
+    secondary: Color(0xff1B4332),
+    accent: Color(0xff74C69D),
+    accent2: Color(0xff52B788),
+    accentSoft: Color(0xff1B4332),
     success: Color(0xFF05B367),
     warning: Color(0xFFFFB300),
     danger: Color(0xFFFF4757),
-    textPrimary: Color(0xffd2e1f1),
-    textSecondary: Color(0xffe3d8d8),
-    secondaryEv: Color(0xffc2121f),
-
+    text1: Color(0xFFF0EDE6),
+    text2: Color(0xFFA8A49C),
+    text3: Color(0xFF6A6660),
+    secondaryEv: Color(0xff95D5B2),
   );
 
   // Shared
@@ -25,57 +26,63 @@ class AppColors extends ThemeExtension<AppColors> {
   static const Color error = Color(0xFFDC2626);
   // ─── Light Theme ─────────────────────────────────────────────────────────
   static const lightValues = AppColors(
-    background: Color(0xfffdfcfc),
-    surface: Color(0xffe4d8c0),
-    surfaceElevated: Color(0xffe6e1d7),
-    border: Color(0xff011825),
-    secondary: Color(0xff780000),
-    accent: Color(0xff003049),
+    background: Color(0xFFF7F5F0),
+    surface: Color(0xffEEEAE2),
+    surfaceElevated: Color(0xffFFFFFF),
+    secondary: Color(0xffE9F5EE),
+    accent: Color(0xff2D6A4F),
+    accent2: Color(0xff74C69D),
+    accentSoft: Color(0xffD8F3DC),
     success: Color(0xFF05B367),
     warning: Color(0xFFFFB300),
     danger: Color(0xFFFF4757),
-    textPrimary: Color(0xff011825),
-    textSecondary: Color(0xff669BBC),
-    secondaryEv: Color(0xffc2121f),
+    text1: Color(0xff1C1C1A),
+    text2: Color(0xff5A5955),
+    text3: Color(0xff9A9892),
+    secondaryEv: Color(0xff1B4332),
   );
 
   // ─── Fields ───────────────────────────────────────────────────────────────
   final Color background;
   final Color surface;
   final Color surfaceElevated;
-  final Color border;
+  final Color text3;
   final Color accent;
+  final Color accent2;
+  final Color accentSoft;
   final Color secondary;
   final Color secondaryEv;
   final Color success;
   final Color warning;
   final Color danger;
-  final Color textPrimary;
-  final Color textSecondary;
+  final Color text1;
+  final Color text2;
 
   const AppColors({
     required this.background,
     required this.surface,
     required this.surfaceElevated,
-    required this.border,
+    required this.text3,
     required this.accent,
     required this.secondary,
     required this.success,
     required this.warning,
     required this.danger,
-    required this.textPrimary,
-    required this.textSecondary, required this.secondaryEv,
+    required this.text1,
+    required this.text2,
+    required this.secondaryEv,
+    required this.accent2,
+    required this.accentSoft,
   });
 
   // ─── Gradient Helpers ─────────────────────────────────────────────────────
 
-
   /// Subtle card depth (dark theme only)
   static const gradientCardDark = LinearGradient(
     colors: [
-      Color(0xff021437),
-      Color(0xFF1a1f3a),
-      Color(0xFF0a0e27),
+      Color(0xFF131412),
+      Color(0xff1C1B18),
+      Color(0xff242320),
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -83,8 +90,9 @@ class AppColors extends ThemeExtension<AppColors> {
 
   static const gradientCardLight = LinearGradient(
     colors: [
-      Color(0xfffdfcfc),
-      Color(0xffe6e1d7),
+      Color(0xFFF7F5F0),
+      Color(0xffEEEAE2),
+      Color(0xffFFFFFF),
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -106,20 +114,24 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? textPrimary,
     Color? textSecondary,
     Color? secondaryEv,
+    Color? accent2,
+    Color? accentSoft,
   }) {
     return AppColors(
       background: background ?? this.background,
       surface: surface ?? this.surface,
       surfaceElevated: surfaceElevated ?? this.surfaceElevated,
-      border: border ?? this.border,
+      text3: border ?? this.text3,
       accent: accent ?? this.accent,
       secondary: accentCyan ?? this.secondary,
       success: success ?? this.success,
       warning: warning ?? this.warning,
       danger: danger ?? this.danger,
-      textPrimary: textPrimary ?? this.textPrimary,
-      textSecondary: textSecondary ?? this.textSecondary,
-      secondaryEv: secondaryEv??this.secondaryEv,
+      text1: textPrimary ?? this.text1,
+      text2: textSecondary ?? this.text2,
+      secondaryEv: secondaryEv ?? this.secondaryEv,
+      accent2: accent2 ?? this.accent2,
+      accentSoft: accentSoft ?? this.accentSoft,
     );
   }
 
@@ -131,15 +143,17 @@ class AppColors extends ThemeExtension<AppColors> {
       background: Color.lerp(background, other.background, t)!,
       surface: Color.lerp(surface, other.surface, t)!,
       surfaceElevated: Color.lerp(surfaceElevated, other.surfaceElevated, t)!,
-      border: Color.lerp(border, other.border, t)!,
+      text3: Color.lerp(text3, other.text3, t)!,
       accent: Color.lerp(accent, other.accent, t)!,
       secondary: Color.lerp(secondary, other.secondary, t)!,
       success: Color.lerp(success, other.success, t)!,
       warning: Color.lerp(warning, other.warning, t)!,
       danger: Color.lerp(danger, other.danger, t)!,
-      textPrimary: Color.lerp(textPrimary, other.textPrimary, t)!,
-      textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,
+      text1: Color.lerp(text1, other.text1, t)!,
+      text2: Color.lerp(text2, other.text2, t)!,
       secondaryEv: Color.lerp(secondaryEv, other.secondaryEv, t)!,
+      accentSoft: Color.lerp(accentSoft, other.accentSoft, t)!,
+      accent2: Color.lerp(accent2, other.accent2, t)!,
     );
   }
 }

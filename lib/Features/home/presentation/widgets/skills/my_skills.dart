@@ -40,13 +40,13 @@ class SkillsSection extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: context.isLarge
-                  ? 3
+                  ? 4
                   : context.isMedium
                       ? 2
                       : 1,
               mainAxisSpacing: 20,
               crossAxisSpacing: 20,
-              childAspectRatio: context.isMedium ? 1.5 : 2.6,
+              childAspectRatio: context.isMedium ? 1.5 : 2.1,
             ),
             itemCount: skills.length,
             itemBuilder: (context, index) {

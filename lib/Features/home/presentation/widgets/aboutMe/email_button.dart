@@ -38,6 +38,7 @@ class _EmailButtonState extends State<EmailButton> {
       accent,
       btnColor: hover ? colors.accent:Colors.transparent,
 
+      borderRadiusValue: 8,
       width: 40,
       height: 40,
       child: AnimatedScale(

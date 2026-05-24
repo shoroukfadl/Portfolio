@@ -35,7 +35,7 @@ class CustomIconWithBackgroundWidget extends StatelessWidget {
           boxShadow: [
             if (showShadow)
               BoxShadow(
-                color: colors.textPrimary.withOpacity(0.25),
+                color: colors.text1.withOpacity(0.25),
                 blurRadius: 4,
                 offset: const Offset(0, 4),
               ),

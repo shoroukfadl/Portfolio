@@ -25,7 +25,7 @@ class WebPreviewWidget extends StatelessWidget {
           topStart: Radius.circular(border),
           topEnd: Radius.circular(border),
         ),
-        color: colors.border,
+        color: colors.accent.withValues(alpha: 0.4),
       ),
       child: Row(
         spacing: 8,
@@ -47,15 +47,15 @@ class WebPreviewWidget extends StatelessWidget {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-            color: colors.surfaceElevated,
-              borderRadius: BorderRadius.circular(6)
+            color: colors.secondary,
+              borderRadius: BorderRadius.circular(8)
               
             ),
             padding: const EdgeInsets.symmetric(horizontal: 12),
             alignment: AlignmentDirectional.centerStart,
             child: Text(
               projectName,
-              style: AppTextStyles.medium14(color: colors.textPrimary),
+              style: AppTextStyles.regular12(color: colors.text1),
             ),
           ).expand
         ],

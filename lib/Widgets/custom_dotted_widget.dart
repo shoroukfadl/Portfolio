@@ -51,7 +51,7 @@ class CustomDashedLineWidget extends StatelessWidget {
         ),
         DottedBorder(
           options: RectDottedBorderOptions(
-            color: context.colors.textPrimary,
+            color: context.colors.text1,
             borderPadding: EdgeInsets.zero,
             padding: EdgeInsets.zero,
             strokeCap: StrokeCap.square,

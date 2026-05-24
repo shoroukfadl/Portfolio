@@ -16,8 +16,6 @@ class $AssetsImagesGen {
 
   final AssetGenImage macBookPro165thGenSilver = const AssetGenImage(
       'assets/images/MacBook Pro 16_ - 5th Gen - Silver.png');
-  final AssetGenImage iPhone13ProMaxSilverPortrait = const AssetGenImage(
-      'assets/images/iPhone 13 Pro Max - Silver - Portrait.png');
 }
 
 class $AssetsLanguagesGen {

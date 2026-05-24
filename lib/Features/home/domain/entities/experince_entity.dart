@@ -10,7 +10,7 @@ class ExperienceEntity extends Equatable {
   final DateTime? endDate;
   final bool isCurrent; // Non-optional
   final String? location;
-  final String? description;
+  final List<String> description;
   final String? seniorityLevel;
   final int? displayOrder;
   final DateTime? createdAt;
@@ -26,7 +26,7 @@ class ExperienceEntity extends Equatable {
     this.endDate,
     this.isCurrent = false,
     this.location,
-    this.description,
+    this.description=const [],
     this.seniorityLevel,
     this.displayOrder,
     this.createdAt,

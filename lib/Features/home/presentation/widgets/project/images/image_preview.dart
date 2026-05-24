@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Features/home/presentation/widgets/project/web_preview_widget.dart';
+import 'package:portfolio/Features/home/presentation/widgets/project/images/web_preview_widget.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-import '../../../../../Widgets/rounded_image_widget.dart';
+import '../../../../../../Widgets/rounded_image_widget.dart';
 import 'mobile_preview_widget.dart';
 
 class ImagePreviewWidget extends StatelessWidget {
@@ -25,11 +25,12 @@ class ImagePreviewWidget extends StatelessWidget {
     if (mobile) {
       return Container(
         width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(
-        color: colors.background,
+        color: colors.accentSoft,
           borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(16),
-            topRight: Radius.circular(16),
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           )
         ),
         child: MobilePreviewWidget(

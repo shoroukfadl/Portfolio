@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/education_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Utilities/portifilo_icons.dart';
+import 'package:portfolio/Widgets/Custom/card_with_animation.dart';
+import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
 
@@ -9,17 +12,15 @@ class EducationCard extends StatelessWidget {
   final EducationEntity? item;
 
   const EducationCard({
-     this.item,
+    this.item,
   });
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Padding(
-      padding: const EdgeInsets.all(20),
-
-
+    return AnimatedCardWidget(
+      paddingHoz: 24,paddingVert: 20,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,65 +28,60 @@ class EducationCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                item?.icon??"",
-                style:
-                const TextStyle(fontSize: 28),
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: colors.accentSoft,
+                    border: Border.all(color: colors.accent)),
+                child: Icon(
+                  Portfolio.edu,
+                  size: 24,
+                  color: colors.accent,
+                ),
               ),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
-                  crossAxisAlignment:
-                  CrossAxisAlignment.start,
+                  spacing: 6,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      item?.degree??"",
-                      style: AppTextStyles.semiBold18(
-                        color:  colors.textPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      item?.fieldOfStudy??"",
+                      item?.degree ?? "",
                       style: AppTextStyles.medium16(
-                        color: colors
-                            .secondary,
+                        color: colors.text1,
                       ),
                     ),
+                    Text(
+                      "${item?.institution ?? ""} - ${ item?.fieldOfStudy ?? ""} ",
+                      style: AppTextStyles.regular12(
+                        color: colors.text2,
+                      ),
+                    ),
+
                   ],
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment:
-                MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '${item?.startDate?.year.toString()??""}- ${item?.endDate?.year.toString()??""}',
-                    style: AppTextStyles.medium14(
-                      color:colors
-                          .textSecondary,
-                    ),
-                  ),
 
-                  Text(
-                    item?.institution??"",
-                    style: AppTextStyles.medium14(
-                      color: colors.textSecondary,
-                    ),
-                  ),
-                ],
+              CardWithText(
+                text:  '${item?.startDate?.yyyy} - ${item?.endDate?.yyyy?? ""}',
+                color: colors.accentSoft,
+                borderColor: colors.accentSoft,
+                hozPadding: 8,
+                vertPadding: 4,
+                style: AppTextStyles.medium10(
+                  color: colors.text2,
+                ),
               ),
-
             ],
           ),
-         Text(
-           item?.description??"",
-           style: AppTextStyles.regular14(
-             color:colors.textSecondary,
-           ),
-         ),
-
+          Text(
+            item?.description ?? "",
+            style: AppTextStyles.regular12(
+              color: colors.text3,
+            ),
+          ),
         ],
       ),
     );

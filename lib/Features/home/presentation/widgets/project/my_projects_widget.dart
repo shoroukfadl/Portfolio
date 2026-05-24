@@ -19,7 +19,7 @@ class MyProjectsWidget extends StatelessWidget {
       {super.key,
       this.padding = 32,
       this.projects = const [],
-      this.cardHeight = 420,
+      this.cardHeight = 380,
       this.cardWidth = 440,
       this.imageWidth = 100,
       this.myStyle,

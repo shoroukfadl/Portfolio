@@ -37,7 +37,7 @@ class MediumHomeView extends StatelessWidget {
                   profile: s.data?.profile,
                   roleStyle: AppTextStyles.semiBold20(color: colors.accent),
                   summaryStyle:
-                      AppTextStyles.regular14(color: colors.textPrimary)
+                      AppTextStyles.regular14(color: colors.text1)
                           .copyWith(
                     height: 1.8,
                   ),
@@ -63,8 +63,8 @@ class MediumHomeView extends StatelessWidget {
                     skills: s.data?.skills ?? [],
                     padding: Constants.tabletHozPadding,
                     iconSize: 32,
-                    nameStyle: AppTextStyles.semiBold14(color: colors.textPrimary,),
-                    contentStyle: AppTextStyles.regular14(color: colors.textSecondary,),
+                    nameStyle: AppTextStyles.semiBold14(color: colors.text1,),
+                    contentStyle: AppTextStyles.regular14(color: colors.text2,),
                   );
                 })),
         SliverToBoxAdapter(child: 40.0.heightBox),
@@ -80,7 +80,7 @@ class MediumHomeView extends StatelessWidget {
                   padding: Constants.tabletHozPadding,
                   employeeTypeStyle: AppTextStyles.medium10(color: Colors.white),
                   roleStyle: AppTextStyles.semiBold16(
-                    color: colors.textPrimary,
+                    color: colors.text1,
                   ),
                   dateStyle: AppTextStyles.medium12(
                     color: colors.secondary,
@@ -122,7 +122,7 @@ class MediumHomeView extends StatelessWidget {
                       contactMeStyle:
                           AppTextStyles.medium24(color: colors.accent),
                       copyRightStyle:
-                          AppTextStyles.medium14(color: colors.textPrimary),
+                          AppTextStyles.medium14(color: colors.text1),
                     )))
       ],
     );

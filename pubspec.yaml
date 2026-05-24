@@ -47,6 +47,9 @@ dependencies:
   dotted_border:
   flutter_svg: ^2.0.10
   supabase_flutter:
+  intl:
+  flutter_animate:
+  visibility_detector:
 
 
 dev_dependencies:

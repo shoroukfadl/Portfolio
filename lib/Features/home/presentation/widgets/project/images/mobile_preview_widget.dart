@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-import '../../../../../Widgets/rounded_image_widget.dart';
+import '../../../../../../Widgets/rounded_image_widget.dart';
 
 class MobilePreviewWidget extends StatelessWidget {
   final double width, height, border;
@@ -35,7 +35,7 @@ class MobilePreviewWidget extends StatelessWidget {
           height: 6,
           margin: const EdgeInsets.symmetric(vertical: 8),
           decoration: BoxDecoration(
-              color: colors.textPrimary,
+              color: colors.text1,
               borderRadius: BorderRadius.circular(100)),
         )
       ],

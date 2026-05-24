@@ -1,196 +1,90 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Core/Theme/theme_colors.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/portifilo_icons.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
-import '../../../../../Models/user_data_model.dart';
+import '../../../../../Widgets/Custom/card_with_text.dart';
+import '../../../../../Widgets/hover_widget.dart';
+import '../../../domain/entities/experince_entity.dart';
 
-class ExperienceItemCard extends StatefulWidget {
-  final ExperienceModel? item;
-  final bool hasNext;
-  final int index; // ضفنا الـ index عشان نوزع وقت الـ Animation
-  final TextStyle? nameStyle, dateStyle, locationStyle, descriptionStyle;
+class ExperienceCard extends StatefulWidget {
+  final ExperienceEntity item;
+  final int index;
+  final int totalItems;
+  final TextStyle? employeeTypeStyle, companyNameStyle, roleStyle, dateStyle;
 
-  const ExperienceItemCard({
+  const ExperienceCard({
     super.key,
-    this.hasNext = true,
-    this.item,
+    required this.item,
     required this.index,
-    this.nameStyle,
+    required this.totalItems,
+    this.employeeTypeStyle,
+    this.companyNameStyle,
+    this.roleStyle,
     this.dateStyle,
-    this.locationStyle,
-    this.descriptionStyle,
   });
 
   @override
-  State<ExperienceItemCard> createState() => _ExperienceItemCardState();
+  State<ExperienceCard> createState() => _ExperienceCardState();
 }
-
-class _ExperienceItemCardState extends State<ExperienceItemCard>
-    with SingleTickerProviderStateMixin {
-  bool _isHovered = false;
-  late AnimationController _controller;
-  late Animation<double> _fadeAnimation;
-  late Animation<Offset> _slideAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 600),
-    );
-
-    _fadeAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
-    _slideAnimation =
-        Tween<Offset>(begin: const Offset(0, 0.2), end: Offset.zero).animate(
-            CurvedAnimation(parent: _controller, curve: Curves.easeOutBack));
-
-    // تشغيل الـ Animation بتأخير يعتمد على ترتيب الكارت
-    Future.delayed(Duration(milliseconds: widget.index * 200), () {
-      if (mounted) _controller.forward();
-    });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+class _ExperienceCardState extends State<ExperienceCard> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-
-    return FadeTransition(
-      opacity: _fadeAnimation,
-      child: SlideTransition(
-        position: _slideAnimation,
-        child: MouseRegion(
-          onEnter: (_) => setState(() => _isHovered = true),
-          onExit: (_) => setState(() => _isHovered = false),
-          child: IntrinsicHeight(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // --- Terminal Line ---
-                _buildTimeline(colors),
-                const SizedBox(width: 20),
-
-                // --- Content Log ---
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildHeader(colors),
-                      const SizedBox(height: 10),
-                      _buildMetadata(colors),
-                      const SizedBox(height: 15),
-                      _buildDescription(colors),
-                    ],
+    return HoverWidget(builder: (hover) {
+      return Row(
+        spacing: 16,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            backgroundColor: colors.accent,
+            radius: 6,
+          ).paddingOnly(top: 6),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 4,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 8,
+                children: [
+                  Text(
+                    (widget.item.positionTitle ?? ""),
+                    style: widget.roleStyle ??
+                        AppTextStyles.semiBold16(
+                          color: colors.text1,
+                        ),
+                  ).expand,
+                  CardWithText(
+                    text:
+                    "${widget.item.startDate?.yyyyMM??""} - ${widget.item.endDate?.yyyyMM ?? ""}",
+                    textColor: colors.secondaryEv,
+                    color: colors.accent2.withValues(alpha: 0.2),
+                    borderColor: colors.accent2.withValues(alpha: 0.2),
+                    style: widget.dateStyle ??
+                        AppTextStyles.regular12(
+                          color: colors.secondaryEv,
+                        ),
                   ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTimeline(AppColors colors) {
-    return Column(
-      children: [
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          width: 12,
-          height: 12,
-          decoration: BoxDecoration(
-            color: _isHovered ? colors.secondary : colors.accent,
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: (_isHovered ? colors.secondary : colors.accent)
-                    .withOpacity(0.5),
-                blurRadius: _isHovered ? 15 : 5,
-                spreadRadius: _isHovered ? 2 : 0,
-              )
-            ],
-          ),
-        ),
-        if (widget.hasNext)
-          Expanded(
-            child: Container(
-              width: 1.5,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [colors.accent.withOpacity(0.5), Colors.transparent],
-                ),
+                ],
               ),
-            ),
-          ),
-      ],
-    );
-  }
-
-  Widget _buildHeader(AppColors colors) {
-    return Row(
-      children: [
-        Text(
-          widget.item?.company ?? "",
-          style: (widget.nameStyle ?? AppTextStyles.semiBold24()).copyWith(
-            color: _isHovered ? colors.secondary : colors.accent,
-            letterSpacing: 1.1,
-          ),
-        ),
-        const SizedBox(width: 10),
-        Expanded(
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
-            height: 1,
-            color: _isHovered
-                ? colors.secondary.withValues(alpha: 0.4)
-                : colors.accent.withValues(alpha: 0.4),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildMetadata(AppColors colors) {
-    return Wrap(
-      spacing: 15,
-      children: [
-        _metaIconText(Portfolio.date, widget.item?.duration ?? "", colors),
-        _metaIconText(null, widget.item?.position ?? "", colors),
-      ],
-    );
-  }
-
-  Widget _metaIconText(IconData? icon, String text, AppColors colors) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      spacing: 4,
-      children: [
-        if (icon != null) Icon(icon, size: 14, color: colors.textSecondary),
-        Text(text,
-            style: (widget.dateStyle ??
-                AppTextStyles.regular12(color: colors.textSecondary))),
-      ],
-    );
-  }
-
-  Widget _buildDescription(AppColors colors) {
-    return Text(
-      widget.item?.description ?? "",
-      style: (widget.descriptionStyle ?? AppTextStyles.regular14())
-          .copyWith(
-        color: colors.textSecondary.withOpacity(0.7),
-        height: 1.6,
-      ),
-    );
+              Text(
+                "${widget.item.companyName ?? ""} | ${widget.item.location ?? ""}",
+                style: widget.roleStyle ??
+                    AppTextStyles.regular12(
+                      color: colors.text2,
+                    ),
+              ),
+              ...List.generate(widget.item.description.length, (i)=> Text(
+                widget.item.description[i] ?? "",
+                style: widget.roleStyle ??
+                    AppTextStyles.regular14(
+                      color: colors.text3,
+                    ),
+              ),)
+            ],
+          ).expand,
+        ],
+      );
+    });
   }
 }

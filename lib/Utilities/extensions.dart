@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Core/Language/locales.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -98,4 +99,12 @@ extension ThemeHelper on BuildContext {
   AppColors get colors => Theme.of(this).extension<AppColors>()!;
 
   AppTextStyles get text => Theme.of(this).extension<AppTextStyles>()!;
+}
+
+
+extension DateFormating on DateTime{
+  String get yyyy_MM_dd => DateFormat("yyyy-MM-dd").format(this);
+  String get yyyySlashMMSlahdd => DateFormat("yyyy/MM.dd").format(this);
+  String get yyyyMM => DateFormat("MMM yyyy").format(this);
+  String get yyyy => DateFormat("yyyy").format(this);
 }

@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 @immutable
 abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   // ─── Base font families ───────────────────────────────────────────────────
-  static TextStyle get mainFamily => GoogleFonts.poppins();
-  static TextStyle get secondaryFamily => GoogleFonts.iceland();
+  static TextStyle get mainFamily => GoogleFonts.dmSerifDisplay();
+  static TextStyle get secondaryFamily => GoogleFonts.dmSans();
 
   static TextStyle extraBold72({Color? color}) => mainFamily.copyWith(
         fontSize: 72,
@@ -15,6 +15,11 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle extraBold56({Color? color}) => mainFamily.copyWith(
         fontSize: 56,
+        fontWeight: FontWeight.w800,
+        color: color ?? Colors.black,
+      );
+  static TextStyle extraBold48({Color? color}) => mainFamily.copyWith(
+        fontSize: 48,
         fontWeight: FontWeight.w800,
         color: color ?? Colors.black,
       );

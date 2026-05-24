@@ -71,12 +71,12 @@ class CustomButtonWidget extends StatelessWidget {
         child: isLoading
             ? Center(
                 child:
-                    SpinKitThreeBounce(color: colors.textSecondary, size: 24.0))
+                    SpinKitThreeBounce(color: colors.text2, size: 24.0))
             : child ??
                 AppTextWidget(
                   title ?? "",
                   style: AppTextStyles.regular14()
-                      .copyWith(color: titleColor ?? colors.textPrimary),
+                      .copyWith(color: titleColor ?? colors.text1),
                 ),
       ),
     );

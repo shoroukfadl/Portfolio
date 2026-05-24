@@ -60,8 +60,8 @@ class _CvButtonState extends State<CvButton> with SingleTickerProviderStateMixin
           height: 40,
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: colors.secondary,
-            borderRadius: BorderRadius.circular(100),
+            color: colors.accent,
+            borderRadius: BorderRadius.circular(8),
           ),
           child: AnimatedBuilder(
             animation: _widthAnimation,
@@ -71,7 +71,7 @@ class _CvButtonState extends State<CvButton> with SingleTickerProviderStateMixin
                   Container(
                     width: _widthAnimation.value * 140,
                     height: 40,
-                    color: colors.secondaryEv,
+                    color: colors.accent2,
 
                   ),
                   Center(child: child),

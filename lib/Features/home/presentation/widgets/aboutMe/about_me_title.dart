@@ -34,32 +34,19 @@ class SummaryContent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          '━ ${Strings.helloIam.translate}',
-          style: AppTextStyles.semiBold20(color: colors.accent),
+          firstName,
+          style:nameStyle?? AppTextStyles.extraBold56(color: colors.accent),
         ),
-        const SizedBox(height: 10),
-        ShaderMask(
-          shaderCallback: (bounds) => LinearGradient(
-            colors: [colors.accent, colors.secondary],
-          ).createShader(bounds),
-          child: Text(
-            '$firstName\n$lastName',
-            style:nameStyle?? AppTextStyles.extraBold56(color: colors.accent).copyWith(
-              height: 1.1,
-              letterSpacing: -2,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        const SizedBox(height: 5),
         Text(
-          role,
-          style:roleStyle?? AppTextStyles.semiBold24(color: colors.accent),
+          lastName,
+          style:nameStyle?? AppTextStyles.extraBold48(color: colors.text1).copyWith(
+            fontStyle: FontStyle.italic
+          )
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 8),
         Text(
           summary,
-          style:summaryStyle?? AppTextStyles.regular16(color: colors.textPrimary).copyWith(
+          style:summaryStyle?? AppTextStyles.regular14(color: colors.text2).copyWith(
             height: 1.8,
           ),
         ),

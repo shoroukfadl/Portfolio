@@ -1,68 +1,59 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Custom/card_with_animation.dart';
 
-class SocialButtonWidget extends StatefulWidget {
+class SocialButtonWidget extends StatelessWidget {
   final IconData icon;
   final double size;
   final Color? btnColor, borderColor, iconColor;
   final void Function() onPressed;
 
+  final String title;
   const SocialButtonWidget({
     super.key,
     required this.icon,
-    this.size = 20,
+    this.size = 14,
     this.btnColor,
     this.borderColor,
     required this.onPressed,
     this.iconColor,
+    required this.title,
   });
-
-  @override
-  State<SocialButtonWidget> createState() => _SocialButtonWidgetState();
-}
-
-class _SocialButtonWidgetState extends State<SocialButtonWidget> {
-  bool isHovered = false;
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return MouseRegion(
-      onEnter: (_) => setState(() => isHovered = true),
-      onExit: (_) => setState(() => isHovered = false),
-      child: InkWell(
-        onTap: widget.onPressed,
-        hoverColor: Colors.transparent,
-        child: AnimatedRotation(
-          turns: isHovered ? 1.0 : 0,
-          duration: const Duration(milliseconds: 600),
-          curve: Curves.easeInOut,
-          child: Container(
-            width: widget.size * 2,
-            height: widget.size * 2,
-            decoration: BoxDecoration(
-                borderRadius:const BorderRadius.all(Radius.circular(100)),
-                border: widget.borderColor == null
-                    ? null
-                    : Border.all(
-                        color: widget.borderColor!,
-                      ),
-                color: widget.btnColor ?? colors.secondary,
-                boxShadow: !isHovered
-                    ? null
-                    : [
-                        BoxShadow(
-                          color: colors.accent.withValues(alpha: 0.3),
-                          spreadRadius: 2,
-                        )
-                      ]),
-            child: Icon(
-              widget.icon,
-              color: widget.iconColor ?? Colors.white,
-              size: widget.size,
+    return InkWell(
+      onTap: onPressed,
+      hoverColor: Colors.transparent,
+      child: AnimatedCardWidget(
+        paddingHoz: 8,
+        paddingVert: 8,
+        child: Row(
+          spacing: 8,
+          children: [
+            Card.filled(
+              color: colors.accentSoft,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  icon,
+                  color: iconColor ?? colors.accent,
+                  size: size,
+                ),
+              ),
             ),
-          ),
+            Text(
+              title,
+              style: AppTextStyles.medium12(color: colors.text1),
+            ),
+            8.0.widthBox
+          ],
         ),
       ),
     );

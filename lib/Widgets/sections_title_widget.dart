@@ -16,22 +16,21 @@ class SectionsTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return Column(
-      spacing: 8,
-      crossAxisAlignment: CrossAxisAlignment.end,
+    return Row(
+      spacing: 16,
       children: [
         Text(
           title.toUpperCase(),
-          style: (titleStyle ?? AppTextStyles.extraBold40())
+          style: (titleStyle ?? AppTextStyles.medium20())
               .copyWith(color: colors.accent),
         ),
         Container(
-          height: 2,
-          width: 100,
+          height: 0.2,
+          width: double.infinity,
           decoration: BoxDecoration(
               color:colors.accent,
               borderRadius: BorderRadius.circular(2)),
-        ),
+        ).expand,
       ],
     );
   }

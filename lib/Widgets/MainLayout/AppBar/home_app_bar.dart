@@ -56,94 +56,76 @@ class _HomeAppBarState extends State<HomeAppBar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          height: 56,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: colors.background,
-            boxShadow: [
-              BoxShadow(
-                color: colors.surfaceElevated,
-                spreadRadius: 2,
-                blurRadius: 2,
-                offset: const Offset(0, 4)
-              )
-            ],
-            borderRadius: const BorderRadius.all(Radius.circular(32))
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 0),
+        Row(
+          spacing: 16,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            HomeAppBarItem(
+                onTap: () {
+                  Scrollable.ensureVisible(
+                    GlobalKeys.aboutMe.currentContext!,
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                icon: Portfolio.home
+            ),
+            HomeAppBarItem(
+                onTap: () {
+                  Scrollable.ensureVisible(
+                    GlobalKeys.skill.currentContext!,
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                icon: Portfolio.skills
+            ),
+            HomeAppBarItem(
+                onTap: () {
+                  Scrollable.ensureVisible(
+                    GlobalKeys.education.currentContext!,
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                icon: Portfolio.edu
 
-          child: Row(
-            spacing: 16,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              HomeAppBarItem(
-                  onTap: () {
-                    Scrollable.ensureVisible(
-                      GlobalKeys.aboutMe.currentContext!,
-                      duration: const Duration(seconds: 1),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  icon: Portfolio.home
-              ),
-              HomeAppBarItem(
-                  onTap: () {
-                    Scrollable.ensureVisible(
-                      GlobalKeys.skill.currentContext!,
-                      duration: const Duration(seconds: 1),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  icon: Portfolio.skills
-              ),
-              HomeAppBarItem(
-                  onTap: () {
-                    Scrollable.ensureVisible(
-                      GlobalKeys.education.currentContext!,
-                      duration: const Duration(seconds: 1),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  icon: Portfolio.edu
-
-              ),
-              HomeAppBarItem(
-                  onTap: () {
-                    Scrollable.ensureVisible(
-                      GlobalKeys.experince.currentContext!,
-                      duration: const Duration(seconds: 1),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  icon: Portfolio.work
-              ),
-              HomeAppBarItem(
-                  onTap: () {
-                    Scrollable.ensureVisible(
-                      GlobalKeys.projects.currentContext!,
-                      duration: const Duration(seconds: 1),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  icon: Portfolio.projects
-              ),
-              HomeAppBarItem(
-                  onTap: () {
-                    Scrollable.ensureVisible(
-                      GlobalKeys.contactMe.currentContext!,
-                      duration: const Duration(seconds: 1),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  icon: Portfolio.link
-              ),
+            ),
+            HomeAppBarItem(
+                onTap: () {
+                  Scrollable.ensureVisible(
+                    GlobalKeys.experince.currentContext!,
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                icon: Portfolio.work
+            ),
+            HomeAppBarItem(
+                onTap: () {
+                  Scrollable.ensureVisible(
+                    GlobalKeys.projects.currentContext!,
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                icon: Portfolio.projects
+            ),
+            HomeAppBarItem(
+                onTap: () {
+                  Scrollable.ensureVisible(
+                    GlobalKeys.contactMe.currentContext!,
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                icon: Portfolio.link
+            ),
 
 
 
 
-            ],
-          ),
+          ],
         ),
 
         BlocBuilder<ThemeCubit,ThemeState>(
@@ -151,11 +133,11 @@ class _HomeAppBarState extends State<HomeAppBar> {
               return CustomButtonWidget(
                 width: 32,
                 height: 32,
-                borderRadiusValue: 100,
+                borderRadiusValue: 8,
                 onPressed: () {
                   context.read<ThemeCubit>().changeTheme();
                 },
-                btnColor: colors.secondary,
+                btnColor: colors.accent2,
                 child: Icon(
                   theme.isDark ? Portfolio.sun:  Portfolio.moon,
                   color: Colors.white,

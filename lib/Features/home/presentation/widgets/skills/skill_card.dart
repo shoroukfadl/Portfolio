@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/tech_skill_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/rounded_image_widget.dart';
+import 'package:portfolio/Widgets/Custom/card_with_animation.dart';
+import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 
-class SkillCard extends StatefulWidget {
+class SkillCard extends StatelessWidget {
   final TechnicalSkillEntity? skill;
   final int index;
   final TextStyle? nameStyle, contentStyle;
@@ -20,93 +21,38 @@ class SkillCard extends StatefulWidget {
   });
 
   @override
-  State<SkillCard> createState() => _SkillCardState();
-}
-
-class _SkillCardState extends State<SkillCard> {
-  bool _isHovered = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return MouseRegion(
-      onEnter: (_) {
-        setState(() => _isHovered = true);
-      },
-      onExit: (_) {
-        setState(() => _isHovered = false);
-      },
-      child: AnimatedScale(
-        scale: _isHovered ? 1.05 : 1,
-        duration: const Duration(milliseconds: 300),
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(16),
-            ),
-            border: Border.all(
-              color: colors.surface,
-              width: 1,
-            ),
-            boxShadow: _isHovered
-                ? [
-                    BoxShadow(
-                      color: colors.secondary.withValues(alpha: 0.1),
-                      blurRadius: 8,
-                      spreadRadius: 4,
-                    ),
-                  ]
-                : null,
-            color: colors.surfaceElevated,
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            spacing: 8,
-            children: [
-              RoundedImage(
-                imagePath: widget.skill?.icon ?? "",
-                width: widget.iconSize,
-                height: widget.iconSize,
-                radiusValue: 0,
-                backgroundColor: Colors.transparent,
-              ),
-              Text(
-                widget.skill?.category ?? "",
-                style: widget.nameStyle?? AppTextStyles.semiBold16(
-                  color: colors.textPrimary,
+    return AnimatedCardWidget(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        spacing: 8,
+        children: [
+          Text(
+            skill?.category?.toUpperCase() ?? "",
+            style: nameStyle ??
+                AppTextStyles.semiBold14(
+                  color: colors.accent,
                 ),
-              ),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  ...List.generate(
-                      widget.skill?.skills.length ?? 0,
-                      (i) => Text(
-                            (widget.skill?.skills[i].skillName ?? ""),
-                            style:widget.contentStyle?? AppTextStyles.regular16(
-                              color: colors.textSecondary,
-                            ),
-                            maxLines: 3,
-                            overflow: TextOverflow.ellipsis,
-                          ))
-                ],
-              )
-            ],
           ),
-        ),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              ...List.generate(
+                  skill?.skills.length ?? 0,
+                  (i) => CardWithText(
+                        text: (skill?.skills[i].skillName ?? ""),
+                        style: contentStyle,
+                        maxLine: 3,
+                        color:index%2==0? colors.secondary:colors.surface,
+                        borderColor:index%2==0? colors.secondary:colors.surface,
+                        textColor:index%2==0? colors.secondaryEv:colors.text2,
+                      ))
+            ],
+          )
+        ],
       ),
     );
   }
