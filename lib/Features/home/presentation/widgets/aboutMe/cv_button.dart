@@ -86,7 +86,7 @@ class _CvButtonState extends State<CvButton> with SingleTickerProviderStateMixin
                   style: AppTextStyles.medium14(color: Colors.white),
                 ),
                 const SizedBox(width: 8),
-                const Icon(Portfolio.download, size: 14, color: Colors.white),
+                const Icon(Icons.download, size: 14, color: Colors.white),
               ],
             ),
           ),

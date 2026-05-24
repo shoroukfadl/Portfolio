@@ -51,7 +51,7 @@ class ContactMeWidget extends StatelessWidget {
               },
               size: iconSize,
               title: 'Email',
-              icon: Portfolio.email,
+              icon: Icons.email,
             ),
             SocialButtonWidget(
               onPressed: () {

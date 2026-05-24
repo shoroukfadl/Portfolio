@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class Assets {
   Assets._();
 
+  static const AssetGenImage logo = AssetGenImage('assets/logo.jpg');
   static const $AssetsLanguagesGen languages = $AssetsLanguagesGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();

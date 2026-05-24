@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:portfolio/Core/Api/keys.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Utilities/shared_preferences.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:universal_html/html.dart' as html;
@@ -25,11 +26,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   await Supabase.initialize(
-      url: ApiService.subbaseKey,
-      anonKey:ApiService.subbaseAnonKey
-  );
+      url: ApiService.subbaseKey, anonKey: ApiService.subbaseAnonKey);
   await GitIt.initGitIt();
-  setHashUrlStrategy();
+  setPathUrlStrategy();
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
     BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
@@ -55,12 +54,16 @@ class _EntryPointState extends State<EntryPoint> {
     final appLan = context.read<AppLanguage>();
     final bool isArabic = appLan.appLang.name == 'ar';
 
-    final themeState = context.watch<ThemeCubit>().state;
-    final bool isDark = themeState.isDark;
+    bool? isDark = SharedPref.getTheme();
+    if (SharedPref.getTheme() == null) {
+      final themeState = context.read<ThemeCubit>().state;
+      isDark = themeState.isDark;
+    }
+
 
     final currentTheme = AppThemes.createTheme(
       isArabic: isArabic,
-      isDark: isDark,
+      isDark: isDark??false,
     );
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -94,7 +97,7 @@ class _EntryPointState extends State<EntryPoint> {
           routerConfig: GoRouterConfig.router,
           darkTheme: AppTheme.dark,
           theme: currentTheme,
-          themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+          themeMode: isDark ==true ? ThemeMode.dark : ThemeMode.light,
           debugShowCheckedModeBanner: false,
           title:
               GoRouterConfig.router.configuration.navigatorKey.currentContext ==

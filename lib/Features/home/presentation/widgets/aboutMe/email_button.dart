@@ -45,7 +45,7 @@ class _EmailButtonState extends State<EmailButton> {
         scale: hover? 1.08:1,
         duration: const Duration(milliseconds: 400),
         child: Icon(
-          Portfolio.email,
+          Icons.email,
           color:hover ?Colors.white: colors.accent,
           size: 20,
         ),

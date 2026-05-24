@@ -6,7 +6,6 @@ class Portfolio {
 
   static const String _fontFamily = 'portifilo';
 
-  static const IconData web = IconData(0xf00c, fontFamily: _fontFamily);
   static const IconData projects = IconData(0xf003, fontFamily: _fontFamily);
   static const IconData github = IconData(0xf00b, fontFamily: _fontFamily);
   static const IconData linkedIn = IconData(0xf004, fontFamily: _fontFamily);
