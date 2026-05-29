@@ -27,7 +27,7 @@ void main() async {
   await Supabase.initialize(
       url: ApiService.subbaseKey, anonKey: ApiService.subbaseAnonKey);
   await GitIt.initGitIt();
-  setPathUrlStrategy();
+  setHashUrlStrategy();
 
   runApp(MultiBlocProvider(
       providers: [
