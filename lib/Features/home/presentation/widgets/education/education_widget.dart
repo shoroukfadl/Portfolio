@@ -11,18 +11,25 @@ class EducationSection extends StatelessWidget {
   final EducationEntity? education;
   final double padding;
   final TextStyle? titleStyle;
-  const EducationSection({super.key, this.education,  this.padding=Constants.desktopHozPadding, this.titleStyle});
+  const EducationSection(
+      {super.key,
+      this.education,
+      this.padding = Constants.desktopHozPadding,
+      this.titleStyle});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       spacing: 16,
       children: [
-        SectionsTitleWidget(title: Strings.education.translate,titleStyle: titleStyle,),
+        SectionsTitleWidget(
+          title: Strings.education.translate,
+          titleStyle: titleStyle,
+        ),
         EducationCard(
           item: education,
         )
       ],
-    ).paddingSymmetric(vertical: 40, horizontal:padding );
+    ).paddingSymmetric(vertical: 40, horizontal: padding);
   }
 }

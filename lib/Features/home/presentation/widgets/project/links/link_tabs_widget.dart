@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
-import 'links_list_widget.dart';
 
+import 'links_list_widget.dart';
 
 class LinkTabsWidget extends StatefulWidget {
   final List<LinkEntity> ios;
@@ -20,38 +20,34 @@ class LinkTabsWidget extends StatefulWidget {
 }
 
 class _LinkTabsWidgetState extends State<LinkTabsWidget> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
       spacing: 8,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if(widget.android.isNotEmpty)
-        LinksListWidget(
-         links: widget.android,
-          title: 'android',
-          icon:Icons.android ,
-          color: Colors.green,
-       ),
-
-        if(widget.ios.isNotEmpty)
+        if (widget.android.isNotEmpty)
           LinksListWidget(
-         links: widget.ios,
-          title: 'ios',
-          color: Colors.black,
-          icon:Icons.apple ,
-       ),
-        if(widget.web.isNotEmpty)
+            links: widget.android,
+            title: 'android',
+            icon: Icons.android,
+            color: Colors.green,
+          ),
+        if (widget.ios.isNotEmpty)
           LinksListWidget(
-         links: widget.web,
-          title: 'web',
-          color: Colors.grey,
-          icon:Icons.language ,
-       ),
+            links: widget.ios,
+            title: 'ios',
+            color: Colors.black,
+            icon: Icons.apple,
+          ),
+        if (widget.web.isNotEmpty)
+          LinksListWidget(
+            links: widget.web,
+            title: 'web',
+            color: Colors.grey,
+            icon: Icons.language,
+          ),
       ],
     );
   }
-
-
 }

@@ -7,13 +7,12 @@ class HomeAppBarItem extends StatefulWidget {
   final String label;
   final bool isSelected;
 
-  const HomeAppBarItem({
-    super.key,
-    required this.onTap,
-    required this.icon,
-    this.label = "",
-    this.isSelected=false
-  });
+  const HomeAppBarItem(
+      {super.key,
+      required this.onTap,
+      required this.icon,
+      this.label = "",
+      this.isSelected = false});
 
   @override
   State<HomeAppBarItem> createState() => _HomeAppBarItemState();
@@ -45,17 +44,18 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
                 duration: const Duration(milliseconds: 200),
                 child: Icon(
                   widget.icon,
-                  color: _isHovered || widget.isSelected ? activeColor : idleColor,
+                  color:
+                      _isHovered || widget.isSelected ? activeColor : idleColor,
                   size: 24,
                 ),
               ),
-
               const SizedBox(height: 4),
-
               AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
-                width: _isHovered || widget.isSelected ? 20 : 0, // يتمدد من 0 إلى 20
+                width: _isHovered || widget.isSelected
+                    ? 20
+                    : 0, // يتمدد من 0 إلى 20
                 height: 3,
                 decoration: BoxDecoration(
                   color: activeColor,

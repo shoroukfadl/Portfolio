@@ -9,7 +9,6 @@ import 'package:portfolio/Core/Api/keys.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:universal_html/html.dart' as html;
 import 'package:url_strategy/url_strategy.dart';
 
 import 'Core/Language/app_languages.dart';
@@ -29,14 +28,11 @@ void main() async {
   await GitIt.initGitIt();
   setHashUrlStrategy();
 
-  runApp(MultiBlocProvider(
-      providers: [
-        BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()..getCurrentTheme()),
-        BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
-        BlocProvider<PortfolioCubit>(create: (_) => sl<PortfolioCubit>()),
-      ],
-      child: const EntryPoint()
-  ));
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()..getCurrentTheme()),
+    BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
+    BlocProvider<PortfolioCubit>(create: (_) => sl<PortfolioCubit>()),
+  ], child: const EntryPoint()));
 }
 
 class EntryPoint extends StatefulWidget {
@@ -70,11 +66,13 @@ class _EntryPointState extends State<EntryPoint> {
             breakpoints: [
               const Breakpoint(start: 0, end: 599, name: MOBILE),
               const Breakpoint(start: 600, end: 1439, name: TABLET),
-              const Breakpoint(start: 1440, end: double.infinity, name: DESKTOP),
+              const Breakpoint(
+                  start: 1440, end: double.infinity, name: DESKTOP),
             ],
             child: MaterialApp.router(
               locale: Locale(appLan.appLang.name),
-              supportedLocales: Languages.values.map((e) => Locale(e.name)).toList(),
+              supportedLocales:
+                  Languages.values.map((e) => Locale(e.name)).toList(),
               localizationsDelegates: const [
                 AppLocalizations.delegate,
                 GlobalMaterialLocalizations.delegate,
@@ -108,8 +106,8 @@ class _EntryPointState extends State<EntryPoint> {
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
-    PointerDeviceKind.touch,
-    PointerDeviceKind.mouse,
-    PointerDeviceKind.trackpad
-  };
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad
+      };
 }

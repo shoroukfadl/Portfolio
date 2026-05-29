@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/about_me_title.dart';
 import 'package:portfolio/Models/user_data_model.dart';
-import 'package:portfolio/Utilities/extensions.dart';
 
 import 'floating_card_widget.dart';
 
@@ -10,8 +9,12 @@ class SummarySection extends StatefulWidget {
   final ProfileEntity? profile;
   final TextStyle? nameStyle, roleStyle, summaryStyle;
 
-
-  const SummarySection({super.key, this.profile, this.nameStyle, this.roleStyle, this.summaryStyle});
+  const SummarySection(
+      {super.key,
+      this.profile,
+      this.nameStyle,
+      this.roleStyle,
+      this.summaryStyle});
 
   @override
   State<SummarySection> createState() => _SummarySectionState();
@@ -50,34 +53,32 @@ class _SummarySectionState extends State<SummarySection>
 
   @override
   Widget build(BuildContext context) {
-
-
     return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: SummaryContent(
-                  firstName: widget.profile?.firstName ?? "",
-                  lastName: widget.profile?.lastName ?? "",
-                  role: widget.profile?.jobTitle ?? "",
-                  summary: widget.profile?.summary ?? "",
-                  cv: widget.profile?.cv??"",
-                  email: widget.profile?.email??"",
-                  nameStyle: widget.nameStyle,
-                  roleStyle: widget.roleStyle,
-                  summaryStyle: widget.summaryStyle,
-                ),
-              ),
-              const SizedBox(width: 60),
-              Expanded(
-                child: FloatingCards(
-                  floatController: _floatController,
-                  cardControllers: _cardControllers,
-                  eduction: EductionModel(),
-                  isMobile: false,
-                ),
-              ),
-            ],
-          );
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: SummaryContent(
+            firstName: widget.profile?.firstName ?? "",
+            lastName: widget.profile?.lastName ?? "",
+            role: widget.profile?.jobTitle ?? "",
+            summary: widget.profile?.summary ?? "",
+            cv: widget.profile?.cv ?? "",
+            email: widget.profile?.email ?? "",
+            nameStyle: widget.nameStyle,
+            roleStyle: widget.roleStyle,
+            summaryStyle: widget.summaryStyle,
+          ),
+        ),
+        const SizedBox(width: 60),
+        Expanded(
+          child: FloatingCards(
+            floatController: _floatController,
+            cardControllers: _cardControllers,
+            eduction: EductionModel(),
+            isMobile: false,
+          ),
+        ),
+      ],
+    );
   }
 }

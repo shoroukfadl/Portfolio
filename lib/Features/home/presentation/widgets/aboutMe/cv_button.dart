@@ -14,7 +14,8 @@ class CvButton extends StatefulWidget {
   State<CvButton> createState() => _CvButtonState();
 }
 
-class _CvButtonState extends State<CvButton> with SingleTickerProviderStateMixin {
+class _CvButtonState extends State<CvButton>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _widthAnimation;
 
@@ -72,7 +73,6 @@ class _CvButtonState extends State<CvButton> with SingleTickerProviderStateMixin
                     width: _widthAnimation.value * 140,
                     height: 40,
                     color: colors.accent2,
-
                   ),
                   Center(child: child),
                 ],

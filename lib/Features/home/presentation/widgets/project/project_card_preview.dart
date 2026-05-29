@@ -31,7 +31,8 @@ class ProjectItemCard extends StatefulWidget {
   State<ProjectItemCard> createState() => _ProjectItemCardState();
 }
 
-class _ProjectItemCardState extends State<ProjectItemCard> with SingleTickerProviderStateMixin {
+class _ProjectItemCardState extends State<ProjectItemCard>
+    with SingleTickerProviderStateMixin {
   bool hover = false;
   late AnimationController _shimmerController;
 
@@ -51,8 +52,8 @@ class _ProjectItemCardState extends State<ProjectItemCard> with SingleTickerProv
   }
 
   void onHover(bool h) => setState(() {
-    hover = h;
-  });
+        hover = h;
+      });
 
   @override
   Widget build(BuildContext context) {

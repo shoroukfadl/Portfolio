@@ -26,7 +26,7 @@ class ExperienceModel {
     this.endDate,
     this.isCurrent = false,
     this.location,
-    this.description=const[],
+    this.description = const [],
     this.seniorityLevel,
     this.displayOrder,
     this.createdAt,
@@ -81,15 +81,24 @@ class ExperienceModel {
       positionTitle: json['position_title'],
       companyName: json['company_name'],
       employmentType: json['employment_type'],
-      startDate: json['start_date'] != null ? DateTime.parse(json['start_date']) : null,
-      endDate: json['end_date'] != null ? DateTime.parse(json['end_date']) : null,
+      startDate: json['start_date'] != null
+          ? DateTime.parse(json['start_date'])
+          : null,
+      endDate:
+          json['end_date'] != null ? DateTime.parse(json['end_date']) : null,
       isCurrent: json['is_current'] ?? false,
       location: json['location'],
-      description: json['description'] == null? []: List<String>.from((json['description']??[])),
+      description: json['description'] == null
+          ? []
+          : List<String>.from((json['description'] ?? [])),
       seniorityLevel: json['seniority_level'],
       displayOrder: json['display_order'],
-      createdAt: json['created_at'] != null ? DateTime.parse(json['created_at']) : null,
-      updatedAt: json['updated_at'] != null ? DateTime.parse(json['updated_at']) : null,
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'])
+          : null,
+      updatedAt: json['updated_at'] != null
+          ? DateTime.parse(json['updated_at'])
+          : null,
     );
   }
 

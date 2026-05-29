@@ -232,9 +232,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                         AppTextWidget(
                           title,
                           style: AppTextStyles.regular14().copyWith(
-                              color: isSelected
-                                  ? colors.text2
-                                  : colors.accent,
+                              color: isSelected ? colors.text2 : colors.accent,
                               fontSize: context.isSmall ? 12 : 16),
                         ),
                         const Spacer(),
@@ -288,18 +286,15 @@ class LargeDrawerItemWidget extends StatelessWidget {
                             width: context.isSmall ? 24 : 32,
                             height: context.isSmall ? 24 : 32,
                             colorFilter: ColorFilter.mode(
-                                isSelected
-                                    ? colors.text2
-                                    : colors.accent,
+                                isSelected ? colors.text2 : colors.accent,
                                 BlendMode.srcIn),
                           ),
                           8.0.widthBox,
                           AppTextWidget(
                             title,
                             style: AppTextStyles.regular14().copyWith(
-                                color: isSelected
-                                    ? colors.text2
-                                    : colors.accent,
+                                color:
+                                    isSelected ? colors.text2 : colors.accent,
                                 fontSize: context.isSmall ? 12 : 16),
                           ),
                           const Spacer(),
@@ -308,9 +303,7 @@ class LargeDrawerItemWidget extends StatelessWidget {
                             width: context.isSmall ? 24 : 32,
                             height: context.isSmall ? 24 : 32,
                             colorFilter: ColorFilter.mode(
-                                isSelected
-                                    ? colors.text2
-                                    : colors.accent,
+                                isSelected ? colors.text2 : colors.accent,
                                 BlendMode.srcIn),
                           ),
                         ],

@@ -3,25 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Core/Theme/theme_cubit.dart';
 import 'package:portfolio/Core/Theme/theme_state.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
-import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/portifilo_icons.dart';
 import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
-
-import 'home_app_bar_item.dart';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:portfolio/Core/Theme/theme_cubit.dart';
-import 'package:portfolio/Core/Theme/theme_state.dart';
-import 'package:portfolio/Utilities/Constants/global_keys.dart';
-import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/portifilo_icons.dart';
-import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
-
-import 'home_app_bar_item.dart';
-
-
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -29,27 +13,25 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return BlocBuilder<ThemeCubit,ThemeState>(
-        builder: (context, theme) {
-          return Align(
-            alignment: AlignmentDirectional.bottomEnd,
-            child: CustomButtonWidget(
-              width: 32,
-              height: 32,
-              borderRadiusValue: Constants.smallButtonRadius,
-              onPressed: () {
-                context.read<ThemeCubit>().changeTheme();
-              },
-              btnColor: colors.accent,
-              child: Icon(
-                theme.isDark ? Portfolio.sun:  Portfolio.moon,
-                color: Colors.white,
-                size: Constants.smallButtonIcon,
-              ),
-            ),
-          );
-        }
-    );
+    return BlocBuilder<ThemeCubit, ThemeState>(builder: (context, theme) {
+      return Align(
+        alignment: AlignmentDirectional.bottomEnd,
+        child: CustomButtonWidget(
+          width: 32,
+          height: 32,
+          borderRadiusValue: Constants.smallButtonRadius,
+          onPressed: () {
+            context.read<ThemeCubit>().changeTheme();
+          },
+          btnColor: colors.accent,
+          child: Icon(
+            theme.isDark ? Portfolio.sun : Portfolio.moon,
+            color: Colors.white,
+            size: Constants.smallButtonIcon,
+          ),
+        ),
+      );
+    });
   }
 }
 

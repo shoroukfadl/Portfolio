@@ -12,18 +12,20 @@ import '../../../../../Utilities/portifilo_icons.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
 
 class ContactMeWidget extends StatelessWidget {
-  final String linkedIN, github, email, phoneNumber,cv;
-  final double iconSize ,padding;
-  final TextStyle? copyRightStyle , contactMeStyle;
+  final String linkedIN, github, email, phoneNumber, cv;
+  final double iconSize, padding;
+  final TextStyle? copyRightStyle, contactMeStyle;
   const ContactMeWidget({
     super.key,
     required this.linkedIN,
     required this.github,
     required this.email,
     required this.phoneNumber,
-    this.iconSize=20,
+    this.iconSize = 20,
     this.padding = Constants.desktopHozPadding,
-    this.copyRightStyle, this.contactMeStyle, required this.cv,
+    this.copyRightStyle,
+    this.contactMeStyle,
+    required this.cv,
   });
 
   @override
@@ -72,7 +74,8 @@ class ContactMeWidget extends StatelessWidget {
             ),
             SocialButtonWidget(
               onPressed: () {
-                HelperFunctions.openWhatsApp(phoneNumber: phoneNumber, message: 'Hi');
+                HelperFunctions.openWhatsApp(
+                    phoneNumber: phoneNumber, message: 'Hi');
               },
               size: iconSize,
               title: 'WhatsApp',
@@ -80,7 +83,8 @@ class ContactMeWidget extends StatelessWidget {
             ),
             SocialButtonWidget(
               onPressed: () {
-                onTap: () => HelperFunctions.openUrl(cv, context);
+                onTap:
+                () => HelperFunctions.openUrl(cv, context);
               },
               size: iconSize,
               title: 'CV',
@@ -90,7 +94,7 @@ class ContactMeWidget extends StatelessWidget {
         ),
         Text(
           '© 2026 Shorouk Fadl. Built with Flutter. All rights reserved.',
-          style: copyRightStyle?? AppTextStyles.medium14(color: colors.text1),
+          style: copyRightStyle ?? AppTextStyles.medium14(color: colors.text1),
         ),
       ],
     ).paddingSymmetric(horizontal: padding);

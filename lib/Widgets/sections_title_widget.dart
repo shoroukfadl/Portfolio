@@ -7,10 +7,7 @@ class SectionsTitleWidget extends StatelessWidget {
   final String title;
   final TextStyle? titleStyle;
 
-  const SectionsTitleWidget(
-      {super.key,
-      required this.title,
-      this.titleStyle});
+  const SectionsTitleWidget({super.key, required this.title, this.titleStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +25,7 @@ class SectionsTitleWidget extends StatelessWidget {
           height: 0.2,
           width: double.infinity,
           decoration: BoxDecoration(
-              color:colors.accent,
-              borderRadius: BorderRadius.circular(2)),
+              color: colors.accent, borderRadius: BorderRadius.circular(2)),
         ).expand,
       ],
     );

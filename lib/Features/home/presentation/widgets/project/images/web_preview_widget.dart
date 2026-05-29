@@ -47,10 +47,8 @@ class WebPreviewWidget extends StatelessWidget {
             width: double.infinity,
             height: double.infinity,
             decoration: BoxDecoration(
-            color: colors.secondary,
-              borderRadius: BorderRadius.circular(8)
-              
-            ),
+                color: colors.secondary,
+                borderRadius: BorderRadius.circular(8)),
             padding: const EdgeInsets.symmetric(horizontal: 12),
             alignment: AlignmentDirectional.centerStart,
             child: Text(

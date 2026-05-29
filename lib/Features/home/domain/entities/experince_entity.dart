@@ -26,7 +26,7 @@ class ExperienceEntity extends Equatable {
     this.endDate,
     this.isCurrent = false,
     this.location,
-    this.description=const [],
+    this.description = const [],
     this.seniorityLevel,
     this.displayOrder,
     this.createdAt,
@@ -35,8 +35,19 @@ class ExperienceEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-    id, userId, positionTitle, companyName, employmentType,
-    startDate, endDate, isCurrent, location, description,
-    seniorityLevel, displayOrder, createdAt, updatedAt,
-  ];
+        id,
+        userId,
+        positionTitle,
+        companyName,
+        employmentType,
+        startDate,
+        endDate,
+        isCurrent,
+        location,
+        description,
+        seniorityLevel,
+        displayOrder,
+        createdAt,
+        updatedAt,
+      ];
 }

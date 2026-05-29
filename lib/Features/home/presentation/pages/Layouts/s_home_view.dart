@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 class SmallHomeView extends StatelessWidget {
-
-  const SmallHomeView({super.key, });
+  const SmallHomeView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +17,12 @@ class SmallHomeView extends StatelessWidget {
 
         64.0.heightBox,
 
-
         // AboutMeWidget(
         //   name: con.user?.name ?? "",
         //   role: con.user?.jobName ?? "",
         //   desc: con.user?.summary ??
         //       "Jenny’s Exceptional product design ensure our website’s success. Highly Recommended",
         // ),
-
       ],
     );
   }

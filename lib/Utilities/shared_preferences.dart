@@ -21,7 +21,7 @@ class SharedPref {
   }
 
   static bool? getTheme() {
-    return prefs.getBool(_theme) ;
+    return prefs.getBool(_theme);
   }
 
   static Future setMenuMode(bool menuModeValue) async =>

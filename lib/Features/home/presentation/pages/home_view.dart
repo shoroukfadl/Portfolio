@@ -20,11 +20,11 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> with LayoutHandlerMixin {
-
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration.zero, () async => await context.read<PortfolioCubit>().getData());
+    Future.delayed(Duration.zero,
+        () async => await context.read<PortfolioCubit>().getData());
   }
 
   @override

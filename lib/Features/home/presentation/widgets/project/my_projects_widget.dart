@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/project/project_card_preview.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+
 import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
@@ -41,19 +42,19 @@ class MyProjectsWidget extends StatelessWidget {
           titleStyle: titleStyle,
         ),
         16.0.heightBox,
-        Wrap(
-          spacing: 16,
-          runSpacing: 16,
-          children: [
-            ...List.generate(projects.length, (i) => ProjectItemCard(
-            project: projects[i],
-            descriptionStyle: descriptionStyle,
-            imageWidthSize: imageWidth,
-            cardHeight: cardHeight,
-            cardWidth: cardWidth,
-            projectNameStyle: projectNameStyle,
-            projectTypeStyle: projectTypeStyle,
-          ))]),
+        Wrap(spacing: 16, runSpacing: 16, children: [
+          ...List.generate(
+              projects.length,
+              (i) => ProjectItemCard(
+                    project: projects[i],
+                    descriptionStyle: descriptionStyle,
+                    imageWidthSize: imageWidth,
+                    cardHeight: cardHeight,
+                    cardWidth: cardWidth,
+                    projectNameStyle: projectNameStyle,
+                    projectTypeStyle: projectTypeStyle,
+                  ))
+        ]),
       ],
     );
   }

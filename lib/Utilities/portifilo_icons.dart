@@ -17,7 +17,8 @@ class Portfolio {
   static const IconData github = IconData(0xf00b, fontFamily: _fontFamily);
   static const IconData linkedIn = IconData(0xf004, fontFamily: _fontFamily);
   static const IconData download = IconData(0xf000, fontFamily: _fontFamily);
-  static const IconData notification = IconData(0xf001, fontFamily: _fontFamily);
+  static const IconData notification =
+      IconData(0xf001, fontFamily: _fontFamily);
   static const IconData copy = IconData(0xf002, fontFamily: _fontFamily);
   static const IconData home = IconData(0xf005, fontFamily: _fontFamily);
   static const IconData link = IconData(0xf006, fontFamily: _fontFamily);

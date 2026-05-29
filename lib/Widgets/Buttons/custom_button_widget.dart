@@ -28,7 +28,8 @@ class CustomButtonWidget extends StatelessWidget {
       this.isLoading = false,
       this.btnColor,
       this.borderColor,
-      this.titleColor, this.onHover});
+      this.titleColor,
+      this.onHover});
 
   const CustomButtonWidget.outLined(
       {super.key,
@@ -40,7 +41,7 @@ class CustomButtonWidget extends StatelessWidget {
       this.focusNode,
       this.borderRadiusValue,
       this.isLoading = false,
-        this.onHover,
+      this.onHover,
       this.borderColor,
       this.titleColor})
       : btnColor = Colors.transparent;
@@ -69,9 +70,7 @@ class CustomButtonWidget extends StatelessWidget {
           border: Border.all(color: borderColor ?? Colors.transparent),
         ),
         child: isLoading
-            ? Center(
-                child:
-                    SpinKitThreeBounce(color: colors.text2, size: 24.0))
+            ? Center(child: SpinKitThreeBounce(color: colors.text2, size: 24.0))
             : child ??
                 AppTextWidget(
                   title ?? "",

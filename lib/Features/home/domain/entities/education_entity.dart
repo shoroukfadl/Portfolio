@@ -25,22 +25,23 @@ class EducationEntity extends Equatable {
     this.isCurrent = false,
     this.gpa,
     this.description,
-    this.displayOrder = 0, this.icon,
+    this.displayOrder = 0,
+    this.icon,
   });
 
   @override
   List<Object?> get props => [
-    id,
-    userId,
-    degree,
-    fieldOfStudy,
-    institution,
-    startDate,
-    endDate,
-    isCurrent,
-    gpa,
-    description,
-    displayOrder,
-    icon
-  ];
+        id,
+        userId,
+        degree,
+        fieldOfStudy,
+        institution,
+        startDate,
+        endDate,
+        isCurrent,
+        gpa,
+        description,
+        displayOrder,
+        icon
+      ];
 }

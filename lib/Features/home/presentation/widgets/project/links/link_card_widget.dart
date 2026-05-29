@@ -10,7 +10,8 @@ class LinkCardWidget extends StatefulWidget {
   final IconData icon;
   final Color color;
 
-  const LinkCardWidget({super.key, required this.link, required this.icon, required this.color});
+  const LinkCardWidget(
+      {super.key, required this.link, required this.icon, required this.color});
 
   @override
   State<LinkCardWidget> createState() => _LinkCardWidgetState();

@@ -4,8 +4,6 @@ import 'package:portfolio/Utilities/extensions.dart';
 import '../../../../../Core/Language/app_styles.dart';
 import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
-import '../../../../../Utilities/helper_function.dart';
-import '../../../../../Utilities/portifilo_icons.dart';
 
 class ProjectsButton extends StatefulWidget {
   const ProjectsButton({super.key});
@@ -14,7 +12,8 @@ class ProjectsButton extends StatefulWidget {
   State<ProjectsButton> createState() => _ProjectsButtonState();
 }
 
-class _ProjectsButtonState extends State<ProjectsButton> with SingleTickerProviderStateMixin {
+class _ProjectsButtonState extends State<ProjectsButton>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _widthAnimation;
 
@@ -55,10 +54,10 @@ class _ProjectsButtonState extends State<ProjectsButton> with SingleTickerProvid
       child: InkWell(
         onTap: () {
           Scrollable.ensureVisible(
-                    GlobalKeys.aboutMe.currentContext!,
-                    duration: const Duration(seconds: 1),
-                    curve: Curves.easeInOut,
-                  );
+            GlobalKeys.aboutMe.currentContext!,
+            duration: const Duration(seconds: 1),
+            curve: Curves.easeInOut,
+          );
         },
         hoverColor: Colors.transparent,
         child: Container(
@@ -78,7 +77,6 @@ class _ProjectsButtonState extends State<ProjectsButton> with SingleTickerProvid
                     width: _widthAnimation.value * 140,
                     height: 40,
                     color: colors.accent2,
-
                   ),
                   Center(child: child),
                 ],

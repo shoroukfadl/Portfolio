@@ -18,7 +18,8 @@ class CardWithText extends StatelessWidget {
       this.hozPadding = 12,
       this.vertPadding = 4,
       this.style,
-      this.maxLine = 1, this.textColor});
+      this.maxLine = 1,
+      this.textColor});
 
   @override
   Widget build(BuildContext context) {

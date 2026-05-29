@@ -37,8 +37,7 @@ class SocialButtonWidget extends StatelessWidget {
             Card.filled(
               color: colors.accentSoft,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8)
-              ),
+                  borderRadius: BorderRadius.circular(8)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Icon(

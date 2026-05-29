@@ -46,7 +46,7 @@ class ProjectEntity extends Equatable {
         company,
         industry,
         content,
-    cover
+        cover
       ];
 }
 

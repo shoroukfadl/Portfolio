@@ -3,7 +3,4 @@ enum ScreenRoutes {
   home,
 }
 
-
-enum RequestStatus{
-  init, loading , success, error
-}
+enum RequestStatus { init, loading, success, error }

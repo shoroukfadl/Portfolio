@@ -124,8 +124,8 @@ class ExperienceModel {
   final String? icon;
   final int? color;
 
-  ExperienceModel({
-      this.position,
+  ExperienceModel(
+      {this.position,
       this.company,
       this.duration,
       this.description,
@@ -145,15 +145,14 @@ class ExperienceModel {
     int? color,
   }) =>
       ExperienceModel(
-          position:position??this.position,
-          company:company??this.company,
-          duration:duration??this.duration,
-          description:description??this.description,
-          achievements:achievements??this.achievements,
-          technologies:technologies??this.technologies,
-          icon:icon??this.icon,
-          color:color??this.color,
-
+        position: position ?? this.position,
+        company: company ?? this.company,
+        duration: duration ?? this.duration,
+        description: description ?? this.description,
+        achievements: achievements ?? this.achievements,
+        technologies: technologies ?? this.technologies,
+        icon: icon ?? this.icon,
+        color: color ?? this.color,
       );
 
   factory ExperienceModel.fromJson(Map<String, dynamic> json) =>

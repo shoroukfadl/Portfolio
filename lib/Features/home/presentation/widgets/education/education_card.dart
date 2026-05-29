@@ -6,8 +6,6 @@ import 'package:portfolio/Utilities/portifilo_icons.dart';
 import 'package:portfolio/Widgets/Custom/card_with_animation.dart';
 import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 
-import '../../../../../Utilities/Constants/constants.dart';
-
 class EducationCard extends StatelessWidget {
   final EducationEntity? item;
 
@@ -20,7 +18,8 @@ class EducationCard extends StatelessWidget {
     final colors = context.colors;
 
     return AnimatedCardWidget(
-      paddingHoz: 24,paddingVert: 20,
+      paddingHoz: 24,
+      paddingVert: 20,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -54,18 +53,16 @@ class EducationCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${item?.institution ?? ""} - ${ item?.fieldOfStudy ?? ""} ",
+                      "${item?.institution ?? ""} - ${item?.fieldOfStudy ?? ""} ",
                       style: AppTextStyles.regular12(
                         color: colors.text2,
                       ),
                     ),
-
                   ],
                 ),
               ),
-
               CardWithText(
-                text:  '${item?.startDate?.yyyy} - ${item?.endDate?.yyyy?? ""}',
+                text: '${item?.startDate?.yyyy} - ${item?.endDate?.yyyy ?? ""}',
                 color: colors.accentSoft,
                 borderColor: colors.accentSoft,
                 hozPadding: 8,

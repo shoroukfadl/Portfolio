@@ -17,8 +17,6 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-
-
   @override
   void initState() {
     super.initState();
@@ -27,7 +25,7 @@ class _SplashViewState extends State<SplashView> {
 
   void goToHome() {
     Future.delayed(const Duration(seconds: 2),
-            () => CURRENT_CONTEXT!.goNamed(HomeView.routeName));
+        () => CURRENT_CONTEXT!.goNamed(HomeView.routeName));
   }
 
   @override

@@ -25,7 +25,8 @@ class EducationModel {
     this.isCurrent = false,
     this.gpa,
     this.description,
-    this.displayOrder = 0, this.icon,
+    this.displayOrder = 0,
+    this.icon,
   });
 
   // من JSON إلى Model
@@ -37,8 +38,11 @@ class EducationModel {
       degree: json['degree'] as String?,
       fieldOfStudy: json['field_of_study'] as String?,
       institution: json['institution'] as String?,
-      startDate: json['start_date'] != null ? DateTime.parse(json['start_date']) : null,
-      endDate: json['end_date'] != null ? DateTime.parse(json['end_date']) : null,
+      startDate: json['start_date'] != null
+          ? DateTime.parse(json['start_date'])
+          : null,
+      endDate:
+          json['end_date'] != null ? DateTime.parse(json['end_date']) : null,
       isCurrent: json['is_current'] ?? false,
       gpa: json['gpa'] != null ? double.tryParse(json['gpa'].toString()) : null,
       description: json['description'] as String?,
@@ -59,7 +63,7 @@ class EducationModel {
       'gpa': gpa,
       'description': description,
       'display_order': displayOrder,
-      'icon':icon
+      'icon': icon
     };
   }
 

@@ -4,6 +4,7 @@ import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
+
 import '../../../../../Utilities/extensions.dart';
 import '../../../../../Widgets/Animation/widget_visiablity.dart';
 import '../../widgets/aboutMe/about_me_widget.dart';
@@ -30,10 +31,12 @@ class LargeHomeView extends StatelessWidget {
                 return ScrollAnimatorWrapper(
                   child: SummarySection(
                     profile: s.data?.profile,
-                  ).paddingSymmetric(horizontal: Constants.desktopHozPadding,vertical: 40),
+                  ).paddingSymmetric(
+                      horizontal: Constants.desktopHozPadding, vertical: 40),
                 );
               }),
         ),
+
         /// education
         SliverToBoxAdapter(
           child: BlocBuilder<PortfolioCubit, PortfolioState>(

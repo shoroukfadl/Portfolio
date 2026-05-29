@@ -46,9 +46,12 @@ class SkillCard extends StatelessWidget {
                         text: (skill?.skills[i].skillName ?? ""),
                         style: contentStyle,
                         maxLine: 3,
-                        color:index%2==0? colors.secondary:colors.surface,
-                        borderColor:index%2==0? colors.secondary:colors.surface,
-                        textColor:index%2==0? colors.secondaryEv:colors.text2,
+                        color:
+                            index % 2 == 0 ? colors.secondary : colors.surface,
+                        borderColor:
+                            index % 2 == 0 ? colors.secondary : colors.surface,
+                        textColor:
+                            index % 2 == 0 ? colors.secondaryEv : colors.text2,
                       ))
             ],
           )

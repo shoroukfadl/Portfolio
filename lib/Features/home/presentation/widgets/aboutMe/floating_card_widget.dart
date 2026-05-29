@@ -12,10 +12,12 @@ class FloatingCards extends StatelessWidget {
   final bool isMobile;
   final EductionModel eduction;
 
-  const FloatingCards({super.key,
+  const FloatingCards({
+    super.key,
     required this.floatController,
     required this.cardControllers,
-    required this.isMobile, required this.eduction,
+    required this.isMobile,
+    required this.eduction,
   });
 
   @override
@@ -28,7 +30,7 @@ class FloatingCards extends StatelessWidget {
           controller: cardControllers[0],
           title: '🎯 Focused',
           description: 'Pixel-perfect apps with attention to detail',
-          color:colors.accent,
+          color: colors.accent,
           position: const Offset(-50, -80),
           rotation: 2,
         ),
@@ -36,7 +38,7 @@ class FloatingCards extends StatelessWidget {
           controller: cardControllers[1],
           title: '⚡ Fast',
           description: 'Optimized performance and smooth 60fps animations',
-          color:colors.accent2,
+          color: colors.accent2,
           position: const Offset(80, 60),
           rotation: -2,
         ),
@@ -66,7 +68,8 @@ class _AnimatedCard extends StatelessWidget {
     required this.description,
     required this.color,
     required this.position,
-    required this.rotation, required this.controller,
+    required this.rotation,
+    required this.controller,
   });
 
   @override
@@ -91,13 +94,13 @@ class _AnimatedCard extends StatelessWidget {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: color.withValues(alpha:0.1),
+                    color: color.withValues(alpha: 0.1),
                     blurRadius: 20,
                     spreadRadius: 5,
                   ),
                 ],
                 //backdropFilter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                color: color.withValues(alpha:0.08),
+                color: color.withValues(alpha: 0.08),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -121,7 +124,7 @@ class _AnimatedCard extends StatelessWidget {
                   Text(
                     description,
                     style: AppTextStyles.regular12(
-                      color: Colors.white.withValues(alpha:0.7),
+                      color: Colors.white.withValues(alpha: 0.7),
                     ),
                   ),
                 ],

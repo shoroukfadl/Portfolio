@@ -1,11 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
-import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
@@ -37,8 +34,7 @@ class MediumHomeView extends StatelessWidget {
                   profile: s.data?.profile,
                   roleStyle: AppTextStyles.semiBold20(color: colors.accent),
                   summaryStyle:
-                      AppTextStyles.regular14(color: colors.text1)
-                          .copyWith(
+                      AppTextStyles.regular14(color: colors.text1).copyWith(
                     height: 1.8,
                   ),
                   nameStyle:
@@ -63,8 +59,12 @@ class MediumHomeView extends StatelessWidget {
                     skills: s.data?.skills ?? [],
                     padding: Constants.tabletHozPadding,
                     iconSize: 32,
-                    nameStyle: AppTextStyles.semiBold14(color: colors.text1,),
-                    contentStyle: AppTextStyles.regular14(color: colors.text2,),
+                    nameStyle: AppTextStyles.semiBold14(
+                      color: colors.text1,
+                    ),
+                    contentStyle: AppTextStyles.regular14(
+                      color: colors.text2,
+                    ),
                   );
                 })),
         SliverToBoxAdapter(child: 40.0.heightBox),
@@ -78,7 +78,8 @@ class MediumHomeView extends StatelessWidget {
                   experiences: s.data?.experience ?? [],
                   titleStyle: AppTextStyles.extraBold32(),
                   padding: Constants.tabletHozPadding,
-                  employeeTypeStyle: AppTextStyles.medium10(color: Colors.white),
+                  employeeTypeStyle:
+                      AppTextStyles.medium10(color: Colors.white),
                   roleStyle: AppTextStyles.semiBold16(
                     color: colors.text1,
                   ),
@@ -118,8 +119,8 @@ class MediumHomeView extends StatelessWidget {
                       linkedIN: s.data?.profile?.linkedin ?? "",
                       phoneNumber: s.data?.profile?.phone ?? "",
                       github: s.data?.profile?.github ?? "",
-                  cv: s.data?.profile?.cv ?? "",
-                  iconSize: 16,
+                      cv: s.data?.profile?.cv ?? "",
+                      iconSize: 16,
                       contactMeStyle:
                           AppTextStyles.medium24(color: colors.accent),
                       copyRightStyle:

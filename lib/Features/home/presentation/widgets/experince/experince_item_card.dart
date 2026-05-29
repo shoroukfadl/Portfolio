@@ -26,6 +26,7 @@ class ExperienceCard extends StatefulWidget {
   @override
   State<ExperienceCard> createState() => _ExperienceCardState();
 }
+
 class _ExperienceCardState extends State<ExperienceCard> {
   @override
   Widget build(BuildContext context) {
@@ -56,7 +57,7 @@ class _ExperienceCardState extends State<ExperienceCard> {
                   ).expand,
                   CardWithText(
                     text:
-                    "${widget.item.startDate?.yyyyMM??""} - ${widget.item.endDate?.yyyyMM ?? ""}",
+                        "${widget.item.startDate?.yyyyMM ?? ""} - ${widget.item.endDate?.yyyyMM ?? ""}",
                     textColor: colors.secondaryEv,
                     color: colors.accent2.withValues(alpha: 0.2),
                     borderColor: colors.accent2.withValues(alpha: 0.2),
@@ -74,13 +75,16 @@ class _ExperienceCardState extends State<ExperienceCard> {
                       color: colors.text2,
                     ),
               ),
-              ...List.generate(widget.item.description.length, (i)=> Text(
-                widget.item.description[i] ?? "",
-                style: widget.roleStyle ??
-                    AppTextStyles.regular14(
-                      color: colors.text3,
-                    ),
-              ),)
+              ...List.generate(
+                widget.item.description.length,
+                (i) => Text(
+                  widget.item.description[i] ?? "",
+                  style: widget.roleStyle ??
+                      AppTextStyles.regular14(
+                        color: colors.text3,
+                      ),
+                ),
+              )
             ],
           ).expand,
         ],

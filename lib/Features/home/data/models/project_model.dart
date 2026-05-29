@@ -51,8 +51,8 @@ class ProjectModel {
             : (json['web_links'] as List)
                 .map((e) => LinkModel.fromJson(e))
                 .toList(),
-    content: List<String>.from(json['content'] ?? []),
-    images: List<String>.from(json['images'] ?? []),
+        content: List<String>.from(json['content'] ?? []),
+        images: List<String>.from(json['images'] ?? []),
         company: json['company'],
         industry: json['industry'],
         cover: json['cover'],

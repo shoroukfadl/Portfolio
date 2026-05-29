@@ -27,12 +27,11 @@ class ImagePreviewWidget extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(
-        color: colors.accentSoft,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          )
-        ),
+            color: colors.accentSoft,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            )),
         child: MobilePreviewWidget(
           image: image,
           height: height,

@@ -14,18 +14,18 @@ class EmailButton extends StatefulWidget {
 }
 
 class _EmailButtonState extends State<EmailButton> {
-  bool  hover =false;
+  bool hover = false;
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     return CustomButtonWidget(
-      onHover: (v){
-        if(v == hover) {
+      onHover: (v) {
+        if (v == hover) {
           return;
         } else {
           setState(() {
-          hover =v;
-        });
+            hover = v;
+          });
         }
       },
       onPressed: () async {
@@ -34,19 +34,17 @@ class _EmailButtonState extends State<EmailButton> {
           await launchUrl(emailUri);
         }
       },
-      borderColor: colors.
-      accent,
-      btnColor: hover ? colors.accent:Colors.transparent,
-
+      borderColor: colors.accent,
+      btnColor: hover ? colors.accent : Colors.transparent,
       borderRadiusValue: 8,
       width: 40,
       height: 40,
       child: AnimatedScale(
-        scale: hover? 1.08:1,
+        scale: hover ? 1.08 : 1,
         duration: const Duration(milliseconds: 400),
         child: Icon(
           Portfolio.email,
-          color:hover ?Colors.white: colors.accent,
+          color: hover ? Colors.white : colors.accent,
           size: 20,
         ),
       ),

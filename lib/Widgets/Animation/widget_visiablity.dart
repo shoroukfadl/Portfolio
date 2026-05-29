@@ -18,7 +18,7 @@ class _ScrollAnimatorWrapperState extends State<ScrollAnimatorWrapper> {
     return VisibilityDetector(
       key: UniqueKey(),
       onVisibilityChanged: (info) {
-      if (info.visibleFraction > 0.1 && !_isVisible) {
+        if (info.visibleFraction > 0.1 && !_isVisible) {
           setState(() {
             _isVisible = true;
           });
@@ -27,7 +27,8 @@ class _ScrollAnimatorWrapperState extends State<ScrollAnimatorWrapper> {
       child: widget.child
           .animate(target: _isVisible ? 1 : 0)
           .fade(duration: 400.ms)
-          .slideY(begin: 0.2, end: 0, duration: 400.ms, curve: Curves.easeOutCubic),
+          .slideY(
+              begin: 0.2, end: 0, duration: 400.ms, curve: Curves.easeOutCubic),
     );
   }
 }

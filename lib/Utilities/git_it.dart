@@ -13,7 +13,7 @@ class GitIt {
   static Future initGitIt() async {
     final sharedPrefs = await SharedPreferences.getInstance();
     sl.registerLazySingleton<SharedPreferences>(
-          () => sharedPrefs,
+      () => sharedPrefs,
     );
 
     _initPortfolio();
@@ -23,14 +23,14 @@ class GitIt {
     sl.registerFactory(() => PortfolioCubit(getDataUseCase: sl()));
     sl.registerLazySingleton(() => GetDataUseCase(sl()));
     sl.registerLazySingleton<Repo>(
-          () => RepoImp(
+      () => RepoImp(
         sl(),
       ),
     );
 
     //! Data Sources
     sl.registerLazySingleton<RemoteDataSource>(
-          () => RemoteDataSourceImp(),
+      () => RemoteDataSourceImp(),
     );
   }
 }

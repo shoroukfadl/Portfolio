@@ -24,38 +24,40 @@ class LinksListWidget extends StatelessWidget {
     final colors = context.colors;
 
     if (links.isEmpty) return const SizedBox.shrink();
-    return Row(
-        spacing: 8,
+    return Row(spacing: 8, children: [
+      CircleAvatar(
+        radius: 14,
+        backgroundColor: color.withValues(alpha: 0.3),
+        child: Icon(
+          icon,
+          size: 16,
+          color: color,
+        ),
+      ),
+      Wrap(
+        spacing: 12,
+        runSpacing: 10,
         children: [
-          CircleAvatar(
-            radius: 14,
-            backgroundColor: color.withValues(alpha: 0.3),
-            child: Icon(
-              icon,
-              size: 16,
-              color: color,
-            ),
+          ...List.generate(
+              links.length < 3 ? links.length : 3,
+              (i) => LinkCardWidget(
+                    link: links[i],
+                    icon: icon,
+                    color: color,
+                  )),
+        ],
+      ).expand,
+      if (links.length > 3)
+        InkWell(
+          onTap: () {},
+          hoverColor: Colors.transparent,
+          child: Text(
+            '+ ${links.length - 2} More',
+            style: AppTextStyles.regular12(color: colors.text1).copyWith(
+                decoration: TextDecoration.underline,
+                decorationColor: colors.text1),
           ),
-          Wrap(
-            spacing: 12,
-            runSpacing: 10,
-            children: [
-              ...List.generate(links.length < 3 ? links.length : 3,
-                  (i) => LinkCardWidget(link: links[i], icon: icon,color: color,)),
-            ],
-          ).expand,
-          if (links.length > 3)
-            InkWell(
-              onTap: (){},
-              hoverColor: Colors.transparent,
-              child: Text(
-                '+ ${links.length - 2} More',
-                style: AppTextStyles.regular12(color: colors.text1).copyWith(
-                  decoration: TextDecoration.underline,
-                  decorationColor: colors.text1
-                ),
-              ),
-            )
-        ]);
+        )
+    ]);
   }
 }

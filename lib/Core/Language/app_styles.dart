@@ -25,10 +25,10 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
       );
 
   static TextStyle extraBoldM48({Color? color}) => secondaryFamily.copyWith(
-    fontSize: 48,
-    fontWeight: FontWeight.w800,
-    color: color ?? Colors.black,
-  );
+        fontSize: 48,
+        fontWeight: FontWeight.w800,
+        color: color ?? Colors.black,
+      );
 
   static TextStyle extraBold40({Color? color}) => mainFamily.copyWith(
         fontSize: 40,
@@ -56,13 +56,14 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         height: 1.15,
         letterSpacing: -1.0,
       );
- static TextStyle extraBold24({Color? color}) => mainFamily.copyWith(
+  static TextStyle extraBold24({Color? color}) => mainFamily.copyWith(
         fontSize: 24,
         fontWeight: FontWeight.w700,
         color: color ?? Colors.black,
         height: 1.15,
         letterSpacing: -1.0,
-      ); static TextStyle extraBold20({Color? color}) => mainFamily.copyWith(
+      );
+  static TextStyle extraBold20({Color? color}) => mainFamily.copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w700,
         color: color ?? Colors.black,
@@ -124,7 +125,8 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         color: color ?? Colors.black,
         height: 1.4,
         letterSpacing: 0,
-      );  static TextStyle semiBold12({Color? color}) => mainFamily.copyWith(
+      );
+  static TextStyle semiBold12({Color? color}) => mainFamily.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w500,
         color: color ?? Colors.black,
@@ -193,7 +195,8 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         color: color ?? Colors.black,
         height: 1.0,
         letterSpacing: 0.3,
-      );static TextStyle medium24({Color? color}) => secondaryFamily.copyWith(
+      );
+  static TextStyle medium24({Color? color}) => secondaryFamily.copyWith(
         fontSize: 24,
         fontWeight: FontWeight.w500,
         color: color ?? Colors.black,

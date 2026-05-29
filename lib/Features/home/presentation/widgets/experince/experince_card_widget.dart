@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/experince_entity.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/Custom/card_with_text.dart';
-import 'package:portfolio/Widgets/hover_widget.dart';
 
-import '../../../../../Core/Language/app_styles.dart';
 import '../../../../../Utilities/Constants/strings.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
 import 'experince_item_card.dart';
@@ -18,13 +15,13 @@ class ExperienceSection extends StatelessWidget {
 
   const ExperienceSection(
       {super.key,
-        this.experiences = const [],
-        this.padding = Constants.desktopHozPadding,
-        this.titleStyle,
-        this.employeeTypeStyle,
-        this.companyNameStyle,
-        this.roleStyle,
-        this.dateStyle});
+      this.experiences = const [],
+      this.padding = Constants.desktopHozPadding,
+      this.titleStyle,
+      this.employeeTypeStyle,
+      this.companyNameStyle,
+      this.roleStyle,
+      this.dateStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -70,4 +67,3 @@ class ExperienceSection extends StatelessWidget {
     ).paddingSymmetric(horizontal: padding);
   }
 }
-
