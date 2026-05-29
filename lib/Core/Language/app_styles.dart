@@ -24,6 +24,12 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         color: color ?? Colors.black,
       );
 
+  static TextStyle extraBoldM48({Color? color}) => secondaryFamily.copyWith(
+    fontSize: 48,
+    fontWeight: FontWeight.w800,
+    color: color ?? Colors.black,
+  );
+
   static TextStyle extraBold40({Color? color}) => mainFamily.copyWith(
         fontSize: 40,
         fontWeight: FontWeight.w700,

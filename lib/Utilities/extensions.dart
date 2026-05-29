@@ -98,7 +98,6 @@ extension LayoutExtensions on BuildContext {
 extension ThemeHelper on BuildContext {
   AppColors get colors => Theme.of(this).extension<AppColors>()!;
 
-  AppTextStyles get text => Theme.of(this).extension<AppTextStyles>()!;
 }
 
 

@@ -9,12 +9,10 @@ class ThemeCubit extends Cubit<ThemeState> {
   void changeTheme() async {
     emit(state.copyWithMethod(isDark: !state.isDark));
     await SharedPref.setTheme(state.isDark);
-    print('tHEEE : ${SharedPref.getTheme()}');
   }
 
   void getCurrentTheme() {
     bool isDark = SharedPref.getTheme()??false;
-    print('tHEEE gggg: ${SharedPref.getTheme()}');
     emit(state.copyWithMethod(isDark: isDark));
   }
 }

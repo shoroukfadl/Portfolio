@@ -12,7 +12,7 @@ import '../../../../../Utilities/portifilo_icons.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
 
 class ContactMeWidget extends StatelessWidget {
-  final String linkedIN, github, email, phoneNumber;
+  final String linkedIN, github, email, phoneNumber,cv;
   final double iconSize ,padding;
   final TextStyle? copyRightStyle , contactMeStyle;
   const ContactMeWidget({
@@ -23,7 +23,7 @@ class ContactMeWidget extends StatelessWidget {
     required this.phoneNumber,
     this.iconSize=20,
     this.padding = Constants.desktopHozPadding,
-    this.copyRightStyle, this.contactMeStyle,
+    this.copyRightStyle, this.contactMeStyle, required this.cv,
   });
 
   @override
@@ -51,7 +51,7 @@ class ContactMeWidget extends StatelessWidget {
               },
               size: iconSize,
               title: 'Email',
-              icon: Icons.email,
+              icon: Portfolio.email,
             ),
             SocialButtonWidget(
               onPressed: () {
@@ -77,6 +77,14 @@ class ContactMeWidget extends StatelessWidget {
               size: iconSize,
               title: 'WhatsApp',
               icon: Portfolio.phone,
+            ),
+            SocialButtonWidget(
+              onPressed: () {
+                onTap: () => HelperFunctions.openUrl(cv, context);
+              },
+              size: iconSize,
+              title: 'CV',
+              icon: Portfolio.download,
             ),
           ],
         ),

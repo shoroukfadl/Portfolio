@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
+import 'package:portfolio/Core/Theme/theme_cubit.dart';
+import 'package:portfolio/Core/Theme/theme_state.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/cv_button.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/email_button.dart';
+import 'package:portfolio/Features/home/presentation/widgets/aboutMe/projects_button.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/portifilo_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -29,38 +33,38 @@ class SummaryContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          firstName,
-          style:nameStyle?? AppTextStyles.extraBold56(color: colors.accent),
-        ),
-        Text(
-          lastName,
-          style:nameStyle?? AppTextStyles.extraBold48(color: colors.text1).copyWith(
-            fontStyle: FontStyle.italic
-          )
-        ),
-        const SizedBox(height: 8),
-        Text(
-          summary,
-          style:summaryStyle?? AppTextStyles.regular14(color: colors.text2).copyWith(
-            height: 1.8,
-          ),
-        ),
-        const SizedBox(height: 40),
-        Row(
-          spacing: 16,
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CvButton(
-              cv: cv,
+            Text(
+              firstName,
+              style:nameStyle?? AppTextStyles.extraBold56(color: colors.accent),
             ),
-            EmailButton(email: email)
+            Text(
+              lastName,
+              style:nameStyle?? AppTextStyles.extraBoldM48(color: colors.text1).copyWith(
+                fontStyle: FontStyle.italic
+              )
+            ),
+            const SizedBox(height: 8),
+            Text(
+              summary,
+              style:summaryStyle?? AppTextStyles.regular14(color: colors.text2).copyWith(
+                height: 1.8,
+              ),
+            ),
+            const SizedBox(height: 40),
+            Row(
+              spacing: 16,
+              children: [
+                ProjectsButton(
+                ),
+                EmailButton(email: email)
+              ],
+            ),
           ],
-        ),
-      ],
-    );
+        );
+
   }
 }

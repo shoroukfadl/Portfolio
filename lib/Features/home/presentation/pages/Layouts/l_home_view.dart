@@ -30,12 +30,10 @@ class LargeHomeView extends StatelessWidget {
                 return ScrollAnimatorWrapper(
                   child: SummarySection(
                     profile: s.data?.profile,
-                  ).paddingSymmetric(horizontal: Constants.desktopHozPadding),
+                  ).paddingSymmetric(horizontal: Constants.desktopHozPadding,vertical: 40),
                 );
               }),
         ),
-        SliverToBoxAdapter(child: 64.0.heightBox),
-
         /// education
         SliverToBoxAdapter(
           child: BlocBuilder<PortfolioCubit, PortfolioState>(
@@ -94,6 +92,7 @@ class LargeHomeView extends StatelessWidget {
                         linkedIN: s.data?.profile?.linkedin ?? "",
                         phoneNumber: s.data?.profile?.phone ?? "",
                         github: s.data?.profile?.github ?? "",
+                        cv: s.data?.profile?.cv ?? "",
                       ),
                     ))),
         SliverToBoxAdapter(child: 16.0.heightBox),

@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
+import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
 import '../../../../../Utilities/helper_function.dart';
 import '../../../../../Utilities/portifilo_icons.dart';
 
-class CvButton extends StatefulWidget {
-  final String cv;
-  const CvButton({super.key, required this.cv});
+class ProjectsButton extends StatefulWidget {
+  const ProjectsButton({super.key});
 
   @override
-  State<CvButton> createState() => _CvButtonState();
+  State<ProjectsButton> createState() => _ProjectsButtonState();
 }
 
-class _CvButtonState extends State<CvButton> with SingleTickerProviderStateMixin {
+class _ProjectsButtonState extends State<ProjectsButton> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _widthAnimation;
 
@@ -53,7 +53,13 @@ class _CvButtonState extends State<CvButton> with SingleTickerProviderStateMixin
       onEnter: (_) => _handleHover(true),
       onExit: (_) => _handleHover(false),
       child: InkWell(
-        onTap: () => HelperFunctions.openUrl(widget.cv, context),
+        onTap: () {
+          Scrollable.ensureVisible(
+                    GlobalKeys.aboutMe.currentContext!,
+                    duration: const Duration(seconds: 1),
+                    curve: Curves.easeInOut,
+                  );
+        },
         hoverColor: Colors.transparent,
         child: Container(
           width: 140,
@@ -78,16 +84,9 @@ class _CvButtonState extends State<CvButton> with SingleTickerProviderStateMixin
                 ],
               );
             },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  Strings.resume.translate,
-                  style: AppTextStyles.medium14(color: Colors.white),
-                ),
-                const SizedBox(width: 8),
-                const Icon(Portfolio.download, size: 14, color: Colors.white),
-              ],
+            child: Text(
+              Strings.projects.translate,
+              style: AppTextStyles.medium14(color: Colors.white),
             ),
           ),
         ),

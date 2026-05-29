@@ -1,4 +1,11 @@
-
+// Place fonts/portifilo.otf in your fonts/ directory and
+// add the following to your pubspec.yaml
+//
+// flutter:
+//   fonts:
+//    - family: portifilo
+//      fonts:
+//       - asset: fonts/portifilo.otf
 import 'package:flutter/widgets.dart';
 
 class Portfolio {

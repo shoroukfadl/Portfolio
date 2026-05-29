@@ -16,4 +16,12 @@ class Constants {
 
   static const desktopHozPadding = 80.0;
   static const tabletHozPadding = 40.0;
+  static const cardRadius = 24.0;
+  static const smallButtonRadius = 6.0;
+  static const mediumButtonRadius = 12.0;
+  static const largeButtonRadius = 18.0;
+
+  static const smallButtonIcon = 18.0;
+  static const mediumButtonIcon = 20.0;
+  static const largeButtonIcon = 24.0;
 }

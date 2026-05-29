@@ -35,7 +35,7 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
       onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
         onTap: widget.onTap,
-        child: Padding(
+        child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -46,7 +46,7 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
                 child: Icon(
                   widget.icon,
                   color: _isHovered || widget.isSelected ? activeColor : idleColor,
-                  size: 20,
+                  size: 24,
                 ),
               ),
 

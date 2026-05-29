@@ -118,7 +118,8 @@ class MediumHomeView extends StatelessWidget {
                       linkedIN: s.data?.profile?.linkedin ?? "",
                       phoneNumber: s.data?.profile?.phone ?? "",
                       github: s.data?.profile?.github ?? "",
-                      iconSize: 16,
+                  cv: s.data?.profile?.cv ?? "",
+                  iconSize: 16,
                       contactMeStyle:
                           AppTextStyles.medium24(color: colors.accent),
                       copyRightStyle:
