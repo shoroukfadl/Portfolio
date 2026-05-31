@@ -24,6 +24,19 @@ class AppColors extends ThemeExtension<AppColors> {
   static const Color emerald = Color(0xFF10B981);
   static const Color emeraldDark = Color(0xFF34D399);
   static const Color error = Color(0xFFDC2626);
+
+  static const phoneLine     = Color(0xFFD0CCC4);
+  static const phoneBox      = Color(0xFFE6E2DC);
+
+  // Badge colours
+  static const appBadgeBg      = Color(0xFFE8F4ED);
+  static const appBadgeText    = Color(0xFF2D7A4F);
+  static const webBadgeBg      = Color(0xFFE8EEFA);
+  static const webBadgeText    = Color(0xFF2D4FA0);
+  static const ecommBadgeBg    = Color(0xFFFAF0E8);
+  static const ecommBadgeText  = Color(0xFFA06020);
+  static const healthBadgeBg   = Color(0xFFFAE8EE);
+  static const healthBadgeText = Color(0xFFA0203A);
   // ─── Light Theme ─────────────────────────────────────────────────────────
   static const lightValues = AppColors(
     background: Color(0xFFF7F5F0),

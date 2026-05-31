@@ -6,6 +6,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
+import 'newCard/project_card_widget.dart';
 
 class MyProjectsWidget extends StatelessWidget {
   final List<ProjectEntity> projects;
@@ -45,15 +46,19 @@ class MyProjectsWidget extends StatelessWidget {
         Wrap(spacing: 16, runSpacing: 16, children: [
           ...List.generate(
               projects.length,
-              (i) => ProjectItemCard(
-                    project: projects[i],
-                    descriptionStyle: descriptionStyle,
-                    imageWidthSize: imageWidth,
-                    cardHeight: cardHeight,
-                    cardWidth: cardWidth,
-                    projectNameStyle: projectNameStyle,
-                    projectTypeStyle: projectTypeStyle,
-                  ))
+              (i) => SizedBox(
+                 height: cardHeight,
+                 width: cardWidth,
+                child: ProjectCard(
+                      project: projects[i],
+                      // descriptionStyle: descriptionStyle,
+                      // imageWidthSize: imageWidth,
+                      // cardHeight: cardHeight,
+                      // cardWidth: cardWidth,
+                      // projectNameStyle: projectNameStyle,
+                      // projectTypeStyle: projectTypeStyle,
+                    ),
+              ))
         ]),
       ],
     );
