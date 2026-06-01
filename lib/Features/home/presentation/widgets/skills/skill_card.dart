@@ -24,7 +24,7 @@ class SkillCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return AnimatedCardWidget(
-      child: Column(
+      child:(h)=> Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         spacing: 8,

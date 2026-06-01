@@ -5,6 +5,7 @@ import 'package:portfolio/Features/home/presentation/widgets/project/newCard/pla
 import 'package:portfolio/Features/home/presentation/widgets/project/newCard/web_preview.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Custom/card_with_animation.dart';
+import '../../../../../../Utilities/Constants/constants.dart';
 import '../../../../../../Utilities/Constants/enums.dart';
 import '../../../../domain/entities/project_entity.dart';
 import 'badge_chip.dart';
@@ -16,23 +17,69 @@ class ProjectCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    bool mobile =  project.projectType?.toLowerCase() ==
+        PreviewType.mobile.name;
     return AnimatedCardWidget(
-      child: Column(
+      child:(h)=> Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Preview
-          SizedBox(
-            height: 170,
-            width: 400,
-            child: project.projectType?.toLowerCase() ==
-                    PreviewType.mobile.name
-                ? MobilePreview(
-              url: project.cover ?? '',
-            )
-                : WebPreview(
-                    url: project.cover ?? '',
-                    logoText: project.projectName ?? '',
-                  ),
+          Stack(
+            children: [
+              SizedBox(
+                height: 170,
+                width: 400,
+                child: mobile
+                    ? MobilePreview(
+                  url: project.cover ?? '',
+                )
+                    : WebPreview(
+                        url: project.cover ?? '',
+                        logoText: project.projectName ?? '',
+                      ),
+              ),
+              if(h)
+              Container(
+                height: 170,
+                width: 400,
+                alignment: AlignmentDirectional.center,
+                padding: EdgeInsets.symmetric(horizontal: 16,vertical: 20),
+                decoration: BoxDecoration(
+
+                  borderRadius: !mobile? BorderRadius.zero:
+                  BorderRadius.all( Radius.circular(Constants.cardRadius)),
+                  color: Colors.black.withValues(alpha: 0.15),
+                ),
+                child: Column(
+                  spacing: 40,
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional.topEnd,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 8,vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withValues(alpha: 0.6),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Text("${project.images.length} ${project.images.length == 1 ? "photo":"photos"}",style: AppTextStyles.medium10(
+                          color: Colors.white
+                        ),),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Text("View More ...",style: AppTextStyles.medium10(
+                          color: Colors.black
+                      ),),
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
 
           // Body

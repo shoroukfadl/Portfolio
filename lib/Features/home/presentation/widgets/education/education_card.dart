@@ -20,7 +20,7 @@ class EducationCard extends StatelessWidget {
     return AnimatedCardWidget(
       paddingHoz: 24,
       paddingVert: 20,
-      child: Column(
+      child:(h)=> Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header

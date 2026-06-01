@@ -31,7 +31,7 @@ class SocialButtonWidget extends StatelessWidget {
       child: AnimatedCardWidget(
         paddingHoz: 8,
         paddingVert: 8,
-        child: Row(
+        child:(h)=> Row(
           spacing: 8,
           children: [
             Card.filled(

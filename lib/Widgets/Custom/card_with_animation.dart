@@ -3,7 +3,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 
 class AnimatedCardWidget extends StatefulWidget {
   final Color? cardColor, borderColor, shadowColor, animatedBorderColor;
-  final Widget child;
+  final Widget Function(bool hover) child;
   final double paddingHoz, paddingVert;
 
   const AnimatedCardWidget({
@@ -73,7 +73,7 @@ class _AnimatedCardWidgetState extends State<AnimatedCardWidget> {
           ),
           padding: EdgeInsets.symmetric(
               horizontal: widget.paddingHoz, vertical: widget.paddingVert),
-          child: widget.child,
+          child: widget.child(_isHovered),
         ),
       ),
     );

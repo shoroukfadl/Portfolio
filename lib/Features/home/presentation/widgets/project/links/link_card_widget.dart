@@ -24,7 +24,6 @@ class _LinkCardWidgetState extends State<LinkCardWidget> {
       });
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     return MouseRegion(
       onEnter: (x) => onHover(true),
       onExit: (x) => onHover(false),
