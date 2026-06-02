@@ -6,7 +6,6 @@ import 'package:portfolio/Features/home/domain/entities/portfilio_entity.dart';
 import 'certificate_model.dart';
 import 'education_model.dart';
 import 'experince_model.dart';
-import 'methodologies_model.dart';
 
 class PortfolioModel {
   final ProfileModel? profile;

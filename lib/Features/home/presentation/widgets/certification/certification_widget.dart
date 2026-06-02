@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/certificate_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import '../../../../../Core/Language/app_styles.dart';
-import '../../../../../Widgets/Custom/card_with_animation.dart';
+
 import 'certification_card.dart';
 
 class CertificationSection extends StatelessWidget {

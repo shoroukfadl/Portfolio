@@ -4,8 +4,6 @@ import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Buttons/theme_button.dart';
 
-import '../../../../../Utilities/portifilo_icons.dart';
-import '../../../../../Widgets/Buttons/custom_button_widget.dart';
 import '../../cubit/cubit.dart';
 import '../../cubit/state.dart';
 import 'about_me_widget.dart';

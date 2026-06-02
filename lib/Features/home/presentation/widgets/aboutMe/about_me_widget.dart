@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/Buttons/theme_button.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
 class SummarySection extends StatelessWidget {
   final ProfileEntity? profile;

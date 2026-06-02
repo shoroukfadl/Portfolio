@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Core/Theme/theme_colors.dart';
 import 'package:portfolio/Features/home/domain/entities/experince_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/portifilo_icons.dart';
+
 import '../../../../../Core/Language/app_styles.dart';
-import '../../../../../Models/user_data_model.dart';
 
 class ExperinceItemCard extends StatefulWidget {
   final ExperienceEntity? item;

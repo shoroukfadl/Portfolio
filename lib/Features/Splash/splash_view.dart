@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:portfolio/Features/Splash/splash_controller.dart';
 
 import '../../Utilities/extensions.dart';
 import '../home/presentation/pages/home_view.dart';

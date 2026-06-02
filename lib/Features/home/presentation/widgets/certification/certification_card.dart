@@ -3,6 +3,7 @@ import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/certificate_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
+
 import '../../../../../Widgets/Custom/card_with_animation.dart';
 
 class CertificationCard extends StatelessWidget {

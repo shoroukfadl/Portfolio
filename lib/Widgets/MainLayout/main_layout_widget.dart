@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/summary_card.dart';
 import 'package:portfolio/Features/home/presentation/widgets/contact/contact_button.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/Buttons/theme_button.dart';
-import 'package:portfolio/Widgets/MainLayout/AppBar/home_app_bar.dart';
 
-import '../../Features/home/presentation/cubit/cubit.dart';
-import '../../Features/home/presentation/cubit/state.dart';
-import '../../Features/home/presentation/widgets/aboutMe/about_me_widget.dart';
 import '../../Utilities/Constants/constants.dart';
 import '../../Utilities/Constants/global_keys.dart';
-import '../../Utilities/helper_function.dart';
 import '../../Utilities/portifilo_icons.dart';
-import '../Buttons/custom_button_widget.dart';
 
 class MainLayoutWidget extends StatefulWidget {
   final Widget child;

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/portifilo_icons.dart';
-import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
+
 import '../../../Utilities/Constants/strings.dart';
 import 'home_app_bar_item.dart';
 
