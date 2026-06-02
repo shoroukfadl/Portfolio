@@ -3,7 +3,7 @@ import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/products/project_card.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-class ProjectsList extends StatefulWidget {
+class ProjectsList extends StatelessWidget {
   final List<ProjectEntity> projects;
 
 
@@ -11,24 +11,14 @@ class ProjectsList extends StatefulWidget {
       {super.key, this.projects = const [], });
 
   @override
-  State<ProjectsList> createState() => _ProjectsListState();
-}
-
-class _ProjectsListState extends State<ProjectsList> {
-
-  @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Column(
-      spacing: 16,
-      children: [
-        ...widget.projects.map((entry) {
-          final project = entry;
-          return ProjectItemCard(
-            project: project,
-          );
-        }).toList()
-      ],
+    return GridView.builder(
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,childAspectRatio: 1.2),
+      itemBuilder: (c,i)=> ProjectItemCard(
+        project: projects[i],
+      )
     );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
+import 'package:portfolio/Core/Language/locales.dart';
 import 'package:portfolio/Features/home/domain/entities/education_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
@@ -12,11 +14,12 @@ class EducationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     return Column(
       spacing: 16,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-       SectionsTitleWidget(title: Strings.education.translate),
+        Text(Strings.education.translate.toUpperCase() ,style: AppTextStyles.medium12(color: colors.text1),),
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -30,7 +33,7 @@ class EducationSection extends StatelessWidget {
           },
         ),
       ],
-    );
+    ).paddingOnly(start: 20);
   }
 }
 

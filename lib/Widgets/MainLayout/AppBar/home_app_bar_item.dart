@@ -6,11 +6,13 @@ import '../../../Core/Language/app_styles.dart';
 class HomeAppBarItem extends StatefulWidget {
   final Function() onTap;
   final String title;
+  final IconData icon;
+  final TextStyle? titleStyle;
 
   const HomeAppBarItem({
     super.key,
     required this.onTap,
-    required this.title,
+    required this.title, required this.icon, this.titleStyle,
   });
 
   @override
@@ -26,32 +28,20 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedDefaultTextStyle(
-        duration: const Duration(milliseconds: 300),
-        style:AppTextStyles.semiBold14().copyWith(
-          color: _isHovered ? const Color(0xFF00d9ff) : Colors.white70,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+      child: Container(
+        height: 40,
+        width: double.infinity,
+
+        padding: EdgeInsets.symmetric(horizontal: 16,vertical: 12),
+        color:_isHovered ?colors.accent.withValues(alpha: 0.2):Colors.transparent ,
+        child: Row(
+          spacing: 12,
           children: [
-            Text(widget.title, style: AppTextStyles.medium20(
+            Icon(widget.icon,size: 14,              color: _isHovered ?colors.accent: colors.text1
+            ),
+            Text(widget.title, style: AppTextStyles.medium12(
               color: _isHovered ?colors.accent: colors.text1
             ),),
-            if (_isHovered)
-              Container(
-                height: 2,
-                width: 80,
-                margin: const EdgeInsets.only(top: 4),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                    colors.accent,
-                      colors.accent25
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(1),
-                ),
-              ),
           ],
         ),
       ),

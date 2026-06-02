@@ -21,76 +21,64 @@ class EducationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return AnimatedCardWidget(
-      child:(h)=>  Column(
-        spacing: 8,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            spacing: 16,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      item.degree ?? "",
-                      style: AppTextStyles.semiBold16(
-                        color: colors.accent,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      item.university ?? "",
-                      style: AppTextStyles.regular14(
-                        color: colors.text2,
-                      ),
-                    ),
-                  ],
-                ),
+    return  Column(
+      spacing: 8,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          item.degree ?? "",
+          style: AppTextStyles.medium12(
+            color: colors.accent,
+          ),
+        ),
+        Row(
+          children: [
+            Text(
+              item.university ?? "",
+              style: AppTextStyles.regular12(
+                color: colors.text2,
               ),
-              Text(
-                item.duration ?? "",
-                style: AppTextStyles.medium12(
-                  color: colors.secondary,
-                ),
+            ).expand,
+            Text(
+              item.duration ?? "",
+              style: AppTextStyles.regular10(
+                color: colors.secondary,
               ),
-            ],
-          ),
-          Text(
-            'Grade: ${item.grade ?? ""}',
-            style: AppTextStyles.regular12(
-              color: colors.text2,
             ),
+          ],
+        ),
+        Text(
+          'Grade: ${item.grade ?? ""}',
+          style: AppTextStyles.regular10(
+            color: colors.text2,
           ),
-          Text(
-            (item.gradProjectTitle ?? ""),
-            style: AppTextStyles.regular12(
-              color: colors.text2,
-            ),
+        ),
+        Text(
+          (item.gradProjectTitle ?? ""),
+          style: AppTextStyles.regular10(
+            color: colors.text2,
           ),
-          Wrap(
-            spacing: 8,
-            runSpacing: 16,
-            children: [
-              ...List.generate(
-                item.gradProjectTech.length,
-                    (i) => CardWithText(
-                  borderColor: colors.secondary,
-                    color: colors.secondary.withValues(alpha: 0.2),
-                  text: item.gradProjectTech[i] ,
-                    style: AppTextStyles.medium10(
-                      color: colors.secondary,
-                    ),
+        ),
+        Wrap(
+          spacing: 8,
+          runSpacing: 16,
+          children: [
+            ...List.generate(
+              item.gradProjectTech.length,
+                  (i) => CardWithText(
+                borderColor: Colors.transparent,
+                  color: colors.secondary.withValues(alpha: 0.1),
+                text: item.gradProjectTech[i] ,
+                  style: AppTextStyles.regular8(
+                    color: colors.secondary,
                   ),
+                ),
 
-              )
-            ],
-          )
+            )
+          ],
+        )
 
-        ],
-      ).expand,
+      ],
     );
   }
 }

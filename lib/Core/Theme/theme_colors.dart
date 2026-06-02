@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 class AppColors extends ThemeExtension<AppColors> {
   // ─── Dark Theme (Primary) ────────────────────────────────────────────────
   static const darkValues = AppColors(
-    background: Color(0xff021422),
-    surface: Color(0xff011729),
-    surfaceElevated: Color(0xff012a4a),
-    accent: Color(0xff2c7da0),
+    background: Color(0xFF0f1117),
+    surface: Color(0xff161b27),
+    card: Color(0xff1c2333),
+    accent: Color(0xff3b82f6),
     accent50: Color(0xff61a5c2),
     accent25: Color(0xFFa9d6e5),
-    secondary: Color(0xFFBC870C),
-    text1: Color(0xfff6fafa),
-    text2: Color(0xffd6e2e9),
-    text3: Color(0xffbcbcbc),
-    border: Color(0xffd6e2e9),
+    secondary: Color(0xFF06b6d4),
+    text1: Color(0xffc8d4e8),
+    text2: Color(0xff8b9cbf),
+    text3: Color(0xff64748b),
+    border: Color(0xff2a3248),
     success: Color(0xFF00C48C),
     warning: Color(0xFFFFB300),
     danger: Color(0xFFFF4757),
@@ -26,17 +26,17 @@ class AppColors extends ThemeExtension<AppColors> {
   static const Color error = Color(0xFFDC2626);
   // ─── Light Theme ─────────────────────────────────────────────────────────
   static const lightValues = AppColors(
-    background: Color(0xfff6fafa),
+    background: Color(0xfff0f4fa),
     surface: Color(0xffffffff),
-    surfaceElevated: Color(0xffd6e2e9),
-    accent: Color(0xff2c7da0),
+    card: Color(0xfffffff4),
+    accent: Color(0xff2563eb),
     accent50: Color(0xff61a5c2),
     accent25: Color(0xFFa9d6e5),
-    secondary: Color(0xFFBC870C),
-    text1: Color(0xff012a4a),
-    text2: Color(0xFF929293),
+    secondary: Color(0xFF06b6d4),
+    text1: Color(0xff0f172a),
+    text2: Color(0xff374151),
     text3: Color(0xffbcbcbc),
-    border: Color(0xFF0B2950),
+    border: Color(0xffe2e8f4),
     success: Color(0xFF00C48C),
     warning: Color(0xFFFFB300),
     danger: Color(0xFFFF4757),
@@ -46,7 +46,7 @@ class AppColors extends ThemeExtension<AppColors> {
   // ─── Fields ───────────────────────────────────────────────────────────────
   final Color background;
   final Color surface;
-  final Color surfaceElevated;
+  final Color card;
   final Color border;
   final Color accent;
   final Color accent50;
@@ -62,7 +62,7 @@ class AppColors extends ThemeExtension<AppColors> {
   const AppColors({
     required this.background,
     required this.surface,
-    required this.surfaceElevated,
+    required this.card,
     required this.border,
     required this.accent,
     required this.success,
@@ -119,7 +119,7 @@ class AppColors extends ThemeExtension<AppColors> {
     return AppColors(
       background: background ?? this.background,
       surface: surface ?? this.surface,
-      surfaceElevated: surfaceElevated ?? this.surfaceElevated,
+      card: surfaceElevated ?? this.card,
       border: border ?? this.border,
       accent: accent ?? this.accent,
       success: success ?? this.success,
@@ -141,7 +141,7 @@ class AppColors extends ThemeExtension<AppColors> {
     return AppColors(
       background: Color.lerp(background, other.background, t)!,
       surface: Color.lerp(surface, other.surface, t)!,
-      surfaceElevated: Color.lerp(surfaceElevated, other.surfaceElevated, t)!,
+      card: Color.lerp(card, other.card, t)!,
       border: Color.lerp(border, other.border, t)!,
       accent: Color.lerp(accent, other.accent, t)!,
       success: Color.lerp(success, other.success, t)!,

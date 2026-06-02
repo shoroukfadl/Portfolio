@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/experince_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Portfilio/divider.dart';
+import 'package:portfolio/Widgets/Portfilio/point_text.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
 
@@ -39,7 +41,6 @@ class _ExperinceItemCardState extends State<ExperinceItemCard> {
         onExit: (_) => setState(() => _isHovered = false),
         child: AnimatedContainer(
           duration: Duration(milliseconds: 250),
-          margin: const EdgeInsets.only(bottom: 12),
           decoration: BoxDecoration(
             border: Border(
               left: BorderSide(
@@ -62,12 +63,12 @@ class _ExperinceItemCardState extends State<ExperinceItemCard> {
                     children: [
                       Text(
                         widget.item?.companyName ?? "",
-                        style: AppTextStyles.semiBold16(color: colors.secondary)
+                        style: AppTextStyles.semiBold14(color: colors.secondary)
                       ),
                       const SizedBox(height: 4),
                       Text(
                         widget.item?.jobTitle ?? "",
-                        style: AppTextStyles.medium14(color: colors.text1))
+                        style: AppTextStyles.medium12(color: colors.text1))
                     ],
                   ),
                   Container(
@@ -80,8 +81,8 @@ class _ExperinceItemCardState extends State<ExperinceItemCard> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      widget.item?.status == true ? 'Active' : 'Closed',
-                      style: AppTextStyles.regular12(
+                      widget.item?.period ?? "",
+                      style: AppTextStyles.medium10(
                         color: isActive ? colors.secondary : colors.accent50,
                       ),
                     ),
@@ -89,15 +90,17 @@ class _ExperinceItemCardState extends State<ExperinceItemCard> {
                 ],
               ),
               const SizedBox(height: 8),
-              Text(
-                widget.item?.period ?? "",
-                style:  AppTextStyles.regular12(color: colors.text2)
-              ),
-              const SizedBox(height: 8),
-              Text(
-                widget.item?.responsibilities.firstOrNull ?? "",
-                style:  AppTextStyles.medium12(color: colors.text2)
-              ),
+              ...List.generate( widget.item?.responsibilities.length??0, (i)=>
+              Column(
+                children: [
+                  PointText(
+                  point:  (widget.item?.responsibilities[i] ?? ""),
+                    style:  AppTextStyles.regular10(color: colors.text2)
+                  ),
+                  if(i<(widget.item?.responsibilities.length??0)-1)
+                  DividerWidget(thickness:0.6)
+                ],
+              ) ),
             ],
           ),
         ));

@@ -3,6 +3,9 @@ import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/experince_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/experince/experince_item_card.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/sections_title_widget.dart';
+
+import '../../../../../Utilities/Constants/strings.dart';
 
 class ExperienceSection extends StatelessWidget {
   final List<ExperienceEntity> experiences;
@@ -13,21 +16,12 @@ class ExperienceSection extends StatelessWidget {
     final colors = context.colors;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 20,
+      spacing: 8,
       children: [
-        Text(
-          'Test Run Reports',
-          style: AppTextStyles.semiBold24(
-
-            color: colors.accent,
-          ),
-        ),
+       SectionsTitleWidget(title: Strings.experience.translate.toUpperCase()  ,),
         ...experiences.map((exp) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: ExperinceItemCard(
-              item: exp,
-            )
+          return ExperinceItemCard(
+            item: exp,
           );
         }).toList(),
       ],

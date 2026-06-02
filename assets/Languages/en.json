@@ -2,14 +2,14 @@
 
   "helloIam": "I'm",
   "basedIn":"Based In",
-  "aboutMe": "About Me",
+  "aboutMe": "Summary",
   "skill": "Skill",
   "projects": "Projects",
-  "contactMe": "Contact Me",
-  "resume":"Resume",
+  "contactMe": "Contact",
+  "resume":"CV",
   "mail": "Mail",
-  "mySkill": "My Skill",
-  "myExperience": "My Experience",
+  "mySkill": "Skills",
+  "myExperience": "Experience",
   "name": "Name",
   "email": "Email",
   "message": "Message",
@@ -20,5 +20,6 @@
   "developer": "Developer",
   "hireMe": "Hire Me",
   "education": "Education",
-  "hello": "Hello"
+  "hello": "Hello",
+  "certification": "Certifications"
 }

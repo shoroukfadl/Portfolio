@@ -26,56 +26,10 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
       backgroundColor: colors.background,
       floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
       body: Row(
+        spacing: 4,
         children: [
-          Column(
-            children: [
-              const SummaryCard(),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: colors.surface,
-                  boxShadow: [
-                    BoxShadow(
-                      color: colors.accent25.withAlpha(90),
-                      blurRadius: 2,
-                      spreadRadius: 2,
-                    )
-                  ],
-                  border: Border.all(color: colors.accent),
-                  borderRadius: const BorderRadiusDirectional.all(
-                    Radius.circular(Constants.cardRadius),
-                  ),
-                ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 8,
-                  children: [
-                    ContactButton(
-                      onTap: () {},
-                      icon: Portfolio.email,
-                    ),
-                    ContactButton(
-                      onTap: () {},
-                      icon: Portfolio.linkedin,
-                    ),
-                    ContactButton(
-                      onTap: () {},
-                      icon: Portfolio.github,
-                    ),
-                    ContactButton(
-                      onTap: () {},
-                      icon: Portfolio.whatsapp,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ).expand,
-          widget.child.expandFlex(3),
+           SummaryCard(),
+          widget.child.expand,
         ],
       ),
     );

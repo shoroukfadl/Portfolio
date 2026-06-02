@@ -10,9 +10,9 @@ class ContactButton extends StatelessWidget {
   final Color? backgroundColor, borderColor, iconColor;
   const ContactButton(
       {super.key,
-      this.width = 40,
-      this.height = 40,
-      this.iconSize = 20,
+      this.width = 32,
+      this.height = 32,
+      this.iconSize = 14,
       required this.onTap,
       required this.icon,
       this.backgroundColor,
@@ -25,13 +25,13 @@ class ContactButton extends StatelessWidget {
     return CustomButtonWidget(
       borderRadiusValue: 4,
       onPressed:onTap,
-      btnColor: backgroundColor??colors.accent50,
-      borderColor:  borderColor ?? colors.accent50,
+      btnColor: backgroundColor??Colors.transparent,
+      borderColor:  borderColor ?? colors.text3,
       width: width,
       height: height,
       child: Icon(
         icon,
-        color: iconColor?? Colors.white,
+        color: iconColor?? colors.text3,
         size: iconSize,
       ),
     );

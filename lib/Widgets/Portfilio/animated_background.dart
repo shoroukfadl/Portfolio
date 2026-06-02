@@ -10,51 +10,36 @@ class AnimatedBackground extends StatefulWidget {
   State<AnimatedBackground> createState() => _AnimatedBackgroundState();
 }
 
-class _AnimatedBackgroundState extends State<AnimatedBackground>
-    with TickerProviderStateMixin {
-  late AnimationController _controller;
+class _AnimatedBackgroundState extends State<AnimatedBackground>{
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(seconds: 15),
-      vsync: this,
-    )..repeat();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return Container(
-          decoration:  const BoxDecoration(
-            gradient: AppColors.gradientCardLight
+
+    return Container(
+          height: 400,
+          decoration: BoxDecoration(
+          color: colors.surface,
+            border: Border.all(color: colors.border),
+            borderRadius: BorderRadiusDirectional.vertical(
+              bottom: Radius.circular(1)
+            )
+            
           ),
           child: Stack(
             children: [
-              // Animated gradient blobs
               Positioned(
-                left: MediaQuery.of(context).size.width * 0.2 +
-                    (100 * (_controller.value - 0.5)),
-                top: MediaQuery.of(context).size.height * 0.5 -
-                    (50 * (_controller.value - 0.5)),
+                left: 0 ,
+                top: 0,
                 child: Container(
-                  width: 400,
-                  height: 400,
+                  width: 360,
+                  height: 360,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        colors.accent.withValues(alpha: 0.15),
+                        colors.secondary.withValues(alpha: 0.15),
                         Colors.transparent,
                       ],
                     ),
@@ -62,29 +47,10 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
                 ),
               ),
               Positioned(
-                right: MediaQuery.of(context).size.width * 0.1 -
-                    (80 * (_controller.value - 0.5)),
-                bottom: MediaQuery.of(context).size.height * 0.2 +
-                    (60 * (_controller.value - 0.5)),
-                child: Container(
-                  width: 350,
-                  height: 350,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: RadialGradient(
-                      colors: [
-                        colors.accent25.withValues(alpha: 0.1),
-                        Colors.transparent,
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                left: MediaQuery.of(context).size.width * 0.7 -
-                    (100 * (_controller.value - 0.5)),
-                top: MediaQuery.of(context).size.height * 0.1 +
-                    (80 * (_controller.value - 0.5)),
+
+                left: 0,
+                right: 0,
+                bottom: -100,
                 child: Container(
                   width: 300,
                   height: 300,
@@ -92,7 +58,24 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        colors.accent.withValues(alpha: 0.08),
+                        colors.accent.withValues(alpha: 0.13),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                right: 0 ,
+                top:-8 ,
+                child: Container(
+                  width: 260,
+                  height: 260,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        colors.success.withValues(alpha: 0.08),
                         Colors.transparent,
                       ],
                     ),
@@ -102,7 +85,5 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
             ],
           ),
         );
-      },
-    );
   }
 }

@@ -14,33 +14,27 @@ class SummarySection extends StatelessWidget {
     return Column(
       children: [
         RoundedImage(
-          width: 140,
-          height: 140,
+          width: 120,
+          height: 120,
           imagePath: profile?.image,
         ),
         Text(
-          profile?.firstName??"",
-          style: AppTextStyles.bold24(color:colors.accent,),
+          profile?.firstName??"" ,
+          style: AppTextStyles.semiBold20(color:colors.text1,),
         ), Text(
           profile?.lastName??"",
           style: AppTextStyles.semiBold20(
-            color:colors.accent,
+            color:colors.text1,
           ),
         ),
         const SizedBox(height: 12),
         Text(
           profile?.jobTitle??"",
-          style:  AppTextStyles.medium16(
-            color:colors.text1,
+          style:  AppTextStyles.medium14(
+            color:colors.accent,
           ),
         ),
-        const SizedBox(height: 24),
-        Text(
-          profile?.summary??"",
-          style:  AppTextStyles.regular14(
-            color:colors.text2,
-          ),
-        ),
+
       ],
     );
   }

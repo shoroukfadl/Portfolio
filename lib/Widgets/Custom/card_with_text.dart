@@ -66,12 +66,13 @@ class AnimatedCardWithText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedCardWidget(
+    return BasicAnimatedCardWidget(
       paddingHoz: hozPadding, paddingVert: vertPadding,
           cardColor: color,
           animatedColor: animatedColor,
           animatedBorderColor: animatedColor,
           borderColor:borderColor,
+      border: border,
       child:(h)=> Text(
         text,
         style: style ??

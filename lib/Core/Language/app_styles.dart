@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   // ─── Base font families ───────────────────────────────────────────────────
   static TextStyle get mainFont => GoogleFonts.dmSerifDisplay();
-  static TextStyle get secondaryFont => GoogleFonts.dmSans();
+  static TextStyle get secondaryFont => GoogleFonts.inter();
 
   /// ----------- Headers  -----------
   static TextStyle extraBold72({Color? color}) => secondaryFont.copyWith(
@@ -190,11 +190,16 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
       );
 
 
-  static TextStyle medium20({Color? color}) => secondaryFont.copyWith(
+  static TextStyle medium32({Color? color}) => secondaryFont.copyWith(
+        fontSize: 32,
+        fontWeight: FontWeight.w500,
+        color: color ?? Colors.black,
+      ); static TextStyle medium20({Color? color}) => secondaryFont.copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w500,
         color: color ?? Colors.black,
-      );  static TextStyle medium18({Color? color}) => secondaryFont.copyWith(
+      );
+  static TextStyle medium18({Color? color}) => secondaryFont.copyWith(
         fontSize: 18,
         fontWeight: FontWeight.w500,
         color: color ?? Colors.black,
@@ -222,6 +227,17 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   static TextStyle medium10({Color? color}) => secondaryFont.copyWith(
         fontSize: 10,
         fontWeight: FontWeight.w500,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
+  static TextStyle medium8({Color? color}) => secondaryFont.copyWith(
+        fontSize: 8,
+        fontWeight: FontWeight.w500,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );  static TextStyle regular8({Color? color}) => secondaryFont.copyWith(
+        fontSize: 8,
+        fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
       );

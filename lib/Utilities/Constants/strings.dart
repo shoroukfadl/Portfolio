@@ -15,6 +15,7 @@ class Strings {
   static const String name = "name";
   static const String email = "email";
   static const String message = "message";
+  static const String certification = "certification";
   static const String send = "send";
   static const String yourPhone = "yourPhone";
   static const String my = "my";

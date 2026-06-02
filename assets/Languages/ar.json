@@ -1,14 +1,14 @@
 {
   "helloIam":"انا",
   "basedIn": "مقيمه في",
-  "aboutMe": "عني",
+  "aboutMe": "نبذه",
   "skill": "المهارات",
   "projects": "المشاريع",
-  "contactMe": "تواصل معي",
+  "contactMe": "تواصل",
   "resume": "السيرة ذاتية",
   "mail": "الايميل",
-  "mySkill": "مهاراتي",
-  "myExperience": "خبراتي",
+  "mySkill": "المهارات",
+  "myExperience": "الخبرات",
   "name": "الاسم",
   "email": "الايميل",
   "message": "الرسالة",
@@ -20,5 +20,6 @@
   "developer": "مطوره",
   "hireMe": "ترشيحي",
   "education": "التعليم",
-  "hello": "مرحبا"
+  "hello": "مرحبا",
+  "certification": "الشهادات"
 }

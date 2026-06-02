@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/certificate_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
 
 import '../../../../../Widgets/Custom/card_with_animation.dart';
@@ -17,42 +18,48 @@ class CertificationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return AnimatedCardWidget(
-      child:(h)=> Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            spacing: 8,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                item.courseName ?? "",
-                style: AppTextStyles.semiBold16(
-                  color: colors.accent,
-                ),
+    return  Row(
+      spacing: 16,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        InkWell(onTap: (){}, child: RoundedImage(
+          imagePath: item.certificateImageUrl,
+          width: 72,
+          height: 48,
+          radiusValue: 0,
+        )),
+
+        Column(
+          spacing: 8,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              item.courseName ?? "",
+              style: AppTextStyles.semiBold14(
+                color: colors.text1,
               ),
-              Text(
-                '${item.provider ?? ""} - ${item.issueDate ?? ""}',
-                style: AppTextStyles.medium12(
-                  color: colors.secondary,
-                ),
+            ),
+            Text(
+              '${item.provider ?? ""}',
+              style: AppTextStyles.medium12(
+                color: colors.accent,
               ),
-            ],
-          ).expand,
-
-          InkWell(onTap: (){}, child: RoundedImage(
-            imagePath: item.certificateImageUrl,
-            width: 140,
-            height: 80,
-            radiusValue: 8,
-            borderColor: colors.secondary,
-          )),
+            ),
+          ],
+        ).expand,
 
 
+        CardWithText(text: item.issueDate ?? "",
+          style: AppTextStyles.regular10(
+            color: colors.secondary,
+          ),
+          color: colors.secondary.withValues(alpha: 0.2),
+          borderColor: colors.secondary,
+        )
 
 
-        ],
-      ),
+
+      ],
     );
   }
 }

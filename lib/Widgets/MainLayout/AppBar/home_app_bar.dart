@@ -17,50 +17,51 @@ class HomeAppBar extends StatelessWidget {
       child: Row(
         children: [
 
-
-          Spacer(),
-          HomeAppBarItem(
-              onTap: () {
-                Scrollable.ensureVisible(
-                  GlobalKeys.skill.currentContext!,
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.easeInOut,
-                );
-              },
-              title: Strings.mySkill.translate),
-          16.0.widthBox,
-
-          HomeAppBarItem(
-              onTap: () {
-                Scrollable.ensureVisible(
-                  GlobalKeys.experince.currentContext!,
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.easeInOut,
-                );
-              },
-              title: Strings.myExperience.translate),
-          16.0.widthBox,
-
-          HomeAppBarItem(
-              onTap: () {
-                Scrollable.ensureVisible(
-                  GlobalKeys.projects.currentContext!,
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.easeInOut,
-                );
-              },
-              title: Strings.projects.translate),
-          16.0.widthBox,
-
-          HomeAppBarItem(
-              onTap: () {
-                Scrollable.ensureVisible(
-                  GlobalKeys.contactMe.currentContext!,
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.easeInOut,
-                );
-              },
-              title: Strings.contactMe.translate),
+          //
+          // Spacer(),
+          // HomeAppBarItem(
+          //
+          //     onTap: () {
+          //       Scrollable.ensureVisible(
+          //         GlobalKeys.skill.currentContext!,
+          //         duration: const Duration(seconds: 1),
+          //         curve: Curves.easeInOut,
+          //       );
+          //     },
+          //     title: Strings.mySkill.translate),
+          // 16.0.widthBox,
+          //
+          // HomeAppBarItem(
+          //     onTap: () {
+          //       Scrollable.ensureVisible(
+          //         GlobalKeys.experince.currentContext!,
+          //         duration: const Duration(seconds: 1),
+          //         curve: Curves.easeInOut,
+          //       );
+          //     },
+          //     title: Strings.myExperience.translate),
+          // 16.0.widthBox,
+          //
+          // HomeAppBarItem(
+          //     onTap: () {
+          //       Scrollable.ensureVisible(
+          //         GlobalKeys.projects.currentContext!,
+          //         duration: const Duration(seconds: 1),
+          //         curve: Curves.easeInOut,
+          //       );
+          //     },
+          //     title: Strings.projects.translate),
+          // 16.0.widthBox,
+          //
+          // HomeAppBarItem(
+          //     onTap: () {
+          //       Scrollable.ensureVisible(
+          //         GlobalKeys.contactMe.currentContext!,
+          //         duration: const Duration(seconds: 1),
+          //         curve: Curves.easeInOut,
+          //       );
+          //     },
+          //     title: Strings.contactMe.translate),
 
 
           // CustomButtonWidget(

@@ -1,85 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/Core/Theme/theme_colors.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Buttons/theme_button.dart';
+import 'package:portfolio/Widgets/MainLayout/AppBar/home_app_bar_item.dart';
 
+import '../../../../../Utilities/Constants/global_keys.dart';
+import '../../../../../Utilities/Constants/strings.dart';
+import '../../../../../Utilities/portifilo_icons.dart';
 import '../../cubit/cubit.dart';
 import '../../cubit/state.dart';
+import '../contact/contact_button.dart';
+import '../education/education_widget.dart';
 import 'about_me_widget.dart';
 
-class SummaryCard extends StatefulWidget {
+class SummaryCard extends StatelessWidget {
   const SummaryCard({super.key});
 
-  @override
-  State<SummaryCard> createState() => _SummaryCardState();
-}
-
-class _SummaryCardState extends State<SummaryCard> with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<Offset> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    );
-
-    _animation = Tween<Offset>(
-      begin: const Offset(0, 0),
-      end: const Offset(0, 16),
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    ));
-
-    _controller.repeat(reverse: true);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+  Widget divider(AppColors colors) => Divider(
+    color: colors.border,
+    thickness: 0.5,
+  );
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        return Transform.translate(
-          offset: _animation.value,
-          child: child,
-        );
-      },
-      child: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: colors.surface,
-              boxShadow: [
-                BoxShadow(
-                  color: colors.accent25.withAlpha(90),
-                  blurRadius: 2,
-                  spreadRadius: 2,
-                )
-              ],
-              border: Border.all(
-                color: colors.accent
-              ),
-              borderRadius: const BorderRadiusDirectional.all(
-                 Radius.circular(Constants.cardRadius),
+    return Container(
+      width: 300,
+      color: colors.surface,
+      child: CustomScrollView(
 
-              ),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
-            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+        slivers: [
+          SliverToBoxAdapter(child: 24.0.heightBox),
+          SliverToBoxAdapter(
             child: BlocBuilder<PortfolioCubit, PortfolioState>(
                 buildWhen: (c, p) => c.data?.profile != p.data?.profile,
                 builder: (context, state) {
@@ -88,9 +42,129 @@ class _SummaryCardState extends State<SummaryCard> with SingleTickerProviderStat
                   );
                 }),
           ),
-          const PositionedDirectional(
-              end: -8,
-              child: ThemeButton())
+          SliverToBoxAdapter(child: 8.0.heightBox),
+          SliverToBoxAdapter(child: divider(colors)),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.summary,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.aboutMe.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.aboutMe.translate,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.education,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.education.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.education.translate,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.skills,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.skill.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.mySkill.translate,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.work,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.experince.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.experience.translate,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.projects,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.projects.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.projects.translate,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.certification,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.certification.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.certification.translate,
+            ),
+          ),
+          SliverToBoxAdapter(child: 8.0.heightBox),
+          SliverToBoxAdapter(child: divider(colors)),
+          SliverToBoxAdapter(child: 8.0.heightBox),
+
+          SliverToBoxAdapter(
+            child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (c, p) => c.data?.education != p.data?.education,
+                builder: (context, state) {
+                  return EducationSection(education: state.data?.education ?? []);
+                }),
+          ),
+          SliverToBoxAdapter(child: 8.0.heightBox),
+          SliverToBoxAdapter(child: divider(colors)),
+          SliverToBoxAdapter(child: 8.0.heightBox),
+          SliverToBoxAdapter(
+            child: Row(
+              spacing: 16,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ContactButton(
+                  onTap: () {},
+                  icon: Portfolio.email,
+                ),
+                ContactButton(
+                  onTap: () {},
+                  icon: Portfolio.linkedin,
+                ),
+                ContactButton(
+                  onTap: () {},
+                  icon: Portfolio.github,
+                ),
+                ContactButton(
+                  onTap: () {},
+                  icon: Portfolio.whatsapp,
+                ),
+                ContactButton(
+                  onTap: () {},
+                  icon: Portfolio.cv,
+                ),
+                ThemeButton(),
+              ],
+            ),
+          )
         ],
       ),
     );
