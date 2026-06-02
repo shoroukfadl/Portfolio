@@ -33,6 +33,8 @@ class ProjectItemCard extends StatelessWidget {
 
     return AnimatedCardWidget(
       paddingVert: 0,
+      width: 280,
+      height: 260,
       child: (i) => Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,10 +42,9 @@ class ProjectItemCard extends StatelessWidget {
         children: [
           GradintDividerWidget(color1: colors.accent, color2: colors.secondary,thickness: 4,),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            spacing: 8,
             children: [
-              Text(project?.title ?? "",
-                  style: AppTextStyles.semiBold14(color: colors.text1)),
+              Text(project?.title ?? "", style: AppTextStyles.semiBold14(color: colors.text1),maxLines: 2,).expand,
               CardWithText(
                 text: project?.platform ?? "",
                 color: colors.accent.withValues(alpha: 0.2),

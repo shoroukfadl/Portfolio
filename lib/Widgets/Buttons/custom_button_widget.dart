@@ -10,6 +10,7 @@ class CustomButtonWidget extends StatelessWidget {
 
   final double? width, height, borderRadiusValue;
   final String? title;
+  final TextStyle? titleStyle;
   final BorderRadiusGeometry? borderRadius;
   final FocusNode? focusNode;
   final Widget? child;
@@ -27,13 +28,14 @@ class CustomButtonWidget extends StatelessWidget {
       this.isLoading = false,
       this.btnColor,
       this.borderColor,
-      this.titleColor, this.borderRadius});
+      this.titleColor, this.borderRadius, this.titleStyle});
 
   const CustomButtonWidget.outLined(
       {super.key,
       this.width,
       this.height,
       this.title,
+      this.titleStyle,
       this.onPressed,
       this.child,
       this.focusNode,
@@ -73,7 +75,7 @@ class CustomButtonWidget extends StatelessWidget {
             : child ??
                 AppTextWidget(
                   title ?? "",
-                  style: AppTextStyles.regular14()
+                  style: titleStyle?? AppTextStyles.regular14()
                       .copyWith(color: titleColor ?? colors.text1),
                 ),
       ),

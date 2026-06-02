@@ -13,12 +13,14 @@ class ProjectsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return GridView.builder(
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4,childAspectRatio: 1.2),
-      itemBuilder: (c,i)=> ProjectItemCard(
-        project: projects[i],
-      )
+    return Wrap(
+      spacing: 16,
+      runSpacing: 16,
+      children: [
+      ...  List.generate(projects.length, (i)=>ProjectItemCard(
+          project: projects[i],
+        ))
+      ],
     );
   }
 }

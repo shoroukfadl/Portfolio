@@ -4,6 +4,7 @@ import 'package:portfolio/Features/home/presentation/widgets/products/project_li
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
 
+import '../../../../../Core/Language/app_styles.dart';
 import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
@@ -38,7 +39,7 @@ class _MyProjectsWidgetState extends State<MyProjectsWidget> {
     final colors = context.colors;
     return Column(
       spacing: 16,
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionsTitleWidget(
           key: GlobalKeys.projects,
@@ -56,8 +57,10 @@ class _MyProjectsWidgetState extends State<MyProjectsWidget> {
               onPressed: (){
                 if(!isMan) previewMan(true);
               },
-              width: 160,
-              titleColor: !isMan ? colors.text1: Colors.white,
+              width: 140,
+              titleStyle: AppTextStyles.medium10()
+                  .copyWith(color:!isMan ? colors.text1: Colors.white),
+
               borderColor: isMan ? colors.accent: colors.text3,
               btnColor: isMan ? colors.accent : colors.text3.withValues(alpha: 0.2),
               borderRadius: const BorderRadiusDirectional.only(
@@ -70,8 +73,9 @@ class _MyProjectsWidgetState extends State<MyProjectsWidget> {
               onPressed: (){
                 if(isMan) previewMan(false);
               },
-              width: 160,
-              titleColor: isMan ? colors.text1: Colors.white,
+              width: 140,
+              titleStyle: AppTextStyles.medium10()
+                  .copyWith(color:isMan ? colors.text1: Colors.white),
               borderColor: !isMan ? colors.accent: colors.text3,
               btnColor: !isMan ? colors.accent : colors.text3.withValues(alpha: 0.2),
               borderRadius: const BorderRadiusDirectional.only(
@@ -82,8 +86,8 @@ class _MyProjectsWidgetState extends State<MyProjectsWidget> {
           ],
         ),
 
-        if(isMan) ProjectsList(projects: man,).expand
-        else ProjectsList(projects: auto,).expand
+        if(isMan) ProjectsList(projects: man,)
+        else ProjectsList(projects: auto,)
       ],
     );
   }
