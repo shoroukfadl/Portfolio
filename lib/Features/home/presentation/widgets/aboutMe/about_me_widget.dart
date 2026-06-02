@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Buttons/theme_button.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
 class SummarySection extends StatelessWidget {
   final ProfileEntity? profile;
@@ -23,22 +24,22 @@ class SummarySection extends StatelessWidget {
           style: AppTextStyles.bold24(color:colors.accent,),
         ), Text(
           profile?.lastName??"",
-          style: AppTextStyles.bold20(
+          style: AppTextStyles.semiBold20(
             color:colors.accent,
           ),
         ),
         const SizedBox(height: 12),
         Text(
           profile?.jobTitle??"",
-          style:  AppTextStyles.medium20(
-            color:colors.accent,
+          style:  AppTextStyles.medium16(
+            color:colors.text1,
           ),
         ),
         const SizedBox(height: 24),
         Text(
           profile?.summary??"",
-          style:  AppTextStyles.medium18(
-            color:colors.secondary,
+          style:  AppTextStyles.regular14(
+            color:colors.text2,
           ),
         ),
       ],

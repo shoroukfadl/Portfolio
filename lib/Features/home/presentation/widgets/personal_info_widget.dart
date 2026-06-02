@@ -85,7 +85,7 @@
 //         //   personalData?.shortDesc ?? "",
 //         //   style: styles
 //         //       .paragraphTextStyleBold20
-//         //       .copyWith(color: colors.secondary),
+//         //       .copyWith(color: colors.accent25),
 //         // ),
 //         // 32.0.heightBox,
 //         Row(

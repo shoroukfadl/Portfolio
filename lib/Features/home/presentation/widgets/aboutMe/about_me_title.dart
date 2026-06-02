@@ -5,7 +5,6 @@ import 'package:portfolio/Utilities/portifilo_icons.dart';
 import '../../../../../Utilities/Constants/strings.dart';
 import '../../../../../Utilities/helper_function.dart';
 import '../../../../../Widgets/Buttons/custom_button_widget.dart';
-import '../../../../Homel/home_controller.dart';
 
 class SummaryContent extends StatelessWidget {
   final String firstName,lastName, role, summary;
@@ -35,7 +34,7 @@ class SummaryContent extends StatelessWidget {
           shaderCallback: (bounds) => LinearGradient(
             colors: [
               colors.accent,
-              colors.secondary
+              colors.accent25
             ],
           ).createShader(bounds),
           child: Text(
@@ -55,7 +54,7 @@ class SummaryContent extends StatelessWidget {
         const SizedBox(height: 20),
          Text(
            summary,
-           style: AppTextStyles.regular14(color: colors.fontColor2).copyWith(
+           style: AppTextStyles.regular14(color: colors.text2).copyWith(
             height: 1.8,
           ),
           maxLines: 4,
@@ -67,8 +66,8 @@ class SummaryContent extends StatelessWidget {
           children: [
             CustomButtonWidget(
               onPressed: () {
-                String? url = HomeController().user?.cv;
-                if (url != null) HelperFunctions.openUrl(url, context);
+                // String? url = HomeController().user?.cv;
+                // if (url != null) HelperFunctions.openUrl(url, context);
               },
               btnColor: colors.accent,
               width: 140,
@@ -91,16 +90,16 @@ class SummaryContent extends StatelessWidget {
             CustomButtonWidget.outLined(
 
               onPressed: () {
-                String gmailWebUri =
-                    "https://mail.google.com/mail/?view=cm&fs=1&to=${HomeController().user?.email}";
-                HelperFunctions.openUrl(gmailWebUri, context);
+                // String gmailWebUri =
+                //     "https://mail.google.com/mail/?view=cm&fs=1&to=${HomeController().user?.email}";
+                // HelperFunctions.openUrl(gmailWebUri, context);
               },
-              borderColor: colors.secondary,
+              borderColor: colors.accent25,
               width: 40,
               height: 40,
               child: Icon(
                 Portfolio.email,
-                color: colors.secondary,
+                color: colors.accent25,
                 size: 20,
               ),
             ),

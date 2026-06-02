@@ -73,7 +73,7 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        colors.secondary.withValues(alpha: 0.1),
+                        colors.accent25.withValues(alpha: 0.1),
                         Colors.transparent,
                       ],
                     ),

@@ -86,18 +86,7 @@ class HomeAppBar extends StatelessWidget {
           //   )
           // ),
           Spacer(),
-          CustomButtonWidget.outLined(
-            width: 32,
-            height: 32,
-            borderRadiusValue: 8,
-            borderColor: colors.accent,
-            onPressed: () {},
-            child: Icon(
-              Portfolio.theme,
-              color: colors.accent,
-              size: 16,
-            ),
-          ),
+
         ],
       ),
     );

@@ -35,7 +35,7 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(widget.title, style: AppTextStyles.medium20(
-              color: _isHovered ?colors.accent: colors.fontColor1
+              color: _isHovered ?colors.accent: colors.text1
             ),),
             if (_isHovered)
               Container(
@@ -46,7 +46,7 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
                   gradient: LinearGradient(
                     colors: [
                     colors.accent,
-                      colors.secondary
+                      colors.accent25
                     ],
                   ),
                   borderRadius: BorderRadius.circular(1),

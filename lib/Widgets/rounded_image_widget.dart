@@ -58,14 +58,14 @@ class RoundedImage extends StatelessWidget {
                     ? DecorationImage(
                         onError: (exception, stackTrace) => CircleAvatar(
                               radius: ((radius ?? 16) / 2),
-                              backgroundColor: colors.fontColor1,
+                              backgroundColor: colors.text1,
                             ),
                         fit: fit ?? BoxFit.fill,
                         image: NetworkImage(imagePath!))
                     : DecorationImage(
                         onError: (exception, stackTrace) => CircleAvatar(
                           radius: ((radius ?? 16) / 2),
-                          backgroundColor: colors.fontColor1,
+                          backgroundColor: colors.text1,
                         ),
                         fit: fit ?? BoxFit.fill,
                         image: AssetImage(

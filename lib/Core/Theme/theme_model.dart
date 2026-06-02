@@ -7,21 +7,22 @@ class AppTheme {
     useMaterial3: true,
     extensions: const [
       AppColors(
-        background: Color(0xFFe7ecef),
-        surface: Color(0xfff0f2f4),
-        surfaceElevated: Color(0xFFEDF1FB),
-        border: Color(0xFFC8D3EF),
-        accent: Color(0xFF274c77),
-        secondary: Color(0xFF8b8c89),
+        background: Color(0xfff6fafa),
+        surface: Color(0xffffffff),
+        surfaceElevated: Color(0xffd6e2e9),
+        secondary: Color(0xFFBC870C),
+        accent: Color(0xff2c7da0),
+        accent50: Color(0xff61a5c2),
+        accent25: Color(0xFFa9d6e5),
+        text1: Color(0xff012a4a),
+        text2: Color(0xFF929293),
+        text3: Color(0xffbcbcbc),
+        border: Color(0xFF0B2950),
         success: Color(0xFF00C48C),
         warning: Color(0xFFFFB300),
         danger: Color(0xFFFF4757),
-        fontColor1: Color(0xFF0B2950),
-        fontColor2: Color(0xFF303C50),
-        accent50: Color(0xFF6096ba),
-        accent25: Color(0xFFa3cef1),
-        fontColor3: Color(0xffbcbcbc),
-      )    ],
+      )
+    ],
   );
 
   static final dark = ThemeData(
@@ -29,20 +30,21 @@ class AppTheme {
     useMaterial3: true,
     extensions: const [
       AppColors(
-        background: Color(0xFF0F172A),
-        surface: Color(0xFF0F1629),
-        surfaceElevated: Color(0xFF1A2340),
-        border: Color(0xFFC8D3EF),
-        accent: Color(0xFF274c77),
-        secondary: Color(0xFF8b8c89),
+        background: Color(0xff021422),
+        surface: Color(0xff011729),
+        surfaceElevated: Color(0xff012a4a),
+        secondary: Color(0xFFBC870C),
+        accent: Color(0xff2c7da0),
+        accent50: Color(0xff61a5c2),
+        accent25: Color(0xFFa9d6e5),
+        text1: Color(0xfff6fafa),
+        text2: Color(0xffd6e2e9),
+        text3: Color(0xffbcbcbc),
+        border: Color(0xffd6e2e9),
         success: Color(0xFF00C48C),
         warning: Color(0xFFFFB300),
         danger: Color(0xFFFF4757),
-        fontColor1: Color(0xFF0B2950),
-        fontColor2: Color(0xFF303C50),
-        accent50: Color(0xFF6096ba),
-        accent25: Color(0xFFa3cef1),
-        fontColor3: Color(0xffbcbcbc),
-      )    ],
+      )
+    ],
   );
 }

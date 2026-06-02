@@ -35,7 +35,7 @@ class TitleWithBookmarkWidget extends StatelessWidget {
       Text(
         title ?? "",
         style: titleStyle ??
-            AppTextStyles.regular14().copyWith(color: colors.fontColor2),
+            AppTextStyles.regular14().copyWith(color: colors.text2),
       )
     ]);
   }

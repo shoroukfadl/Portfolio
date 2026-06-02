@@ -12,9 +12,6 @@ class EducationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
-    final colors = context.colors;
     return Column(
       spacing: 16,
       crossAxisAlignment: CrossAxisAlignment.start,

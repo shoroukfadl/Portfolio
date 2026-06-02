@@ -55,7 +55,7 @@ class EmptyDataWidget extends StatelessWidget {
             subTitle!,
             style: AppTextStyles.regular14().copyWith(
               fontSize: subTitleFontSize ?? 16,
-              color: colors.fontColor2,
+              color: colors.text2,
               height: 1.4,
             ),
           ),

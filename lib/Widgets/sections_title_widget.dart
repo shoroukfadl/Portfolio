@@ -22,7 +22,7 @@ class SectionsTitleWidget extends StatelessWidget {
     return Text(
       title,
       style: (titleStyle ?? AppTextStyles.extraBold32())
-          .copyWith(color: colors.secondary),
+          .copyWith(color: colors.accent25),
     );
   }
 }

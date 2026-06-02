@@ -2,19 +2,20 @@ import 'package:portfolio/Features/home/domain/entities/tech_skill_entity.dart';
 
 class TechnicalSkillModel {
   final String? category;
+  final int? id;
   final List<SkillModel> skills;
 
   TechnicalSkillModel({
     this.category,
-    this.skills = const [],
+    this.skills = const [], this.id,
   });
 
   factory TechnicalSkillModel.fromJson(Map<String, dynamic> json) =>
       TechnicalSkillModel(
         category: json['category'],
-        skills: json['category'] == null
+        skills: json['skills'] == null
             ? []
-            : (json['category'] as List)
+            : (json['skills'] as List)
                 .map((e) => SkillModel.fromJson(e))
                 .toList(),
       );
@@ -51,9 +52,9 @@ class SkillModel {
         id: json['id']?.toString(),
         profileId: json['profile_id'],
         category: json['category'],
-        skillName: json["skill_name"] == null
+        skillName: json["name"] == null
             ? null
-            :json['skill_name'],
+            :json['name'],
       );
 
   Map<String, dynamic> toJson() => {
