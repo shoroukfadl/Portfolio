@@ -150,12 +150,10 @@ class CustomDropDownWidget<T> extends StatelessWidget {
                 hintStyle: context.isSmall
                     ? hintStyle?.copyWith(
                             color: hintColor ?? hintStyle?.color, height: 1) ??
-                        AppTextStyles.regular14()
-                            .copyWith(color: colors.text2)
+                        AppTextStyles.regular14().copyWith(color: colors.text2)
                     : hintStyle?.copyWith(
                             color: hintColor ?? hintStyle?.color, height: 1) ??
-                        AppTextStyles.regular14()
-                            .copyWith(color: colors.text2),
+                        AppTextStyles.regular14().copyWith(color: colors.text2),
               ),
               items: items,
               onChanged: enable ? onChange : null,

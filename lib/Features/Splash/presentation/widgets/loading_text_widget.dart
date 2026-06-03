@@ -1,11 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import '../../../../Utilities/extensions.dart';
 
-
 class LoadingTextWidget extends StatefulWidget {
-
   const LoadingTextWidget({
     super.key,
   });
@@ -16,7 +13,6 @@ class LoadingTextWidget extends StatefulWidget {
 
 class _LoadingTextWidgetState extends State<LoadingTextWidget>
     with TickerProviderStateMixin {
-
   // Typewriter
   late AnimationController _typeController;
   final String _fullText = "Loading Portfolio...";
@@ -26,16 +22,11 @@ class _LoadingTextWidgetState extends State<LoadingTextWidget>
   late AnimationController _fadeController;
   late Animation<double> _fadeAnim;
 
-
-
-
   @override
   void initState() {
     super.initState();
     _initAnimations();
   }
-
-
 
   void _initAnimations() {
     _typeController = AnimationController(
@@ -44,11 +35,10 @@ class _LoadingTextWidgetState extends State<LoadingTextWidget>
     );
 
     _typeController.addListener(() {
-      final newCount =
-      (_typeController.value * _fullText.length).floor().clamp(
-        0,
-        _fullText.length,
-      );
+      final newCount = (_typeController.value * _fullText.length).floor().clamp(
+            0,
+            _fullText.length,
+          );
       if (newCount != _visibleChars) {
         setState(() => _visibleChars = newCount);
       }
@@ -72,8 +62,6 @@ class _LoadingTextWidgetState extends State<LoadingTextWidget>
     });
   }
 
-
-
   @override
   void dispose() {
     _typeController.dispose();
@@ -83,41 +71,33 @@ class _LoadingTextWidgetState extends State<LoadingTextWidget>
 
   @override
   Widget build(BuildContext context) {
-    final colors=context.colors;
-    return  Column(
+    final colors = context.colors;
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-
         Text(
           _fullText.substring(0, _visibleChars),
-          style:  AppTextStyles.regular18().copyWith(
+          style: AppTextStyles.regular18().copyWith(
             color: colors.text1,
             fontWeight: FontWeight.w300,
             letterSpacing: 4,
           ),
         ),
-
-        const SizedBox(height:20),
-
+        const SizedBox(height: 20),
         FadeTransition(
-            opacity: _fadeAnim,
-            child: SizedBox(
-              width: 200,
-              child: LinearProgressIndicator(
-                backgroundColor:colors.text3,
-                borderRadius: BorderRadius.circular(8),
-
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  colors.accent.withValues(alpha: 0.7),
-                ),
+          opacity: _fadeAnim,
+          child: SizedBox(
+            width: 200,
+            child: LinearProgressIndicator(
+              backgroundColor: colors.text3,
+              borderRadius: BorderRadius.circular(8),
+              valueColor: AlwaysStoppedAnimation<Color>(
+                colors.accent.withValues(alpha: 0.7),
               ),
             ),
-          )
+          ),
+        )
       ],
     );
   }
 }
-
-
-
-

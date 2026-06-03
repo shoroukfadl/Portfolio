@@ -15,18 +15,19 @@ class CertificateEntity extends Equatable {
     this.courseName,
     this.provider,
     this.issueDate,
-    this.credentialUrl, this.certificateImageUrl,
+    this.credentialUrl,
+    this.certificateImageUrl,
   });
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-    id,
-    profileId,
-    courseName,
-    provider,
-    issueDate,
-    credentialUrl,
-    credentialUrl
-  ];
+        id,
+        profileId,
+        courseName,
+        provider,
+        issueDate,
+        credentialUrl,
+        credentialUrl
+      ];
 }

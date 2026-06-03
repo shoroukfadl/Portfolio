@@ -8,16 +8,12 @@ class SpacerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Column(
+      children: [
         16.0.heightBox,
-
-
         const DividerWidget(),
-
-
         16.0.heightBox,
-
-
-    ],);
+      ],
+    );
   }
 }

@@ -127,10 +127,10 @@ class AppColors extends ThemeExtension<AppColors> {
       danger: danger ?? this.danger,
       text1: textPrimary ?? this.text1,
       text2: textSecondary ?? this.text2,
-      accent25: accent25??this.accent25,
-      accent50:accent50??this.accent50,
-      text3:fontColor3??this.text3,
-      secondary:secondary??this.secondary,
+      accent25: accent25 ?? this.accent25,
+      accent50: accent50 ?? this.accent50,
+      text3: fontColor3 ?? this.text3,
+      secondary: secondary ?? this.secondary,
     );
   }
 
@@ -139,20 +139,19 @@ class AppColors extends ThemeExtension<AppColors> {
   AppColors lerp(ThemeExtension<AppColors>? other, double t) {
     if (other is! AppColors) return this;
     return AppColors(
-      background: Color.lerp(background, other.background, t)!,
-      surface: Color.lerp(surface, other.surface, t)!,
-      card: Color.lerp(card, other.card, t)!,
-      border: Color.lerp(border, other.border, t)!,
-      accent: Color.lerp(accent, other.accent, t)!,
-      success: Color.lerp(success, other.success, t)!,
-      warning: Color.lerp(warning, other.warning, t)!,
-      danger: Color.lerp(danger, other.danger, t)!,
-      text1: Color.lerp(text1, other.text1, t)!,
-      text2: Color.lerp(text2, other.text2, t)!,
-      accent50: Color.lerp(accent50, other.accent50, t)!,
-      text3: Color.lerp(text3, other.text3, t)!,
-      accent25: Color.lerp(accent25, other.accent25, t)!,
-        secondary: Color.lerp(secondary, other.secondary, t)!
-    );
+        background: Color.lerp(background, other.background, t)!,
+        surface: Color.lerp(surface, other.surface, t)!,
+        card: Color.lerp(card, other.card, t)!,
+        border: Color.lerp(border, other.border, t)!,
+        accent: Color.lerp(accent, other.accent, t)!,
+        success: Color.lerp(success, other.success, t)!,
+        warning: Color.lerp(warning, other.warning, t)!,
+        danger: Color.lerp(danger, other.danger, t)!,
+        text1: Color.lerp(text1, other.text1, t)!,
+        text2: Color.lerp(text2, other.text2, t)!,
+        accent50: Color.lerp(accent50, other.accent50, t)!,
+        text3: Color.lerp(text3, other.text3, t)!,
+        accent25: Color.lerp(accent25, other.accent25, t)!,
+        secondary: Color.lerp(secondary, other.secondary, t)!);
   }
 }

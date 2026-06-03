@@ -12,7 +12,9 @@ class HomeAppBarItem extends StatefulWidget {
   const HomeAppBarItem({
     super.key,
     required this.onTap,
-    required this.title, required this.icon, this.titleStyle,
+    required this.title,
+    required this.icon,
+    this.titleStyle,
   });
 
   @override
@@ -31,17 +33,20 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
       child: Container(
         height: 40,
         width: double.infinity,
-
-        padding: EdgeInsets.symmetric(horizontal: 16,vertical: 12),
-        color:_isHovered ?colors.accent.withValues(alpha: 0.2):Colors.transparent ,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        color: _isHovered
+            ? colors.accent.withValues(alpha: 0.2)
+            : Colors.transparent,
         child: Row(
           spacing: 12,
           children: [
-            Icon(widget.icon,size: 14,              color: _isHovered ?colors.accent: colors.text1
+            Icon(widget.icon,
+                size: 14, color: _isHovered ? colors.accent : colors.text1),
+            Text(
+              widget.title,
+              style: AppTextStyles.medium12(
+                  color: _isHovered ? colors.accent : colors.text1),
             ),
-            Text(widget.title, style: AppTextStyles.medium12(
-              color: _isHovered ?colors.accent: colors.text1
-            ),),
           ],
         ),
       ),

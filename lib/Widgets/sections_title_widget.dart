@@ -14,7 +14,8 @@ class SectionsTitleWidget extends StatelessWidget {
       {super.key,
       required this.title,
       this.myStyle,
-      this.titleStyle, this.subtitle});
+      this.titleStyle,
+      this.subtitle});
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +30,9 @@ class SectionsTitleWidget extends StatelessWidget {
               .copyWith(color: colors.text1),
         ),
         const DividerWidget().expand,
-        if(subtitle !=null)
+        if (subtitle != null)
           CardWithText(
-           text:  subtitle!,
+            text: subtitle!,
             textColor: colors.accent,
             color: colors.accent.withValues(alpha: 0.2),
             borderColor: colors.accent,

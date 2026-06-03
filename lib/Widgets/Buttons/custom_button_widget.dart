@@ -28,7 +28,9 @@ class CustomButtonWidget extends StatelessWidget {
       this.isLoading = false,
       this.btnColor,
       this.borderColor,
-      this.titleColor, this.borderRadius, this.titleStyle});
+      this.titleColor,
+      this.borderRadius,
+      this.titleStyle});
 
   const CustomButtonWidget.outLined(
       {super.key,
@@ -42,7 +44,7 @@ class CustomButtonWidget extends StatelessWidget {
       this.borderRadiusValue,
       this.isLoading = false,
       this.borderColor,
-        this.borderRadius,
+      this.borderRadius,
       this.titleColor})
       : btnColor = Colors.transparent;
 
@@ -64,19 +66,22 @@ class CustomButtonWidget extends StatelessWidget {
         height: height ?? 36.0,
         width: width ?? 108.0,
         decoration: BoxDecoration(
-          borderRadius: borderRadius?? BorderRadius.circular(borderRadiusValue ?? 100.0),
+          borderRadius:
+              borderRadius ?? BorderRadius.circular(borderRadiusValue ?? 100.0),
           color: btnColor ?? colors.accent,
           border: Border.all(color: borderColor ?? Colors.transparent),
         ),
         child: isLoading
             ? Center(
-                child:
-                    CircularProgressIndicator(color: colors.text2,))
+                child: CircularProgressIndicator(
+                color: colors.text2,
+              ))
             : child ??
                 AppTextWidget(
                   title ?? "",
-                  style: titleStyle?? AppTextStyles.regular14()
-                      .copyWith(color: titleColor ?? colors.text1),
+                  style: titleStyle ??
+                      AppTextStyles.regular14()
+                          .copyWith(color: titleColor ?? colors.text1),
                 ),
       ),
     );

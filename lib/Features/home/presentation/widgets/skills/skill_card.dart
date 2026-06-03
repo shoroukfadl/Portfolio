@@ -23,7 +23,7 @@ class SkillCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return  Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       spacing: 16,
@@ -48,7 +48,7 @@ class SkillCard extends StatelessWidget {
                       border: 4,
                       animatedColor: colors.card,
                       color: colors.card,
-                      borderColor:colors.border,
+                      borderColor: colors.border,
                       textColor: colors.text1,
                       animatedTextColor: colors.secondary,
                     ))

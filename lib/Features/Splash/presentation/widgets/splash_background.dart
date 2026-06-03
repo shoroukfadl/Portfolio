@@ -8,7 +8,8 @@ class ParticlePainter extends CustomPainter {
   final Color color;
   final Random _random = Random();
 
-  ParticlePainter({required this.particles, required this.progress, required this.color});
+  ParticlePainter(
+      {required this.particles, required this.progress, required this.color});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -16,7 +17,7 @@ class ParticlePainter extends CustomPainter {
       p.update(_random);
 
       final paint = Paint()
-        ..color = color.withValues(alpha:  p.opacity)
+        ..color = color.withValues(alpha: p.opacity)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 1.5);
 
       canvas.drawCircle(
@@ -26,7 +27,7 @@ class ParticlePainter extends CustomPainter {
       );
 
       final linePaint = Paint()
-        ..color = color.withValues(alpha:  p.opacity * 0.3)
+        ..color = color.withValues(alpha: p.opacity * 0.3)
         ..strokeWidth = 0.5;
 
       canvas.drawLine(
@@ -42,12 +43,12 @@ class ParticlePainter extends CustomPainter {
 }
 
 class Particle {
-  late double x;       // 0.0 → 1.0 نسبي
+  late double x; // 0.0 → 1.0 نسبي
   late double y;
   late double speed;
   late double size;
   late double opacity;
-  late double angle;   // اتجاه الحركة
+  late double angle; // اتجاه الحركة
 
   Particle({required Random random}) {
     _reset(random, initial: true);

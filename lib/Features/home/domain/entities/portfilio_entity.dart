@@ -1,5 +1,3 @@
-
-
 import 'package:equatable/equatable.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
@@ -28,13 +26,12 @@ class PortfolioEntity extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [profile,
-    education,
-    projects,
-    experience,
-    certificates,
-    skills,
-  ];
-
-
+  List<Object?> get props => [
+        profile,
+        education,
+        projects,
+        experience,
+        certificates,
+        skills,
+      ];
 }

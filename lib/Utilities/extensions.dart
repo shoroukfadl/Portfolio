@@ -83,10 +83,11 @@ extension DoubleExtensions on double {
 extension LayoutExtensions on BuildContext {
   bool get isLarge => ResponsiveBreakpoints.of(this).isDesktop;
 
-  bool get isMedium =>
-      ResponsiveBreakpoints.of(this).isTablet;
+  bool get isMedium => ResponsiveBreakpoints.of(this).isTablet;
 
-  bool get isSmall =>     ResponsiveBreakpoints.of(this).isPhone||    ResponsiveBreakpoints.of(this).isMobile;
+  bool get isSmall =>
+      ResponsiveBreakpoints.of(this).isPhone ||
+      ResponsiveBreakpoints.of(this).isMobile;
 
   double get authDialogWidth => isLarge
       ? 450

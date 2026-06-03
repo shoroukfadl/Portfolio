@@ -26,7 +26,9 @@ class ProfileEntity extends Equatable {
     this.summary,
     this.github,
     this.linkedin,
-    this.militaryService = false, this.image, this.cv,
+    this.militaryService = false,
+    this.image,
+    this.cv,
   });
 
   @override
@@ -42,7 +44,7 @@ class ProfileEntity extends Equatable {
         github,
         linkedin,
         militaryService,
-    cv,
-    image,
+        cv,
+        image,
       ];
 }

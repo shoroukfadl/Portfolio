@@ -10,55 +10,53 @@ class ExperienceModel {
   final bool status;
   final List<String> responsibilities;
 
-  ExperienceModel({
-    this.id,
-    this.profileId,
-    this.jobTitle,
-    this.companyName,
-    this.location,
-    this.period,
-    this.responsibilities=const [],
-    this.status=false
-  });
+  ExperienceModel(
+      {this.id,
+      this.profileId,
+      this.jobTitle,
+      this.companyName,
+      this.location,
+      this.period,
+      this.responsibilities = const [],
+      this.status = false});
 
-  factory ExperienceModel.fromJson(Map<String, dynamic> json) => ExperienceModel(
-    id: json['id']?.toString(),
-    profileId: json['profile_id'],
-    jobTitle: json['job_title'],
-    companyName: json['company_name'],
-    location: json['location'],
-    period: json['period'],
-    status: json['status']??false,
-    responsibilities: List<String>.from(json['responsibilities'] ?? []),
-  );
+  factory ExperienceModel.fromJson(Map<String, dynamic> json) =>
+      ExperienceModel(
+        id: json['id']?.toString(),
+        profileId: json['profile_id'],
+        jobTitle: json['job_title'],
+        companyName: json['company_name'],
+        location: json['location'],
+        period: json['period'],
+        status: json['status'] ?? false,
+        responsibilities: List<String>.from(json['responsibilities'] ?? []),
+      );
 
   Map<String, dynamic> toJson() => {
-    'job_title': jobTitle,
-    'company_name': companyName,
-    'location': location,
-    'period': period,
-    'responsibilities': responsibilities,
-  };
+        'job_title': jobTitle,
+        'company_name': companyName,
+        'location': location,
+        'period': period,
+        'responsibilities': responsibilities,
+      };
 
-   ExperienceModel toModel() => ExperienceModel(
-    id:id ,
-    profileId:profileId,
-    jobTitle:jobTitle,
-    companyName:companyName ,
-    location:location ,
-    period:period ,
-    responsibilities:responsibilities ,
-     status: status
-  );
-   ExperienceEntity fromModel() => ExperienceEntity(
-    id:id ,
-    profileId:profileId,
-    jobTitle:jobTitle,
-    companyName:companyName ,
-    location:location ,
-    period:period ,
-    status: status,
-    responsibilities:responsibilities ,
-  );
-
+  ExperienceModel toModel() => ExperienceModel(
+      id: id,
+      profileId: profileId,
+      jobTitle: jobTitle,
+      companyName: companyName,
+      location: location,
+      period: period,
+      responsibilities: responsibilities,
+      status: status);
+  ExperienceEntity fromModel() => ExperienceEntity(
+        id: id,
+        profileId: profileId,
+        jobTitle: jobTitle,
+        companyName: companyName,
+        location: location,
+        period: period,
+        status: status,
+        responsibilities: responsibilities,
+      );
 }

@@ -1,4 +1,3 @@
-
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -17,12 +16,15 @@ class PointText extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(Icons.keyboard_arrow_right,size: 12,color: colors.accent,),
-    Text(
-    point,
-    maxLines: 2,
-    style:  style??AppTextStyles.regular12(color: colors.text3)
-    ).expand
+        Icon(
+          Icons.keyboard_arrow_right,
+          size: 12,
+          color: colors.accent,
+        ),
+        Text(point,
+                maxLines: 2,
+                style: style ?? AppTextStyles.regular12(color: colors.text3))
+            .expand
       ],
     );
   }

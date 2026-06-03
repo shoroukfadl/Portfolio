@@ -9,7 +9,6 @@ import 'package:portfolio/Widgets/Portfilio/point_text.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
 
-
 class ProjectItemCard extends StatelessWidget {
   final ProjectEntity? project;
 
@@ -32,46 +31,55 @@ class ProjectItemCard extends StatelessWidget {
     final colors = context.colors;
 
     return AnimatedCardWidget(
-      paddingVert: 0,
-      width: 280,
-      height: 260,
-      child: (i) => Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 8,
-        children: [
-          GradintDividerWidget(color1: colors.accent, color2: colors.secondary,thickness: 4,),
-          Row(
-            spacing: 8,
-            children: [
-              Text(project?.title ?? "", style: AppTextStyles.semiBold14(color: colors.text1),maxLines: 2,).expand,
-              CardWithText(
-                text: project?.platform ?? "",
-                color: colors.accent.withValues(alpha: 0.2),
-                borderColor:colors.accent,
-                textColor:  colors.accent,
-                border: 4,
-                maxLine: 2,
-                style: AppTextStyles.regular10(color: colors.accent),
-
-            )
-          ],
-        ),
-
-            Text('Test Cases', style: AppTextStyles.medium12(color: colors.text2)),
-        ...List.generate(
-          project?.keyTasks.length??0,
-              (i) => Column(
-            spacing: 8,
-            children: [
-              PointText(point:project?.keyTasks[i] ?? "", style: AppTextStyles.regular10(color: colors.text2)),
-              if(i<( project?.keyTasks.length??0)-1)
-              DividerWidget(),
-            ],
-          ),
-        ),
-          8.0.heightBox,
-      ],
-    ));
+        paddingVert: 0,
+        width: 280,
+        height: 260,
+        child: (i) => Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 8,
+              children: [
+                GradintDividerWidget(
+                  color1: colors.accent,
+                  color2: colors.secondary,
+                  thickness: 4,
+                ),
+                Row(
+                  spacing: 8,
+                  children: [
+                    Text(
+                      project?.title ?? "",
+                      style: AppTextStyles.semiBold14(color: colors.text1),
+                      maxLines: 2,
+                    ).expand,
+                    CardWithText(
+                      text: project?.platform ?? "",
+                      color: colors.accent.withValues(alpha: 0.2),
+                      borderColor: colors.accent,
+                      textColor: colors.accent,
+                      border: 4,
+                      maxLine: 2,
+                      style: AppTextStyles.regular10(color: colors.accent),
+                    )
+                  ],
+                ),
+                Text('Test Cases',
+                    style: AppTextStyles.medium12(color: colors.text2)),
+                ...List.generate(
+                  project?.keyTasks.length ?? 0,
+                  (i) => Column(
+                    spacing: 8,
+                    children: [
+                      PointText(
+                          point: project?.keyTasks[i] ?? "",
+                          style: AppTextStyles.regular10(color: colors.text2)),
+                      if (i < (project?.keyTasks.length ?? 0) - 1)
+                        DividerWidget(),
+                    ],
+                  ),
+                ),
+                8.0.heightBox,
+              ],
+            ));
   }
 }

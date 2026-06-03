@@ -163,7 +163,6 @@ class _StatsRow extends StatelessWidget {
 class _StatItem extends StatelessWidget {
   final Stat item;
 
-
   const _StatItem({
     required this.item,
   });

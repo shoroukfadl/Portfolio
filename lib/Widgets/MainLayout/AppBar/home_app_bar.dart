@@ -16,7 +16,6 @@ class HomeAppBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Row(
         children: [
-
           //
           // Spacer(),
           // HomeAppBarItem(
@@ -63,7 +62,6 @@ class HomeAppBar extends StatelessWidget {
           //     },
           //     title: Strings.contactMe.translate),
 
-
           // CustomButtonWidget(
           //   onPressed: () {
           //     String? url = HomeController().user?.cv;
@@ -86,7 +84,6 @@ class HomeAppBar extends StatelessWidget {
           //   )
           // ),
           Spacer(),
-
         ],
       ),
     );

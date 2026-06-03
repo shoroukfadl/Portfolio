@@ -12,13 +12,11 @@ class ThemeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return  ContactButton(
-      onTap: (){
+    return ContactButton(
+      onTap: () {
         context.read<ThemeCubit>().changeTheme();
       },
-      icon:
-          Portfolio.theme,
-
+      icon: Portfolio.theme,
     );
   }
 }

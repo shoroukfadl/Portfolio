@@ -24,30 +24,33 @@ class ContactButton extends StatefulWidget {
 }
 
 class _ContactButtonState extends State<ContactButton> {
-  bool hover=false;
-  void hovering(bool h)=> setState(() {
-    hover=h;
-  });
+  bool hover = false;
+  void hovering(bool h) => setState(() {
+        hover = h;
+      });
   @override
   Widget build(BuildContext context) {
-
     final colors = context.colors;
     return MouseRegion(
-      onEnter: (_)=>hovering(true),
-      onExit: (_)=>hovering(false),
+      onEnter: (_) => hovering(true),
+      onExit: (_) => hovering(false),
       child: AnimatedScale(
-        scale: hover?1.02:1,
+        scale: hover ? 1.02 : 1,
         duration: Duration(milliseconds: 250),
         child: CustomButtonWidget(
           borderRadiusValue: 4,
-          onPressed:widget.onTap,
-          btnColor:    widget.backgroundColor??Colors.transparent,
-          borderColor:hover? colors.accent:  widget.borderColor ?? colors.text1.withValues(alpha: 0.7),
+          onPressed: widget.onTap,
+          btnColor: widget.backgroundColor ?? Colors.transparent,
+          borderColor: hover
+              ? colors.accent
+              : widget.borderColor ?? colors.text1.withValues(alpha: 0.7),
           width: widget.width,
           height: widget.height,
           child: Icon(
             widget.icon,
-            color: hover? colors.accent:widget.iconColor?? colors.text1.withValues(alpha: 0.7),
+            color: hover
+                ? colors.accent
+                : widget.iconColor ?? colors.text1.withValues(alpha: 0.7),
             size: widget.iconSize,
           ),
         ),

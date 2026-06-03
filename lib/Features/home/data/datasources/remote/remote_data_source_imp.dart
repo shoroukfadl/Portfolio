@@ -10,7 +10,8 @@ class RemoteDataSourceImp implements RemoteDataSource {
   Future<Either<Failure, PortfolioModel>> getData() async {
     final supabase = Supabase.instance.client;
 
-    final profileData = await supabase.from('profiles').select('id').limit(1).maybeSingle();
+    final profileData =
+        await supabase.from('profiles').select('id').limit(1).maybeSingle();
 
     print('Profile data :: ${profileData}');
     if (profileData == null) {

@@ -148,8 +148,6 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         letterSpacing: 0,
       );
 
-
-
   /// -------------- labels ---------------------
   static TextStyle regular18({Color? color}) => secondaryFont.copyWith(
         fontSize: 18,
@@ -189,12 +187,12 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         height: 1.5,
       );
 
-
   static TextStyle medium32({Color? color}) => secondaryFont.copyWith(
         fontSize: 32,
         fontWeight: FontWeight.w500,
         color: color ?? Colors.black,
-      ); static TextStyle medium20({Color? color}) => secondaryFont.copyWith(
+      );
+  static TextStyle medium20({Color? color}) => secondaryFont.copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w500,
         color: color ?? Colors.black,
@@ -235,7 +233,8 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         fontWeight: FontWeight.w500,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
-      );  static TextStyle regular8({Color? color}) => secondaryFont.copyWith(
+      );
+  static TextStyle regular8({Color? color}) => secondaryFont.copyWith(
         fontSize: 8,
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,

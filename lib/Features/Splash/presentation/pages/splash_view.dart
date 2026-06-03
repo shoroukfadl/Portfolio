@@ -27,13 +27,9 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
-
-
-
- Future <void> getData() async {
+  Future<void> getData() async {
     await context.read<PortfolioCubit>().getData();
   }
-
 
   // Particles
   late AnimationController _particleController;
@@ -59,7 +55,6 @@ class _SplashScreenState extends State<SplashScreen>
       vsync: this,
       duration: const Duration(seconds: 10),
     )..repeat();
-
   }
 
   Future<void> _loadData() async {
@@ -79,13 +74,14 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    final colors=context.colors;
-    return BlocListener<PortfolioCubit,PortfolioState>(
-      listener:(c,state){
-        if(state.loading==RequestStatus.success) context.goNamed(HomeView.routeName);
-      },
-      listenWhen: (p,n)=>p.loading != n.loading,
-      child:  Scaffold(
+    final colors = context.colors;
+    return BlocListener<PortfolioCubit, PortfolioState>(
+        listener: (c, state) {
+          if (state.loading == RequestStatus.success)
+            context.goNamed(HomeView.routeName);
+        },
+        listenWhen: (p, n) => p.loading != n.loading,
+        child: Scaffold(
           backgroundColor: colors.background,
           body: Stack(
             children: [
@@ -102,7 +98,6 @@ class _SplashScreenState extends State<SplashScreen>
                   );
                 },
               ),
-
               Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -120,12 +115,6 @@ class _SplashScreenState extends State<SplashScreen>
               ),
             ],
           ),
-        )
-
-    );
+        ));
   }
 }
-
-
-
-

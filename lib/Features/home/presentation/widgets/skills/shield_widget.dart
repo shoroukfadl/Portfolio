@@ -38,26 +38,25 @@ class _ShieldWidgetState extends State<ShieldWidget>
 
   @override
   Widget build(BuildContext context) {
-    final colors =context.colors;
+    final colors = context.colors;
     return ScaleTransition(
       scale: Tween(begin: 1.0, end: 1.05).animate(_pulseAnimation),
       child: Container(
         width: widget.shieldSize,
         height: widget.shieldSize,
         decoration: BoxDecoration(
-          color:colors.background,
+          color: colors.background,
           shape: BoxShape.circle,
           boxShadow: [
             BoxShadow(
               color: colors.accent.withValues(alpha: 0.3),
-              blurRadius:
-                  30 + (10 * _pulseAnimation.value),
+              blurRadius: 30 + (10 * _pulseAnimation.value),
               spreadRadius: 5 + (2 * _pulseAnimation.value),
             ),
           ],
-          border: Border.all(color:  colors.accent, width: 2),
+          border: Border.all(color: colors.accent, width: 2),
         ),
-        child:  Icon(Icons.shield_outlined, size: 70, color:  colors.accent),
+        child: Icon(Icons.shield_outlined, size: 70, color: colors.accent),
       ),
     );
   }

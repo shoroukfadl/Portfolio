@@ -10,7 +10,7 @@ import 'education_card.dart';
 
 class EducationSection extends StatelessWidget {
   final List<EducationEntity> education;
-  const EducationSection({super.key,  this.education =const []});
+  const EducationSection({super.key, this.education = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,10 @@ class EducationSection extends StatelessWidget {
       spacing: 16,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(Strings.education.translate.toUpperCase() ,style: AppTextStyles.medium12(color: colors.text1),),
+        Text(
+          Strings.education.translate.toUpperCase(),
+          style: AppTextStyles.medium12(color: colors.text1),
+        ),
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -36,6 +39,3 @@ class EducationSection extends StatelessWidget {
     ).paddingOnly(start: 20);
   }
 }
-
-
-

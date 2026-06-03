@@ -94,7 +94,7 @@ class AnimatedCardWidget extends StatefulWidget {
   final Color? cardColor, borderColor, shadowColor;
   final Widget Function(bool hover) child;
   final double paddingHoz, paddingVert, border;
-  final double ? width ,height;
+  final double? width, height;
 
   const AnimatedCardWidget({
     super.key,
@@ -103,9 +103,10 @@ class AnimatedCardWidget extends StatefulWidget {
     required this.child,
     this.paddingHoz = 16,
     this.paddingVert = 12,
-    this.width ,
+    this.width,
     this.border = cardRadius,
-    this.shadowColor, this.height,
+    this.shadowColor,
+    this.height,
   });
 
   @override
@@ -148,7 +149,7 @@ class _AnimatedCardWidgetState extends State<AnimatedCardWidget>
         child: AnimatedBuilder(
           animation: _animation,
           builder: (c, w) => Transform.translate(
-            offset: _isHovered ?  _animation.value :Offset(0, 0),
+            offset: _isHovered ? _animation.value : Offset(0, 0),
             child: w,
           ),
           child: Container(

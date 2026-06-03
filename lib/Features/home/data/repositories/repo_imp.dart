@@ -11,6 +11,6 @@ class RepoImp implements Repo {
   Future<Either<Failure, PortfolioEntity>> getData() async {
     final res = await dataSource.getData();
     print('r : #${res.right?.profile?.firstName}');
-    return res.fold((l) => Either.left(l), (r)=>Either.right(r.fromModel()));
+    return res.fold((l) => Either.left(l), (r) => Either.right(r.fromModel()));
   }
 }

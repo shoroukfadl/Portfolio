@@ -53,7 +53,6 @@ class PortfolioModel {
             : (json['skills'] as List)
                 .map((e) => TechnicalSkillModel.fromJson(e))
                 .toList(),
-
       );
   Map<String, dynamic> toFullJson() => {
         'profile_id': profile?.id,
@@ -64,23 +63,21 @@ class PortfolioModel {
         'skills': skills.map((e) => e.toJson()).toList(),
       };
 
-
-   PortfolioEntity fromModel() => PortfolioEntity(
-    profile:profile?.toEntity() ,
-    education:education.map((e)=>e.fromModel()).toList() ,
-    projects:projects.map((e)=>e.fromModel()).toList() ,
-    experience:experience.map((e)=>e.fromModel()).toList() ,
-    certificates:certificates.map((e)=>e.fromModel()).toList() ,
-    skills:skills.map((e)=>e.toEntity()).toList(),
-  );
-
+  PortfolioEntity fromModel() => PortfolioEntity(
+        profile: profile?.toEntity(),
+        education: education.map((e) => e.fromModel()).toList(),
+        projects: projects.map((e) => e.fromModel()).toList(),
+        experience: experience.map((e) => e.fromModel()).toList(),
+        certificates: certificates.map((e) => e.fromModel()).toList(),
+        skills: skills.map((e) => e.toEntity()).toList(),
+      );
 
   PortfolioModel toModel() => PortfolioModel(
-    profile:profile?.toModel() ,
-    education:education.map((e)=>e.toModel()).toList() ,
-    projects:projects.map((e)=>e.toModel()).toList() ,
-    experience:experience.map((e)=>e.toModel()).toList() ,
-    certificates:certificates.map((e)=>e.toModel()).toList() ,
-    skills:skills.map((e)=>e.toModel()).toList(),
-  );
+        profile: profile?.toModel(),
+        education: education.map((e) => e.toModel()).toList(),
+        projects: projects.map((e) => e.toModel()).toList(),
+        experience: experience.map((e) => e.toModel()).toList(),
+        certificates: certificates.map((e) => e.toModel()).toList(),
+        skills: skills.map((e) => e.toModel()).toList(),
+      );
 }

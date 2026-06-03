@@ -33,8 +33,8 @@ class CustomRoundedWidget extends StatelessWidget {
             )
           : SvgPicture.asset(
               iconPath,
-              colorFilter: ColorFilter.mode(
-                  color ?? colors.text1, BlendMode.srcIn),
+              colorFilter:
+                  ColorFilter.mode(color ?? colors.text1, BlendMode.srcIn),
               width: iconSize ?? 20.0,
               height: iconSize ?? 20.0,
             ),

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class ExperienceEntity extends Equatable{
+class ExperienceEntity extends Equatable {
   final String? id;
   final String? profileId;
   final String? jobTitle;
@@ -17,18 +17,18 @@ class ExperienceEntity extends Equatable{
     this.companyName,
     this.location,
     this.period,
-    this.responsibilities=const [], this.status=false,
+    this.responsibilities = const [],
+    this.status = false,
   });
 
-
   List<Object?> get props => [
-    id,
-    profileId,
-    jobTitle,
-    companyName,
-    location,
-    period,
-    responsibilities,
-    status
-  ];
+        id,
+        profileId,
+        jobTitle,
+        companyName,
+        location,
+        period,
+        responsibilities,
+        status
+      ];
 }

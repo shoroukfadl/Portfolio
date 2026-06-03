@@ -44,8 +44,8 @@ class _ExperinceItemCardState extends State<ExperinceItemCard> {
           decoration: BoxDecoration(
             border: Border(
               left: BorderSide(
-                color: _isHovered ? colors.accent: colors.secondary,
-                width:_isHovered ? 3: 2,
+                color: _isHovered ? colors.accent : colors.secondary,
+                width: _isHovered ? 3 : 2,
               ),
             ),
             color: colors.surface,
@@ -61,14 +61,12 @@ class _ExperinceItemCardState extends State<ExperinceItemCard> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        widget.item?.companyName ?? "",
-                        style: AppTextStyles.semiBold14(color: colors.secondary)
-                      ),
+                      Text(widget.item?.companyName ?? "",
+                          style: AppTextStyles.semiBold14(
+                              color: colors.secondary)),
                       const SizedBox(height: 4),
-                      Text(
-                        widget.item?.jobTitle ?? "",
-                        style: AppTextStyles.medium12(color: colors.text1))
+                      Text(widget.item?.jobTitle ?? "",
+                          style: AppTextStyles.medium12(color: colors.text1))
                     ],
                   ),
                   Container(
@@ -90,17 +88,19 @@ class _ExperinceItemCardState extends State<ExperinceItemCard> {
                 ],
               ),
               const SizedBox(height: 8),
-              ...List.generate( widget.item?.responsibilities.length??0, (i)=>
-              Column(
-                children: [
-                  PointText(
-                  point:  (widget.item?.responsibilities[i] ?? ""),
-                    style:  AppTextStyles.regular10(color: colors.text2)
-                  ),
-                  if(i<(widget.item?.responsibilities.length??0)-1)
-                  DividerWidget(thickness:0.6)
-                ],
-              ) ),
+              ...List.generate(
+                  widget.item?.responsibilities.length ?? 0,
+                  (i) => Column(
+                        children: [
+                          PointText(
+                              point: (widget.item?.responsibilities[i] ?? ""),
+                              style:
+                                  AppTextStyles.regular10(color: colors.text2)),
+                          if (i <
+                              (widget.item?.responsibilities.length ?? 0) - 1)
+                            DividerWidget(thickness: 0.6)
+                        ],
+                      )),
             ],
           ),
         ));

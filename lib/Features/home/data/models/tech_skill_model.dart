@@ -7,7 +7,8 @@ class TechnicalSkillModel {
 
   TechnicalSkillModel({
     this.category,
-    this.skills = const [], this.id,
+    this.skills = const [],
+    this.id,
   });
 
   factory TechnicalSkillModel.fromJson(Map<String, dynamic> json) =>
@@ -31,7 +32,7 @@ class TechnicalSkillModel {
       );
   TechnicalSkillEntity toEntity() => TechnicalSkillEntity(
         category: category,
-        skills: skills.map((e)=>e.toEntity()).toList(),
+        skills: skills.map((e) => e.toEntity()).toList(),
       );
 }
 
@@ -45,16 +46,14 @@ class SkillModel {
     this.id,
     this.profileId,
     this.category,
-    this.skillName ,
+    this.skillName,
   });
 
   factory SkillModel.fromJson(Map<String, dynamic> json) => SkillModel(
         id: json['id']?.toString(),
         profileId: json['profile_id'],
         category: json['category'],
-        skillName: json["name"] == null
-            ? null
-            :json['name'],
+        skillName: json["name"] == null ? null : json['name'],
       );
 
   Map<String, dynamic> toJson() => {

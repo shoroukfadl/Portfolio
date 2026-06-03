@@ -10,7 +10,8 @@ import '../../../../../Widgets/Custom/card_with_animation.dart';
 class CertificationCard extends StatelessWidget {
   final CertificateEntity item;
 
-  const CertificationCard({super.key,
+  const CertificationCard({
+    super.key,
     required this.item,
   });
 
@@ -18,17 +19,18 @@ class CertificationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return  Row(
+    return Row(
       spacing: 16,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InkWell(onTap: (){}, child: RoundedImage(
-          imagePath: item.certificateImageUrl,
-          width: 72,
-          height: 48,
-          radiusValue: 0,
-        )),
-
+        InkWell(
+            onTap: () {},
+            child: RoundedImage(
+              imagePath: item.certificateImageUrl,
+              width: 72,
+              height: 48,
+              radiusValue: 0,
+            )),
         Column(
           spacing: 8,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,18 +49,14 @@ class CertificationCard extends StatelessWidget {
             ),
           ],
         ).expand,
-
-
-        CardWithText(text: item.issueDate ?? "",
+        CardWithText(
+          text: item.issueDate ?? "",
           style: AppTextStyles.regular10(
             color: colors.secondary,
           ),
           color: colors.secondary.withValues(alpha: 0.2),
           borderColor: colors.secondary,
         )
-
-
-
       ],
     );
   }

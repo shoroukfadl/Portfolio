@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/certificate_entity.dart';
+import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Portfilio/divider.dart';
 import 'package:portfolio/Widgets/sections_title_widget.dart';
@@ -9,7 +10,9 @@ import 'certification_card.dart';
 
 class CertificationSection extends StatelessWidget {
   final List<CertificateEntity> data;
-  const CertificationSection({super.key,  this.data =const []});
+  final double hozPadding;
+  const CertificationSection(
+      {super.key, this.hozPadding = desktopHozPadding, this.data = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -17,28 +20,30 @@ class CertificationSection extends StatelessWidget {
       spacing: 16,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SectionsTitleWidget(title: Strings.certification.translate.toUpperCase() ,subtitle: '${data.length} Certifications' ,),
+        SectionsTitleWidget(
+          title: Strings.certification.translate.toUpperCase(),
+          subtitle: '${data.length} Certifications',
+        ),
         ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: data.length,
-          separatorBuilder: (c,i)=>8.0.heightBox,
+          separatorBuilder: (c, i) => 8.0.heightBox,
           itemBuilder: (context, index) {
             return Column(
               children: [
                 CertificationCard(
                   item: data[index],
                 ),
-                if(index <data.length-1)
-                  DividerWidget(thickness: 0.8,)
+                if (index < data.length - 1)
+                  DividerWidget(
+                    thickness: 0.8,
+                  )
               ],
             );
           },
         ),
       ],
-    );
+    ).paddingSymmetric(horizontal: hozPadding);
   }
 }
-
-
-

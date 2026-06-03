@@ -6,9 +6,10 @@ import 'package:portfolio/Utilities/extensions.dart';
 class ProjectsList extends StatelessWidget {
   final List<ProjectEntity> projects;
 
-
-  const ProjectsList(
-      {super.key, this.projects = const [], });
+  const ProjectsList({
+    super.key,
+    this.projects = const [],
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +18,12 @@ class ProjectsList extends StatelessWidget {
       spacing: 16,
       runSpacing: 16,
       children: [
-      ...  List.generate(projects.length, (i)=>ProjectItemCard(
-          project: projects[i],
-        ))
+        ...List.generate(
+            projects.length,
+            (i) => ProjectItemCard(
+                  project: projects[i],
+                ))
       ],
     );
   }
 }
-

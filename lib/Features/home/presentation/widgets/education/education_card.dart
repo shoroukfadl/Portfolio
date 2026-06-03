@@ -21,7 +21,7 @@ class EducationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return  Column(
+    return Column(
       spacing: 8,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -66,19 +66,17 @@ class EducationCard extends StatelessWidget {
           children: [
             ...List.generate(
               item.gradProjectTech.length,
-                  (i) => CardWithText(
+              (i) => CardWithText(
                 borderColor: Colors.transparent,
-                  color: colors.secondary.withValues(alpha: 0.1),
-                text: item.gradProjectTech[i] ,
-                  style: AppTextStyles.regular8(
-                    color: colors.secondary,
-                  ),
+                color: colors.secondary.withValues(alpha: 0.1),
+                text: item.gradProjectTech[i],
+                style: AppTextStyles.regular8(
+                  color: colors.secondary,
                 ),
-
+              ),
             )
           ],
         )
-
       ],
     );
   }

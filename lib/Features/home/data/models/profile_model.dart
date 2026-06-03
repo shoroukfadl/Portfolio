@@ -1,4 +1,3 @@
-
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 
 class ProfileModel {
@@ -27,68 +26,68 @@ class ProfileModel {
     this.summary,
     this.github,
     this.linkedin,
-    this.militaryService =false, this.image, this.cv,
+    this.militaryService = false,
+    this.image,
+    this.cv,
   });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
-    id: json['id'],
-    firstName: json['first_name'],
-    lastName: json['last_name'],
-    jobTitle: json['job_title'],
-    email: json['email'],
-    phone: json['phone'],
-    location: json['location'],
-    summary: json['summary'],
-    github: json['github'],
-    linkedin: json['linkedin'],
-    image: json['image'],
-    militaryService: json['military_service'] ?? false,
-    cv: json['cv']
-  );
+      id: json['id'],
+      firstName: json['first_name'],
+      lastName: json['last_name'],
+      jobTitle: json['job_title'],
+      email: json['email'],
+      phone: json['phone'],
+      location: json['location'],
+      summary: json['summary'],
+      github: json['github'],
+      linkedin: json['linkedin'],
+      image: json['image'],
+      militaryService: json['military_service'] ?? false,
+      cv: json['cv']);
 
- ProfileModel toModel() => ProfileModel(
-    id:id,
-    firstName:firstName,
-    lastName:lastName,
-    jobTitle:jobTitle,
-    email:email,
-    phone:phone,
-    location:location,
-    summary:summary,
-    github:github,
-    linkedin:linkedin,
-    militaryService:militaryService,
-   image: image,
-   cv:cv
-  );
- ProfileEntity toEntity() => ProfileEntity(
-    id:id,
-    firstName:firstName,
-    lastName:lastName,
-    jobTitle:jobTitle,
-    email:email,
-    phone:phone,
-    cv: cv,
-    location:location,
-    summary:summary,
-    github:github,
-    linkedin:linkedin,
-    image: image,
-    militaryService:militaryService,
-  );
+  ProfileModel toModel() => ProfileModel(
+      id: id,
+      firstName: firstName,
+      lastName: lastName,
+      jobTitle: jobTitle,
+      email: email,
+      phone: phone,
+      location: location,
+      summary: summary,
+      github: github,
+      linkedin: linkedin,
+      militaryService: militaryService,
+      image: image,
+      cv: cv);
+  ProfileEntity toEntity() => ProfileEntity(
+        id: id,
+        firstName: firstName,
+        lastName: lastName,
+        jobTitle: jobTitle,
+        email: email,
+        phone: phone,
+        cv: cv,
+        location: location,
+        summary: summary,
+        github: github,
+        linkedin: linkedin,
+        image: image,
+        militaryService: militaryService,
+      );
 
   Map<String, dynamic> toJson() => {
-    'id': id,
-    'first_name': firstName,
-    'last_name': lastName,
-    'job_title': jobTitle,
-    'email': email,
-    'phone': phone,
-    'location': location,
-    'summary': summary,
-    'github': github,
-    'linkedin': linkedin,
-    'image':image,
-    'military_service': militaryService,
-  };
+        'id': id,
+        'first_name': firstName,
+        'last_name': lastName,
+        'job_title': jobTitle,
+        'email': email,
+        'phone': phone,
+        'location': location,
+        'summary': summary,
+        'github': github,
+        'linkedin': linkedin,
+        'image': image,
+        'military_service': militaryService,
+      };
 }

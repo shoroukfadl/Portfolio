@@ -84,9 +84,8 @@ class CustomRadioWithColor extends StatelessWidget {
             isSelected ? backgroundColor ?? colors.accent : colors.background,
         shape: BoxShape.circle,
         border: Border.all(
-          color: isSelected
-              ? backgroundColor ?? Colors.transparent
-              : colors.text2,
+          color:
+              isSelected ? backgroundColor ?? Colors.transparent : colors.text2,
         ),
       ),
       child: Container(
