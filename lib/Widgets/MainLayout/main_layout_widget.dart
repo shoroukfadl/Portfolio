@@ -28,7 +28,7 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
       body: Row(
         spacing: 4,
         children: [
-           SummaryCard(),
+           const SummaryCard(),
           widget.child.expand,
         ],
       ),

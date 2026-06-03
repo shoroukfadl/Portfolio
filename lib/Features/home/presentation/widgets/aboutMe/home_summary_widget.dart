@@ -5,10 +5,18 @@ import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Portfilio/animated_background.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
 
+import '../../../../../Utilities/Constants/constants.dart';
+
 class HomeSummarySection extends StatelessWidget {
   final ProfileEntity? profile;
   final int projectsNumber, certNumber;
-  const HomeSummarySection({super.key, required this.profile, required this.projectsNumber, required this.certNumber});
+  final double hozPadding;
+  const HomeSummarySection(
+      {super.key,
+      this.hozPadding = desktopHozPadding,
+      required this.profile,
+      required this.projectsNumber,
+      required this.certNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +25,14 @@ class HomeSummarySection extends StatelessWidget {
       children: [
         const AnimatedBackground(),
         PositionedDirectional(
-          start: 40,
-          end: 40,
+          start: hozPadding,
+          end: hozPadding,
           top: 40,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _TagBadge(),
-                                      const SizedBox(height: 16),
-
+              const SizedBox(height: 16),
               const _Headline(),
               const SizedBox(height: 16),
               Text(
@@ -40,13 +47,26 @@ class HomeSummarySection extends StatelessWidget {
                 thickness: 0.5,
               ),
               const SizedBox(height: 16),
-               _StatsRow(items: [
-                Stat(value:'$projectsNumber',name: 'Projects Tested',),
-                Stat(value:"$certNumber",name: 'Certifications',),
-                const Stat(value:"2",name: 'Testing Tracks',),
-                const Stat(value:"100 %",name: 'Attention to Detail',),
-              ],)
-
+              _StatsRow(
+                items: [
+                  Stat(
+                    value: '$projectsNumber',
+                    name: 'Projects Tested',
+                  ),
+                  Stat(
+                    value: "$certNumber",
+                    name: 'Certifications',
+                  ),
+                  const Stat(
+                    value: "2",
+                    name: 'Testing Tracks',
+                  ),
+                  const Stat(
+                    value: "100 %",
+                    name: 'Attention to Detail',
+                  ),
+                ],
+              )
             ],
           ),
         ),
@@ -54,7 +74,6 @@ class HomeSummarySection extends StatelessWidget {
     );
   }
 }
-
 
 // ──────────────────────────────────────────
 //  TAG BADGE
@@ -75,12 +94,8 @@ class _TagBadge extends StatelessWidget {
         children: [
           const Text('🧪', style: TextStyle(fontSize: 12)),
           const SizedBox(width: 6),
-          Text(
-            'QA · SOFTWARE TESTING',
-            style: AppTextStyles.regular12(
-              color: colors.accent
-            )
-          ),
+          Text('QA · SOFTWARE TESTING',
+              style: AppTextStyles.regular12(color: colors.accent)),
         ],
       ),
     );
@@ -95,7 +110,7 @@ class _Headline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors =context.colors;
+    final colors = context.colors;
     return RichText(
       text: TextSpan(
         style: AppTextStyles.medium20(color: colors.text3),
@@ -106,14 +121,13 @@ class _Headline extends StatelessWidget {
           ),
           WidgetSpan(
             child: ShaderMask(
-              shaderCallback: (bounds) =>  LinearGradient(
+              shaderCallback: (bounds) => LinearGradient(
                 colors: [colors.accent, colors.secondary],
               ).createShader(bounds),
-              child:  Text(
+              child: Text(
                 'One Test Case at a Time.',
-                   style: AppTextStyles.semiBold28(color: colors.text3),
-
-            ),
+                style: AppTextStyles.semiBold28(color: colors.text3),
+              ),
             ),
           ),
         ],
@@ -127,7 +141,7 @@ class _Headline extends StatelessWidget {
 // ──────────────────────────────────────────
 class _StatsRow extends StatelessWidget {
   final List<Stat> items;
-  const _StatsRow({this.items=const[]});
+  const _StatsRow({this.items = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -136,8 +150,8 @@ class _StatsRow extends StatelessWidget {
       runSpacing: 20,
       children: items
           .map((s) => _StatItem(
-        item: s,
-      ))
+                item: s,
+              ))
           .toList(),
     );
   }
@@ -147,7 +161,8 @@ class _StatsRow extends StatelessWidget {
 //  SINGLE STAT
 // ──────────────────────────────────────────
 class _StatItem extends StatelessWidget {
- final Stat item;
+  final Stat item;
+
 
   const _StatItem({
     required this.item,
@@ -155,7 +170,7 @@ class _StatItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors =context.colors;
+    final colors = context.colors;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -167,13 +182,13 @@ class _StatItem extends StatelessWidget {
             end: Alignment.bottomRight,
           ).createShader(bounds),
           child: Text(
-            item.value??"",
-              style: AppTextStyles.medium32(color: colors.text1),
-    ),
+            item.value ?? "",
+            style: AppTextStyles.medium32(color: colors.text1),
+          ),
         ),
         const SizedBox(height: 5),
         Text(
-          item.name?.toUpperCase()??"",
+          item.name?.toUpperCase() ?? "",
           style: AppTextStyles.regular12(color: colors.text3),
         ),
       ],
@@ -181,9 +196,8 @@ class _StatItem extends StatelessWidget {
   }
 }
 
-
 class Stat {
   final String? name;
-  final String?value;
+  final String? value;
   const Stat({this.name, this.value});
 }

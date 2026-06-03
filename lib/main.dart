@@ -93,11 +93,7 @@ class _EntryPointState extends State<EntryPoint> {
           theme: currentTheme,
           themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
           debugShowCheckedModeBanner: false,
-          title:
-              GoRouterConfig.router.configuration.navigatorKey.currentContext ==
-                      null
-                  ? "Portfolio"
-                  : html.window.location.href.split("/").last.translate,
+          title: "Mohammed El Nomrosy",
         ),
       ),
     );

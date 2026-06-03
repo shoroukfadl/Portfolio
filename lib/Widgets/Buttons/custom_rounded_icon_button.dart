@@ -82,7 +82,7 @@ class _CustomRoundedIconButtonWithAnimationState
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(8)),
             color: widget.color ?? Theme.of(context).cardColor,
-            boxShadow: [Constants.defaultBoxShadow],
+            boxShadow: [defaultBoxShadow],
           ),
           child: SvgPicture.asset(
             widget.showFirst ? widget.firstIconPath : widget.secondedIconPath,

@@ -13,6 +13,7 @@ class ProfileModel {
   final String? github;
   final String? linkedin;
   final String? image;
+  final String? cv;
   final bool militaryService;
 
   ProfileModel({
@@ -26,7 +27,7 @@ class ProfileModel {
     this.summary,
     this.github,
     this.linkedin,
-    this.militaryService =false, this.image,
+    this.militaryService =false, this.image, this.cv,
   });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
@@ -42,6 +43,7 @@ class ProfileModel {
     linkedin: json['linkedin'],
     image: json['image'],
     militaryService: json['military_service'] ?? false,
+    cv: json['cv']
   );
 
  ProfileModel toModel() => ProfileModel(
@@ -57,6 +59,7 @@ class ProfileModel {
     linkedin:linkedin,
     militaryService:militaryService,
    image: image,
+   cv:cv
   );
  ProfileEntity toEntity() => ProfileEntity(
     id:id,
@@ -65,6 +68,7 @@ class ProfileModel {
     jobTitle:jobTitle,
     email:email,
     phone:phone,
+    cv: cv,
     location:location,
     summary:summary,
     github:github,

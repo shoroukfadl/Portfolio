@@ -45,6 +45,7 @@ class EducationCard extends StatelessWidget {
                 color: colors.secondary,
               ),
             ),
+            8.0.widthBox,
           ],
         ),
         Text(

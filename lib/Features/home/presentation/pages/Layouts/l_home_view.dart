@@ -1,19 +1,14 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/home_summary_widget.dart';
-import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 import 'package:portfolio/Widgets/Portfilio/divider.dart';
-
-import '../../../../../Core/Language/app_styles.dart';
 import '../../widgets/certification/certification_widget.dart';
-import '../../widgets/education/education_widget.dart';
 import '../../widgets/experince/experince_card_widget.dart';
+import '../../widgets/general/spacer_widget.dart';
 import '../../widgets/products/my_projects.dart';
 import '../../widgets/skills/my_skills.dart';
 
@@ -24,6 +19,7 @@ class LargeHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenLayoutWidget(
       children: [
+        /// Summary
         SliverToBoxAdapter(
             child: BlocBuilder<PortfolioCubit, PortfolioState>(
                 buildWhen: (c, p) => c.data?.profile != p.data?.profile,
@@ -34,7 +30,9 @@ class LargeHomeView extends StatelessWidget {
                     projectsNumber: state.data?.projects.length ?? 0,
                   );
                 })),
-
+        SliverToBoxAdapter(
+          child: 16.0.heightBox,
+        ),
 
         /// Skills
         SliverToBoxAdapter(
@@ -46,13 +44,8 @@ class LargeHomeView extends StatelessWidget {
                   );
                 })),
 
-        SliverToBoxAdapter(
-          child: 16.0.heightBox,
-        ),
         const SliverToBoxAdapter(
-          child: DividerWidget(),
-        ),  SliverToBoxAdapter(
-          child: 16.0.heightBox,
+          child: SpacerWidget(),
         ),
 
         /// Experince
@@ -65,34 +58,21 @@ class LargeHomeView extends StatelessWidget {
                   );
                 })),
 
-        SliverToBoxAdapter(
-          child: 16.0.heightBox,
-        ),
         const SliverToBoxAdapter(
-          child: DividerWidget(),
-        ),  SliverToBoxAdapter(
-          child: 16.0.heightBox,
+          child: SpacerWidget(),
         ),
-
-
-
 
         SliverToBoxAdapter(
           child: BlocBuilder<PortfolioCubit, PortfolioState>(
               buildWhen: (c, p) => c.data?.certificates != p.data?.certificates,
               builder: (context, state) {
                 return CertificationSection(
-                        data: state.data?.certificates ?? []);
+                    data: state.data?.certificates ?? []);
               }),
         ),
 
-        SliverToBoxAdapter(
-          child: 16.0.heightBox,
-        ),
         const SliverToBoxAdapter(
-          child: DividerWidget(),
-        ),  SliverToBoxAdapter(
-          child: 16.0.heightBox,
+          child: SpacerWidget(),
         ),
 
         SliverToBoxAdapter(

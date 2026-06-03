@@ -3,29 +3,23 @@ import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../Core/Theme/theme_colors.dart';
 
-class AnimatedBackground extends StatefulWidget {
-  const AnimatedBackground({super.key});
-
-  @override
-  State<AnimatedBackground> createState() => _AnimatedBackgroundState();
-}
-
-class _AnimatedBackgroundState extends State<AnimatedBackground>{
-
+class AnimatedBackground extends StatelessWidget {
+  final double height;
+  const AnimatedBackground({super.key,  this.height =400});
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
     return Container(
-          height: 400,
+          height: height,
           decoration: BoxDecoration(
           color: colors.surface,
             border: Border.all(color: colors.border),
             borderRadius: BorderRadiusDirectional.vertical(
               bottom: Radius.circular(1)
             )
-            
+
           ),
           child: Stack(
             children: [

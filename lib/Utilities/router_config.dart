@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:universal_html/html.dart' as html;
 
-import '../Features/Splash/splash_view.dart';
+import '../Features/Splash/presentation/pages/splash_view.dart';
 import '../Features/home/presentation/pages/home_view.dart';
 import '../Widgets/MainLayout/main_layout_widget.dart';
 
@@ -46,11 +46,11 @@ class GoRouterConfig {
   static final GoRouter _router = GoRouter(
     routes: <RouteBase>[
       GoRoute(
-        path: SplashView.routeName,
+        path: SplashScreen.routeName,
         pageBuilder: (_, GoRouterState state) {
           return getCustomTransitionPage(
             state: state,
-            child: const SplashView(),
+            child: const SplashScreen(),
           );
         },
         routes: const <RouteBase>[],

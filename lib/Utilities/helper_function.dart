@@ -88,4 +88,31 @@ abstract class HelperFunctions {
     } else
       showCustomToast(context, message: "Could not launch $url");
   }
+
+  static Future<void> openWhatsApp({
+    required String phoneNumber,
+    String message = '',
+  }) async {
+    try {
+      String cleanPhone = phoneNumber
+          .replaceAll('+', '')
+          .replaceAll(' ', '')
+          .replaceAll('-', '')
+          .replaceAll('(', '')
+          .replaceAll(')', '')
+          .replaceAll(RegExp(r'[^0-9]'), '');
+
+      String url = 'https://wa.me/$cleanPhone';
+      if (message.isNotEmpty) {
+        url += '?text=${Uri.encodeComponent(message)}';
+      }
+
+      final Uri whatsappUri = Uri.parse(url);
+      if (await canLaunchUrl(whatsappUri)) {
+        await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 }

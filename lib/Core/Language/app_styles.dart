@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 @immutable
 abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   // ─── Base font families ───────────────────────────────────────────────────
-  static TextStyle get mainFont => GoogleFonts.dmSerifDisplay();
-  static TextStyle get secondaryFont => GoogleFonts.inter();
+  static TextStyle get mainFont => GoogleFonts.inter();
+  static TextStyle get secondaryFont => GoogleFonts.dmSans();
 
   /// ----------- Headers  -----------
   static TextStyle extraBold72({Color? color}) => secondaryFont.copyWith(

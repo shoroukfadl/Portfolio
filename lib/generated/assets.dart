@@ -14,11 +14,7 @@ class Assets {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  final SvgGenImage group = const SvgGenImage('assets/images/Group.svg');
-  final AssetGenImage about1 = const AssetGenImage('assets/images/about1.png');
-  final AssetGenImage about2 = const AssetGenImage('assets/images/about2.png');
-  final SvgGenImage girlbanner =
-      const SvgGenImage('assets/images/girlbanner.svg');
+  final AssetGenImage logo = const AssetGenImage('assets/images/logo.jpg');
 }
 
 class $AssetsLanguagesGen {
@@ -31,26 +27,7 @@ class $AssetsLanguagesGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  final SvgGenImage github = const SvgGenImage('assets/icons/Github.svg');
-  final SvgGenImage mail = const SvgGenImage('assets/icons/Mail.svg');
-  final SvgGenImage socialIcon =
-      const SvgGenImage('assets/icons/SocialIcon.svg');
-  final SvgGenImage chevronDown =
-      const SvgGenImage('assets/icons/chevron-down.svg');
-  final SvgGenImage down = const SvgGenImage('assets/icons/down.svg');
-  final SvgGenImage download = const SvgGenImage('assets/icons/download.svg');
-  final SvgGenImage left = const SvgGenImage('assets/icons/left.svg');
-  final SvgGenImage locationOn =
-      const SvgGenImage('assets/icons/location_on.svg');
-  final SvgGenImage materialSymbolsMenu =
-      const SvgGenImage('assets/icons/material-symbols_menu.svg');
   final String portfolio = 'assets/icons/portfolio.ttf';
-  final SvgGenImage right = const SvgGenImage('assets/icons/right.svg');
-  final SvgGenImage securityLock =
-      const SvgGenImage('assets/icons/security-lock.svg');
-  final SvgGenImage star = const SvgGenImage('assets/icons/star.svg');
-  final SvgGenImage up = const SvgGenImage('assets/icons/up.svg');
-  final SvgGenImage upRight = const SvgGenImage('assets/icons/upRight.svg');
 }
 
 class AssetGenImage {
@@ -122,67 +99,6 @@ class AssetGenImage {
       _assetName,
       bundle: bundle,
       package: package,
-    );
-  }
-
-  Widget custom({
-    Key? key,
-    required Widget Function(BuildContext context, String assetPath) builder,
-  }) {
-    return Builder(
-      key: key,
-      builder: (context) => builder(context, _assetName),
-    );
-  }
-
-  String get path => _assetName;
-
-  String get keyName => _assetName;
-}
-
-class SvgGenImage {
-  const SvgGenImage(this._assetName);
-
-  final String _assetName;
-
-  SvgPicture svg({
-    Key? key,
-    bool matchTextDirection = false,
-    AssetBundle? bundle,
-    String? package,
-    double? width,
-    double? height,
-    BoxFit fit = BoxFit.contain,
-    AlignmentGeometry alignment = Alignment.center,
-    bool allowDrawingOutsideViewBox = false,
-    WidgetBuilder? placeholderBuilder,
-    String? semanticsLabel,
-    bool excludeFromSemantics = false,
-    SvgTheme? theme,
-    Clip clipBehavior = Clip.hardEdge,
-    Color? color,
-    BlendMode colorBlendMode = BlendMode.srcIn,
-    bool cacheColorFilter = false,
-  }) {
-    return SvgPicture.asset(
-      _assetName,
-      key: key,
-      matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
-      width: width,
-      height: height,
-      fit: fit,
-      alignment: alignment,
-      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
-      placeholderBuilder: placeholderBuilder,
-      semanticsLabel: semanticsLabel,
-      excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
-      color: color,
-      colorBlendMode: colorBlendMode,
-      clipBehavior: clipBehavior,
-      cacheColorFilter: cacheColorFilter,
     );
   }
 

@@ -19,7 +19,7 @@ class BasicAnimatedCardWidget extends StatefulWidget {
     required this.child,
     this.paddingHoz = 16,
     this.paddingVert = 12,
-    this.border = Constants.cardRadius,
+    this.border = cardRadius,
     this.shadowColor,
     this.animatedColor,
   });
@@ -104,7 +104,7 @@ class AnimatedCardWidget extends StatefulWidget {
     this.paddingHoz = 16,
     this.paddingVert = 12,
     this.width ,
-    this.border = Constants.cardRadius,
+    this.border = cardRadius,
     this.shadowColor, this.height,
   });
 
