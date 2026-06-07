@@ -6,18 +6,24 @@ import 'package:portfolio/Widgets/sections_title_widget.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
 import '../../../../../Utilities/Constants/constants.dart';
+import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
 
 class SkillsSection extends StatelessWidget {
   final List<TechnicalSkillEntity> skills;
-  final double shieldSize, orbitRadius;
   final double hozPadding;
+  final TextStyle? titleStyle;
+  final TextStyle? nameStyle, contentStyle;
+  final double iconSize;
+  final int countPerRow;
   const SkillsSection(
       {super.key,
       this.skills = const [],
-      this.orbitRadius = 160,
       this.hozPadding = desktopHozPadding,
-      this.shieldSize = 160});
+      this.titleStyle,
+      this.nameStyle,
+      this.contentStyle,
+      this.iconSize = 40,  this.countPerRow =3,});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +34,22 @@ class SkillsSection extends StatelessWidget {
       children: [
         SectionsTitleWidget(
           title: Strings.skill.translate.toUpperCase(),
+          key: GlobalKeys.skill,
         ),
-        Wrap(
-          spacing: 24,
-          runSpacing: 16,
-          children: [
-            ...List.generate(
-                skills.length, (u) => SkillCard(skill: skills[u], index: u))
-          ],
+        GridView.builder(
+          shrinkWrap: true,
+          gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount:countPerRow,
+              childAspectRatio: 2.2,
+              mainAxisSpacing: 16,
+              crossAxisSpacing: 16),
+          itemBuilder: (c, u) => SkillCard(
+            skill: skills[u],
+            iconSize: iconSize,
+            contentStyle: contentStyle,
+            nameStyle: nameStyle,
+          ),
+          itemCount: skills.length,
         )
       ],
     ).paddingSymmetric(horizontal: hozPadding);

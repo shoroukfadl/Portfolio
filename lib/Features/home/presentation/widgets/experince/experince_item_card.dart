@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/experince_entity.dart';
+import 'package:portfolio/Utilities/Constants/date_helper.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Utilities/helper_function.dart';
 import 'package:portfolio/Widgets/Portfilio/divider.dart';
 import 'package:portfolio/Widgets/Portfilio/point_text.dart';
 
@@ -8,14 +10,14 @@ import '../../../../../Core/Language/app_styles.dart';
 
 class ExperinceItemCard extends StatefulWidget {
   final ExperienceEntity? item;
-  final TextStyle? nameStyle, dateStyle, locationStyle, descriptionStyle;
+  final TextStyle? nameStyle, dateStyle, jobTitleStyle, descriptionStyle;
 
   const ExperinceItemCard({
     super.key,
     this.item,
     this.nameStyle,
     this.dateStyle,
-    this.locationStyle,
+    this.jobTitleStyle,
     this.descriptionStyle,
   });
 
@@ -40,12 +42,16 @@ class _ExperinceItemCardState extends State<ExperinceItemCard> {
         onEnter: (_) => setState(() => _isHovered = true),
         onExit: (_) => setState(() => _isHovered = false),
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 250),
+          duration: const Duration(milliseconds: 250),
           decoration: BoxDecoration(
             border: Border(
               left: BorderSide(
                 color: _isHovered ? colors.accent : colors.secondary,
                 width: _isHovered ? 3 : 2,
+              ),
+              bottom: BorderSide(
+                color: _isHovered ? colors.accent : colors.secondary,
+                width: _isHovered ? 3 : 0.5,
               ),
             ),
             color: colors.surface,
@@ -56,19 +62,20 @@ class _ExperinceItemCardState extends State<ExperinceItemCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                spacing: 8,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(widget.item?.companyName ?? "",
-                          style: AppTextStyles.semiBold14(
+                          style: widget.nameStyle?? AppTextStyles.semiBold14(
                               color: colors.secondary)),
                       const SizedBox(height: 4),
                       Text(widget.item?.jobTitle ?? "",
-                          style: AppTextStyles.medium12(color: colors.text1))
+                          style:widget.jobTitleStyle?? AppTextStyles.medium12(color: colors.text1))
                     ],
-                  ),
+                  ).expand,
                   Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -79,8 +86,8 @@ class _ExperinceItemCardState extends State<ExperinceItemCard> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Text(
-                      widget.item?.period ?? "",
-                      style: AppTextStyles.medium10(
+                      "${widget.item?.startDate == null ?"":mmYYYY(widget.item!.startDate!)} - ${(widget.item?.endDate == null ?"Present":mmYYYY(widget.item!.endDate!))}",
+                      style:(widget.dateStyle?? AppTextStyles.medium10()).copyWith(
                         color: isActive ? colors.secondary : colors.accent50,
                       ),
                     ),
@@ -94,11 +101,10 @@ class _ExperinceItemCardState extends State<ExperinceItemCard> {
                         children: [
                           PointText(
                               point: (widget.item?.responsibilities[i] ?? ""),
-                              style:
-                                  AppTextStyles.regular10(color: colors.text2)),
+                              style:widget.descriptionStyle?? AppTextStyles.regular10(color: colors.text2)),
                           if (i <
                               (widget.item?.responsibilities.length ?? 0) - 1)
-                            DividerWidget(thickness: 0.6)
+                            const DividerWidget(thickness: 0.6)
                         ],
                       )),
             ],

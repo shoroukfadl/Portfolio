@@ -27,27 +27,31 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: Container(
-        height: 40,
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        color: _isHovered
-            ? colors.accent.withValues(alpha: 0.2)
-            : Colors.transparent,
-        child: Row(
-          spacing: 12,
-          children: [
-            Icon(widget.icon,
-                size: 14, color: _isHovered ? colors.accent : colors.text1),
-            Text(
-              widget.title,
-              style: AppTextStyles.medium12(
-                  color: _isHovered ? colors.accent : colors.text1),
-            ),
-          ],
+    return InkWell(
+      hoverColor: Colors.transparent,
+      onTap: widget.onTap,
+      child: MouseRegion(
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: Container(
+          height: 40,
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          color: _isHovered
+              ? colors.accent.withValues(alpha: 0.2)
+              : Colors.transparent,
+          child: Row(
+            spacing: 12,
+            children: [
+              Icon(widget.icon,
+                  size: 14, color: _isHovered ? colors.accent : colors.text1),
+              Text(
+                widget.title,
+                style: AppTextStyles.medium12(
+                    color: _isHovered ? colors.accent : colors.text1),
+              ),
+            ],
+          ),
         ),
       ),
     );

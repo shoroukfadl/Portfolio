@@ -41,6 +41,7 @@ dependencies:
   supabase_flutter:
   flutter_svg: ^2.0.10
   flutter_launcher_icons: ^0.14.4
+  intl: 
 
 
 dev_dependencies:

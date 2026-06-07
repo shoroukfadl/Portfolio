@@ -5,17 +5,22 @@ import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Portfilio/divider.dart';
 import 'package:portfolio/Widgets/sections_title_widget.dart';
 
+import '../../../../../Core/Language/app_styles.dart';
+import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
 import 'certification_card.dart';
 
 class CertificationSection extends StatelessWidget {
   final List<CertificateEntity> data;
   final double hozPadding;
+  final TextStyle? titleStyle , providerStyle, dateStyle;
+
   const CertificationSection(
-      {super.key, this.hozPadding = desktopHozPadding, this.data = const []});
+      {super.key, this.hozPadding = desktopHozPadding, this.data = const [], this.titleStyle, this.providerStyle, this.dateStyle});
 
   @override
   Widget build(BuildContext context) {
+    final colors =context.colors;
     return Column(
       spacing: 16,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,6 +28,7 @@ class CertificationSection extends StatelessWidget {
         SectionsTitleWidget(
           title: Strings.certification.translate.toUpperCase(),
           subtitle: '${data.length} Certifications',
+          key: GlobalKeys.certification,
         ),
         ListView.separated(
           shrinkWrap: true,
@@ -34,9 +40,14 @@ class CertificationSection extends StatelessWidget {
               children: [
                 CertificationCard(
                   item: data[index],
+                  titleStyle: titleStyle,
+                  dateStyle: dateStyle,
+                  providerStyle: providerStyle,
+                  imageHeight: 40,
+                  imageWidth: 64,
                 ),
                 if (index < data.length - 1)
-                  DividerWidget(
+                 const DividerWidget(
                     thickness: 0.8,
                   )
               ],

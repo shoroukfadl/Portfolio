@@ -13,14 +13,14 @@ import '../../../../../Widgets/sections_title_widget.dart';
 class MyProjectsWidget extends StatefulWidget {
   final List<ProjectEntity> projects;
 
-  final TextStyle? myStyle, titleStyle;
+  final TextStyle? subtitleStyle, titleStyle;
   final double hozPadding;
 
   const MyProjectsWidget(
       {super.key,
       this.projects = const [],
       this.hozPadding = desktopHozPadding,
-      this.myStyle,
+      this.subtitleStyle,
       this.titleStyle});
 
   @override
@@ -50,19 +50,17 @@ class _MyProjectsWidgetState extends State<MyProjectsWidget> {
         SectionsTitleWidget(
           key: GlobalKeys.projects,
           title: Strings.projects.translate.toUpperCase(),
-          titleStyle: widget.titleStyle,
-          myStyle: widget.myStyle,
+
           subtitle: '${widget.projects.length} Projects',
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             CustomButtonWidget(
               title: 'Manual Testing',
               onPressed: () {
                 if (!isMan) previewMan(true);
               },
-              width: 140,
+              width: 120,
               titleStyle: AppTextStyles.medium10()
                   .copyWith(color: !isMan ? colors.text1 : Colors.white),
               borderColor: isMan ? colors.accent : colors.text3,

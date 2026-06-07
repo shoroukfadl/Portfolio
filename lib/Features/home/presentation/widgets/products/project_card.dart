@@ -15,16 +15,8 @@ class ProjectItemCard extends StatelessWidget {
   const ProjectItemCard({
     super.key,
     this.project,
-    this.indexStyle,
-    this.projectNameStyle,
-    this.projectTypeStyle,
-    this.descriptionStyle,
   });
 
-  final TextStyle? indexStyle,
-      projectNameStyle,
-      projectTypeStyle,
-      descriptionStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +24,8 @@ class ProjectItemCard extends StatelessWidget {
 
     return AnimatedCardWidget(
         paddingVert: 0,
-        width: 280,
-        height: 260,
+        width: context.isLarge ? 268 : context.isSmall ? double.infinity:260,
+        height: context.isSmall?null: 260,
         child: (i) => Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,32 +41,30 @@ class ProjectItemCard extends StatelessWidget {
                   children: [
                     Text(
                       project?.title ?? "",
-                      style: AppTextStyles.semiBold14(color: colors.text1),
+                      style: AppTextStyles.titleCardLarge(context:context,color: colors.text1),
                       maxLines: 2,
                     ).expand,
                     CardWithText(
                       text: project?.platform ?? "",
                       color: colors.accent.withValues(alpha: 0.2),
-                      borderColor: colors.accent,
+                      borderColor:Colors.transparent,
                       textColor: colors.accent,
-                      border: 4,
                       maxLine: 2,
-                      style: AppTextStyles.regular10(color: colors.accent),
+                      style: AppTextStyles.titleCardSmall(context:context,color: colors.accent),
                     )
                   ],
                 ),
-                Text('Test Cases',
-                    style: AppTextStyles.medium12(color: colors.text2)),
+                Text('Test Cases'.toUpperCase(),
+                    style: AppTextStyles.subtitleCard(context:context,color: colors.text2)),
                 ...List.generate(
                   project?.keyTasks.length ?? 0,
                   (i) => Column(
-                    spacing: 8,
                     children: [
                       PointText(
                           point: project?.keyTasks[i] ?? "",
-                          style: AppTextStyles.regular10(color: colors.text2)),
+                          style: AppTextStyles.body(context:context,color: colors.text2)),
                       if (i < (project?.keyTasks.length ?? 0) - 1)
-                        DividerWidget(),
+                        const DividerWidget(),
                     ],
                   ),
                 ),

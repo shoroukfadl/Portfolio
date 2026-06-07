@@ -6,8 +6,9 @@ class ExperienceModel {
   final String? jobTitle;
   final String? companyName;
   final String? location;
-  final String? period;
   final bool status;
+  final DateTime? startDate;
+  final DateTime? endDate;
   final List<String> responsibilities;
 
   ExperienceModel(
@@ -16,9 +17,9 @@ class ExperienceModel {
       this.jobTitle,
       this.companyName,
       this.location,
-      this.period,
+      this.startDate,
       this.responsibilities = const [],
-      this.status = false});
+      this.status = false, this.endDate});
 
   factory ExperienceModel.fromJson(Map<String, dynamic> json) =>
       ExperienceModel(
@@ -27,7 +28,8 @@ class ExperienceModel {
         jobTitle: json['job_title'],
         companyName: json['company_name'],
         location: json['location'],
-        period: json['period'],
+        startDate: json['startDate'] ==null?null:DateTime.tryParse( json['startDate']),
+        endDate: json['end_date'] ==null?null:DateTime.tryParse( json['end_date']),
         status: json['status'] ?? false,
         responsibilities: List<String>.from(json['responsibilities'] ?? []),
       );
@@ -36,7 +38,8 @@ class ExperienceModel {
         'job_title': jobTitle,
         'company_name': companyName,
         'location': location,
-        'period': period,
+        'endDate': endDate,
+    'startDate':startDate,
         'responsibilities': responsibilities,
       };
 
@@ -46,7 +49,8 @@ class ExperienceModel {
       jobTitle: jobTitle,
       companyName: companyName,
       location: location,
-      period: period,
+      startDate: startDate,
+      endDate: endDate,
       responsibilities: responsibilities,
       status: status);
   ExperienceEntity fromModel() => ExperienceEntity(
@@ -55,7 +59,8 @@ class ExperienceModel {
         jobTitle: jobTitle,
         companyName: companyName,
         location: location,
-        period: period,
+        startDate: startDate,
+        endDate: endDate,
         status: status,
         responsibilities: responsibilities,
       );

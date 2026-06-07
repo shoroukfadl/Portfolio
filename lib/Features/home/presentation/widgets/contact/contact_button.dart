@@ -36,7 +36,7 @@ class _ContactButtonState extends State<ContactButton> {
       onExit: (_) => hovering(false),
       child: AnimatedScale(
         scale: hover ? 1.02 : 1,
-        duration: Duration(milliseconds: 250),
+        duration: const Duration(milliseconds: 250),
         child: CustomButtonWidget(
           borderRadiusValue: 4,
           onPressed: widget.onTap,

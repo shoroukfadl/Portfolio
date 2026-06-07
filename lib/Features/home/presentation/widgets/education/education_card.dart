@@ -31,23 +31,21 @@ class EducationCard extends StatelessWidget {
             color: colors.accent,
           ),
         ),
-        Row(
-          children: [
-            Text(
-              item.university ?? "",
-              style: AppTextStyles.regular12(
-                color: colors.text2,
-              ),
-            ).expand,
-            Text(
-              item.duration ?? "",
-              style: AppTextStyles.regular10(
-                color: colors.secondary,
-              ),
-            ),
-            8.0.widthBox,
-          ],
+
+
+        Text(
+          item.duration ?? "",
+          style: AppTextStyles.regular10(
+            color: colors.secondary,
+          ),
         ),
+        Text(
+          item.university ?? "",
+          style: AppTextStyles.regular12(
+            color: colors.text2,
+          ),
+        ),
+
         Text(
           'Grade: ${item.grade ?? ""}',
           style: AppTextStyles.regular10(

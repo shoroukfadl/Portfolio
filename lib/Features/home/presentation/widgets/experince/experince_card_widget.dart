@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/experince_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/experince/experince_item_card.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/sections_title_widget.dart';
 
+import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
 
 class ExperienceSection extends StatelessWidget {
   final List<ExperienceEntity> experiences;
   final double hozPadding;
+  final TextStyle? titleStyle , nameStyle, dateStyle, jobTitleStyle, descriptionStyle;
+
   const ExperienceSection(
       {super.key,
       this.hozPadding = desktopHozPadding,
-      this.experiences = const []});
+      this.experiences = const [], this.titleStyle, this.nameStyle, this.dateStyle, this.jobTitleStyle, this.descriptionStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,15 @@ class ExperienceSection extends StatelessWidget {
       children: [
         SectionsTitleWidget(
           title: Strings.experience.translate.toUpperCase(),
+          key: GlobalKeys.experince,
         ),
         ...experiences.map((exp) {
           return ExperinceItemCard(
             item: exp,
+            nameStyle: nameStyle,
+            dateStyle: dateStyle,
+            descriptionStyle: descriptionStyle,
+            jobTitleStyle: jobTitleStyle ,
           );
         }),
       ],

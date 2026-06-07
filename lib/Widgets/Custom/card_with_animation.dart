@@ -125,7 +125,7 @@ class _AnimatedCardWidgetState extends State<AnimatedCardWidget>
     _controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 200));
     _animation = Tween<Offset>(
-            begin: const Offset(0, 0), end: const Offset(0, 16))
+            begin: const Offset(0, 0), end: const Offset(0, -16))
         .animate(
             CurvedAnimation(parent: _controller, curve: Curves.easeInOutSine));
   }
@@ -142,14 +142,16 @@ class _AnimatedCardWidgetState extends State<AnimatedCardWidget>
     return MouseRegion(
         onEnter: (_) {
           setState(() => _isHovered = true);
+          _controller.forward();
         },
         onExit: (_) {
           setState(() => _isHovered = false);
+          _controller.reverse();
         },
         child: AnimatedBuilder(
           animation: _animation,
           builder: (c, w) => Transform.translate(
-            offset: _isHovered ? _animation.value : Offset(0, 0),
+            offset: _animation.value,
             child: w,
           ),
           child: Container(
@@ -160,14 +162,16 @@ class _AnimatedCardWidgetState extends State<AnimatedCardWidget>
                 Radius.circular(widget.border),
               ),
               border: Border.all(
-                color: (widget.borderColor ?? colors.text3),
+                color: _isHovered
+                    ? colors.secondary
+                    : (widget.borderColor ?? colors.border),
                 width: 1,
               ),
               boxShadow: _isHovered
                   ? [
                       BoxShadow(
                         color: widget.shadowColor ??
-                            colors.accent25.withValues(alpha: 0.1),
+                            colors.accent.withValues(alpha: 0.1),
                         blurRadius: 8,
                         spreadRadius: 4,
                       ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/home_summary_widget.dart';
+import 'package:portfolio/Features/home/presentation/widgets/contact_me.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
@@ -17,6 +19,7 @@ class SmallHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors =context.colors;
     return ScreenLayoutWidget(
       children: [
         /// Summary
@@ -43,6 +46,11 @@ class SmallHomeView extends StatelessWidget {
                   return SkillsSection(
                     hozPadding: mobileHozPadding,
                     skills: state.data?.skills ?? [],
+                    iconSize: 20,
+                   countPerRow: 1,
+                    titleStyle: AppTextStyles.medium12(color: colors.text1),
+                    nameStyle: AppTextStyles.semiBold10(color: colors.secondary),
+                    contentStyle: AppTextStyles.regular8(color: colors.text1),
                   );
                 })),
 
@@ -58,6 +66,10 @@ class SmallHomeView extends StatelessWidget {
                   return ExperienceSection(
                     experiences: state.data?.experience ?? [],
                     hozPadding: mobileHozPadding,
+                    jobTitleStyle:AppTextStyles.regular10(color: colors.text1) ,
+                    descriptionStyle: AppTextStyles.regular8(color: colors.text2),
+                    nameStyle: AppTextStyles.semiBold12(color: colors.secondary),
+                    dateStyle: AppTextStyles.medium8(color: colors.secondary),
                   );
                 })),
 
@@ -71,6 +83,9 @@ class SmallHomeView extends StatelessWidget {
               builder: (context, state) {
                 return CertificationSection(
                     hozPadding: mobileHozPadding,
+                    titleStyle: AppTextStyles.semiBold12(color: colors.text1),
+                    providerStyle: AppTextStyles.medium10(color: colors.accent),
+                    dateStyle: AppTextStyles.regular8(color: colors.secondary),
                     data: state.data?.certificates ?? []);
               }),
         ),
@@ -84,9 +99,15 @@ class SmallHomeView extends StatelessWidget {
                 return MyProjectsWidget(
                   projects: state.data?.projects ?? [],
                   hozPadding: mobileHozPadding,
+                  titleStyle: AppTextStyles.medium12(color: colors.text1),
+
                 );
               }),
         ),
+        const SliverToBoxAdapter(child: SpacerWidget()),
+        const SliverToBoxAdapter(child: ContactWidget()),
+        const SliverToBoxAdapter(child: SizedBox(height: 16,)),
+
       ],
     );
   }

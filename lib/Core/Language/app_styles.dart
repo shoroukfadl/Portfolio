@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/Utilities/extensions.dart';
 
 @immutable
 abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
@@ -141,7 +142,14 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
       );
 
   static TextStyle semiBold12({Color? color}) => mainFont.copyWith(
-        fontSize: 14,
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: color ?? Colors.black,
+        height: 1.4,
+        letterSpacing: 0,
+      );
+  static TextStyle semiBold10({Color? color}) => mainFont.copyWith(
+        fontSize: 10,
         fontWeight: FontWeight.w600,
         color: color ?? Colors.black,
         height: 1.4,
@@ -240,4 +248,38 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
       );
+
+
+  /// -------------------------------------------------- ///
+  static TextStyle sectionTitle({Color? color , required BuildContext context}) => mainFont.copyWith(
+    fontSize: context.isLarge? 16 : context.isMedium ? 14:12,
+    fontWeight: FontWeight.w500,
+    color: color ?? Colors.black,
+    textBaseline: TextBaseline.alphabetic,
+  );
+  static TextStyle titleCardLarge({Color? color , required BuildContext context}) => mainFont.copyWith(
+    fontSize: context.isLarge? 14 : context.isMedium ? 12:10,
+    fontWeight: FontWeight.w600,
+    color: color ?? Colors.black,
+    textBaseline: TextBaseline.alphabetic,
+  );
+  static TextStyle titleCardSmall({Color? color , required BuildContext context}) => mainFont.copyWith(
+    fontSize: context.isLarge? 12 : context.isMedium ? 10:8,
+    fontWeight: FontWeight.w500,
+    color: color ?? Colors.black,
+    textBaseline: TextBaseline.alphabetic,
+  );
+  static TextStyle subtitleCard({Color? color , required BuildContext context}) => mainFont.copyWith(
+    fontSize: context.isLarge? 12 : 10,
+    fontWeight: FontWeight.w500,
+    color: color ?? Colors.black,
+    textBaseline: TextBaseline.alphabetic,
+  );
+  static TextStyle body({Color? color , required BuildContext context}) => mainFont.copyWith(
+    fontSize: context.isSmall? 8 : 10,
+    fontWeight: FontWeight.w400,
+    color: color ?? Colors.black,
+    textBaseline: TextBaseline.alphabetic,
+  );
+
 }

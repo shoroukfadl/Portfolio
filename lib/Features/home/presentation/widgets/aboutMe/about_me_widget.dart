@@ -4,9 +4,9 @@ import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
 
-class SummarySection extends StatelessWidget {
+class LargeSummarySection extends StatelessWidget {
   final ProfileEntity? profile;
-  const SummarySection({super.key, required this.profile});
+  const LargeSummarySection({super.key, required this.profile});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,49 @@ class SummarySection extends StatelessWidget {
             color: colors.accent,
           ),
         ),
+      ],
+    );
+  }
+}
+
+class SummarySection extends StatelessWidget {
+  final ProfileEntity? profile;
+  const SummarySection({super.key, required this.profile});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    return Row(
+      spacing: 16,
+      children: [
+        RoundedImage(
+          width: 88,
+          height: 88,
+          imagePath: profile?.image,
+          borderColor: colors.accent,
+        ),
+
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+
+            Text(
+             ( profile?.firstName ?? "") +( profile?.lastName ?? ""),
+              style: AppTextStyles.semiBold16(
+                color: colors.text2,
+              ),
+            ),
+
+            const SizedBox(height: 4),
+            Text(
+              profile?.jobTitle ?? "",
+              style: AppTextStyles.medium12(
+                color: colors.accent,
+              ),
+            ),
+          ],
+        ).expand,
       ],
     );
   }

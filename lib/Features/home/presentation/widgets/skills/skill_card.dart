@@ -7,54 +7,57 @@ import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 
 class SkillCard extends StatelessWidget {
   final TechnicalSkillEntity? skill;
-  final int index;
   final TextStyle? nameStyle, contentStyle;
-  final double iconSize;
+  final double iconSize, width,height;
 
   const SkillCard({
     super.key,
     required this.skill,
     this.iconSize = 40,
-    required this.index,
     this.nameStyle,
     this.contentStyle,
+    this.width=260,
+    this.height=240
   });
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      spacing: 16,
-      children: [
-        Text(
-          skill?.category?.toUpperCase() ?? "",
-          style: nameStyle ??
-              AppTextStyles.semiBold14(
-                color: colors.secondary,
-              ),
-        ),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            ...List.generate(
-                skill?.skills.length ?? 0,
-                (i) => AnimatedCardWithText(
-                      text: (skill?.skills[i].skillName ?? ""),
-                      style: contentStyle,
-                      maxLine: 3,
-                      border: 4,
-                      animatedColor: colors.card,
-                      color: colors.card,
-                      borderColor: colors.border,
-                      textColor: colors.text1,
-                      animatedTextColor: colors.secondary,
-                    ))
-          ],
-        )
-      ],
+    return AnimatedCardWidget(
+      width: width,
+      child:(h)=> Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        spacing: 16,
+        children: [
+          Text(
+            skill?.category ?? "",
+            style: (nameStyle ??
+                AppTextStyles.semiBold12(
+                  color: colors.secondary,
+                )).copyWith(
+                  letterSpacing: 1.2
+                ),
+          ),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              ...List.generate(
+                  skill?.skills.length ?? 0,
+                  (i) => CardWithText(
+                        text: (skill?.skills[i].skillName ?? ""),
+                        style: contentStyle??AppTextStyles.regular10(color: colors.text1),
+                        maxLine: 3,
+                        border: 100,
+                        color: colors.surface,
+                        borderColor: colors.border,
+                        textColor: colors.text1,
+                      ))
+            ],
+          )
+        ],
+      ),
     );
   }
 }

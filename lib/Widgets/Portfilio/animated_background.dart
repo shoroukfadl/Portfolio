@@ -5,14 +5,14 @@ import '../../Core/Theme/theme_colors.dart';
 
 class AnimatedBackground extends StatelessWidget {
   final double height;
-  const AnimatedBackground({super.key, this.height = 400});
+  final Widget? child;
+  const AnimatedBackground({super.key, this.height = 400, this.child});
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
     return Container(
-      height: height,
       decoration: BoxDecoration(
           color: colors.surface,
           border: Border.all(color: colors.border),
@@ -72,6 +72,8 @@ class AnimatedBackground extends StatelessWidget {
               ),
             ),
           ),
+          if(child !=null) child!
+
         ],
       ),
     );

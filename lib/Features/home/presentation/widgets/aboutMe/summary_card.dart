@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Core/Theme/theme_colors.dart';
+import 'package:portfolio/Features/home/presentation/widgets/contact_me.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Buttons/theme_button.dart';
@@ -17,8 +18,8 @@ import '../contact/contact_button.dart';
 import '../education/education_widget.dart';
 import 'about_me_widget.dart';
 
-class SummaryCard extends StatelessWidget {
-  const SummaryCard({super.key});
+class LargeSummaryCard extends StatelessWidget {
+  const LargeSummaryCard({super.key});
 
   Widget divider(AppColors colors) => Divider(
         color: colors.border,
@@ -38,7 +39,7 @@ class SummaryCard extends StatelessWidget {
             child: BlocBuilder<PortfolioCubit, PortfolioState>(
                 buildWhen: (c, p) => c.data?.profile != p.data?.profile,
                 builder: (context, state) {
-                  return SummarySection(
+                  return LargeSummarySection(
                     profile: state.data?.profile,
                   );
                 }),
@@ -137,58 +138,8 @@ class SummaryCard extends StatelessWidget {
           SliverToBoxAdapter(child: 8.0.heightBox),
           SliverToBoxAdapter(child: divider(colors)),
           SliverToBoxAdapter(child: 8.0.heightBox),
-          SliverToBoxAdapter(
-            child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                buildWhen: (c, p) => c.data?.profile != p.data?.profile,
-                builder: (context, s) {
-                  return Row(
-                    spacing: 16,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ContactButton(
-                        onTap: () async {
-                          final Uri emailUri = Uri(
-                              scheme: 'mailto',
-                              path: s.data?.profile?.email ?? "");
-                          if (await canLaunchUrl(emailUri)) {
-                            await launchUrl(emailUri);
-                          }
-                        },
-                        icon: Portfolio.email,
-                      ),
-                      ContactButton(
-                        onTap: () {
-                          HelperFunctions.openUrl(
-                              s.data?.profile?.linkedin ?? "", context);
-                        },
-                        icon: Portfolio.linkedin,
-                      ),
-                      ContactButton(
-                        onTap: () {
-                          HelperFunctions.openUrl(
-                              s.data?.profile?.github ?? "", context);
-                        },
-                        icon: Portfolio.github,
-                      ),
-                      ContactButton(
-                        onTap: () {
-                          HelperFunctions.openWhatsApp(
-                              phoneNumber: s.data?.profile?.phone ?? "",
-                              message: 'Hello');
-                        },
-                        icon: Portfolio.whatsapp,
-                      ),
-                      ContactButton(
-                        onTap: () {
-                          HelperFunctions.openUrl(
-                              s.data?.profile?.cv ?? "", context);
-                        },
-                        icon: Portfolio.cv,
-                      ),
-                      const ThemeButton(),
-                    ],
-                  );
-                }),
+          const SliverToBoxAdapter(
+            child:ContactWidget(),
           ),
           SliverToBoxAdapter(
             child: 16.0.heightBox,
@@ -198,3 +149,105 @@ class SummaryCard extends StatelessWidget {
     );
   }
 }
+
+class SummaryCard extends StatelessWidget {
+  const SummaryCard({super.key});
+
+  Widget divider(AppColors colors) => Divider(
+    color: colors.border,
+    thickness: 0.5,
+  );
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+
+    return Container(
+      width: 320,
+      color: colors.surface,
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: 24.0.heightBox),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.summary,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.aboutMe.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.aboutMe.translate,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.education,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.education.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.education.translate,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.skills,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.skill.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.mySkill.translate,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.work,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.experince.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.experience.translate,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.projects,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.projects.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.projects.translate,
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: HomeAppBarItem(
+              icon: Portfolio.certification,
+              onTap: () {
+                Scrollable.ensureVisible(
+                  GlobalKeys.certification.currentContext!,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.easeInOut,
+                );
+              },
+              title: Strings.certification.translate,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+

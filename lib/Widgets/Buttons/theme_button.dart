@@ -16,6 +16,9 @@ class ThemeButton extends StatelessWidget {
       onTap: () {
         context.read<ThemeCubit>().changeTheme();
       },
+      backgroundColor: colors.secondary.withAlpha(30),
+      borderColor: colors.secondary,
+      iconColor: colors.secondary,
       icon: Portfolio.theme,
     );
   }

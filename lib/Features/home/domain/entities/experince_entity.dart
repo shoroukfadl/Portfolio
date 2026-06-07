@@ -7,7 +7,8 @@ class ExperienceEntity extends Equatable {
   final String? companyName;
   final String? location;
   final bool status;
-  final String? period;
+  final DateTime? startDate;
+  final DateTime? endDate;
   final List<String> responsibilities;
 
   ExperienceEntity({
@@ -16,9 +17,9 @@ class ExperienceEntity extends Equatable {
     this.jobTitle,
     this.companyName,
     this.location,
-    this.period,
+    this.startDate,
     this.responsibilities = const [],
-    this.status = false,
+    this.status = false, this.endDate,
   });
 
   List<Object?> get props => [
@@ -27,7 +28,7 @@ class ExperienceEntity extends Equatable {
         jobTitle,
         companyName,
         location,
-        period,
+        startDate,
         responsibilities,
         status
       ];

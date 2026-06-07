@@ -4,6 +4,7 @@ import 'package:portfolio/Core/Language/locales.dart';
 import 'package:portfolio/Features/home/domain/entities/education_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
+import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
 import 'education_card.dart';
@@ -17,6 +18,7 @@ class EducationSection extends StatelessWidget {
     final colors = context.colors;
     return Column(
       spacing: 16,
+      key: GlobalKeys.education,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(

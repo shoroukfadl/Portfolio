@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
+import 'package:portfolio/Core/Theme/theme_colors.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
+import 'package:portfolio/Features/home/presentation/widgets/aboutMe/about_me_widget.dart';
+import 'package:portfolio/Features/home/presentation/widgets/aboutMe/stat_widget.dart';
+import 'package:portfolio/Features/home/presentation/widgets/aboutMe/summary_card.dart';
+import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Custom/animated_counter.dart';
 import 'package:portfolio/Widgets/Portfilio/animated_background.dart';
-import 'package:portfolio/Widgets/rounded_image_widget.dart';
-
+import 'package:portfolio/Widgets/Portfilio/divider.dart';
 import '../../../../../Utilities/Constants/constants.dart';
 
 class HomeSummarySection extends StatelessWidget {
@@ -21,58 +26,107 @@ class HomeSummarySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Stack(
-      children: [
-        const AnimatedBackground(),
-        PositionedDirectional(
-          start: hozPadding,
-          end: hozPadding,
-          top: 40,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _TagBadge(),
-              const SizedBox(height: 16),
-              const _Headline(),
-              const SizedBox(height: 16),
-              Text(
-                profile?.summary ?? "",
-                style: AppTextStyles.regular14(
-                  color: colors.text3,
-                ),
-              ),
-              const SizedBox(height: 16),
-              Divider(
-                color: colors.border,
-                thickness: 0.5,
-              ),
-              const SizedBox(height: 16),
-              _StatsRow(
-                items: [
-                  Stat(
-                    value: '$projectsNumber',
-                    name: 'Projects Tested',
-                  ),
-                  Stat(
-                    value: "$certNumber",
-                    name: 'Certifications',
-                  ),
-                  const Stat(
-                    value: "2",
-                    name: 'Testing Tracks',
-                  ),
-                  const Stat(
-                    value: "100 %",
-                    name: 'Attention to Detail',
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-      ],
-    );
+    return  AnimatedBackground(height: double.infinity,child:   (!context.isLarge)? _SmallContent(colors):_LargeContent(colors),);
   }
+
+   Widget _LargeContent (AppColors colors)=>Padding(
+    padding: EdgeInsetsGeometry.only(left: hozPadding,right: hozPadding,top: 40),
+     child: Column(
+       crossAxisAlignment: CrossAxisAlignment.start,
+       children: [
+
+         _TagBadge(),
+         const SizedBox(height: 16),
+         const _Headline(),
+         const SizedBox(height: 16),
+         Text(
+           profile?.summary ?? "",
+           style: AppTextStyles.regular14(
+             color: colors.text3,
+           ),
+         ),
+         const SizedBox(height: 16),
+         Divider(
+           color: colors.border,
+           thickness: 0.5,
+         ),
+         const SizedBox(height: 16),
+         StatsRow(
+
+           items: [
+             Stat(
+               value: projectsNumber,
+               name: 'Projects Tested',
+             ),
+             Stat(
+               value: certNumber,
+               name: 'Certifications',
+             ),
+             const Stat(
+               value: 2,
+               name: 'Testing Tracks',
+             ),
+             const Stat(
+               value:100 ,
+               subTitle: '%',
+               name: 'Attention to Detail',
+             ),
+           ],
+         )
+       ],
+     ),
+   );
+   Widget _SmallContent (AppColors colors)=>Padding(
+     padding: EdgeInsetsGeometry.only(left: hozPadding,right: hozPadding,top: 40),
+     child: Column(
+       crossAxisAlignment: CrossAxisAlignment.start,
+       children: [
+
+         SummarySection(profile: profile),
+         const SizedBox(height: 8),
+         const DividerWidget(),
+         const SizedBox(height: 8),
+          _Headline(titleStyle: AppTextStyles.semiBold14(color: colors.text1)),
+         const SizedBox(height: 8),
+         Text(
+           profile?.summary ?? "",
+           style: AppTextStyles.regular10(
+             color: colors.text3,
+           ),
+         ),
+         const SizedBox(height: 8),
+         const DividerWidget(
+           thickness: 0.5,
+         ),
+         const SizedBox(height: 8),
+         StatsRow(
+           numStyle: AppTextStyles.medium20(),
+           titleStyle: AppTextStyles.regular10(),
+           items: [
+             Stat(
+               value: projectsNumber,
+               name: 'Projects Tested',
+             ),
+             Stat(
+               value: certNumber,
+               name: 'Certifications',
+             ),
+             const Stat(
+               value: 2,
+               name: 'Testing Tracks',
+             ),
+             const Stat(
+               value:100 ,
+               subTitle: '%',
+               name: 'Attention to Detail',
+             ),
+           ],
+         ),
+         const SizedBox(height: 16),
+
+       ],
+     ),
+   );
 }
 
 // ──────────────────────────────────────────
@@ -106,7 +160,8 @@ class _TagBadge extends StatelessWidget {
 //  GRADIENT HEADLINE
 // ──────────────────────────────────────────
 class _Headline extends StatelessWidget {
-  const _Headline();
+  final TextStyle? titleStyle;
+  const _Headline({this.titleStyle});
 
   @override
   Widget build(BuildContext context) {
@@ -117,16 +172,16 @@ class _Headline extends StatelessWidget {
         children: [
           TextSpan(
             text: 'Ensuring Quality,\n',
-            style: AppTextStyles.semiBold28(color: colors.text1),
+            style: titleStyle??AppTextStyles.semiBold28(color: colors.text1),
           ),
           WidgetSpan(
             child: ShaderMask(
               shaderCallback: (bounds) => LinearGradient(
-                colors: [colors.accent, colors.secondary],
+                colors: [colors.secondary, colors.secondary, colors.accent],
               ).createShader(bounds),
               child: Text(
                 'One Test Case at a Time.',
-                style: AppTextStyles.semiBold28(color: colors.text3),
+                style: (titleStyle??AppTextStyles.semiBold28()).copyWith(color: colors.text3),
               ),
             ),
           ),
@@ -136,67 +191,4 @@ class _Headline extends StatelessWidget {
   }
 }
 
-// ──────────────────────────────────────────
-//  STATS ROW
-// ──────────────────────────────────────────
-class _StatsRow extends StatelessWidget {
-  final List<Stat> items;
-  const _StatsRow({this.items = const []});
 
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 32,
-      runSpacing: 20,
-      children: items
-          .map((s) => _StatItem(
-                item: s,
-              ))
-          .toList(),
-    );
-  }
-}
-
-// ──────────────────────────────────────────
-//  SINGLE STAT
-// ──────────────────────────────────────────
-class _StatItem extends StatelessWidget {
-  final Stat item;
-
-  const _StatItem({
-    required this.item,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Gradient number
-        ShaderMask(
-          shaderCallback: (bounds) => LinearGradient(
-            colors: [colors.text1, colors.accent],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ).createShader(bounds),
-          child: Text(
-            item.value ?? "",
-            style: AppTextStyles.medium32(color: colors.text1),
-          ),
-        ),
-        const SizedBox(height: 5),
-        Text(
-          item.name?.toUpperCase() ?? "",
-          style: AppTextStyles.regular12(color: colors.text3),
-        ),
-      ],
-    );
-  }
-}
-
-class Stat {
-  final String? name;
-  final String? value;
-  const Stat({this.name, this.value});
-}
