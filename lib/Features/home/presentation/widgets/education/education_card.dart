@@ -8,13 +8,26 @@ import '../../../../../Widgets/Custom/card_with_animation.dart';
 
 class EducationCard extends StatelessWidget {
   final EducationEntity item;
-  final int index;
-  final int totalItems;
 
   const EducationCard({
     required this.item,
-    required this.index,
-    required this.totalItems,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if(context.isLarge) {
+      return EducationContentWidget(item: item);
+    } else {
+      return SideAnimatedCard(child: EducationContentWidget(item: item));
+    }
+  }
+}
+
+class EducationContentWidget extends StatelessWidget {
+  final EducationEntity item;
+
+  const EducationContentWidget({super.key,
+    required this.item,
   });
 
   @override
@@ -31,7 +44,6 @@ class EducationCard extends StatelessWidget {
             color: colors.accent,
           ),
         ),
-
 
         Text(
           item.duration ?? "",

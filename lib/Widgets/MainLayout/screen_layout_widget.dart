@@ -1,4 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:portfolio/Utilities/extensions.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class ScreenLayoutWidget extends StatefulWidget {
   final List<Widget> children;
@@ -30,8 +34,14 @@ class _ScreenLayoutWidgetState extends State<ScreenLayoutWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(controller: _scrollController, slivers: [
-      ...widget.children,
-    ]);
+    final colors = context.colors;
+    return RawScrollbar(
+      thumbVisibility: true,
+      controller: _scrollController,
+      child: CustomScrollView(
+          controller: _scrollController, slivers: [
+        ...widget.children,
+      ]),
+    );
   }
 }

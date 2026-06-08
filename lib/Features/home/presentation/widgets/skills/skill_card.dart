@@ -7,15 +7,13 @@ import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 
 class SkillCard extends StatelessWidget {
   final TechnicalSkillEntity? skill;
-  final TextStyle? nameStyle, contentStyle;
   final double iconSize, width,height;
 
   const SkillCard({
     super.key,
     required this.skill,
     this.iconSize = 40,
-    this.nameStyle,
-    this.contentStyle,
+
     this.width=260,
     this.height=240
   });
@@ -32,8 +30,9 @@ class SkillCard extends StatelessWidget {
         children: [
           Text(
             skill?.category ?? "",
-            style: (nameStyle ??
-                AppTextStyles.semiBold12(
+            style: (
+                AppTextStyles.titleCardLarge(
+                  context: context,
                   color: colors.secondary,
                 )).copyWith(
                   letterSpacing: 1.2
@@ -47,7 +46,7 @@ class SkillCard extends StatelessWidget {
                   skill?.skills.length ?? 0,
                   (i) => CardWithText(
                         text: (skill?.skills[i].skillName ?? ""),
-                        style: contentStyle??AppTextStyles.regular10(color: colors.text1),
+                        style: AppTextStyles.titleCardSmall(context:context,color: colors.text1),
                         maxLine: 3,
                         border: 100,
                         color: colors.surface,

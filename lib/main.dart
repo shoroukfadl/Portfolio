@@ -88,6 +88,7 @@ class _EntryPointState extends State<EntryPoint> {
               child: child!,
             );
           },
+
           scrollBehavior: MyCustomScrollBehavior(),
           routerConfig: GoRouterConfig.router,
           darkTheme: AppTheme.dark,
@@ -103,9 +104,17 @@ class _EntryPointState extends State<EntryPoint> {
 
 class MyCustomScrollBehavior extends MaterialScrollBehavior {
   @override
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
+  }
+
+  @override
   Set<PointerDeviceKind> get dragDevices => {
         PointerDeviceKind.touch,
         PointerDeviceKind.mouse,
-        PointerDeviceKind.trackpad
+        PointerDeviceKind.stylus,
+        PointerDeviceKind.trackpad,
+    PointerDeviceKind.invertedStylus
       };
 }

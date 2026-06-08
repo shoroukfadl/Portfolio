@@ -9,13 +9,12 @@ import 'package:portfolio/Widgets/rounded_image_widget.dart';
 class CertificationCard extends StatefulWidget {
   final CertificateEntity item;
   final double imageWidth, imageHeight;
-  final TextStyle? titleStyle , providerStyle, dateStyle;
 
   const CertificationCard({
     super.key,
     required this.item,
     this.imageHeight = 48,
-    this.imageWidth=72, this.titleStyle, this.providerStyle, this.dateStyle,
+    this.imageWidth=72,
   });
 
   @override
@@ -61,13 +60,13 @@ class _CertificationCardState extends State<CertificationCard> {
             children: [
               Text(
                 widget.item.courseName ?? "",
-                style: widget.titleStyle?? AppTextStyles.semiBold14(
+                style:  AppTextStyles.titleCardLarge(context: context,
                   color: colors.text1,
                 ),
               ),
               Text(
                 widget.item.provider ?? "",
-                style:widget.providerStyle?? AppTextStyles.medium12(
+                style: AppTextStyles.label(context: context,
                   color: colors.accent,
                 ),
               ),
@@ -75,7 +74,8 @@ class _CertificationCardState extends State<CertificationCard> {
           ).expand,
           CardWithText(
             text: widget.item.issueDate ?? "",
-            style:widget.dateStyle ?? AppTextStyles.regular10(
+            style: AppTextStyles.titleCardSmall(
+              context: context,
               color: colors.secondary,
             ),
 

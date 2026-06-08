@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-import '../../Core/Theme/theme_colors.dart';
-
 class AnimatedBackground extends StatelessWidget {
   final double height;
   final Widget? child;
-  const AnimatedBackground({super.key, this.height = 400, this.child});
+  final BoxBorder? border;
+  const AnimatedBackground({super.key, this.height = 400, this.child, this.border});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +14,7 @@ class AnimatedBackground extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: colors.surface,
-          border: Border.all(color: colors.border),
+          border: border?? Border.all(color: colors.border),
           borderRadius: const BorderRadiusDirectional.vertical(
               bottom: Radius.circular(1))),
       child: Stack(

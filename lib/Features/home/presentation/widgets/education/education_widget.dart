@@ -11,7 +11,8 @@ import 'education_card.dart';
 
 class EducationSection extends StatelessWidget {
   final List<EducationEntity> education;
-  const EducationSection({super.key, this.education = const []});
+  final double padding;
+  const EducationSection({super.key,this.padding = 20, this.education = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,12 @@ class EducationSection extends StatelessWidget {
       key: GlobalKeys.education,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if(context.isLarge)
         Text(
           Strings.education.translate.toUpperCase(),
           style: AppTextStyles.medium12(color: colors.text1),
+        ) else SectionsTitleWidget(
+          title:  Strings.education.translate.toUpperCase(),
         ),
         ListView.builder(
           shrinkWrap: true,
@@ -32,12 +36,10 @@ class EducationSection extends StatelessWidget {
           itemBuilder: (context, index) {
             return EducationCard(
               item: education[index],
-              index: index,
-              totalItems: education.length,
             );
           },
         ),
       ],
-    ).paddingOnly(start: 20);
+    ).paddingOnly(start: padding ,end: context.isLarge ? 0 : padding);
   }
 }

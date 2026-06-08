@@ -4,129 +4,156 @@ import 'package:portfolio/Core/Theme/theme_colors.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/about_me_widget.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/stat_widget.dart';
-import 'package:portfolio/Features/home/presentation/widgets/aboutMe/summary_card.dart';
-import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/Custom/animated_counter.dart';
 import 'package:portfolio/Widgets/Portfilio/animated_background.dart';
 import 'package:portfolio/Widgets/Portfilio/divider.dart';
 import '../../../../../Utilities/Constants/constants.dart';
+import '../../../../../Widgets/MainLayout/menu_button.dart';
 
 class HomeSummarySection extends StatelessWidget {
   final ProfileEntity? profile;
   final int projectsNumber, certNumber;
   final double hozPadding;
-  const HomeSummarySection(
-      {super.key,
-      this.hozPadding = desktopHozPadding,
-      required this.profile,
-      required this.projectsNumber,
-      required this.certNumber});
+
+  const HomeSummarySection({
+    super.key,
+    this.hozPadding = desktopHozPadding,
+    required this.profile,
+    required this.projectsNumber,
+    required this.certNumber,
+  });
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return  AnimatedBackground(height: double.infinity,child:   (!context.isLarge)? _SmallContent(colors):_LargeContent(colors),);
+
+    // للشاشات الصغيرة (Mobile / Tablet)
+    if (!context.isLarge) {
+      return Stack(
+        clipBehavior: Clip.none,
+        children: [
+          AnimatedBackground(
+            height: double.infinity,
+            child: _SmallContent(colors),
+          ),
+
+          Positioned(
+            top: 16,
+            left: hozPadding,
+            right: hozPadding,
+            child: const MenuButton(),
+          ),
+        ],
+      );
+    }
+
+    return AnimatedBackground(
+      height: double.infinity,
+      child: _LargeContent(colors),
+    );
   }
 
-   Widget _LargeContent (AppColors colors)=>Padding(
-    padding: EdgeInsetsGeometry.only(left: hozPadding,right: hozPadding,top: 40),
-     child: Column(
-       crossAxisAlignment: CrossAxisAlignment.start,
-       children: [
+  // ──────────────────────────────────────────
+  // LARGE CONTENT (DESKTOP)
+  // ──────────────────────────────────────────
+  Widget _LargeContent(AppColors colors) => Padding(
+    padding: EdgeInsets.only(left: hozPadding, right: hozPadding, top: 40),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _TagBadge(),
+        const SizedBox(height: 16),
+        const _Headline(),
+        const SizedBox(height: 16),
+        Text(
+          profile?.summary ?? "",
+          style: AppTextStyles.regular14(
+            color: colors.text3,
+          ),
+        ),
+        const SizedBox(height: 16),
+        Divider(
+          color: colors.border,
+          thickness: 0.5,
+        ),
+        const SizedBox(height: 16),
+        StatsRow(
+          items: [
+            Stat(
+              value: projectsNumber,
+              name: 'Projects Tested',
+            ),
+            Stat(
+              value: certNumber,
+              name: 'Certifications',
+            ),
+            const Stat(
+              value: 2,
+              name: 'Testing Tracks',
+            ),
+            const Stat(
+              value: 100,
+              subTitle: '%',
+              name: 'Attention to Detail',
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+      ],
+    ),
+  );
 
-         _TagBadge(),
-         const SizedBox(height: 16),
-         const _Headline(),
-         const SizedBox(height: 16),
-         Text(
-           profile?.summary ?? "",
-           style: AppTextStyles.regular14(
-             color: colors.text3,
-           ),
-         ),
-         const SizedBox(height: 16),
-         Divider(
-           color: colors.border,
-           thickness: 0.5,
-         ),
-         const SizedBox(height: 16),
-         StatsRow(
-
-           items: [
-             Stat(
-               value: projectsNumber,
-               name: 'Projects Tested',
-             ),
-             Stat(
-               value: certNumber,
-               name: 'Certifications',
-             ),
-             const Stat(
-               value: 2,
-               name: 'Testing Tracks',
-             ),
-             const Stat(
-               value:100 ,
-               subTitle: '%',
-               name: 'Attention to Detail',
-             ),
-           ],
-         )
-       ],
-     ),
-   );
-   Widget _SmallContent (AppColors colors)=>Padding(
-     padding: EdgeInsetsGeometry.only(left: hozPadding,right: hozPadding,top: 40),
-     child: Column(
-       crossAxisAlignment: CrossAxisAlignment.start,
-       children: [
-
-         SummarySection(profile: profile),
-         const SizedBox(height: 8),
-         const DividerWidget(),
-         const SizedBox(height: 8),
-          _Headline(titleStyle: AppTextStyles.semiBold14(color: colors.text1)),
-         const SizedBox(height: 8),
-         Text(
-           profile?.summary ?? "",
-           style: AppTextStyles.regular10(
-             color: colors.text3,
-           ),
-         ),
-         const SizedBox(height: 8),
-         const DividerWidget(
-           thickness: 0.5,
-         ),
-         const SizedBox(height: 8),
-         StatsRow(
-           numStyle: AppTextStyles.medium20(),
-           titleStyle: AppTextStyles.regular10(),
-           items: [
-             Stat(
-               value: projectsNumber,
-               name: 'Projects Tested',
-             ),
-             Stat(
-               value: certNumber,
-               name: 'Certifications',
-             ),
-             const Stat(
-               value: 2,
-               name: 'Testing Tracks',
-             ),
-             const Stat(
-               value:100 ,
-               subTitle: '%',
-               name: 'Attention to Detail',
-             ),
-           ],
-         ),
-         const SizedBox(height: 16),
-
-       ],
-     ),
-   );
+  // ──────────────────────────────────────────
+  // SMALL CONTENT (MOBILE / TABLET)
+  // ──────────────────────────────────────────
+  Widget _SmallContent(AppColors colors) => Padding(
+    padding: EdgeInsets.only(left: hozPadding, right: hozPadding, top: 56 ,bottom: 16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SummarySection(profile: profile),
+        const SizedBox(height: 8),
+        const DividerWidget(),
+        const SizedBox(height: 8),
+        _Headline(titleStyle: AppTextStyles.semiBold14(color: colors.text1)),
+        const SizedBox(height: 8),
+        Text(
+          profile?.summary ?? "",
+          style: AppTextStyles.regular10(
+            color: colors.text3,
+          ),
+        ),
+        const SizedBox(height: 8),
+        const DividerWidget(
+          thickness: 0.5,
+        ),
+        const SizedBox(height: 8),
+        StatsRow(
+          numStyle: AppTextStyles.medium20(),
+          titleStyle: AppTextStyles.regular10(),
+          items: [
+            Stat(
+              value: projectsNumber,
+              name: 'Projects Tested',
+            ),
+            Stat(
+              value: certNumber,
+              name: 'Certifications',
+            ),
+            const Stat(
+              value: 2,
+              name: 'Testing Tracks',
+            ),
+            const Stat(
+              value: 100,
+              subTitle: '%',
+              name: 'Attention to Detail',
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }
 
 // ──────────────────────────────────────────
@@ -172,7 +199,7 @@ class _Headline extends StatelessWidget {
         children: [
           TextSpan(
             text: 'Ensuring Quality,\n',
-            style: titleStyle??AppTextStyles.semiBold28(color: colors.text1),
+            style: titleStyle ?? AppTextStyles.semiBold28(color: colors.text1),
           ),
           WidgetSpan(
             child: ShaderMask(
@@ -181,7 +208,7 @@ class _Headline extends StatelessWidget {
               ).createShader(bounds),
               child: Text(
                 'One Test Case at a Time.',
-                style: (titleStyle??AppTextStyles.semiBold28()).copyWith(color: colors.text3),
+                style: (titleStyle ?? AppTextStyles.semiBold28()).copyWith(color: colors.text3),
               ),
             ),
           ),
@@ -190,5 +217,3 @@ class _Headline extends StatelessWidget {
     );
   }
 }
-
-

@@ -12,16 +12,13 @@ import '../../../../../Widgets/sections_title_widget.dart';
 
 class MyProjectsWidget extends StatefulWidget {
   final List<ProjectEntity> projects;
-
-  final TextStyle? subtitleStyle, titleStyle;
   final double hozPadding;
 
   const MyProjectsWidget(
       {super.key,
       this.projects = const [],
       this.hozPadding = desktopHozPadding,
-      this.subtitleStyle,
-      this.titleStyle});
+      });
 
   @override
   State<MyProjectsWidget> createState() => _MyProjectsWidgetState();
@@ -50,7 +47,6 @@ class _MyProjectsWidgetState extends State<MyProjectsWidget> {
         SectionsTitleWidget(
           key: GlobalKeys.projects,
           title: Strings.projects.translate.toUpperCase(),
-
           subtitle: '${widget.projects.length} Projects',
         ),
         Row(

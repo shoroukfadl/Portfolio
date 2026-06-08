@@ -11,12 +11,11 @@ import '../../../../../Utilities/Constants/strings.dart';
 class ExperienceSection extends StatelessWidget {
   final List<ExperienceEntity> experiences;
   final double hozPadding;
-  final TextStyle? titleStyle , nameStyle, dateStyle, jobTitleStyle, descriptionStyle;
 
   const ExperienceSection(
       {super.key,
       this.hozPadding = desktopHozPadding,
-      this.experiences = const [], this.titleStyle, this.nameStyle, this.dateStyle, this.jobTitleStyle, this.descriptionStyle});
+      this.experiences = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +30,7 @@ class ExperienceSection extends StatelessWidget {
         ...experiences.map((exp) {
           return ExperinceItemCard(
             item: exp,
-            nameStyle: nameStyle,
-            dateStyle: dateStyle,
-            descriptionStyle: descriptionStyle,
-            jobTitleStyle: jobTitleStyle ,
+
           );
         }),
       ],

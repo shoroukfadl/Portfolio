@@ -186,3 +186,54 @@ class _AnimatedCardWidgetState extends State<AnimatedCardWidget>
         ));
   }
 }
+
+
+
+
+class SideAnimatedCard extends StatefulWidget {
+  final Widget child;
+
+  const SideAnimatedCard({
+    super.key, required this.child,
+  });
+
+  @override
+  State<SideAnimatedCard> createState() => _SideAnimatedCardState();
+}
+
+class _SideAnimatedCardState extends State<SideAnimatedCard> {
+  bool _isHovered = false;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+
+    return MouseRegion(
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 250),
+          decoration: BoxDecoration(
+            border: Border(
+              left: BorderSide(
+                color: _isHovered ? colors.accent : colors.secondary,
+                width: _isHovered ? 3 : 2,
+              ),
+              bottom: BorderSide(
+                color: _isHovered ? colors.accent : colors.secondary,
+                width: _isHovered ? 3 : 0.5,
+              ),
+            ),
+            color: colors.surface,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          padding: const EdgeInsets.all(16),
+          child: widget.child,
+        ));
+  }
+}

@@ -42,6 +42,7 @@ dependencies:
   flutter_svg: ^2.0.10
   flutter_launcher_icons: ^0.14.4
   intl: 
+  scroll_indicator: ^0.0.3
 
 
 dev_dependencies:

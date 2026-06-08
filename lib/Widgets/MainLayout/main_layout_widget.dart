@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/summary_card.dart';
-import 'package:portfolio/Features/home/presentation/widgets/contact/contact_button.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
 
-import '../../Utilities/Constants/constants.dart';
 import '../../Utilities/Constants/global_keys.dart';
-import '../../Utilities/portifilo_icons.dart';
+import 'menu_button.dart';
 
 class MainLayoutWidget extends StatefulWidget {
   final Widget child;
@@ -26,9 +23,7 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
       key: GlobalKeys.scaffoldKey,
       backgroundColor: colors.background,
       floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
-      body:
-
-      Row(
+      body: Row(
         spacing: 4,
         children: [
           if (context.isLarge)

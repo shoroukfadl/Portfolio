@@ -13,10 +13,9 @@ import 'certification_card.dart';
 class CertificationSection extends StatelessWidget {
   final List<CertificateEntity> data;
   final double hozPadding;
-  final TextStyle? titleStyle , providerStyle, dateStyle;
 
   const CertificationSection(
-      {super.key, this.hozPadding = desktopHozPadding, this.data = const [], this.titleStyle, this.providerStyle, this.dateStyle});
+      {super.key, this.hozPadding = desktopHozPadding, this.data = const []});
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +39,6 @@ class CertificationSection extends StatelessWidget {
               children: [
                 CertificationCard(
                   item: data[index],
-                  titleStyle: titleStyle,
-                  dateStyle: dateStyle,
-                  providerStyle: providerStyle,
                   imageHeight: 40,
                   imageWidth: 64,
                 ),

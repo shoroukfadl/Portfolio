@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/home_summary_widget.dart';
@@ -8,7 +7,9 @@ import 'package:portfolio/Features/home/presentation/widgets/contact_me.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
+
 import '../../widgets/certification/certification_widget.dart';
+import '../../widgets/education/education_widget.dart';
 import '../../widgets/experince/experince_card_widget.dart';
 import '../../widgets/general/spacer_widget.dart';
 import '../../widgets/products/my_projects.dart';
@@ -19,7 +20,6 @@ class SmallHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors =context.colors;
     return ScreenLayoutWidget(
       children: [
         /// Summary
@@ -38,6 +38,20 @@ class SmallHomeView extends StatelessWidget {
           child: 16.0.heightBox,
         ),
 
+
+        SliverToBoxAdapter(
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => c.data?.education != p.data?.education,
+              builder: (context, state) {
+                return EducationSection(
+                  padding: mobileHozPadding,
+                    education: state.data?.education ?? []);
+              }),
+        ),
+        const SliverToBoxAdapter(
+          child: SpacerWidget(),
+        ),
+
         /// Skills
         SliverToBoxAdapter(
             child: BlocBuilder<PortfolioCubit, PortfolioState>(
@@ -47,17 +61,14 @@ class SmallHomeView extends StatelessWidget {
                     hozPadding: mobileHozPadding,
                     skills: state.data?.skills ?? [],
                     iconSize: 20,
-                   countPerRow: 1,
-                    titleStyle: AppTextStyles.medium12(color: colors.text1),
-                    nameStyle: AppTextStyles.semiBold10(color: colors.secondary),
-                    contentStyle: AppTextStyles.regular8(color: colors.text1),
+                    countPerRow: 1,
+
                   );
                 })),
 
         const SliverToBoxAdapter(
           child: SpacerWidget(),
         ),
-
         /// Experince
         SliverToBoxAdapter(
             child: BlocBuilder<PortfolioCubit, PortfolioState>(
@@ -66,10 +77,6 @@ class SmallHomeView extends StatelessWidget {
                   return ExperienceSection(
                     experiences: state.data?.experience ?? [],
                     hozPadding: mobileHozPadding,
-                    jobTitleStyle:AppTextStyles.regular10(color: colors.text1) ,
-                    descriptionStyle: AppTextStyles.regular8(color: colors.text2),
-                    nameStyle: AppTextStyles.semiBold12(color: colors.secondary),
-                    dateStyle: AppTextStyles.medium8(color: colors.secondary),
                   );
                 })),
 
@@ -83,9 +90,7 @@ class SmallHomeView extends StatelessWidget {
               builder: (context, state) {
                 return CertificationSection(
                     hozPadding: mobileHozPadding,
-                    titleStyle: AppTextStyles.semiBold12(color: colors.text1),
-                    providerStyle: AppTextStyles.medium10(color: colors.accent),
-                    dateStyle: AppTextStyles.regular8(color: colors.secondary),
+
                     data: state.data?.certificates ?? []);
               }),
         ),
@@ -99,7 +104,6 @@ class SmallHomeView extends StatelessWidget {
                 return MyProjectsWidget(
                   projects: state.data?.projects ?? [],
                   hozPadding: mobileHozPadding,
-                  titleStyle: AppTextStyles.medium12(color: colors.text1),
 
                 );
               }),

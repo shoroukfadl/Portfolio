@@ -264,13 +264,20 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
     textBaseline: TextBaseline.alphabetic,
   );
   static TextStyle titleCardSmall({Color? color , required BuildContext context}) => mainFont.copyWith(
-    fontSize: context.isLarge? 12 : context.isMedium ? 10:8,
-    fontWeight: FontWeight.w500,
+    fontSize: context.isLarge? 10 : context.isMedium ? 10:8,
+    fontWeight: FontWeight.w400,
     color: color ?? Colors.black,
     textBaseline: TextBaseline.alphabetic,
   );
   static TextStyle subtitleCard({Color? color , required BuildContext context}) => mainFont.copyWith(
     fontSize: context.isLarge? 12 : 10,
+    fontWeight: FontWeight.w500,
+    color: color ?? Colors.black,
+    textBaseline: TextBaseline.alphabetic,
+  );
+
+  static TextStyle label({Color? color , required BuildContext context}) => secondaryFont.copyWith(
+    fontSize: context.isLarge? 12 :10,
     fontWeight: FontWeight.w500,
     color: color ?? Colors.black,
     textBaseline: TextBaseline.alphabetic,

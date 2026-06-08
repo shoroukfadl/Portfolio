@@ -13,12 +13,14 @@ class Portfolio {
 
   static const String _fontFamily = 'portfolio';
 
+  static const IconData closeUp = IconData(0xf016, fontFamily: _fontFamily);
+  static const IconData close = IconData(0xf015, fontFamily: _fontFamily);
+  static const IconData menu = IconData(0xf014, fontFamily: _fontFamily);
   static const IconData skills = IconData(0xf013, fontFamily: _fontFamily);
   static const IconData work = IconData(0xf012, fontFamily: _fontFamily);
   static const IconData projects = IconData(0xf011, fontFamily: _fontFamily);
   static const IconData education = IconData(0xf006, fontFamily: _fontFamily);
-  static const IconData certification =
-      IconData(0xf002, fontFamily: _fontFamily);
+  static const IconData certification = IconData(0xf002, fontFamily: _fontFamily);
   static const IconData summary = IconData(0xf001, fontFamily: _fontFamily);
   static const IconData github = IconData(0xf000, fontFamily: _fontFamily);
   static const IconData cv = IconData(0xf003, fontFamily: _fontFamily);

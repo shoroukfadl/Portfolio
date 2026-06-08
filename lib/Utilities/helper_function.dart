@@ -46,7 +46,7 @@ abstract class HelperFunctions {
               shadowColor: colors.text1.withOpacity(0.25),
               backgroundColor: backgroundColor ?? colors.background,
               contentPadding: enablePadding
-                  ? EdgeInsets.symmetric(horizontal: 24, vertical: 40.0)
+                  ? const EdgeInsets.symmetric(horizontal: 24, vertical: 40.0)
                   : EdgeInsets.zero,
               content: contentWidget,
             ));

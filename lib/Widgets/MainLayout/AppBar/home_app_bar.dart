@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-
-import '../../../Utilities/Constants/strings.dart';
-import 'home_app_bar_item.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
