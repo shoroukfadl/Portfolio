@@ -28,9 +28,8 @@ void main() async {
         ? HydratedStorageDirectory.web
         : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
-  print('URL: $key');      // ← أضف السطرين دول مؤقتاً للتأكد
-  print('KEY: $anKey');
-  await Supabase.initialize(url:key, anonKey: anKey);
+
+  await Supabase.initialize(url:SupabaseConfig.url, anonKey: SupabaseConfig.anonKey);
   await GitIt.initGitIt();
   setHashUrlStrategy();
   runApp(MultiBlocProvider(providers: [

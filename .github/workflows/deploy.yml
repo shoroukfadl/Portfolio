@@ -4,37 +4,47 @@ on:
   push:
     branches:
       - Mohamed
-  pull_request:
-    branches:
-      - Mohamed
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      # 1. سحب الكود من الـ Repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
+      # 2. إعداد لغة Java (مهمة لـ Flutter)
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      # 3. إعداد بيئة Flutter تلقائياً وبسرعة
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.44.1'
           channel: 'stable'
-          cache: true
+          cache: true # لتسريع الـ Builds القادمة
 
+      # 4. تحميل الـ Packages
       - name: Install dependencies
         run: flutter pub get
 
+      # 5. عمل Build للـ Web وتمرير مفاتيح Supabase السرية
       - name: Build Flutter Web
         run: |
           flutter build web --release \
-          --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
-          --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+            --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+            --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
 
+      # 6. رفع الملفات الناتجة إلى Netlify
       - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
+        uses: nwtgck/actions-netlify@v3.0
         with:
-          args: deploy --dir=build/web --prod
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          publish-dir: './build/web'
+          production-deploy: true
+          netli-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          site-id: ${{ secrets.NETLIFY_SITE_ID }}
+          deploy-message: "Deploy from GitHub Actions"
