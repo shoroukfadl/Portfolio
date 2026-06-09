@@ -23,6 +23,9 @@ import 'Utilities/router_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+  final key = ApiService.subbaseKey;
+  final anKey = ApiService.subbaseAnonKey;
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorageDirectory.web
