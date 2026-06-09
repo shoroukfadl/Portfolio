@@ -30,21 +30,23 @@ class ProjectModel {
       );
 
   Map<String, dynamic> toJson() => {
-        'title': title,
-        'project_type': projectType,
-        'platform': platform,
-        'key_tasks': keyTasks,
-        'manual': isManual,
+    "id":id,
+    "profileId":profileId,
+    "title":title,
+    "projectType":projectType,
+    "platform":platform,
+    "keyTasks":keyTasks,
+    "isManual":isManual,
       };
 
-  ProjectModel toModel() => ProjectModel(
-        id: id,
-        profileId: profileId,
-        title: title,
-        projectType: projectType,
-        platform: platform,
-        keyTasks: keyTasks,
-        isManual: isManual,
+  static ProjectModel toModel(ProjectEntity? entity) => ProjectModel(
+        id:entity?. id,
+        profileId:entity?. profileId,
+        title:entity?. title,
+        projectType:entity?. projectType,
+        platform:entity?. platform,
+        keyTasks:entity?. keyTasks??[],
+        isManual:entity?. isManual??false,
       );
   ProjectEntity fromModel() => ProjectEntity(
         id: id,

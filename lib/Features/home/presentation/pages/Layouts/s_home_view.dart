@@ -69,6 +69,21 @@ class SmallHomeView extends StatelessWidget {
         const SliverToBoxAdapter(
           child: SpacerWidget(),
         ),
+
+
+        const SliverToBoxAdapter(child: SpacerWidget()),
+
+        SliverToBoxAdapter(
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => c.data?.projects != p.data?.projects,
+              builder: (context, state) {
+                return MyProjectsWidget(
+                  projects: state.data?.projects ?? [],
+                  hozPadding: mobileHozPadding,
+
+                );
+              }),
+        ),
         /// Experince
         SliverToBoxAdapter(
             child: BlocBuilder<PortfolioCubit, PortfolioState>(
@@ -92,20 +107,6 @@ class SmallHomeView extends StatelessWidget {
                     hozPadding: mobileHozPadding,
 
                     data: state.data?.certificates ?? []);
-              }),
-        ),
-
-        const SliverToBoxAdapter(child: SpacerWidget()),
-
-        SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              buildWhen: (c, p) => c.data?.projects != p.data?.projects,
-              builder: (context, state) {
-                return MyProjectsWidget(
-                  projects: state.data?.projects ?? [],
-                  hozPadding: mobileHozPadding,
-
-                );
               }),
         ),
         const SliverToBoxAdapter(child: SpacerWidget()),

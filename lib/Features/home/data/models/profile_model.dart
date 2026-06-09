@@ -13,7 +13,7 @@ class ProfileModel {
   final String? linkedin;
   final String? image;
   final String? cv;
-  final bool militaryService;
+  final    bool militaryService;
 
   ProfileModel({
     this.id,
@@ -46,20 +46,20 @@ class ProfileModel {
       militaryService: json['military_service'] ?? false,
       cv: json['cv']);
 
-  ProfileModel toModel() => ProfileModel(
-      id: id,
-      firstName: firstName,
-      lastName: lastName,
-      jobTitle: jobTitle,
-      email: email,
-      phone: phone,
-      location: location,
-      summary: summary,
-      github: github,
-      linkedin: linkedin,
-      militaryService: militaryService,
-      image: image,
-      cv: cv);
+  static ProfileModel toModel(ProfileEntity? entity) => ProfileModel(
+      id: entity?.id,
+      firstName: entity?.firstName,
+      lastName: entity?.lastName,
+      jobTitle: entity?.jobTitle,
+      email: entity?.email,
+      phone: entity?.phone,
+      location: entity?.location,
+      summary: entity?.summary,
+      github: entity?.github,
+      linkedin: entity?.linkedin,
+      militaryService: entity?.militaryService??true,
+      image: entity?.image,
+      cv: entity?.cv);
   ProfileEntity toEntity() => ProfileEntity(
         id: id,
         firstName: firstName,
@@ -77,17 +77,18 @@ class ProfileModel {
       );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'first_name': firstName,
-        'last_name': lastName,
-        'job_title': jobTitle,
-        'email': email,
-        'phone': phone,
-        'location': location,
-        'summary': summary,
-        'github': github,
-        'linkedin': linkedin,
-        'image': image,
-        'military_service': militaryService,
+    "id":id,
+    "firstName":firstName,
+    "lastName":lastName,
+    "jobTitle":jobTitle,
+    "email":email,
+    "phone":phone,
+    "location":location,
+    "summary":summary,
+    "github":github,
+    "linkedin":linkedin,
+    "image":image,
+    "cv":cv,
+    "militaryService":militaryService,
       };
 }

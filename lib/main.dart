@@ -1,14 +1,15 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
-import 'package:portfolio/Utilities/extensions.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:universal_html/html.dart' as html;
 import 'package:url_strategy/url_strategy.dart';
 
 import 'Core/Language/app_languages.dart';
@@ -21,6 +22,11 @@ import 'Utilities/router_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorageDirectory.web
+        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
+  );
   await Supabase.initialize(
       url: 'https://zljhjxsdlidmfpfwmvpa.supabase.co',
       anonKey:

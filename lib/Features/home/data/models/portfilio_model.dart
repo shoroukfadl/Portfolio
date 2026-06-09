@@ -2,6 +2,7 @@ import 'package:portfolio/Features/home/data/models/profile_model.dart';
 import 'package:portfolio/Features/home/data/models/project_model.dart';
 import 'package:portfolio/Features/home/data/models/tech_skill_model.dart';
 import 'package:portfolio/Features/home/domain/entities/portfilio_entity.dart';
+import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 
 import 'certificate_model.dart';
 import 'education_model.dart';
@@ -55,12 +56,13 @@ class PortfolioModel {
                 .toList(),
       );
   Map<String, dynamic> toFullJson() => {
-        'profile_id': profile?.id,
+        'profile': profile?.toJson(),
         'education': education.map((e) => e.toJson()).toList(),
         'experience': experience.map((e) => e.toJson()).toList(),
         'projects': projects.map((e) => e.toJson()).toList(),
         'certificates': certificates.map((e) => e.toJson()).toList(),
         'skills': skills.map((e) => e.toJson()).toList(),
+
       };
 
   PortfolioEntity fromModel() => PortfolioEntity(
@@ -72,12 +74,12 @@ class PortfolioModel {
         skills: skills.map((e) => e.toEntity()).toList(),
       );
 
-  PortfolioModel toModel() => PortfolioModel(
-        profile: profile?.toModel(),
-        education: education.map((e) => e.toModel()).toList(),
-        projects: projects.map((e) => e.toModel()).toList(),
-        experience: experience.map((e) => e.toModel()).toList(),
-        certificates: certificates.map((e) => e.toModel()).toList(),
-        skills: skills.map((e) => e.toModel()).toList(),
+  static PortfolioModel toModel(PortfolioEntity? pr) => PortfolioModel(
+        profile: ProfileModel.toModel(pr?.profile),
+        education: pr?.education.map((e) => EducationModel.toModel(e)).toList()??[],
+        projects: pr?.projects.map((e) => ProjectModel.toModel(e)).toList()??[],
+        experience: pr?.experience.map((e) => ExperienceModel.toModel(e)).toList()??[],
+        certificates: pr?.certificates.map((e) => CertificateModel.toModel(e)).toList()??[],
+        skills: pr?.skills.map((e) => TechnicalSkillModel.toModel(e)).toList()??[],
       );
 }

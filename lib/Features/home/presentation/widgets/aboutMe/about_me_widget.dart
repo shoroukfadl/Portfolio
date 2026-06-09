@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Portfilio/profile_image.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
 
 class LargeSummarySection extends StatelessWidget {
@@ -13,10 +14,10 @@ class LargeSummarySection extends StatelessWidget {
     final colors = context.colors;
     return Column(
       children: [
-        RoundedImage(
+        ProfileImage(
           width: 120,
           height: 120,
-          imagePath: profile?.image,
+          image: profile?.image??"",
         ),
         Text(
           profile?.firstName ?? "",
@@ -52,11 +53,10 @@ class SummarySection extends StatelessWidget {
     return Row(
       spacing: 16,
       children: [
-        RoundedImage(
+        ProfileImage(
           width: 88,
           height: 88,
-          imagePath: profile?.image,
-          borderColor: colors.accent,
+          image: profile?.image??"",
         ),
 
         Column(

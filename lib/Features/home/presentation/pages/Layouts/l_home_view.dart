@@ -64,6 +64,16 @@ class LargeHomeView extends StatelessWidget {
 
         SliverToBoxAdapter(
           child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => c.data?.projects != p.data?.projects,
+              builder: (context, state) {
+                return MyProjectsWidget(projects: state.data?.projects ?? []);
+              }),
+        ),
+
+        const SliverToBoxAdapter(child: SpacerWidget(),),
+
+        SliverToBoxAdapter(
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
               buildWhen: (c, p) => c.data?.certificates != p.data?.certificates,
               builder: (context, state) {
                 return CertificationSection(
@@ -71,17 +81,6 @@ class LargeHomeView extends StatelessWidget {
               }),
         ),
 
-        const SliverToBoxAdapter(
-          child: SpacerWidget(),
-        ),
-
-        SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              buildWhen: (c, p) => c.data?.projects != p.data?.projects,
-              builder: (context, state) {
-                return MyProjectsWidget(projects: state.data?.projects ?? []);
-              }),
-        ),
 
          SliverToBoxAdapter(child: 16.0.heightBox,)
       ],

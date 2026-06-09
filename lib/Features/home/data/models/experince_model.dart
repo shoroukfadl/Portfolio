@@ -19,7 +19,8 @@ class ExperienceModel {
       this.location,
       this.startDate,
       this.responsibilities = const [],
-      this.status = false, this.endDate});
+      this.status = false,
+      this.endDate});
 
   factory ExperienceModel.fromJson(Map<String, dynamic> json) =>
       ExperienceModel(
@@ -28,31 +29,38 @@ class ExperienceModel {
         jobTitle: json['job_title'],
         companyName: json['company_name'],
         location: json['location'],
-        startDate: json['startDate'] ==null?null:DateTime.tryParse( json['startDate']),
-        endDate: json['end_date'] ==null?null:DateTime.tryParse( json['end_date']),
+        startDate: json['startDate'] == null
+            ? null
+            : DateTime.tryParse(json['startDate']),
+        endDate: json['end_date'] == null
+            ? null
+            : DateTime.tryParse(json['end_date']),
         status: json['status'] ?? false,
         responsibilities: List<String>.from(json['responsibilities'] ?? []),
       );
 
   Map<String, dynamic> toJson() => {
-        'job_title': jobTitle,
-        'company_name': companyName,
-        'location': location,
-        'endDate': endDate,
-    'startDate':startDate,
-        'responsibilities': responsibilities,
+        "id": id,
+        "profileId": profileId,
+        "jobTitle": jobTitle,
+        "companyName": companyName,
+        "location": location,
+        "startDate": startDate?.toIso8601String(),
+        "endDate": endDate?.toIso8601String(),
+        "status": status,
+        "responsibilities": responsibilities,
       };
 
-  ExperienceModel toModel() => ExperienceModel(
-      id: id,
-      profileId: profileId,
-      jobTitle: jobTitle,
-      companyName: companyName,
-      location: location,
-      startDate: startDate,
-      endDate: endDate,
-      responsibilities: responsibilities,
-      status: status);
+  static ExperienceModel toModel(ExperienceEntity? entity) => ExperienceModel(
+      id: entity?.id,
+      profileId: entity?.profileId,
+      jobTitle: entity?.jobTitle,
+      companyName: entity?.companyName,
+      location: entity?.location,
+      startDate: entity?.startDate,
+      endDate: entity?.endDate,
+      responsibilities: entity?.responsibilities ?? [],
+      status: entity?.status ?? false);
   ExperienceEntity fromModel() => ExperienceEntity(
         id: id,
         profileId: profileId,

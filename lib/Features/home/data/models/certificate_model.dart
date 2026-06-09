@@ -33,11 +33,13 @@ class CertificateModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'course_name': courseName,
-      'provider': provider,
-      'issue_date': issueDate,
-      'credential_url': credentialUrl,
-      'certificate_image_url': certificateImageUrl
+      "id":id,
+      "profileId":profileId,
+      "courseName":courseName,
+      "provider":provider,
+      "issueDate":issueDate,
+      "credentialUrl":credentialUrl,
+      "certificateImageUrl":certificateImageUrl,
     };
   }
 
@@ -49,13 +51,13 @@ class CertificateModel {
       issueDate: issueDate,
       credentialUrl: credentialUrl,
       certificateImageUrl: certificateImageUrl);
-  CertificateModel toModel() => CertificateModel(
-        id: id,
-        profileId: profileId,
-        certificateImageUrl: certificateImageUrl,
-        courseName: courseName,
-        provider: provider,
-        issueDate: issueDate,
-        credentialUrl: credentialUrl,
+  static CertificateModel toModel(CertificateEntity? entity) => CertificateModel(
+        id: entity?. id,
+        profileId: entity?. profileId,
+        certificateImageUrl: entity?. certificateImageUrl,
+        courseName: entity?. courseName,
+        provider: entity?. provider,
+        issueDate: entity?. issueDate,
+        credentialUrl: entity?. credentialUrl,
       );
 }

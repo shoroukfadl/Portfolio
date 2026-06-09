@@ -29,17 +29,18 @@ class EducationModel {
         grade: json['grade'],
         duration: json['duration'],
         gradProjectTitle: json['graduation_project_title'],
-        gradProjectTech:
-            List<String>.from(json['graduation_project_tech'] ?? []),
+        gradProjectTech: List<String>.from(json['graduation_project_tech'] ?? []),
       );
 
   Map<String, dynamic> toJson() => {
-        'degree': degree,
-        'university': university,
-        'grade': grade,
-        'duration': duration,
-        'graduation_project_title': gradProjectTitle,
-        'graduation_project_tech': gradProjectTech,
+    "id":id,
+    "profileId":profileId,
+    "degree":degree,
+    "university":university,
+    "grade":grade,
+    "duration":duration,
+    "gradProjectTitle":gradProjectTitle,
+    "gradProjectTech":gradProjectTech,
       };
 
   EducationEntity fromModel() => EducationEntity(
@@ -53,14 +54,14 @@ class EducationModel {
         gradProjectTech: gradProjectTech,
       );
 
-  EducationModel toModel() => EducationModel(
-        id: id,
-        profileId: profileId,
-        degree: degree,
-        university: university,
-        grade: grade,
-        duration: duration,
-        gradProjectTitle: gradProjectTitle,
-        gradProjectTech: gradProjectTech,
+  static EducationModel toModel(EducationEntity? entity) => EducationModel(
+        id:entity?. id,
+        profileId:entity?. profileId,
+        degree:entity?. degree,
+        university:entity?. university,
+        grade:entity?. grade,
+        duration:entity?. duration,
+        gradProjectTitle:entity?. gradProjectTitle,
+        gradProjectTech:entity?. gradProjectTech??[],
       );
 }

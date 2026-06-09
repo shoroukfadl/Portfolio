@@ -9,6 +9,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
 import '../../widgets/certification/certification_widget.dart';
+import '../../widgets/education/education_widget.dart';
 import '../../widgets/experince/experince_card_widget.dart';
 import '../../widgets/general/spacer_widget.dart';
 import '../../widgets/products/my_projects.dart';
@@ -37,6 +38,23 @@ class MediumHomeView extends StatelessWidget {
           child: 16.0.heightBox,
         ),
 
+        SliverToBoxAdapter(
+          child: 16.0.heightBox,
+        ),
+
+
+        SliverToBoxAdapter(
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => c.data?.education != p.data?.education,
+              builder: (context, state) {
+                return EducationSection(
+                    padding: tabletHozPadding,
+                    education: state.data?.education ?? []);
+              }),
+        ),
+        const SliverToBoxAdapter(
+          child: SpacerWidget(),
+        ),
         /// Skills
         SliverToBoxAdapter(
             child: BlocBuilder<PortfolioCubit, PortfolioState>(
@@ -66,19 +84,7 @@ class MediumHomeView extends StatelessWidget {
                   );
                 })),
 
-        const SliverToBoxAdapter(
-          child: SpacerWidget(),
-        ),
 
-        SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              buildWhen: (c, p) => c.data?.certificates != p.data?.certificates,
-              builder: (context, state) {
-                return CertificationSection(
-                    hozPadding: tabletHozPadding,
-                    data: state.data?.certificates ?? []);
-              }),
-        ),
 
         const SliverToBoxAdapter(child: SpacerWidget()),
 
@@ -91,6 +97,19 @@ class MediumHomeView extends StatelessWidget {
                   hozPadding: tabletHozPadding,
 
                 );
+              }),
+        ),
+        const SliverToBoxAdapter(
+          child: SpacerWidget(),
+        ),
+
+        SliverToBoxAdapter(
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => c.data?.certificates != p.data?.certificates,
+              builder: (context, state) {
+                return CertificationSection(
+                    hozPadding: tabletHozPadding,
+                    data: state.data?.certificates ?? []);
               }),
         ),
         const SliverToBoxAdapter(child: SpacerWidget()),

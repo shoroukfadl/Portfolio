@@ -23,15 +23,17 @@ class TechnicalSkillModel {
 
   Map<String, dynamic> toJson() => {
         'category': category,
-        'skill_name': skills,
+        'skills': skills.map((e)=>e.toJson()),
       };
 
-  TechnicalSkillModel toModel() => TechnicalSkillModel(
-        category: category,
-        skills: skills,
+  static TechnicalSkillModel toModel(TechnicalSkillEntity? s) => TechnicalSkillModel(
+        category:s?. category,
+        skills:s?. skills.map((e)=>SkillModel.toModel(e)).toList()??[],
+        id:s?.id
       );
   TechnicalSkillEntity toEntity() => TechnicalSkillEntity(
         category: category,
+                   id: id,
         skills: skills.map((e) => e.toEntity()).toList(),
       );
 }
@@ -57,15 +59,17 @@ class SkillModel {
       );
 
   Map<String, dynamic> toJson() => {
-        'category': category,
-        'skill_name': skillName,
+    "id":id,
+    "profileId":profileId,
+    "category":category,
+    "skillName":skillName,
       };
 
-  SkillModel toModel() => SkillModel(
-        id: id,
-        profileId: profileId,
-        category: category,
-        skillName: skillName,
+  static SkillModel toModel(SkillEntity? s) => SkillModel(
+        id:s?. id,
+        profileId:s?. profileId,
+        category:s?. category,
+        skillName:s?. skillName,
       );
   SkillEntity toEntity() => SkillEntity(
         id: id,

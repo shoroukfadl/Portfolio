@@ -8,6 +8,7 @@ import 'package:portfolio/Features/Splash/presentation/widgets/splash_background
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Features/home/presentation/pages/home_view.dart';
 import 'package:portfolio/Utilities/Constants/enums.dart';
+import 'package:portfolio/Widgets/Portfilio/profile_image.dart';
 import 'package:portfolio/Widgets/rounded_image_widget.dart';
 import '../../../../Utilities/extensions.dart';
 import '../../../../generated/assets.dart';
@@ -101,12 +102,7 @@ class _SplashScreenState extends State<SplashScreen>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    RoundedImage(
-                      imagePath: Assets.images.logo.path,
-                      height: 180,
-                      width: 180,
-                      borderColor: colors.accent,
-                    ),
+                    ProfileImage(image: Assets.images.logo.path,),
                     24.0.heightBox,
                     const LoadingTextWidget()
                   ],

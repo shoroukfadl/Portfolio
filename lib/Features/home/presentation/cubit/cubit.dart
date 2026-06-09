@@ -1,9 +1,10 @@
 import 'package:bloc/bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:portfolio/Features/home/domain/usecases/get_data_use_case.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Utilities/Constants/enums.dart';
 
-class PortfolioCubit extends Cubit<PortfolioState> {
+class PortfolioCubit extends HydratedCubit<PortfolioState> {
   final GetDataUseCase getDataUseCase;
   PortfolioCubit({required this.getDataUseCase}) : super(PortfolioState.init());
 
@@ -16,5 +17,15 @@ class PortfolioCubit extends Cubit<PortfolioState> {
       print('In R :: ${r.profile?.firstName}');
       emit(state.copyWith(loading: RequestStatus.success, data: r));
     });
+  }
+
+  @override
+  PortfolioState? fromJson(Map<String, dynamic> json) {
+    return PortfolioState.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic>? toJson(PortfolioState state) {
+    return state.toJson(state);
   }
 }
