@@ -30,7 +30,7 @@ dependencies:
   url_strategy:
   url_launcher: ^6.3.1
   responsive_framework:
-  json_annotation: 4.11.0
+  json_annotation: 4.9.0
   dotted_border:
   supabase_flutter:
   flutter_svg: ^2.0.10
