@@ -1,6 +1,4 @@
 import 'dart:ui';
-import 'dart:ui_web';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +11,7 @@ import 'package:portfolio/Core/Api/api_service.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:url_strategy/url_strategy.dart';
+import 'package:url_strategy/url_strategy.dart' ;
 
 import 'Core/Language/app_languages.dart';
 import 'Core/Language/locales.dart';
@@ -33,10 +31,9 @@ void main() async {
         ? HydratedStorageDirectory.web
         : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
-
   await Supabase.initialize(url:key, anonKey: anKey);
   await GitIt.initGitIt();
-  HashUrlStrategy();
+  setHashUrlStrategy();
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
     BlocProvider<AppLanguage>(create: (_) => AppLanguage()),

@@ -5,7 +5,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 @immutable
 abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   // ─── Base font families ───────────────────────────────────────────────────
-  static TextStyle get mainFont => GoogleFonts.inter();
+  static TextStyle get mainFont => GoogleFonts.cairo();
   static TextStyle get secondaryFont => GoogleFonts.dmSans();
 
   /// ----------- Headers  -----------
