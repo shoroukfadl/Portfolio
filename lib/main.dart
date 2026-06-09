@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'dart:ui_web';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -35,7 +36,7 @@ void main() async {
 
   await Supabase.initialize(url:key, anonKey: anKey);
   await GitIt.initGitIt();
-  setPathUrlStrategy();
+  HashUrlStrategy();
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
     BlocProvider<AppLanguage>(create: (_) => AppLanguage()),

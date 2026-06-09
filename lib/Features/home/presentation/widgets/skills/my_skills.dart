@@ -33,7 +33,7 @@ class SkillsSection extends StatelessWidget {
           shrinkWrap: true,
           gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount:countPerRow,
-              childAspectRatio:context.isSmall ? 4.2: 2.2,
+              childAspectRatio:context.isSmall ? 4.2: context.isMedium ? 1.8: 2.2,
               mainAxisSpacing: 16,
               crossAxisSpacing: 16),
           itemBuilder: (c, u) => SkillCard(
