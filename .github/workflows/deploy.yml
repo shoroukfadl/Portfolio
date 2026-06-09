@@ -21,7 +21,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'   # change to your Flutter version
+          flutter-version: '3.44.1'   # change to your Flutter version
           channel: 'stable'
           cache: true                 # caches Flutter for faster builds
 
