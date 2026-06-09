@@ -26,7 +26,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          cache: true # لتسريع الـ Builds القادمة
+          cache: true
 
       # 4. تحميل الـ Packages
       - name: Install dependencies
@@ -43,10 +43,9 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
-           publish-dir: './build/web'
-           production-deploy: true
-           deploy-message: "Deploy from GitHub Actions"
+          publish-dir: 'build/web'
+          production-deploy: true
+          deploy-message: "Deploy from GitHub Actions"
         env:
-           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
