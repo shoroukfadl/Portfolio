@@ -22,12 +22,12 @@ class LargeHomeView extends StatelessWidget {
         /// Summary
         SliverToBoxAdapter(
             child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                buildWhen: (c, p) => c.data?.profile != p.data?.profile,
+                buildWhen: (c, p) => c.data?.profile != p.data?.profile || c.projectLen != p.projectLen || c.certificationLen != p.certificationLen,
                 builder: (context, state) {
                   return HomeSummarySection(
                     profile: state.data?.profile,
-                    certNumber: state.data?.certificates.length ?? 0,
-                    projectsNumber: state.data?.projects.length ?? 0,
+                    certNumber: state.certificationLen,
+                    projectsNumber: state.projectLen,
                   );
                 })),
         SliverToBoxAdapter(

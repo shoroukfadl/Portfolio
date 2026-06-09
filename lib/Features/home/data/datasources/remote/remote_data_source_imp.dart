@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:portfolio/Core/Error/failures.dart';
 import 'package:portfolio/Core/Network/custom_either.dart';
 import 'package:portfolio/Core/Network/error_message_model.dart';
@@ -13,14 +14,12 @@ class RemoteDataSourceImp implements RemoteDataSource {
     final profileData =
         await supabase.from('profiles').select('id').limit(1).maybeSingle();
 
-    print('Profile data :: ${profileData}');
     if (profileData == null) {
       return Either.left(ServerFailure(ErrorMessageModel.local(
           statusMessage: 'No Id Found', errorMessage: 'No Id Found')));
     }
 
     final String firstId = profileData['id'];
-    print('Profile data :: ${firstId}');
     final response = await supabase.rpc(
       'get_portfolio_by_id',
       params: {'p_id': firstId},
@@ -29,7 +28,7 @@ class RemoteDataSourceImp implements RemoteDataSource {
       return Either.left(ServerFailure(ErrorMessageModel.local(
           statusMessage: 'No Data Found', errorMessage: 'No Data Found')));
     } else {
-      print('data :: ${response}');
+      if(kDebugMode) print('data :: ${response}');
       return Either.right(PortfolioModel.fromJson(response));
     }
   }

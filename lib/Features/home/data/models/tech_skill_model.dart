@@ -23,7 +23,7 @@ class TechnicalSkillModel {
 
   Map<String, dynamic> toJson() => {
         'category': category,
-        'skills': skills.map((e)=>e.toJson()),
+        'skills': skills.map((e)=>e.toJson()).toList(),
       };
 
   static TechnicalSkillModel toModel(TechnicalSkillEntity? s) => TechnicalSkillModel(

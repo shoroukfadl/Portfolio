@@ -4,9 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:portfolio/Core/Api/api_service.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -22,22 +24,23 @@ import 'Utilities/router_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+  final key = ApiService.subbaseKey;
+  final anKey = ApiService.subbaseAnonKey;
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorageDirectory.web
         : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
-  await Supabase.initialize(
-      url: 'https://zljhjxsdlidmfpfwmvpa.supabase.co',
-      anonKey:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsamhqeHNkbGlkbWZwZndtdnBhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY3Njk3NzQsImV4cCI6MjA5MjM0NTc3NH0.Vv0wRPesQi7BG-iw5SECV_yUmHeZ8IYqlGJreN0thu4');
+
+  await Supabase.initialize(url:key, anonKey: anKey);
   await GitIt.initGitIt();
   setPathUrlStrategy();
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
     BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
     BlocProvider<PortfolioCubit>(
-        create: (_) => PortfolioCubit(getDataUseCase: sl())),
+        create: (_) => PortfolioCubit(getDataUseCase: sl())..getData()),
   ], child: const EntryPoint()));
 }
 

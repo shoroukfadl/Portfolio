@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:portfolio/Features/home/domain/usecases/get_data_use_case.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
@@ -14,7 +13,6 @@ class PortfolioCubit extends HydratedCubit<PortfolioState> {
     res.fold((l) {
       emit(state.copyWith(loading: RequestStatus.error));
     }, (r) {
-      print('In R :: ${r.profile?.firstName}');
       emit(state.copyWith(loading: RequestStatus.success, data: r));
     });
   }

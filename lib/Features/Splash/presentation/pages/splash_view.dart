@@ -41,9 +41,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     _initParticles();
     _initAnimations();
-    _loadData();
   }
-
   void _initParticles() {
     for (int i = 0; i < 60; i++) {
       _particles.add(Particle(random: _random));
@@ -57,14 +55,7 @@ class _SplashScreenState extends State<SplashScreen>
     )..repeat();
   }
 
-  Future<void> _loadData() async {
-    try {
-      await getData();
-      if (!mounted) return;
-    } catch (e) {
-      if (!mounted) return;
-    }
-  }
+
 
   @override
   void dispose() {

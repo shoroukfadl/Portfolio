@@ -24,7 +24,6 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
       backgroundColor: colors.background,
       floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
       body: Row(
-        spacing: 4,
         children: [
           if (context.isLarge)
             const LargeSummaryCard(),

@@ -8,90 +8,13 @@
   <meta name="description" content="A new Flutter project.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="web_app">
+  <meta name="apple-mobile-web-app-title" content="Mohamed El Nomrosy">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
   <link rel="icon" type="image/png" href="favicon.png" />
-  <title>web_app</title>
+  <title>Mohamed El Nomrosy</title>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-<!-- This script must be loaded first -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
-
-<script>
-  // Your Firebase config
-  const firebaseConfig = {
-   apiKey: "AIzaSyBXWJoNHVOu0-OaVvEkdUCZ1ak1R-QZkE0",
-      authDomain: "portofilo-dd5c6.firebaseapp.com",
-      projectId: "portofilo-dd5c6",
-      storageBucket: "portofilo-dd5c6.firebasestorage.app",
-      messagingSenderId: "308267064546",
-      appId: "1:308267064546:web:398fa35a70c23c2fb7d2bb",
-      measurementId: "G-2956X7JSKK"
-  };
-
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-  // Initialize FCM
-  const messaging = firebase.messaging();
-
-  // Request permission and get token
-  async function initializeFirebaseMessaging() {
-    try {
-      const permission = await Notification.requestPermission();
-      if (permission === 'granted') {
-        // Get FCM token
-        const token = await messaging.getToken({
-          vapidKey: 'BKi4aYOMGfG3UeSiQpgTkaCtNz42K1nhHydvsUJS1apvjfML0g0TcA77oz9fCp-u7yhUB9j5dp_WOx5uRairYdQ' // Get this from Firebase Console
-        });
-        console.log('FCM Token:', token);
-
-        // Send token to your server
-        // await sendTokenToServer(token);
-      } else {
-        console.log('Notification permission denied');
-      }
-    } catch (error) {
-      console.error('Error initializing FCM:', error);
-    }
-  }
-
-  // Handle incoming messages when app is in foreground
-  messaging.onMessage((payload) => {
-    console.log('Received foreground message:', payload);
-
-    // Show custom notification
-    if (Notification.permission === 'granted') {
-      const notificationTitle = payload.notification.title;
-      const notificationOptions = {
-        body: payload.notification.body,
-        icon: payload.notification.icon || '/icon.png',
-        // Add more options as needed
-      };
-
-      new Notification(notificationTitle, notificationOptions);
-    }
-  });
-
-  // Register service worker
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/firebase-messaging-sw.js')
-        .then(function(registration) {
-          console.log('ServiceWorker registration successful');
-
-          // Initialize FCM after SW registration
-          initializeFirebaseMessaging();
-        })
-        .catch(function(err) {
-          console.log('ServiceWorker registration failed: ', err);
-        });
-    });
-  }
-</script>
-
 <script src="flutter_bootstrap.js" defer></script>
 </body>
 </html>

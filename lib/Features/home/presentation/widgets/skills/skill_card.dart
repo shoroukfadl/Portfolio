@@ -34,9 +34,7 @@ class SkillCard extends StatelessWidget {
                 AppTextStyles.titleCardLarge(
                   context: context,
                   color: colors.secondary,
-                )).copyWith(
-                  letterSpacing: 1.2
-                ),
+                )),
           ),
           Wrap(
             spacing: 8,
