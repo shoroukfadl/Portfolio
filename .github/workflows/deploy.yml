@@ -3,48 +3,38 @@ name: Deploy Flutter Web to Netlify
 on:
   push:
     branches:
-      - Mohamed          # triggers on every push to main
+      - Mohamed
   pull_request:
     branches:
-      - Mohamed          # optional: preview deploy on PRs
+      - Mohamed
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Setup Flutter
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.44.1'   # change to your Flutter version
+          flutter-version: '3.44.1'
           channel: 'stable'
-          cache: true                 # caches Flutter for faster builds
+          cache: true
 
-      # 3. Install dependencies
       - name: Install dependencies
         run: flutter pub get
 
-#      # 4. Run tests (optional but recommended)
-#      - name: Run tests
-#        run: flutter test
-
-      # 5. Build web app
       - name: Build Flutter Web
         run: |
           flutter build web --release \
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
           --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
 
-      # 6. Deploy to Netlify
       - name: Deploy to Netlify
         uses: netlify/actions/cli@master
         with:
           args: deploy --dir=build/web --prod
         env:
-          SUPABASE_URL: ${{secrets.SUPABASE_URL}}
-          SUPABASE_ANON_KEY  : ${{secrets.SUPABASE_ANON_KEY}}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
