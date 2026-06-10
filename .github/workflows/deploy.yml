@@ -1,4 +1,4 @@
-name: Deploy Flutter Web to GitHub Pages
+name: Deploy Flutter Web to Netlify
 
 on:
   push:
@@ -10,39 +10,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. سحب الكود من الـ Repository
+      # 1. Checkout repo
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2. إعداد لغة Java
+      # 2. Setup Java
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      # 3. إعداد بيئة Flutter
+      # 3. Setup Flutter
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: stable
           cache: true
 
-      # 4. تحميل الـ Packages
+      # 4. Install dependencies
       - name: Install dependencies
         run: flutter pub get
 
-      # 5. عمل Build للـ Web وتمرير مفاتيح Supabase السرية
-      # ملحوظة: غيرنا مسار الـ base-href عشان يشتغل صح على سيرفرات جيت هب
+      # 5. Build Flutter Web
       - name: Build Flutter Web
-        run: flutter build web --release --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          flutter build web --release \
+            --base-href / \
+            --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+            --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
 
-
-
-      # 6. رفع الملفات الناتجة إلى Netlify
+      # 6. Deploy to Netlify
       - name: Deploy to Netlify
         uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_DEPLOY_TO_PROD: true
+          build_directory: build/web
