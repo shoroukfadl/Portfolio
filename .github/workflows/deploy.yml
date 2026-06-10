@@ -32,15 +32,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # 5. Build Flutter Web (FIXED - no splitting issues)
+      # 5. Build Flutter Web (SINGLE LINE - SAFE)
       - name: Build Flutter Web
-        run: >
-          bash -c "flutter build web --release
-          --base-href '/${{ github.event.repository.name }}/'
-          --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }}
-          --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}"
+        run: flutter build web --release --base-href "/Portfolio/" --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
 
-      # 6. Upload build artifact
+      # 6. Upload build to GitHub Pages
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
