@@ -35,7 +35,9 @@ jobs:
       # 5. عمل Build للـ Web وتمرير مفاتيح Supabase السرية
       # ملحوظة: غيرنا مسار الـ base-href عشان يشتغل صح على سيرفرات جيت هب
       - name: Build Flutter Web
-        run: flutter build web --release --base-href "/${{ github.event.repository.name }}/" --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+        run: flutter build web --release --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+
+
 
       # 6. رفع الملفات الناتجة إلى Netlify
       - name: Deploy to Netlify
