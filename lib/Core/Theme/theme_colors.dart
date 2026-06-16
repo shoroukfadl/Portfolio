@@ -4,29 +4,64 @@ import 'package:flutter/material.dart';
 class AppColors extends ThemeExtension<AppColors> {
   // ─── Dark Theme (Primary) ────────────────────────────────────────────────
   static const darkValues = AppColors(
-    background: Color(0xFF131412),
-    surface: Color(0xff1C1B18),
-    surfaceElevated: Color(0xff242320),
-    secondary: Color(0xff1B4332),
-    accent: Color(0xff74C69D),
-    accent2: Color(0xff52B788),
-    accentSoft: Color(0xff1B4332),
+    background: Color(0xff0F1923),  // navy داكن جداً — مش أسود
+    surface:    Color(0xff1A2535),  // أفتح شوية
+    card:       Color(0xff1E2D40),  // أفتح من الـ surface يتميز
+
+    accent:     Color(0xff4A90C4),  // الـ navy اتفتح — يبان على الداكن
+    secondary:  Color(0xff7B84D4),  // الـ secondary اتفتح كمان
+
+    success:    Color(0xFF05B367),  // ✅ نفسه — شغال على الداكن
+    warning:    Color(0xFFFFB300),  // ✅ نفسه
+    danger:     Color(0xFFFF4757),  // ✅ نفسه
+
+    text1:      Color(0xffE8F0F7),  // مش أبيض خالص
+    text2:      Color(0xff9AACBC),  // معكوس الـ text2 اللايت
+    text3:      Color(0xff4A5F72),
+  );
+
+
+  // ─── Light Theme ─────────────────────────────────────────────────────────
+  static const lightValues = AppColors(
+    background: Color(0xffF8FAFC),
+    surface: Color(0xffefefef),
+    card: Color(0xffFFFFFF),
+    accent: Color(0xff2E5077),
+    secondary: Color(0xff5965b8),
     success: Color(0xFF05B367),
     warning: Color(0xFFFFB300),
     danger: Color(0xFFFF4757),
-    text1: Color(0xFFF0EDE6),
-    text2: Color(0xFFA8A49C),
-    text3: Color(0xFF6A6660),
-    secondaryEv: Color(0xff95D5B2),
+    text1: Color(0xff142335),
+    text2: Color(0xff3d4042),
+    text3: Color(0xff9AA6B2),
   );
 
-  // Shared
-  static const Color emerald = Color(0xFF10B981);
-  static const Color emeraldDark = Color(0xFF34D399);
-  static const Color error = Color(0xFFDC2626);
+  // ─── Fields ───────────────────────────────────────────────────────────────
+  final Color background;
+  final Color surface;
+  final Color card;
+  final Color text3;
+  final Color accent;
+  final Color secondary;
+  final Color success;
+  final Color warning;
+  final Color danger;
+  final Color text1;
+  final Color text2;
 
-  static const phoneLine     = Color(0xFFD0CCC4);
-  static const phoneBox      = Color(0xFFE6E2DC);
+  const AppColors({
+    required this.background,
+    required this.surface,
+    required this.card,
+    required this.text3,
+    required this.accent,
+    required this.secondary,
+    required this.success,
+    required this.warning,
+    required this.danger,
+    required this.text1,
+    required this.text2,
+  });
 
   // Badge colours
   static const appBadgeBg      = Color(0xFFE8F4ED);
@@ -37,65 +72,15 @@ class AppColors extends ThemeExtension<AppColors> {
   static const ecommBadgeText  = Color(0xFFA06020);
   static const healthBadgeBg   = Color(0xFFFAE8EE);
   static const healthBadgeText = Color(0xFFA0203A);
-  // ─── Light Theme ─────────────────────────────────────────────────────────
-  static const lightValues = AppColors(
-    background: Color(0xFFF7F5F0),
-    surface: Color(0xffEEEAE2),
-    surfaceElevated: Color(0xffFFFFFF),
-    secondary: Color(0xffE9F5EE),
-    accent: Color(0xff265942),
-    accent2: Color(0xff63a886),
-    accentSoft: Color(0xffc8e1cc),
-    success: Color(0xFF05B367),
-    warning: Color(0xFFFFB300),
-    danger: Color(0xFFFF4757),
-    text1: Color(0xff011501),
-    text2: Color(0xff5A5955),
-    text3: Color(0xff9A9892),
-    secondaryEv: Color(0xff1B4332),
-  );
-
-  // ─── Fields ───────────────────────────────────────────────────────────────
-  final Color background;
-  final Color surface;
-  final Color surfaceElevated;
-  final Color text3;
-  final Color accent;
-  final Color accent2;
-  final Color accentSoft;
-  final Color secondary;
-  final Color secondaryEv;
-  final Color success;
-  final Color warning;
-  final Color danger;
-  final Color text1;
-  final Color text2;
-
-  const AppColors({
-    required this.background,
-    required this.surface,
-    required this.surfaceElevated,
-    required this.text3,
-    required this.accent,
-    required this.secondary,
-    required this.success,
-    required this.warning,
-    required this.danger,
-    required this.text1,
-    required this.text2,
-    required this.secondaryEv,
-    required this.accent2,
-    required this.accentSoft,
-  });
 
   // ─── Gradient Helpers ─────────────────────────────────────────────────────
 
   /// Subtle card depth (dark theme only)
   static const gradientCardDark = LinearGradient(
     colors: [
-      Color(0xFF131412),
-      Color(0xff1C1B18),
-      Color(0xff242320),
+       Color(0xFF0F1715),
+     Color(0xFF17211E),
+     Color(0xFF1E2A26),
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -103,9 +88,9 @@ class AppColors extends ThemeExtension<AppColors> {
 
   static const gradientCardLight = LinearGradient(
     colors: [
-      Color(0xFFF7F5F0),
-      Color(0xffEEEAE2),
-      Color(0xffFFFFFF),
+       Color(0xFFFAF8F0),
+       Color(0xFFFBF9E9),
+     Color(0xffedece3),
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -119,32 +104,25 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? surfaceElevated,
     Color? border,
     Color? accent,
-    Color? accentCyan,
     Color? secondary,
     Color? success,
     Color? warning,
     Color? danger,
     Color? textPrimary,
     Color? textSecondary,
-    Color? secondaryEv,
-    Color? accent2,
-    Color? accentSoft,
   }) {
     return AppColors(
       background: background ?? this.background,
       surface: surface ?? this.surface,
-      surfaceElevated: surfaceElevated ?? this.surfaceElevated,
+      card: surfaceElevated ?? this.card,
       text3: border ?? this.text3,
       accent: accent ?? this.accent,
-      secondary: accentCyan ?? this.secondary,
+      secondary: secondary ?? this.secondary,
       success: success ?? this.success,
       warning: warning ?? this.warning,
       danger: danger ?? this.danger,
       text1: textPrimary ?? this.text1,
       text2: textSecondary ?? this.text2,
-      secondaryEv: secondaryEv ?? this.secondaryEv,
-      accent2: accent2 ?? this.accent2,
-      accentSoft: accentSoft ?? this.accentSoft,
     );
   }
 
@@ -155,7 +133,7 @@ class AppColors extends ThemeExtension<AppColors> {
     return AppColors(
       background: Color.lerp(background, other.background, t)!,
       surface: Color.lerp(surface, other.surface, t)!,
-      surfaceElevated: Color.lerp(surfaceElevated, other.surfaceElevated, t)!,
+      card: Color.lerp(card, other.card, t)!,
       text3: Color.lerp(text3, other.text3, t)!,
       accent: Color.lerp(accent, other.accent, t)!,
       secondary: Color.lerp(secondary, other.secondary, t)!,
@@ -164,9 +142,6 @@ class AppColors extends ThemeExtension<AppColors> {
       danger: Color.lerp(danger, other.danger, t)!,
       text1: Color.lerp(text1, other.text1, t)!,
       text2: Color.lerp(text2, other.text2, t)!,
-      secondaryEv: Color.lerp(secondaryEv, other.secondaryEv, t)!,
-      accentSoft: Color.lerp(accentSoft, other.accentSoft, t)!,
-      accent2: Color.lerp(accent2, other.accent2, t)!,
     );
   }
 }

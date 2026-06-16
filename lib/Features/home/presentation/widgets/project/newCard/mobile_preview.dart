@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../../../../../Widgets/rounded_image_widget.dart';
@@ -12,11 +13,11 @@ class MobilePreview extends StatelessWidget {
     final colors = context.colors;
     return Container(
       decoration:  BoxDecoration(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+        borderRadius: BorderRadius.circular(Constants.cardRadius),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [colors.background, colors.surfaceElevated],
+          colors: [colors.surface, colors.background],
         ),
       ),
       alignment: Alignment.center,
@@ -40,11 +41,11 @@ class MobilePreview extends StatelessWidget {
               RoundedImage(
                 imagePath: url,
                 fit: BoxFit.fill,
-                width: 68,
-                height: 122,
+                width: 120,
+                height: 170,
                 backgroundColor: colors.background,
                 radiusValue: 0,
-                radius: 0,
+
               ),
               // Notch
               Positioned(

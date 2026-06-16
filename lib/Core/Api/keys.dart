@@ -1,6 +1,13 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class ApiService {
-  static String subbaseKey = dotenv.env['subbaseKey'] ?? "";
-  static String subbaseAnonKey = dotenv.env['subbaseAnonKey'] ?? "";
+
+class SupabaseConfig {
+  static const String url = String.fromEnvironment(
+    'SUPABASE_URL',
+    defaultValue: '',
+  );
+
+  static const String anonKey = String.fromEnvironment(
+    'SUPABASE_ANON_KEY',
+    defaultValue: '',
+  );
 }

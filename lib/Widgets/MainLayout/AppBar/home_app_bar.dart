@@ -1,176 +1,116 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:portfolio/Core/Theme/theme_cubit.dart';
-import 'package:portfolio/Core/Theme/theme_state.dart';
-import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Utilities/portifilo_icons.dart';
-import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
+import 'package:portfolio/Widgets/Buttons/theme_button.dart';
 
-class HomeAppBar extends StatelessWidget {
-  const HomeAppBar({super.key});
+import '../../../Core/Language/app_styles.dart';
+import '../../../Features/home/presentation/cubit/cubit.dart';
+import '../../../Features/home/presentation/cubit/state.dart';
+import '../../../Utilities/Constants/constants.dart';
+import '../../../Utilities/Constants/enums.dart';
+import '../../../Utilities/Constants/global_keys.dart';
+import '../../../Utilities/Constants/strings.dart';
+import 'home_app_bar_item.dart';
+
+class FloatingAppBar extends StatelessWidget {
+  const FloatingAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return BlocBuilder<ThemeCubit, ThemeState>(builder: (context, theme) {
-      return Align(
-        alignment: AlignmentDirectional.bottomEnd,
-        child: CustomButtonWidget(
-          width: 32,
-          height: 32,
-          borderRadiusValue: Constants.smallButtonRadius,
-          onPressed: () {
-            context.read<ThemeCubit>().changeTheme();
-          },
-          btnColor: colors.accent,
-          child: Icon(
-            theme.isDark ? Portfolio.sun : Portfolio.moon,
-            color: Colors.white,
-            size: Constants.smallButtonIcon,
-          ),
-        ),
-      );
-    });
-  }
-}
+    final size =!context.isSmall?64.0:56.0;
+    final padding =  context.isLarge? Constants.desktopHozPadding : context.isMedium ? Constants.tabletHozPadding : Constants.mobileHozPadding;
+    return Container(
+      height:size ,
+      padding: EdgeInsetsDirectional.symmetric(horizontal:padding),
+      decoration: BoxDecoration(
+        color: colors.background,
+      ),
+      child: Row(
+        children: [
+          /// ------ Name -----------------
+            BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (c, p) => c.data?.profile != p.data?.profile ,
+                builder: (context, state) {
+                  final profile = state.data?.profile;
+                  return Text(
+                   "${( profile?.firstName) == null?"":( profile!.firstName!).substring(0,1)}${ ( profile?.lastName) == null?"":( profile!.lastName!).substring(0,1)}.",
+                    style: AppTextStyles.titleSmall(
+                      context: context,
+                      color: colors.text2,
+                    ),
+                  );
+                }
+            ),
+              Spacer(),
 
-// class HomeAppBar extends StatefulWidget {
-//   const HomeAppBar({super.key});
-//
-//   @override
-//   State<HomeAppBar> createState() => _HomeAppBarState();
-// }
-//
-// class _HomeAppBarState extends State<HomeAppBar> {
-//   // bool isSectionActive(GlobalKey key) {
-//   //   final RenderBox? box = key.currentContext?.findRenderObject() as RenderBox?;
-//   //   if (box == null) return false;
-//   //   final offset = box.localToGlobal(Offset.zero);
-//   //   return offset.dy <= 100 && offset.dy > -box.size.height + 100;
-//   // }
-//   //
-//   // late ScrollController _scrollController;
-//   // String activeSection = "home"; // لتخزين القسم النشط
-//   //
-//   // @override
-//   // void initState() {
-//   //   super.initState();
-//   //   _scrollController = ScrollController();
-//   //
-//   //   _scrollController.addListener(() {
-//   //     if (isSectionActive(homeKey)) {
-//   //       _updateActive("home");
-//   //     } else if (isSectionActive(aboutKey)) {
-//   //       _updateActive("about");
-//   //     } else if (isSectionActive(projectsKey)) {
-//   //       _updateActive("projects");
-//   //     }
-//   //   });
-//   // }
-//   //
-//   // void _updateActive(String section) {
-//   //   if (activeSection != section) {
-//   //     setState(() => activeSection = section);
-//   //   }
-//   // }
-//   @override
-//   Widget build(BuildContext context) {
-//     final colors = context.colors;
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//       children: [
-//         Row(
-//           spacing: 16,
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             HomeAppBarItem(
-//                 onTap: () {
-//                   Scrollable.ensureVisible(
-//                     GlobalKeys.aboutMe.currentContext!,
-//                     duration: const Duration(seconds: 1),
-//                     curve: Curves.easeInOut,
-//                   );
-//                 },
-//                 icon: Portfolio.home
-//             ),
-//             HomeAppBarItem(
-//                 onTap: () {
-//                   Scrollable.ensureVisible(
-//                     GlobalKeys.skill.currentContext!,
-//                     duration: const Duration(seconds: 1),
-//                     curve: Curves.easeInOut,
-//                   );
-//                 },
-//                 icon: Portfolio.skills
-//             ),
-//             HomeAppBarItem(
-//                 onTap: () {
-//                   Scrollable.ensureVisible(
-//                     GlobalKeys.education.currentContext!,
-//                     duration: const Duration(seconds: 1),
-//                     curve: Curves.easeInOut,
-//                   );
-//                 },
-//                 icon: Portfolio.edu
-//
-//             ),
-//             HomeAppBarItem(
-//                 onTap: () {
-//                   Scrollable.ensureVisible(
-//                     GlobalKeys.experince.currentContext!,
-//                     duration: const Duration(seconds: 1),
-//                     curve: Curves.easeInOut,
-//                   );
-//                 },
-//                 icon: Portfolio.work
-//             ),
-//             HomeAppBarItem(
-//                 onTap: () {
-//                   Scrollable.ensureVisible(
-//                     GlobalKeys.projects.currentContext!,
-//                     duration: const Duration(seconds: 1),
-//                     curve: Curves.easeInOut,
-//                   );
-//                 },
-//                 icon: Portfolio.projects
-//             ),
-//             HomeAppBarItem(
-//                 onTap: () {
-//                   Scrollable.ensureVisible(
-//                     GlobalKeys.contactMe.currentContext!,
-//                     duration: const Duration(seconds: 1),
-//                     curve: Curves.easeInOut,
-//                   );
-//                 },
-//                 icon: Portfolio.link
-//             ),
-//
-//
-//
-//
-//           ],
-//         ),
-//
-//         BlocBuilder<ThemeCubit,ThemeState>(
-//             builder: (context, theme) {
-//               return CustomButtonWidget(
-//                 width: 32,
-//                 height: 32,
-//                 borderRadiusValue: 8,
-//                 onPressed: () {
-//                   context.read<ThemeCubit>().changeTheme();
-//                 },
-//                 btnColor: colors.accent2,
-//                 child: Icon(
-//                   theme.isDark ? Portfolio.sun:  Portfolio.moon,
-//                   color: Colors.white,
-//                   size: 16,
-//                 ),
-//               );
-//             }
-//         ),
-//       ],
-//     );
-//   }
-// }
+
+          sectionsWidget(
+            section: HomeSection.about,
+
+            key:  GlobalKeys.aboutMe,
+            title:Strings.aboutMe.translate,
+          ),
+          sectionsWidget(
+            section: HomeSection.education,
+
+            key:  GlobalKeys.education,
+            title:Strings.education.translate,
+          ),
+          sectionsWidget(
+            section: HomeSection.skills,
+            key: GlobalKeys.skill,
+            title: Strings.mySkill.translate,
+          ),
+
+          sectionsWidget(
+            section: HomeSection.experience,
+
+            key: GlobalKeys.experince,
+            title: Strings.experience.translate,
+          ),
+
+          sectionsWidget(
+            section: HomeSection.projects,
+            key: GlobalKeys.projects,
+            title: Strings.projects.translate,
+          ),
+
+          Spacer(),
+
+
+          const ThemeButton()
+
+
+
+        ],
+      ),
+    );
+  }
+
+
+  Widget sectionsWidget(
+      {
+        required HomeSection section,
+        required GlobalKey key,
+        required String title,
+      })=>              BlocBuilder<PortfolioCubit, PortfolioState>(
+    //  buildWhen: (c, p) => c.section != p.section,
+      builder: (context, state) {
+        return HomeAppBarItem(
+          onTap: () {
+            // context.read<PortfolioCubit>().changeSection(
+            //   section,
+            // );
+            Scrollable.ensureVisible(
+              key.currentContext!,
+              duration: const Duration(seconds: 1),
+              curve: Curves.easeInOut,
+            );
+          },
+          //selected: state.section == section,
+          title: title,
+        );
+      }
+  );
+}

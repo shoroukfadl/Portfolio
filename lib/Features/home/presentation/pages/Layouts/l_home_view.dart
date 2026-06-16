@@ -31,8 +31,7 @@ class LargeHomeView extends StatelessWidget {
                 return ScrollAnimatorWrapper(
                   child: SummarySection(
                     profile: s.data?.profile,
-                  ).paddingSymmetric(
-                      horizontal: Constants.desktopHozPadding, vertical: 40),
+                  ),
                 );
               }),
         ),
@@ -71,7 +70,6 @@ class LargeHomeView extends StatelessWidget {
                     ),
                   );
                 })),
-        SliverToBoxAdapter(child: 64.0.heightBox),
 
         /// Projects
         SliverPadding(

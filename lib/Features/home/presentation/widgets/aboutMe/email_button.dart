@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../../Utilities/Constants/strings.dart';
 import '../../../../../Utilities/portifilo_icons.dart';
 import '../../../../../Widgets/Buttons/custom_button_widget.dart';
 
@@ -34,19 +36,26 @@ class _EmailButtonState extends State<EmailButton> {
           await launchUrl(emailUri);
         }
       },
-      borderColor: colors.accent,
-      btnColor: hover ? colors.accent : Colors.transparent,
+      borderColor: colors.secondary,
+      width: 140,
+      btnColor: hover ? colors.secondary : Colors.transparent,
       borderRadiusValue: 8,
-      width: 40,
-      height: 40,
+      height: 32,
       child: AnimatedScale(
         scale: hover ? 1.08 : 1,
         duration: const Duration(milliseconds: 400),
-        child: Icon(
-          Portfolio.email,
-          color: hover ? Colors.white : colors.accent,
-          size: 20,
-        ),
+        child: Row(
+          spacing: 8,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Get In Touch', style: AppTextStyles.buttonLabel(context: context,              color: hover ? Colors.white : colors.secondary,),),
+            Icon(
+              Icons.arrow_right_alt_outlined,
+              color: hover ? Colors.white : colors.secondary,
+              size: 20,
+            ),
+          ],
+        )
       ),
     );
   }

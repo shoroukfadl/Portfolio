@@ -10,17 +10,14 @@ import '../../../../../Widgets/sections_title_widget.dart';
 class SkillsSection extends StatelessWidget {
   final List<TechnicalSkillEntity> skills;
   final double padding;
-  final TextStyle? titleStyle;
-  final TextStyle? nameStyle, contentStyle;
   final double iconSize;
+  final int perRow;
   const SkillsSection(
       {super.key,
       this.skills = const [],
       this.iconSize = 40,
       this.padding = Constants.desktopHozPadding,
-      this.titleStyle,
-      this.nameStyle,
-      this.contentStyle});
+      this.perRow = 4});
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +29,12 @@ class SkillsSection extends StatelessWidget {
         children: [
           SectionsTitleWidget(
             title: Strings.skill.translate,
-            titleStyle: titleStyle,
           ),
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: context.isLarge
-                  ? 4
-                  : context.isMedium
-                      ? 2
-                      : 1,
+              crossAxisCount:perRow,
               mainAxisSpacing: 20,
               crossAxisSpacing: 20,
               childAspectRatio: context.isMedium ? 1.5 : 2.1,
@@ -53,8 +45,6 @@ class SkillsSection extends StatelessWidget {
                 skill: skills[index],
                 index: index,
                 iconSize: iconSize,
-                nameStyle: nameStyle,
-                contentStyle: contentStyle,
               );
             },
           ),

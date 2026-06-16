@@ -34,7 +34,7 @@ class _VersionItemState extends State<VersionItem> {
           children: [
             Text(
               widget.version.name??"",
-              style: AppTextStyles.medium10(color: colors.text1),
+              style: AppTextStyles.titleCardSmall(context:context,color: colors.text2),
             ),
             const SizedBox(width: 8),
              Text(

@@ -5,6 +5,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/portifilo_icons.dart';
 import 'package:portfolio/Widgets/Custom/card_with_animation.dart';
 import 'package:portfolio/Widgets/Custom/card_with_text.dart';
+import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
 
 class EducationCard extends StatelessWidget {
   final EducationEntity? item;
@@ -20,62 +21,60 @@ class EducationCard extends StatelessWidget {
     return AnimatedCardWidget(
       paddingHoz: 24,
       paddingVert: 20,
+      width: double.infinity,
       child:(h)=> Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 16,
             children: [
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: colors.accentSoft,
-                    border: Border.all(color: colors.accent)),
-                child: Icon(
-                  Portfolio.edu,
-                  size: 24,
-                  color: colors.accent,
+              Text(
+                item?.degree ?? "",
+                style: AppTextStyles.titleCard(
+                  context: context,
+                  color: colors.text1,
                 ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Column(
-                  spacing: 6,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      item?.degree ?? "",
-                      style: AppTextStyles.medium16(
-                        color: colors.text1,
-                      ),
-                    ),
-                    Text(
-                      "${item?.institution ?? ""} - ${item?.fieldOfStudy ?? ""} ",
-                      style: AppTextStyles.regular12(
-                        color: colors.text2,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              ).expand,
               CardWithText(
                 text: '${item?.startDate?.yyyy} - ${item?.endDate?.yyyy ?? ""}',
-                color: colors.accentSoft,
-                borderColor: colors.accentSoft,
+                color: colors.text3.withValues(alpha: 0.1),
+                border: 8,
+                borderColor: Colors.transparent,
                 hozPadding: 8,
                 vertPadding: 4,
-                style: AppTextStyles.medium10(
+                style: AppTextStyles.titleCardSmall(
+                  context: context,
                   color: colors.text2,
                 ),
               ),
             ],
           ),
+          Row(
+            spacing: 4,
+            children: [
+              Text(
+                item?.institution ?? "",
+                style: AppTextStyles.subtitleCard(
+                  context: context,
+                  color: colors.accent,
+                ),
+              ),
+              SizedBox(width:16,child: DividerWidget(thickness: 2,color: colors.accent,)),
+              Text(
+                item?.fieldOfStudy ?? "",
+                style: AppTextStyles.subtitleCard(
+                  context: context,
+                  color: colors.accent,
+                ),
+              ),
+            ],
+          ),
+
           Text(
             item?.description ?? "",
-            style: AppTextStyles.regular12(
+            style: AppTextStyles.cardBody(
+              context: context,
               color: colors.text3,
             ),
           ),

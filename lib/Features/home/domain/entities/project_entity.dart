@@ -6,7 +6,6 @@ class ProjectEntity extends Equatable {
   final String? profileId;
   final String? id;
   final String? industry;
-  final String? cover;
   final List<LinkEntity> iosLinks;
   final List<LinkEntity> webLinks;
   final List<LinkEntity> androidLinks;
@@ -28,7 +27,6 @@ class ProjectEntity extends Equatable {
     this.webLinks = const [],
     this.androidLinks = const [],
     this.content = const [],
-    this.cover,
   });
 
   @override
@@ -46,7 +44,6 @@ class ProjectEntity extends Equatable {
         company,
         industry,
         content,
-        cover
       ];
 }
 

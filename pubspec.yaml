@@ -52,6 +52,7 @@ dependencies:
   visibility_detector: ^0.4.0+2
   flutter_dotenv: ^6.0.1
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -74,7 +75,6 @@ flutter_launcher_icons:
 flutter:
   uses-material-design: true
   assets:
-    - .env
     - assets/images/
     - assets/Languages/
     - assets/icons/

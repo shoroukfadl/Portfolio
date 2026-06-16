@@ -33,7 +33,8 @@ class CardWithText extends StatelessWidget {
       child: Text(
         text,
         style: style ??
-            AppTextStyles.regular12(
+            AppTextStyles.titleCardSmall(
+              context: context,
               color: textColor,
             ),
         maxLines: maxLine,

@@ -4,6 +4,7 @@ import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../../../../Utilities/Constants/strings.dart';
+import '../../../../../Widgets/Portfilio/divider_widget.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
 import 'experince_item_card.dart';
 
@@ -32,36 +33,21 @@ class ExperienceSection extends StatelessWidget {
       children: [
         SectionsTitleWidget(
           title: Strings.experience.translate,
-          titleStyle: titleStyle,
         ),
-        IntrinsicHeight(
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 8,
-            children: [
-              Container(
-                color: colors.text3,
-                width: 0.4,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 16,
-                  children: List.generate(experiences.length, (index) {
-                    return ExperienceCard(
-                      item: experiences[index],
-                      index: index,
-                      totalItems: experiences.length,
-                      employeeTypeStyle: employeeTypeStyle,
-                      companyNameStyle: companyNameStyle,
-                      roleStyle: roleStyle,
-                      dateStyle: dateStyle,
-                    );
-                  }),
-                ),
-              ),
-            ],
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 16,
+          children: List.generate(experiences.length, (index) {
+            return ExperienceCard(
+              item: experiences[index],
+              index: index,
+              totalItems: experiences.length,
+              employeeTypeStyle: employeeTypeStyle,
+              companyNameStyle: companyNameStyle,
+              roleStyle: roleStyle,
+              dateStyle: dateStyle,
+            );
+          }),
         )
       ],
     ).paddingSymmetric(horizontal: padding);

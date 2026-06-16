@@ -1,34 +1,74 @@
-name: Deploy Portfolio
+name: Deploy Flutter Web to GitHub Pages
+
 on:
   push:
     branches:
-      - Shorouk # Change this if your default branch is 'Shorouk'
+      - Shorouk
+  workflow_dispatch:
 
-permissions:
-  contents: write
+# Prevent concurrent deployments
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
+      # 1. Checkout repo
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Flutter
+      # 2. Setup Java
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      # 3. Setup Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
-          cache: true # Speeds up subsequent runs
+          channel: stable
+          cache: true
 
-      - name: Get dependencies
+      # 4. Install dependencies
+      - name: Install dependencies
         run: flutter pub get
 
-      - name: Build Web
-        # Replace 'YOUR_REPO_NAME' with your actual GitHub repository name
-        run: flutter build web --base-href "/portfolio/"
+      # 5. Build Flutter Web
+      - name: Build Flutter Web
+        run: |
+          flutter build web --release \
+            --base-href "/portfolio/" \
+            --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+            --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      # 6. Fix GitHub Pages routing for PathUrlStrategy
+      - name: Create 404 fallback page
+        run: cp build/web/index.html build/web/404.html
+
+      # 7. Upload build to GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: build/web
-          branch: Shorouk
+          path: build/web
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

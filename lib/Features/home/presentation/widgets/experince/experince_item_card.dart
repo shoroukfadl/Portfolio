@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Custom/card_with_animation.dart';
+import 'package:portfolio/Widgets/Portfilio/point_text.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
 import '../../../../../Widgets/Custom/card_with_text.dart';
+import '../../../../../Widgets/Portfilio/divider_widget.dart';
 import '../../../../../Widgets/hover_widget.dart';
 import '../../../domain/entities/experince_entity.dart';
 
@@ -32,62 +35,74 @@ class _ExperienceCardState extends State<ExperienceCard> {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return HoverWidget(builder: (hover) {
-      return Row(
-        spacing: 16,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar(
-            backgroundColor: colors.accent,
-            radius: 6,
-          ).paddingOnly(top: 6),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 4,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 8,
-                children: [
-                  Text(
-                    (widget.item.positionTitle ?? ""),
-                    style: widget.roleStyle ??
-                        AppTextStyles.semiBold16(
-                          color: colors.text1,
-                        ),
-                  ).expand,
-                  CardWithText(
-                    text:
-                        "${widget.item.startDate?.yyyyMM ?? ""} - ${widget.item.endDate?.yyyyMM ?? ""}",
-                    textColor: colors.secondaryEv,
-                    color: colors.accent2.withValues(alpha: 0.2),
-                    borderColor: colors.accent2.withValues(alpha: 0.2),
-                    style: widget.dateStyle ??
-                        AppTextStyles.regular12(
-                          color: colors.secondaryEv,
-                        ),
-                  ),
-                ],
+      return IntrinsicHeight(
+        child: Row(
+          spacing: 16,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AnimatedSize(
+              duration: Duration(milliseconds: 250),
+              child: VerticalGradientDivider(
+                width: hover ? 8:2,
+                repation: 2,
+                color1: colors.accent,
+                color2: colors.secondary,
               ),
-              Text(
-                "${widget.item.companyName ?? ""} | ${widget.item.location ?? ""}",
-                style: widget.roleStyle ??
-                    AppTextStyles.regular12(
-                      color: colors.text2,
+            ),
+            if(widget.item.endDate ==null)
+            AnimatedDot(
+              active: true,
+            ).paddingOnly(top: 6),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 4,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 8,
+                  children: [
+                    Text(
+                      (widget.item.positionTitle ?? ""),
+                      style:
+                          AppTextStyles.titleCard(
+                            context: context,
+                            color: colors.text1,
+                          ),
+                    ).expand,
+                    CardWithText(
+                      text:
+                          "${widget.item.startDate?.yyyyMM ?? ""} - ${widget.item.endDate?.yyyyMM ?? ""}",
+                      textColor: colors.text2,
+                      color: colors.text3.withValues(alpha: 0.1),
+                      borderColor: colors.text3,
+                      border: 8,
+                      vertPadding: 4,
+                      style:
+                          AppTextStyles.titleCardSmall(
+                            context: context,
+                            color: colors.text3,
+                          ),
                     ),
-              ),
-              ...List.generate(
-                widget.item.description.length,
-                (i) => Text(
-                  widget.item.description[i] ?? "",
-                  style: widget.roleStyle ??
-                      AppTextStyles.regular14(
-                        color: colors.text3,
+                  ],
+                ),
+                Text(
+                  "${widget.item.companyName ?? ""} | ${widget.item.location ?? ""}",
+                  style:
+                      AppTextStyles.subtitleCard(
+                        context: context,
+                        color: colors.secondary,
                       ),
                 ),
-              )
-            ],
-          ).expand,
-        ],
+                ...List.generate(
+                  widget.item.description.length,
+                  (i) => PointText(
+                  point:   widget.item.description[i] ,
+                  ),
+                )
+              ],
+            ).expand,
+          ],
+        ),
       );
     });
   }

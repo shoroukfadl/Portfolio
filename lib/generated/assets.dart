@@ -30,21 +30,21 @@ class $AssetsIconsGen {
 
   final SvgGenImage github = const SvgGenImage('assets/icons/Github.svg');
   final SvgGenImage mail = const SvgGenImage('assets/icons/Mail.svg');
-  final SvgGenImage socialIcon = const SvgGenImage(
-      'assets/icons/SocialIcon.svg');
-  final SvgGenImage chevronDown = const SvgGenImage(
-      'assets/icons/chevron-down.svg');
+  final SvgGenImage socialIcon =
+      const SvgGenImage('assets/icons/SocialIcon.svg');
+  final SvgGenImage chevronDown =
+      const SvgGenImage('assets/icons/chevron-down.svg');
   final SvgGenImage down = const SvgGenImage('assets/icons/down.svg');
   final SvgGenImage download = const SvgGenImage('assets/icons/download.svg');
   final SvgGenImage left = const SvgGenImage('assets/icons/left.svg');
-  final SvgGenImage locationOn = const SvgGenImage(
-      'assets/icons/location_on.svg');
-  final SvgGenImage materialSymbolsMenu = const SvgGenImage(
-      'assets/icons/material-symbols_menu.svg');
+  final SvgGenImage locationOn =
+      const SvgGenImage('assets/icons/location_on.svg');
+  final SvgGenImage materialSymbolsMenu =
+      const SvgGenImage('assets/icons/material-symbols_menu.svg');
   final String portifilo = 'assets/icons/portifilo.ttf';
   final SvgGenImage right = const SvgGenImage('assets/icons/right.svg');
-  final SvgGenImage securityLock = const SvgGenImage(
-      'assets/icons/security-lock.svg');
+  final SvgGenImage securityLock =
+      const SvgGenImage('assets/icons/security-lock.svg');
   final SvgGenImage star = const SvgGenImage('assets/icons/star.svg');
   final SvgGenImage up = const SvgGenImage('assets/icons/up.svg');
   final SvgGenImage upRight = const SvgGenImage('assets/icons/upRight.svg');
@@ -54,7 +54,6 @@ class AssetGenImage {
   const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
-
 
   final Size? size;
   final Set<String> flavors;
@@ -198,4 +197,3 @@ class SvgGenImage {
 
   String get keyName => _assetName;
 }
-

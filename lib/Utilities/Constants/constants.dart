@@ -14,9 +14,10 @@ class Constants {
         spreadRadius: 0,
       );
 
-  static const desktopHozPadding = 80.0;
-  static const tabletHozPadding = 40.0;
-  static const cardRadius = 24.0;
+  static const desktopHozPadding = 64.0;
+  static const tabletHozPadding = 24.0;
+  static const mobileHozPadding = 8.0;
+  static const cardRadius = 20.0;
   static const smallButtonRadius = 6.0;
   static const mediumButtonRadius = 12.0;
   static const largeButtonRadius = 18.0;

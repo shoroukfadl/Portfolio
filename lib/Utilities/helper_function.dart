@@ -27,29 +27,35 @@ abstract class HelperFunctions {
         });
   }
 
-  static void showDialogHelper(BuildContext context,
+  static Future<void> showDialogHelper(BuildContext context,
       {required Widget contentWidget,
       Color? backgroundColor,
+        String? title,
       AlignmentDirectional? alignment,
       final bool enablePadding = true,
       bool isFullScreen = true}) {
     final colors = context.colors;
-
-    showDialog(
+      return showGeneralDialog(
         context: context,
-        builder: (context) => AlertDialog(
-              shape: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                borderSide: const BorderSide(color: Colors.transparent),
+        barrierDismissible: true,
+        barrierLabel: title,
+        barrierColor: colors.background,
+        transitionDuration: const Duration(milliseconds: 300),
+        transitionBuilder: (_, anim, __, child) {
+          return FadeTransition(
+            opacity: CurvedAnimation(parent: anim, curve: Curves.easeOut),
+            child: ScaleTransition(
+              scale: Tween(begin: .92, end: 1.0).animate(
+                CurvedAnimation(parent: anim, curve: Curves.easeOutCubic),
               ),
-              alignment: alignment,
-              shadowColor: colors.text1.withOpacity(0.25),
-              backgroundColor: backgroundColor ?? colors.background,
-              contentPadding: enablePadding
-                  ? EdgeInsets.symmetric(horizontal: 24, vertical: 40.0)
-                  : EdgeInsets.zero,
-              content: contentWidget,
-            ));
+              child: child,
+            ),
+          );
+        },
+        pageBuilder: (_, __, ___) => contentWidget
+      );
+
+
   }
 
   static void showCustomToast(

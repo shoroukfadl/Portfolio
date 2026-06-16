@@ -24,7 +24,6 @@ class EducationSection extends StatelessWidget {
       children: [
         SectionsTitleWidget(
           title: Strings.education.translate,
-          titleStyle: titleStyle,
         ),
         EducationCard(
           item: education,

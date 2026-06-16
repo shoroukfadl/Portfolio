@@ -7,7 +7,9 @@ import 'package:portfolio/Utilities/extensions.dart';
 import '../../Core/Theme/theme_colors.dart';
 
 class AnimatedBackground extends StatefulWidget {
-  const AnimatedBackground({super.key});
+  final Widget child;
+  final double? height;
+  const AnimatedBackground({super.key,this.height, required this.child});
 
   @override
   State<AnimatedBackground> createState() => _AnimatedBackgroundState();
@@ -35,17 +37,20 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return BlocBuilder<ThemeCubit, ThemeState>(
-        buildWhen: (c, p) => p.isDark != c.isDark,
-        builder: (context, state) {
+
           return AnimatedBuilder(
             animation: _controller,
             builder: (context, child) {
               return Container(
+                height: widget.height,
                 decoration: BoxDecoration(
-                    gradient: !state.isDark
-                        ? AppColors.gradientCardLight
-                        : AppColors.gradientCardDark),
+                    gradient:
+                      LinearGradient(colors: [
+                        colors.background,
+                        colors.surface,
+                        colors.card,
+                      ])
+                    ),
                 child: Stack(
                   children: [
                     // Animated gradient blobs
@@ -106,11 +111,13 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
                         ),
                       ),
                     ),
+
+                    widget.child
                   ],
                 ),
               );
             },
           );
-        });
+
   }
 }

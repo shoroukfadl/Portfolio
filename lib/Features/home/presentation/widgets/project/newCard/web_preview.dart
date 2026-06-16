@@ -8,7 +8,8 @@ import '../../../../../../Widgets/rounded_image_widget.dart';
 class WebPreview extends StatelessWidget {
   final String url;
   final String logoText;
-  const WebPreview({required this.url, required this.logoText});
+  final double width,height;
+  const WebPreview({required this.url, required this.logoText, required this.width, required this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +17,29 @@ class WebPreview extends StatelessWidget {
     return Container(
       decoration:  BoxDecoration(
         color:colors.background,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(Constants.cardRadius)),
+        borderRadius: BorderRadius.all( Radius.circular(Constants.cardRadius)),
       ),
-      child: Column(
+      child: Stack(
         children: [
-          // Browser bar
+
+
+          RoundedImage(
+            imagePath: url,
+            fit: BoxFit.fill,
+            height: height,
+            width: width,
+            backgroundColor: colors.background,
+            radiusValue: Constants.cardRadius,
+          ),
           Container(
+            width: width,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration:  BoxDecoration(
-              color: colors.accentSoft,
-              border: Border(bottom: BorderSide(color: colors.accent, width: 1)),
+              color: colors.text3,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(Constants.cardRadius),
+                topRight: Radius.circular(Constants.cardRadius),
+              )
             ),
             child: Row(
               children: [
@@ -40,30 +54,17 @@ class WebPreview extends StatelessWidget {
                     height: 24,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     decoration: BoxDecoration(
-                      color: colors.background,
-                      borderRadius: BorderRadius.circular(4),
+                      color: colors.card,
+                      borderRadius: BorderRadius.circular(100),
                     ),
                     alignment: Alignment.centerLeft,
                     child: Text(
                       logoText,
-                      style:   AppTextStyles.medium10(color: colors.secondaryEv),
+                      style:   AppTextStyles.titleCardSmall(context:context,color: colors.secondary),
                     ),
                   ),
                 ),
               ],
-            ),
-          ),
-
-          // Content area
-          Center(
-            child: RoundedImage(
-              imagePath: url,
-              fit: BoxFit.contain,
-              height: 100,
-              width: 200,
-              backgroundColor: colors.background,
-              radiusValue: 0,
-              radius: 0,
             ),
           ),
         ],

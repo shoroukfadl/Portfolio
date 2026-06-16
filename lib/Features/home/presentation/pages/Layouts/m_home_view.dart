@@ -32,17 +32,6 @@ class MediumHomeView extends StatelessWidget {
               builder: (context, s) {
                 return SummarySection(
                   profile: s.data?.profile,
-                  roleStyle: AppTextStyles.semiBold20(color: colors.accent),
-                  summaryStyle:
-                      AppTextStyles.regular14(color: colors.text1).copyWith(
-                    height: 1.8,
-                  ),
-                  nameStyle:
-                      AppTextStyles.extraBold40(color: colors.accent).copyWith(
-                    height: 1.1,
-                    letterSpacing: -2,
-                    color: Colors.white,
-                  ),
                 ).paddingSymmetric(horizontal: Constants.tabletHozPadding);
               }),
         ),
@@ -55,16 +44,10 @@ class MediumHomeView extends StatelessWidget {
                 buildWhen: (c, p) => p.data?.skills != c.data?.skills,
                 builder: (context, s) {
                   return SkillsSection(
-                    titleStyle: AppTextStyles.extraBold32(),
                     skills: s.data?.skills ?? [],
                     padding: Constants.tabletHozPadding,
                     iconSize: 32,
-                    nameStyle: AppTextStyles.semiBold14(
-                      color: colors.text1,
-                    ),
-                    contentStyle: AppTextStyles.regular14(
-                      color: colors.text2,
-                    ),
+
                   );
                 })),
         SliverToBoxAdapter(child: 40.0.heightBox),

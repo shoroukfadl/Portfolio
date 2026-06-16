@@ -24,16 +24,16 @@ class _PlatformButtonState extends State<PlatformButton> {
   OverlayEntry? _overlayEntry;
 
   String get _label => switch (widget.type) {
-    PlatformType.web    => 'Web',
-    PlatformType.ios     => 'iOS',
-    PlatformType.android => 'Android',
-  };
+        PlatformType.web => 'Web',
+        PlatformType.ios => 'iOS',
+        PlatformType.android => 'Android',
+      };
 
   IconData get _icon => switch (widget.type) {
-    PlatformType.web     => Icons.language_rounded,
-    PlatformType.ios     => Icons.apple_rounded,
-    PlatformType.android => Icons.android_rounded,
-  };
+        PlatformType.web => Icons.language_rounded,
+        PlatformType.ios => Icons.apple_rounded,
+        PlatformType.android => Icons.android_rounded,
+      };
 
   OverlayEntry _createOverlayEntry() {
     final colors = context.colors;
@@ -57,7 +57,7 @@ class _PlatformButtonState extends State<PlatformButton> {
               child: Container(
                 constraints: const BoxConstraints(minWidth: 120),
                 decoration: BoxDecoration(
-                  color: colors.accentSoft.withValues(alpha: 0.95),
+                  color: colors.background,
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
@@ -69,9 +69,8 @@ class _PlatformButtonState extends State<PlatformButton> {
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: widget.links
-                      .map((v) => VersionItem(version: v))
-                      .toList(),
+                  children:
+                      widget.links.map((v) => VersionItem(version: v)).toList(),
                 ),
               ),
             ),
@@ -116,14 +115,16 @@ class _PlatformButtonState extends State<PlatformButton> {
       link: _layerLink,
       child: MouseRegion(
         onEnter: (_) => setState(() => _hovered = true),
-        onExit:  (_) => setState(() => _hovered = false),
+        onExit: (_) => setState(() => _hovered = false),
         child: GestureDetector(
           onTap: _handleTap,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 160),
             padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
             decoration: BoxDecoration(
-              color: _hovered ? colors.accent : colors.accentSoft.withValues(alpha: 0.5),
+              color: _hovered
+                  ? colors.secondary.withValues(alpha: 0.2)
+                  : colors.accent.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(100),
             ),
             child: Row(
@@ -132,12 +133,15 @@ class _PlatformButtonState extends State<PlatformButton> {
                 Icon(
                   _icon,
                   size: 12,
-                  color: _hovered ? Colors.white : colors.secondaryEv,
+                  color: _hovered ? colors.secondary : colors.accent,
                 ),
                 const SizedBox(width: 5),
                 Text(
                   _label,
-                  style: AppTextStyles.medium10(color: _hovered ? Colors.white : colors.secondaryEv),
+                  style: AppTextStyles.titleCardSmall(
+                    context: context,
+                    color: _hovered ? colors.secondary : colors.accent,
+                  ),
                 ),
                 if (widget.links.length > 1) ...[
                   const SizedBox(width: 3),
@@ -147,7 +151,7 @@ class _PlatformButtonState extends State<PlatformButton> {
                     child: Icon(
                       Icons.keyboard_arrow_down_rounded,
                       size: 12,
-                      color: _hovered ? Colors.white : colors.secondaryEv,
+                      color: _hovered ? colors.secondary : colors.accent,
                     ),
                   ),
                 ],

@@ -75,7 +75,7 @@ class _ProjectItemCardState extends State<ProjectItemCard>
               height: widget.cardHeight,
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
-                  color: colors.surfaceElevated,
+                  color: colors.card,
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: colors.text3)),
               child: Column(
@@ -86,7 +86,7 @@ class _ProjectItemCardState extends State<ProjectItemCard>
                     height: double.infinity,
                     width: widget.imageWidthSize,
                     mobile: isMobile,
-                    image: widget.project?.cover ?? "",
+                    image: widget.project?.images.firstOrNull ?? "",
                     name: widget.project?.projectName ?? "",
                   ).expandFlex(2),
                   ProjectContent(

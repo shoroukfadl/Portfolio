@@ -3,14 +3,13 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:portfolio/Core/Api/keys.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+import 'Core/Api/keys.dart';
 import 'Core/Language/app_languages.dart';
 import 'Core/Language/locales.dart';
 import 'Core/Theme/theme_colors.dart';
@@ -22,11 +21,11 @@ import 'Utilities/router_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+  // await Supabase.initialize(url:SupabaseConfig.url, anonKey:SupabaseConfig.anonKey );
   await Supabase.initialize(
-      url: ApiService.subbaseKey, anonKey: ApiService.subbaseAnonKey);
+      url: 'https://itpuoirsozxiqrlngvlw.supabase.co', anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml0cHVvaXJzb3p4aXFybG5ndmx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MTczODgsImV4cCI6MjA5MTQ5MzM4OH0.Dkgdkqf8YXkNQ09XlxvOSsTiv0Bmuvc9PXR5rPPIPe8');
   await GitIt.initGitIt();
-  setHashUrlStrategy();
+  setPathUrlStrategy();
 
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()..getCurrentTheme()),

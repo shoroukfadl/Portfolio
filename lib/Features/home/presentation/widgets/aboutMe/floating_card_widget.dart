@@ -10,14 +10,12 @@ class FloatingCards extends StatelessWidget {
   final AnimationController floatController;
   final List<AnimationController> cardControllers;
   final bool isMobile;
-  final EductionModel eduction;
 
   const FloatingCards({
     super.key,
     required this.floatController,
     required this.cardControllers,
     required this.isMobile,
-    required this.eduction,
   });
 
   @override
@@ -38,7 +36,7 @@ class FloatingCards extends StatelessWidget {
           controller: cardControllers[1],
           title: '⚡ Fast',
           description: 'Optimized performance and smooth 60fps animations',
-          color: colors.accent2,
+          color: colors.text1,
           position: const Offset(80, 60),
           rotation: -2,
         ),
@@ -46,7 +44,7 @@ class FloatingCards extends StatelessWidget {
           controller: cardControllers[2],
           title: '🚀 Modern',
           description: 'Latest Flutter patterns and best practices',
-          color: colors.secondaryEv,
+          color: colors.secondary,
           position: const Offset(-30, 120),
           rotation: 0,
         ),
@@ -100,7 +98,7 @@ class _AnimatedCard extends StatelessWidget {
                   ),
                 ],
                 //backdropFilter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                color: color.withValues(alpha: 0.08),
+                color: color.withValues(alpha: 0.05),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -116,7 +114,7 @@ class _AnimatedCard extends StatelessWidget {
                     child: Text(
                       title,
                       style: AppTextStyles.semiBold16(
-                        color: Colors.white,
+                        color:color,
                       ),
                     ),
                   ),
@@ -124,7 +122,7 @@ class _AnimatedCard extends StatelessWidget {
                   Text(
                     description,
                     style: AppTextStyles.regular12(
-                      color: Colors.white.withValues(alpha: 0.7),
+                      color: color,
                     ),
                   ),
                 ],

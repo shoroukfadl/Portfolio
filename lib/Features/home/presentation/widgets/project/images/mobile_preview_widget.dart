@@ -25,7 +25,7 @@ class MobilePreviewWidget extends StatelessWidget {
           height: height,
           width: width - 4,
           radiusValue: border,
-          radius: 0,
+
           borderColor: colors.accent,
           borderWidth: 2,
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/presentation/widgets/contact/soical_button.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
@@ -33,13 +34,11 @@ class ContactMeWidget extends StatelessWidget {
     final colors = context.colors;
     return Column(
       spacing: 16,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SectionsTitleWidget(
-          key: GlobalKeys.contactMe,
-          title: Strings.contactMe.translate,
-          titleStyle: contactMeStyle,
+        DividerWidget(
+          thickness: 0.3,
         ),
-        16.0.heightBox,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           spacing: 16,
@@ -91,12 +90,12 @@ class ContactMeWidget extends StatelessWidget {
               icon: Portfolio.download,
             ),
           ],
-        ),
+        ).paddingSymmetric(horizontal: padding),
         Text(
           '© 2026 Shorouk Fadl. Built with Flutter. All rights reserved.',
-          style: copyRightStyle ?? AppTextStyles.medium14(color: colors.text1),
-        ),
+          style:  AppTextStyles.label(context:context,color: colors.secondary),
+        ).paddingSymmetric(horizontal: padding),
       ],
-    ).paddingSymmetric(horizontal: padding);
+    );
   }
 }

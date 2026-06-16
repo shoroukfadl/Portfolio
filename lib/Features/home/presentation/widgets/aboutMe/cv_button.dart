@@ -72,7 +72,7 @@ class _CvButtonState extends State<CvButton>
                   Container(
                     width: _widthAnimation.value * 140,
                     height: 40,
-                    color: colors.accent2,
+                    color: colors.card,
                   ),
                   Center(child: child),
                 ],

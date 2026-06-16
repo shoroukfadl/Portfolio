@@ -10,26 +10,15 @@ import 'newCard/project_card_widget.dart';
 
 class MyProjectsWidget extends StatelessWidget {
   final List<ProjectEntity> projects;
-  final TextStyle? myStyle, titleStyle;
-  final TextStyle? indexStyle,
-      projectNameStyle,
-      projectTypeStyle,
-      descriptionStyle;
-  final double cardHeight, cardWidth, imageWidth, padding;
+  final int perRow;
+  final double imageWidth, padding;
 
   const MyProjectsWidget(
       {super.key,
       this.padding = 32,
       this.projects = const [],
-      this.cardHeight = 380,
-      this.cardWidth = 440,
       this.imageWidth = 100,
-      this.myStyle,
-      this.titleStyle,
-      this.indexStyle,
-      this.projectNameStyle,
-      this.projectTypeStyle,
-      this.descriptionStyle});
+      this.perRow = 3});
 
   @override
   Widget build(BuildContext context) {
@@ -40,26 +29,15 @@ class MyProjectsWidget extends StatelessWidget {
         SectionsTitleWidget(
           key: GlobalKeys.projects,
           title: Strings.projects.translate,
-          titleStyle: titleStyle,
         ),
         16.0.heightBox,
-        Wrap(spacing: 16, runSpacing: 16, children: [
-          ...List.generate(
-              projects.length,
-              (i) => SizedBox(
-                 height: cardHeight,
-                 width: cardWidth,
-                child: ProjectCard(
-                      project: projects[i],
-                      // descriptionStyle: descriptionStyle,
-                      // imageWidthSize: imageWidth,
-                      // cardHeight: cardHeight,
-                      // cardWidth: cardWidth,
-                      // projectNameStyle: projectNameStyle,
-                      // projectTypeStyle: projectTypeStyle,
-                    ),
-              ))
-        ]),
+        GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: perRow, mainAxisExtent: 360),
+            itemCount: projects.length,
+            itemBuilder: (c, i) => ProjectCard(project: projects[i]).paddingSymmetric(horizontal: 16,vertical: 8))
       ],
     );
   }

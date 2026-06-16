@@ -8,7 +8,6 @@ import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 class SkillCard extends StatelessWidget {
   final TechnicalSkillEntity? skill;
   final int index;
-  final TextStyle? nameStyle, contentStyle;
   final double iconSize;
 
   const SkillCard({
@@ -16,24 +15,23 @@ class SkillCard extends StatelessWidget {
     required this.skill,
     this.iconSize = 40,
     required this.index,
-    this.nameStyle,
-    this.contentStyle,
   });
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return AnimatedCardWidget(
+    return ZoomOutAnimatedCardWidget(
       child:(h)=> Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
-        spacing: 8,
+        spacing: 12,
         children: [
           Text(
             skill?.category?.toUpperCase() ?? "",
-            style: nameStyle ??
-                AppTextStyles.semiBold14(
-                  color: colors.accent,
+            style:
+                AppTextStyles.subtitleCard(
+                  context: context,
+                  color: colors.text1,
                 ),
           ),
           Wrap(
@@ -44,14 +42,13 @@ class SkillCard extends StatelessWidget {
                   skill?.skills.length ?? 0,
                   (i) => CardWithText(
                         text: (skill?.skills[i].skillName ?? ""),
-                        style: contentStyle,
+
                         maxLine: 3,
-                        color:
-                            index % 2 == 0 ? colors.secondary : colors.surface,
-                        borderColor:
-                            index % 2 == 0 ? colors.secondary : colors.surface,
+                        border: 8,
+                        color: i  == 0 ? colors.accent.withValues(alpha: 0.1): colors.text3.withValues(alpha: 0.1),
+                        borderColor:Colors.transparent,
                         textColor:
-                            index % 2 == 0 ? colors.secondaryEv : colors.text2,
+                            i == 0 ?colors.accent : colors.text2,
                       ))
             ],
           )

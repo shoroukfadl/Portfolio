@@ -1,18 +1,21 @@
+
+
 import 'package:flutter/material.dart';
-import 'package:portfolio/Utilities/extensions.dart';
+
+import '../../../Core/Language/app_styles.dart';
+import '../../../Utilities/extensions.dart';
 
 class HomeAppBarItem extends StatefulWidget {
   final Function() onTap;
-  final IconData icon;
-  final String label;
-  final bool isSelected;
+  final String title;
+  final bool selected;
 
-  const HomeAppBarItem(
-      {super.key,
-      required this.onTap,
-      required this.icon,
-      this.label = "",
-      this.isSelected = false});
+  const HomeAppBarItem({
+    super.key,
+    required this.onTap,
+    required this.title,
+    this.selected = false,
+  });
 
   @override
   State<HomeAppBarItem> createState() => _HomeAppBarItemState();
@@ -25,8 +28,7 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    final activeColor = colors.accent;
-    final idleColor = colors.text1;
+    final active = widget.selected || _isHovered;
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -34,31 +36,36 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
       onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
         onTap: widget.onTap,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 14,
+            vertical: 8,
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              AnimatedScale(
-                scale: _isHovered ? 1.2 : 1.0,
-                duration: const Duration(milliseconds: 200),
-                child: Icon(
-                  widget.icon,
-                  color:
-                      _isHovered || widget.isSelected ? activeColor : idleColor,
-                  size: 24,
+              AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 250),
+                curve: Curves.easeOut,
+                style: AppTextStyles.title(
+                  context: context,
+                  color: active
+                      ? colors.accent
+                      : colors.text2,
                 ),
+                child: Text(widget.title),
               ),
+
               const SizedBox(height: 4),
+
               AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-                width: _isHovered || widget.isSelected
-                    ? 20
-                    : 0, // يتمدد من 0 إلى 20
-                height: 3,
+                duration: const Duration(milliseconds: 250),
+                curve: Curves.easeOut,
+                height: 2,
+                width: active ? 100 : 0,
+                alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: activeColor,
+                  color: colors.accent,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),

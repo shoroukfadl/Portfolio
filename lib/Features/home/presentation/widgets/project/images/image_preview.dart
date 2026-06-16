@@ -27,7 +27,7 @@ class ImagePreviewWidget extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(
-            color: colors.accentSoft,
+            color: colors.accent,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -48,11 +48,10 @@ class ImagePreviewWidget extends StatelessWidget {
           RoundedImage(
             imagePath: image,
             fit: BoxFit.fill,
-            height: height,
-            width: cardWidth,
+            height: double.infinity,
+            width: double.infinity,
             backgroundColor: colors.background,
             radiusValue: 0,
-            radius: 0,
           ).expand,
         ],
       );
