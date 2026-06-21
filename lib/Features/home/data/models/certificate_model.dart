@@ -49,6 +49,7 @@ class CertificateModel {
       issueDate: issueDate,
       credentialUrl: credentialUrl,
       certificateImageUrl: certificateImageUrl);
+
   CertificateModel toModel() => CertificateModel(
         id: id,
         profileId: profileId,

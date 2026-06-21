@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
 
 import '../../Utilities/extensions.dart';
 
@@ -15,19 +16,23 @@ class IconToolTipButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors=context.colors;
+    final colors = context.colors;
     return Tooltip(
+      decoration: BoxDecoration(
+          color: colors.text3, borderRadius: BorderRadius.circular(100)),
+      textStyle:
+          AppTextStyles.titleCardSmall(context: context, color: Colors.white),
       message: tooltip,
       child: InkWell(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(100),
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.all(7),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: colors.danger.withValues(alpha: .06),
-            borderRadius: BorderRadius.circular(8),
+            color: colors.accent,
+            borderRadius: BorderRadius.circular(100),
           ),
-          child: Icon(icon, color: colors.danger, size: 18),
+          child: Icon(icon, color: Colors.white, size: 18),
         ),
       ),
     );

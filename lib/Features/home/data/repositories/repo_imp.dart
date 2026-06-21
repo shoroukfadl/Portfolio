@@ -7,7 +7,9 @@ import '../../../../Core/Network/custom_either.dart';
 
 class RepoImp implements Repo {
   final RemoteDataSource dataSource;
+
   const RepoImp(this.dataSource);
+
   Future<Either<Failure, PortfolioEntity>> getData() async {
     final res = await dataSource.getData();
     print('r : #${res.right?.profile?.firstName}');

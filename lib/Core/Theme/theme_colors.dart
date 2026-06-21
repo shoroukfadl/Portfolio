@@ -2,38 +2,34 @@ import 'package:flutter/material.dart';
 
 @immutable
 class AppColors extends ThemeExtension<AppColors> {
-  // ─── Dark Theme (Primary) ────────────────────────────────────────────────
+// ─── Dark Theme (Coral & Teal) ────────────────────────────────────────────
   static const darkValues = AppColors(
-    background: Color(0xff0F1923),  // navy داكن جداً — مش أسود
-    surface:    Color(0xff1A2535),  // أفتح شوية
-    card:       Color(0xff1E2D40),  // أفتح من الـ surface يتميز
-
-    accent:     Color(0xff4A90C4),  // الـ navy اتفتح — يبان على الداكن
-    secondary:  Color(0xff7B84D4),  // الـ secondary اتفتح كمان
-
-    success:    Color(0xFF05B367),  // ✅ نفسه — شغال على الداكن
-    warning:    Color(0xFFFFB300),  // ✅ نفسه
-    danger:     Color(0xFFFF4757),  // ✅ نفسه
-
-    text1:      Color(0xffE8F0F7),  // مش أبيض خالص
-    text2:      Color(0xff9AACBC),  // معكوس الـ text2 اللايت
-    text3:      Color(0xff4A5F72),
+    background: Color(0xFF1a1a21),
+    surface: Color(0xFF1d1d24),
+    card: Color(0xFF23232c),
+    accent: Color(0xFFb98391),
+    secondary: Color(0xFF3D3C4A),
+    success: Color(0xFF5FD89A),
+    warning: Color(0xFFFFC94D),
+    danger: Color(0xFFFF5C6C),
+    text1: Color(0xFFFAF7F8),
+    text2: Color(0xFFfaf4f5),
+    text3: Color(0xfffaf7f8),
   );
 
-
-  // ─── Light Theme ─────────────────────────────────────────────────────────
+// ─── Light Theme (Coral & Teal) ───────────────────────────────────────────
   static const lightValues = AppColors(
-    background: Color(0xffF8FAFC),
-    surface: Color(0xffefefef),
-    card: Color(0xffFFFFFF),
-    accent: Color(0xff2E5077),
-    secondary: Color(0xff5965b8),
-    success: Color(0xFF05B367),
-    warning: Color(0xFFFFB300),
-    danger: Color(0xFFFF4757),
-    text1: Color(0xff142335),
-    text2: Color(0xff3d4042),
-    text3: Color(0xff9AA6B2),
+    background: Color(0xFFfafafa),
+    surface: Color(0xFFFFFDFD),
+    card: Color(0xFFFFFFFF),
+    accent: Color(0xFFb98391),
+    secondary: Color(0xFF2D2C37),
+    success: Color(0xFF4CAF7D),
+    warning: Color(0xFFFFB627),
+    danger: Color(0xFFE63950),
+    text1: Color(0xff262630),
+    text2: Color(0xff63637c),
+    text3: Color(0xff81818e),
   );
 
   // ─── Fields ───────────────────────────────────────────────────────────────
@@ -64,13 +60,13 @@ class AppColors extends ThemeExtension<AppColors> {
   });
 
   // Badge colours
-  static const appBadgeBg      = Color(0xFFE8F4ED);
-  static const appBadgeText    = Color(0xFF2D7A4F);
-  static const webBadgeBg      = Color(0xFFE8EEFA);
-  static const webBadgeText    = Color(0xFF2D4FA0);
-  static const ecommBadgeBg    = Color(0xFFFAF0E8);
-  static const ecommBadgeText  = Color(0xFFA06020);
-  static const healthBadgeBg   = Color(0xFFFAE8EE);
+  static const appBadgeBg = Color(0xFFE8F4ED);
+  static const appBadgeText = Color(0xFF2D7A4F);
+  static const webBadgeBg = Color(0xFFE8EEFA);
+  static const webBadgeText = Color(0xFF2D4FA0);
+  static const ecommBadgeBg = Color(0xFFFAF0E8);
+  static const ecommBadgeText = Color(0xFFA06020);
+  static const healthBadgeBg = Color(0xFFFAE8EE);
   static const healthBadgeText = Color(0xFFA0203A);
 
   // ─── Gradient Helpers ─────────────────────────────────────────────────────
@@ -78,9 +74,9 @@ class AppColors extends ThemeExtension<AppColors> {
   /// Subtle card depth (dark theme only)
   static const gradientCardDark = LinearGradient(
     colors: [
-       Color(0xFF0F1715),
-     Color(0xFF17211E),
-     Color(0xFF1E2A26),
+      Color(0xFF0F1715),
+      Color(0xFF17211E),
+      Color(0xFF1E2A26),
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -88,9 +84,9 @@ class AppColors extends ThemeExtension<AppColors> {
 
   static const gradientCardLight = LinearGradient(
     colors: [
-       Color(0xFFFAF8F0),
-       Color(0xFFFBF9E9),
-     Color(0xffedece3),
+      Color(0xFFFAF8F0),
+      Color(0xFFFBF9E9),
+      Color(0xffedece3),
     ],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,

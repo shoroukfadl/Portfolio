@@ -8,7 +8,6 @@ import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/helper_function.dart';
 import 'package:portfolio/Widgets/Buttons/close_button.dart';
 import 'package:portfolio/Widgets/Custom/card_with_text.dart';
-import 'package:portfolio/Widgets/rounded_image_widget.dart';
 
 class GalleryPreviewDialog extends StatefulWidget {
   final List<String> images;
@@ -21,7 +20,7 @@ class GalleryPreviewDialog extends StatefulWidget {
     required this.images,
     this.initialIndex = 0,
     this.title,
-    this.isMobile=false,
+    this.isMobile = false,
   });
 
   static Future<void> show(
@@ -29,9 +28,8 @@ class GalleryPreviewDialog extends StatefulWidget {
     required List<String> images,
     int initialIndex = 0,
     String? title,
-         bool isMobile =false,
-
-      }) {
+    bool isMobile = false,
+  }) {
     return HelperFunctions.showDialogHelper(
       context,
       title: 'Gallery',
@@ -138,28 +136,32 @@ class _GalleryPreviewDialogState extends State<GalleryPreviewDialog> {
                 child: Column(
                   children: [
                     _buildHeader(colors),
-                    Expanded(child: MainViewWidget(
-                      isMobile: widget.isMobile,
-                        onDoubleTap: () {
-                          if (_isZoomed) {
-                            _resetZoom();
-                          } else {
-                            setState(() => _isZoomed = true);
-                            _transformController.value = Matrix4.identity()..scale(2.0);
-                          }
-                        },
-                        pageController: _pageController,
-                        isZoomed: _isZoomed,
-                        onPageChange: (i) => setState(() {
-                          _current = i;
-                          _resetZoom();
-                        }),
-                        transformController: (i) => i == _current ? _transformController : null,
-                        onInteractionEnd: () {
-                          final scale = _transformController.value.getMaxScaleOnAxis();
-                          setState(() => _isZoomed = scale > 1.05);
-                        },
-                        images: widget.images)),
+                    Expanded(
+                        child: MainViewWidget(
+                            isMobile: widget.isMobile,
+                            onDoubleTap: () {
+                              if (_isZoomed) {
+                                _resetZoom();
+                              } else {
+                                setState(() => _isZoomed = true);
+                                _transformController.value = Matrix4.identity()
+                                  ..scale(2.0);
+                              }
+                            },
+                            pageController: _pageController,
+                            isZoomed: _isZoomed,
+                            onPageChange: (i) => setState(() {
+                                  _current = i;
+                                  _resetZoom();
+                                }),
+                            transformController: (i) =>
+                                i == _current ? _transformController : null,
+                            onInteractionEnd: () {
+                              final scale = _transformController.value
+                                  .getMaxScaleOnAxis();
+                              setState(() => _isZoomed = scale > 1.05);
+                            },
+                            images: widget.images)),
                     if (widget.images.length > 1)
                       ThumbnailsWidget(
                         images: widget.images,
@@ -259,7 +261,6 @@ class _GalleryPreviewDialogState extends State<GalleryPreviewDialog> {
       ),
     );
   }
-
 }
 
 // ── HELPER WIDGETS ───────────────────────────────────────────

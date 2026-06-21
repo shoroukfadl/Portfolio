@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/about_me_title.dart';
-import 'package:portfolio/Models/user_data_model.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Portfilio/animated_background.dart';
 
@@ -10,8 +9,15 @@ import 'floating_card_widget.dart';
 
 class SummarySection extends StatefulWidget {
   final ProfileEntity? profile;
+  final double projectProductionNumber;
+  final double padding;
 
-  const SummarySection({super.key, this.profile,});
+  const SummarySection({
+    super.key,
+    this.profile,
+    this.padding = desktopHozPadding,
+    required this.projectProductionNumber,
+  });
 
   @override
   State<SummarySection> createState() => _SummarySectionState();
@@ -50,37 +56,49 @@ class _SummarySectionState extends State<SummarySection>
 
   @override
   Widget build(BuildContext context) {
-    final colors =context.colors;
+    final height = context.matchedSize(large: 560, medium: 560, small: 620);
     return AnimatedBackground(
-      height: 560,
+      height: height,
       child: Padding(
-        padding:EdgeInsetsDirectional.only(
-            start: Constants.desktopHozPadding,end:  Constants.desktopHozPadding, ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: SummaryContent(
-                firstName: widget.profile?.firstName ?? "",
-                lastName: widget.profile?.lastName ?? "",
-                role: widget.profile?.jobTitle ?? "",
-                summary: widget.profile?.summary ?? "",
-                cv: widget.profile?.cv ?? "",
-                email: widget.profile?.email ?? "",
-              ),
-            ),
-            const SizedBox(width: 60),
-            Expanded(
-              child: FloatingCards(
-                floatController: _floatController,
-                cardControllers: _cardControllers,
-                isMobile: false,
-              ),
-            ),
-          ],
+        padding: EdgeInsetsDirectional.only(
+          start: widget.padding,
+          end: widget.padding,
         ),
+        child: !context.isSmall
+            ? Row(
+                spacing: context.isLarge ? 60 : 0,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _Summary().expand,
+                  _FloatingCards().expand,
+                ],
+              )
+            : Column(
+                spacing: 100,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _Summary(),
+                  _FloatingCards(),
+                ],
+              ),
       ),
     );
   }
+
+  Widget _Summary() => SummaryContent(
+        firstName: widget.profile?.firstName ?? "",
+        lastName: widget.profile?.lastName ?? "",
+        role: widget.profile?.jobTitle ?? "",
+        summary: widget.profile?.summary ?? "",
+        cv: widget.profile?.cv ?? "",
+        email: widget.profile?.email ?? "",
+        experince: widget.profile?.experince ?? 1,
+        projectNumber: widget.projectProductionNumber,
+      );
+
+  Widget _FloatingCards() => FloatingCards(
+        floatController: _floatController,
+        cardControllers: _cardControllers,
+        isMobile: context.isSmall,
+      );
 }

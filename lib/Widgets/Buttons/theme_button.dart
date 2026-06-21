@@ -19,6 +19,10 @@ class _ThemeButtonState extends State<ThemeButton> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final size = context.matchedSize(
+        large: largeButtonIcon,
+        medium: mediumButtonIcon,
+        small: smallButtonIcon);
 
     return BlocBuilder<ThemeCubit, ThemeState>(
       builder: (context, theme) {
@@ -36,20 +40,18 @@ class _ThemeButtonState extends State<ThemeButton> {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeOut,
-              width: 36,
-              height: 36,
+              width: size,
+              height: size,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
+                borderRadius: BorderRadius.circular(100),
                 color: _hovered
-                    ? Colors.transparent
-                    :theme.isDark? colors.accent :colors.secondary.withValues(alpha: .3),
+                    ? colors.text3
+                    : theme.isDark
+                        ? colors.accent
+                        : colors.secondary,
                 border: Border.all(
-                  color: _hovered
-                      ? colors.text3
-                      : (theme.isDark
-                      ? colors.accent
-                      : colors.secondary),
+                  color: Colors.transparent,
                 ),
               ),
               child: AnimatedRotation(
@@ -68,16 +70,14 @@ class _ThemeButtonState extends State<ThemeButton> {
                     );
                   },
                   child: Icon(
-                    theme.isDark
-                        ? Portfolio.sun
-                        : Portfolio.moon,
+                    theme.isDark ? Portfolio.sun : Portfolio.moon,
                     key: ValueKey(theme.isDark),
-                    size: 18,
-                    color: theme.isDark
-                        ? Colors.white
-                        : (_hovered
-                        ? colors.text3
-                        : colors.secondary),
+                    size: size / 1.5,
+                    color: _hovered
+                        ? colors.background
+                        : theme.isDark
+                            ? colors.text1
+                            : colors.background,
                   ),
                 ),
               ),

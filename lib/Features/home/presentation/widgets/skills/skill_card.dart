@@ -4,6 +4,7 @@ import 'package:portfolio/Features/home/domain/entities/tech_skill_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Custom/card_with_animation.dart';
 import 'package:portfolio/Widgets/Custom/card_with_text.dart';
+import 'package:portfolio/Widgets/rounded_image_widget.dart';
 
 class SkillCard extends StatelessWidget {
   final TechnicalSkillEntity? skill;
@@ -21,37 +22,54 @@ class SkillCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return ZoomOutAnimatedCardWidget(
-      child:(h)=> Column(
+      child: (h) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         spacing: 12,
         children: [
-          Text(
-            skill?.category?.toUpperCase() ?? "",
-            style:
-                AppTextStyles.subtitleCard(
+          Row(
+            spacing: 8,
+            children: [
+              RoundedImage(
+                imagePath: skill?.icon ?? "",
+                width: 24,
+                height: 24,
+                borderColor: colors.accent,
+                padding: 2,
+                fit: BoxFit.fill,
+              ),
+              Text(
+                skill?.category?.toUpperCase() ?? "",
+                style: AppTextStyles.titleCard(
                   context: context,
                   color: colors.text1,
                 ),
-          ),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              ...List.generate(
-                  skill?.skills.length ?? 0,
-                  (i) => CardWithText(
-                        text: (skill?.skills[i].skillName ?? ""),
-
-                        maxLine: 3,
-                        border: 8,
-                        color: i  == 0 ? colors.accent.withValues(alpha: 0.1): colors.text3.withValues(alpha: 0.1),
-                        borderColor:Colors.transparent,
-                        textColor:
-                            i == 0 ?colors.accent : colors.text2,
-                      ))
+              ),
             ],
-          )
+          ),
+          if (skill?.skills != null)
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                ...List.generate(
+                    skill!.skills.length,
+                    (i) => CardWithText(
+                          text: (skill?.skills[i].skillName ?? ""),
+                          hozPadding: 8,
+                          vertPadding: 4,
+                          maxLine: 3,
+                          border: 8,
+                          color: i == 0 || i == (skill!.skills.length - 1)
+                              ? colors.accent.withValues(alpha: 0.1)
+                              : colors.secondary.withValues(alpha: 0.1),
+                          borderColor: i == 0 || i == (skill!.skills.length - 1)
+                              ? colors.accent.withValues(alpha: 0.1)
+                              : colors.secondary.withValues(alpha: 0.1),
+                          textColor: colors.text2,
+                        ))
+              ],
+            )
         ],
       ),
     );

@@ -8,6 +8,7 @@ import '../../../../../Utilities/portifilo_icons.dart';
 
 class CvButton extends StatefulWidget {
   final String cv;
+
   const CvButton({super.key, required this.cv});
 
   @override

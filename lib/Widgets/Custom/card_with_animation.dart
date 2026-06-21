@@ -2,110 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-class BasicAnimatedCardWidget extends StatefulWidget {
-  final Color? cardColor,
-      borderColor,
-      shadowColor,
-      animatedColor,
-      animatedBorderColor;
-  final Widget Function(bool hover) child;
-  final double paddingHoz, paddingVert, border;
-
-  const BasicAnimatedCardWidget({
-    super.key,
-    this.cardColor,
-    this.borderColor,
-    this.animatedBorderColor,
-    required this.child,
-    this.paddingHoz = 16,
-    this.paddingVert = 12,
-    this.border = Constants.cardRadius,
-    this.shadowColor,
-    this.animatedColor,
-  });
-
-  @override
-  State<BasicAnimatedCardWidget> createState() =>
-      _BasicAnimatedCardWidgetState();
-}
-
-class _BasicAnimatedCardWidgetState extends State<BasicAnimatedCardWidget> {
-  bool _isHovered = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    return MouseRegion(
-      onEnter: (_) {
-        setState(() => _isHovered = true);
-      },
-      onExit: (_) {
-        setState(() => _isHovered = false);
-      },
-      child: AnimatedScale(
-        duration: const Duration(milliseconds: 200),
-        scale: _isHovered ? 1.02 : 1,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(
-              Radius.circular(widget.border),
-            ),
-            border: Border.all(
-              color: _isHovered
-                  ? (widget.animatedBorderColor ?? colors.secondary)
-                  : (widget.borderColor ?? colors.text3),
-              width: _isHovered ? 0.6 : 0.4,
-            ),
-            boxShadow: _isHovered
-                ? [
-              BoxShadow(
-                color: widget.shadowColor ??
-                    colors.secondary.withValues(alpha: 0.1),
-                blurRadius: 8,
-                spreadRadius: 4,
-              ),
-            ]
-                : null,
-            color: _isHovered
-                ? (widget.animatedColor ?? colors.surface)
-                : (widget.cardColor ?? colors.surface),
-          ),
-          padding: EdgeInsets.symmetric(
-              horizontal: widget.paddingHoz, vertical: widget.paddingVert),
-          child: widget.child(_isHovered),
-        ),
-      ),
-    );
-  }
-}
-
 class AnimatedCardWidget extends StatelessWidget {
-  final Color? cardColor, borderColor, shadowColor;
   final Widget Function(bool hover) child;
   final double paddingHoz, paddingVert, border;
   final double? width, height;
 
   const AnimatedCardWidget({
     super.key,
-    this.cardColor,
-    this.borderColor,
     required this.child,
     this.paddingHoz = 16,
     this.paddingVert = 12,
     this.width,
-    this.border = Constants.cardRadius,
-    this.shadowColor,
+    this.border = cardRadius,
     this.height,
   });
 
@@ -113,37 +21,35 @@ class AnimatedCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return InteractiveCard(
-        child:(_isHovered)=> AnimatedContainer(
-          duration: const Duration(milliseconds: 250),
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(
-              Radius.circular(border),
-            ),
-            border: Border.all(
-              color:_isHovered ? colors.accent: borderColor ?? colors.text3,
-              width:_isHovered ? 0.4: 0.1,
-            ),
-            // boxShadow: _isHovered ?[
-            //   BoxShadow(
-            //       color: colors.text1.withValues(alpha: 0.2),
-            //       spreadRadius: 2,
-            //       blurRadius: 6,
-            //       offset:const Offset (0,8)
-            //   )
-            // ]:null,
-            color: (cardColor ?? colors.card),
-          ),
-          padding: EdgeInsets.symmetric(
-              horizontal: paddingHoz, vertical: paddingVert),
-          child: child(_isHovered),
-        ));
+        child: (hover) => AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              curve: Curves.easeOut,
+              width: width,
+              height: height,
+              transform: Matrix4.translationValues(0, hover ? -8 : 0, 0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(border),
+                ),
+                border: Border.all(
+                  color: hover ? colors.secondary : colors.text3,
+                  width: hover ? 0.4 : 0.1,
+                ),
+                color: colors.card,
+                boxShadow: [
+                  BoxShadow(
+                    color: colors.text3.withValues(alpha: hover ? 0.18 : 0.06),
+                    blurRadius: hover ? 16 : 6,
+                    offset: Offset(0, hover ? 10 : 3),
+                  ),
+                ],
+              ),
+              padding: EdgeInsets.symmetric(
+                  horizontal: paddingHoz, vertical: paddingVert),
+              child: child(hover),
+            ));
   }
 }
-
-
-
 
 class ZoomOutAnimatedCardWidget extends StatelessWidget {
   final Color? cardColor, borderColor, hoverColor;
@@ -159,7 +65,7 @@ class ZoomOutAnimatedCardWidget extends StatelessWidget {
     this.paddingHoz = 16,
     this.paddingVert = 12,
     this.width,
-    this.border = Constants.cardRadius,
+    this.border = cardRadius,
     this.hoverColor,
     this.height,
   });
@@ -168,38 +74,42 @@ class ZoomOutAnimatedCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return InteractiveCard(
-        child:(h)=> AnimatedScale(
-          scale: h?1.03:1,
-          duration: Duration(milliseconds: 250),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 250),
-            width: width,
-            height: height,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(border),
+        child: (h) => AnimatedScale(
+              scale: h ? 0.97 : 1,
+              duration: Duration(milliseconds: 250),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                width: width,
+                height: height,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(border),
+                  ),
+                  boxShadow: [
+                    if (h)
+                      BoxShadow(
+                          color: colors.secondary.withValues(alpha: 0.28),
+                          blurRadius: 10,
+                          spreadRadius: 4)
+                  ],
+                  border: Border.all(
+                    color: h
+                        ? (hoverColor ?? colors.secondary)
+                        : borderColor ?? colors.text3,
+                    width: h ? 0.4 : 0.1,
+                  ),
+                  color: (cardColor ?? colors.card),
+                ),
+                padding: EdgeInsets.symmetric(
+                    horizontal: paddingHoz, vertical: paddingVert),
+                child: child(h),
               ),
-              border: Border.all(
-                color:h ? (hoverColor??colors.accent): borderColor ?? colors.text3,
-                width:h ? 0.4: 0.1,
-              ),
-              color:h? colors.surface.withValues(alpha: 0.1): (cardColor ?? colors.card),
-            ),
-            padding: EdgeInsets.symmetric(
-                horizontal: paddingHoz, vertical: paddingVert),
-            child: child(h),
-          ),
-        ));
+            ));
   }
 }
 
-
-
-
-
-
 class InteractiveCard extends StatefulWidget {
-  final Widget Function(bool)child;
+  final Widget Function(bool) child;
 
   const InteractiveCard({
     super.key,
@@ -216,8 +126,8 @@ class _InteractiveCardState extends State<InteractiveCard> {
 
   bool get _isDesktop =>
       Theme.of(context).platform == TargetPlatform.macOS ||
-          Theme.of(context).platform == TargetPlatform.windows ||
-          Theme.of(context).platform == TargetPlatform.linux;
+      Theme.of(context).platform == TargetPlatform.windows ||
+      Theme.of(context).platform == TargetPlatform.linux;
 
   void _setHover(bool value) {
     if (_isDesktop) {
@@ -231,12 +141,6 @@ class _InteractiveCardState extends State<InteractiveCard> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
-
-
-
     if (_isDesktop) {
       return MouseRegion(
         onEnter: (_) => _setHover(true),
@@ -253,7 +157,6 @@ class _InteractiveCardState extends State<InteractiveCard> {
     );
   }
 }
-
 
 class AnimatedDot extends StatefulWidget {
   final bool active;
@@ -310,9 +213,7 @@ class _AnimatedDotState extends State<AnimatedDot>
     return AnimatedBuilder(
       animation: _controller,
       builder: (_, __) {
-        final glow = widget.active
-            ? 0.5 + (_controller.value * 0.5)
-            : 0.15;
+        final glow = widget.active ? 0.5 + (_controller.value * 0.5) : 0.15;
 
         return AnimatedScale(
           duration: const Duration(milliseconds: 300),
@@ -327,14 +228,14 @@ class _AnimatedDotState extends State<AnimatedDot>
               color: colors.secondary,
               boxShadow: widget.active
                   ? [
-                BoxShadow(
-                  color: colors.secondary.withValues(
-                    alpha: glow,
-                  ),
-                  blurRadius: 12 + (_controller.value * 8),
-                  spreadRadius: 2 + (_controller.value * 2),
-                ),
-              ]
+                      BoxShadow(
+                        color: colors.secondary.withValues(
+                          alpha: glow,
+                        ),
+                        blurRadius: 12 + (_controller.value * 8),
+                        spreadRadius: 2 + (_controller.value * 2),
+                      ),
+                    ]
                   : [],
             ),
           ),

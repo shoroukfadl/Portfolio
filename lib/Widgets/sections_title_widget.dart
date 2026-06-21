@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
 
 import '../Core/Language/app_styles.dart';
 
@@ -15,15 +16,19 @@ class SectionsTitleWidget extends StatelessWidget {
     return Row(
       spacing: 16,
       children: [
-        Container(
-          height: 0.5,
-          width: 48,
-          decoration: BoxDecoration(
-              color: colors.accent, borderRadius: BorderRadius.circular(2)),
+        VerticalGradientDivider(
+          height: 2,
+          width: 32,
+          begin: AlignmentGeometry.centerLeft,
+          end: AlignmentGeometry.centerRight,
+          color1: colors.accent,
+          color2: colors.secondary,
+          repation: 2,
         ),
         Text(
           title.toUpperCase(),
-          style:  AppTextStyles.sectionsTitle(context:context,color: colors.text2),
+          style: AppTextStyles.sectionsTitle(
+              context: context, color: colors.secondary),
         ),
       ],
     );

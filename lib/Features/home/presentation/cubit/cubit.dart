@@ -5,6 +5,7 @@ import 'package:portfolio/Utilities/Constants/enums.dart';
 
 class PortfolioCubit extends Cubit<PortfolioState> {
   final GetDataUseCase getDataUseCase;
+
   PortfolioCubit({required this.getDataUseCase}) : super(PortfolioState.init());
 
   Future<void> getData() async {
@@ -13,8 +14,14 @@ class PortfolioCubit extends Cubit<PortfolioState> {
     res.fold((l) {
       emit(state.copyWith(loading: RequestStatus.error));
     }, (r) {
-      print('In R :: ${r.profile?.firstName}');
       emit(state.copyWith(loading: RequestStatus.success, data: r));
     });
+  }
+
+  void changeSection(HomeSection section) {
+    if (section == state.section)
+      return;
+    else
+      emit(state.copyWith(section: section));
   }
 }

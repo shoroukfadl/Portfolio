@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Animation/animations.dart';
+import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
 import '../../../../../Utilities/Constants/global_keys.dart';
@@ -12,81 +15,47 @@ class ProjectsButton extends StatefulWidget {
   State<ProjectsButton> createState() => _ProjectsButtonState();
 }
 
-class _ProjectsButtonState extends State<ProjectsButton>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _widthAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 600),
-    );
-
-    _widthAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _handleHover(bool isHovering) {
-    if (isHovering) {
-      _controller.forward();
-    } else {
-      _controller.reverse();
-    }
-  }
-
+class _ProjectsButtonState extends State<ProjectsButton> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return MouseRegion(
-      onEnter: (_) => _handleHover(true),
-      onExit: (_) => _handleHover(false),
-      child: InkWell(
-        onTap: () {
+    final height = context.matchedSize(
+        large: largeButtonHeight,
+        medium: mediumButtonHeight,
+        small: smallButtonHeight);
+    return HoverAnimatedWidget(
+      moveUp: true,
+      child: (hover) => CustomButtonWidget(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        onPressed: () {
           Scrollable.ensureVisible(
-            GlobalKeys.aboutMe.currentContext!,
+            GlobalKeys.projects.currentContext!,
             duration: const Duration(seconds: 1),
             curve: Curves.easeInOut,
           );
         },
-        hoverColor: Colors.transparent,
-        child: Container(
-          width: 140,
-          height: 40,
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            color: colors.accent,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: AnimatedBuilder(
-            animation: _widthAnimation,
-            builder: (context, child) {
-              return Stack(
-                children: [
-                  Container(
-                    width: _widthAnimation.value * 140,
-                    height: 40,
-                    color: colors.card,
-                  ),
-                  Center(child: child),
-                ],
-              );
-            },
-            child: Text(
+        height: height,
+        btnColor: Colors.transparent,
+        borderColor: colors.accent,
+        borderRadiusValue: 100,
+        child: Row(
+          spacing: 4,
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
               Strings.projects.translate,
-              style: AppTextStyles.medium14(color: Colors.white),
+              style: AppTextStyles.buttonLabel(
+                  context: context,
+                  color: !hover ? colors.text1 : colors.accent),
             ),
-          ),
+            Icon(
+              Icons.arrow_right_alt_outlined,
+              color: !hover ? colors.text1 : colors.accent,
+              size: height / 2,
+            ),
+          ],
         ),
       ),
     );

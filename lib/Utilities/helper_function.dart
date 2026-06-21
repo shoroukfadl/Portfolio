@@ -30,12 +30,12 @@ abstract class HelperFunctions {
   static Future<void> showDialogHelper(BuildContext context,
       {required Widget contentWidget,
       Color? backgroundColor,
-        String? title,
+      String? title,
       AlignmentDirectional? alignment,
       final bool enablePadding = true,
       bool isFullScreen = true}) {
     final colors = context.colors;
-      return showGeneralDialog(
+    return showGeneralDialog(
         context: context,
         barrierDismissible: true,
         barrierLabel: title,
@@ -52,10 +52,7 @@ abstract class HelperFunctions {
             ),
           );
         },
-        pageBuilder: (_, __, ___) => contentWidget
-      );
-
-
+        pageBuilder: (_, __, ___) => contentWidget);
   }
 
   static void showCustomToast(

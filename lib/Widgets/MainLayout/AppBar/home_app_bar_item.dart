@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 import '../../../Core/Language/app_styles.dart';
@@ -49,20 +47,16 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
                 curve: Curves.easeOut,
                 style: AppTextStyles.title(
                   context: context,
-                  color: active
-                      ? colors.accent
-                      : colors.text2,
+                  color: active ? colors.accent : colors.text2,
                 ),
-                child: Text(widget.title),
+                child: Text(widget.title.toUpperCase()),
               ),
-
               const SizedBox(height: 4),
-
               AnimatedContainer(
                 duration: const Duration(milliseconds: 250),
                 curve: Curves.easeOut,
                 height: 2,
-                width: active ? 100 : 0,
+                width: active ? 80 : 0,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: colors.accent,

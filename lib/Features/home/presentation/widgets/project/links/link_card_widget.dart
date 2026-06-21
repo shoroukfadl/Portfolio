@@ -3,7 +3,6 @@ import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../Core/Language/app_styles.dart';
-import '../../../../../../Utilities/extensions.dart';
 
 class LinkCardWidget extends StatefulWidget {
   final LinkEntity link;
@@ -19,9 +18,11 @@ class LinkCardWidget extends StatefulWidget {
 
 class _LinkCardWidgetState extends State<LinkCardWidget> {
   bool hover = false;
+
   void onHover(h) => setState(() {
         hover = h;
       });
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(

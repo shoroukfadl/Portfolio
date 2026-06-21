@@ -5,11 +5,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../Core/Language/app_styles.dart';
 import '../../../../../../Utilities/Constants/enums.dart';
+import '../../../../../../Utilities/portifilo_icons.dart';
 import '../../../../domain/entities/project_entity.dart';
 
 class PlatformButton extends StatefulWidget {
   final List<LinkEntity> links;
   final PlatformType type;
+
   const PlatformButton({super.key, required this.links, required this.type});
 
   @override
@@ -30,9 +32,9 @@ class _PlatformButtonState extends State<PlatformButton> {
       };
 
   IconData get _icon => switch (widget.type) {
-        PlatformType.web => Icons.language_rounded,
-        PlatformType.ios => Icons.apple_rounded,
-        PlatformType.android => Icons.android_rounded,
+        PlatformType.web => Portfolio.link,
+        PlatformType.ios => Portfolio.ios,
+        PlatformType.android => Portfolio.andriod,
       };
 
   OverlayEntry _createOverlayEntry() {
@@ -116,13 +118,13 @@ class _PlatformButtonState extends State<PlatformButton> {
       child: MouseRegion(
         onEnter: (_) => setState(() => _hovered = true),
         onExit: (_) => setState(() => _hovered = false),
-        child: GestureDetector(
+        child: InkWell(
           onTap: _handleTap,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 160),
             padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
             decoration: BoxDecoration(
-              color: _hovered
+              color: !_hovered
                   ? colors.secondary.withValues(alpha: 0.2)
                   : colors.accent.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(100),
@@ -133,14 +135,14 @@ class _PlatformButtonState extends State<PlatformButton> {
                 Icon(
                   _icon,
                   size: 12,
-                  color: _hovered ? colors.secondary : colors.accent,
+                  color: !_hovered ? colors.text1 : colors.accent,
                 ),
                 const SizedBox(width: 5),
                 Text(
                   _label,
                   style: AppTextStyles.titleCardSmall(
                     context: context,
-                    color: _hovered ? colors.secondary : colors.accent,
+                    color: !_hovered ? colors.text1 : colors.accent,
                   ),
                 ),
                 if (widget.links.length > 1) ...[
@@ -151,7 +153,7 @@ class _PlatformButtonState extends State<PlatformButton> {
                     child: Icon(
                       Icons.keyboard_arrow_down_rounded,
                       size: 12,
-                      color: _hovered ? colors.secondary : colors.accent,
+                      color: !_hovered ? colors.text1 : colors.accent,
                     ),
                   ),
                 ],

@@ -1,5 +1,3 @@
-
-
 class SupabaseConfig {
   static const String url = String.fromEnvironment(
     'SUPABASE_URL',

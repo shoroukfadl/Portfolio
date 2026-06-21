@@ -6,7 +6,9 @@ import '../../../../Core/Network/custom_either.dart';
 
 class GetDataUseCase {
   final Repo repo;
+
   const GetDataUseCase(this.repo);
+
   Future<Either<Failure, PortfolioEntity>> call() async {
     return await repo.getData();
   }

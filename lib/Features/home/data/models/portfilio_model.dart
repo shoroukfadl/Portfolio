@@ -64,6 +64,7 @@ class PortfolioModel {
               .toList(),
     );
   }
+
   Map<String, dynamic> toFullJson() => {
         'profile_id': profile?.id,
         'education': education.map((e) => e.toJson()).toList(),

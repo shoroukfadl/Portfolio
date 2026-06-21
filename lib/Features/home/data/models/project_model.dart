@@ -14,20 +14,20 @@ class ProjectModel {
   final List<String> content;
   final List<String> technicalTools;
 
-  ProjectModel(
-      {this.id,
-      this.profileId,
-      this.projectName,
-      this.projectType,
-      this.technicalTools = const [],
-      this.images = const [],
-      this.company,
-      this.industry,
-      this.iosLinks = const [],
-      this.webLinks = const [],
-      this.content = const [],
-      this.androidLinks = const [],
-    });
+  ProjectModel({
+    this.id,
+    this.profileId,
+    this.projectName,
+    this.projectType,
+    this.technicalTools = const [],
+    this.images = const [],
+    this.company,
+    this.industry,
+    this.iosLinks = const [],
+    this.webLinks = const [],
+    this.content = const [],
+    this.androidLinks = const [],
+  });
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) => ProjectModel(
         id: json['project_id']?.toString(),
@@ -69,25 +69,27 @@ class ProjectModel {
       company: company,
       industry: industry,
       content: content);
+
   ProjectEntity fromModel() => ProjectEntity(
-      id: id,
-      profileId: profileId,
-      projectName: projectName,
-      projectType: projectType,
-      technicalTools: technicalTools,
-      androidLinks: androidLinks.map((e) => e.toEntity()).toList(),
-      iosLinks: iosLinks.map((e) => e.toEntity()).toList(),
-      webLinks: webLinks.map((e) => e.toEntity()).toList(),
-      images: images,
-      company: company,
-      industry: industry,
-      content: content,
+        id: id,
+        profileId: profileId,
+        projectName: projectName,
+        projectType: projectType,
+        technicalTools: technicalTools,
+        androidLinks: androidLinks.map((e) => e.toEntity()).toList(),
+        iosLinks: iosLinks.map((e) => e.toEntity()).toList(),
+        webLinks: webLinks.map((e) => e.toEntity()).toList(),
+        images: images,
+        company: company,
+        industry: industry,
+        content: content,
       );
 }
 
 class LinkModel {
   final String? url;
   final String? name;
+
   const LinkModel({this.url, this.name});
 
   factory LinkModel.fromJson(Map<String, dynamic> json) =>
@@ -95,5 +97,6 @@ class LinkModel {
 
   LinkModel toModel(LinkEntity entity) =>
       LinkModel(url: entity.url, name: entity.name);
+
   LinkEntity toEntity() => LinkEntity(url: url, name: name);
 }

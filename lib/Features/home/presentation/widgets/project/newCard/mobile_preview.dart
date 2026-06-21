@@ -6,14 +6,15 @@ import '../../../../../../Widgets/rounded_image_widget.dart';
 
 class MobilePreview extends StatelessWidget {
   final String url;
+
   const MobilePreview({super.key, required this.url});
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     return Container(
-      decoration:  BoxDecoration(
-        borderRadius: BorderRadius.circular(Constants.cardRadius),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(cardRadius),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -22,15 +23,21 @@ class MobilePreview extends StatelessWidget {
       ),
       alignment: Alignment.center,
       child: Container(
-        width: 68,
-        height: 122,
+        width: 80,
+        height: 148,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(13),
           border: Border.all(color: colors.text3, width: 1.5),
           boxShadow: [
-            BoxShadow(color: Colors.black.withValues(alpha: 0.14), blurRadius: 20, offset: const Offset(0, 4)),
-            BoxShadow(color: Colors.black.withValues(alpha: 0.07), blurRadius: 4,  offset: const Offset(0, 1)),
+            BoxShadow(
+                color: Colors.black.withValues(alpha: 0.14),
+                blurRadius: 20,
+                offset: const Offset(0, 4)),
+            BoxShadow(
+                color: Colors.black.withValues(alpha: 0.07),
+                blurRadius: 4,
+                offset: const Offset(0, 1)),
           ],
         ),
         child: ClipRRect(
@@ -45,7 +52,6 @@ class MobilePreview extends StatelessWidget {
                 height: 170,
                 backgroundColor: colors.background,
                 radiusValue: 0,
-
               ),
               // Notch
               Positioned(
@@ -58,7 +64,8 @@ class MobilePreview extends StatelessWidget {
                     height: 5,
                     decoration: BoxDecoration(
                       color: colors.text1,
-                      borderRadius: const BorderRadius.vertical(bottom: Radius.circular(5)),
+                      borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(5)),
                     ),
                   ),
                 ),
@@ -69,6 +76,4 @@ class MobilePreview extends StatelessWidget {
       ),
     );
   }
-
-
 }

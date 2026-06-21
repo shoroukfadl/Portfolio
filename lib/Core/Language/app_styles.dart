@@ -6,10 +6,8 @@ import 'package:portfolio/Utilities/extensions.dart';
 abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   // ─── Base font families ───────────────────────────────────────────────────
   static TextStyle get mainFamily => GoogleFonts.spaceGrotesk();
-  static TextStyle get secondaryFamily => GoogleFonts.poppins();
 
-
-
+  static TextStyle get secondaryFamily => GoogleFonts.inter();
 
   static TextStyle extraBold48({Color? color}) => mainFamily.copyWith(
         fontSize: 48,
@@ -42,6 +40,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         height: 1.15,
         letterSpacing: -1.0,
       );
+
   static TextStyle extraBold18({Color? color}) => mainFamily.copyWith(
         fontSize: 18,
         fontWeight: FontWeight.w700,
@@ -49,6 +48,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         height: 1.15,
         letterSpacing: -1.0,
       );
+
   static TextStyle extraBold24({Color? color}) => mainFamily.copyWith(
         fontSize: 24,
         fontWeight: FontWeight.w700,
@@ -56,6 +56,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         height: 1.15,
         letterSpacing: -1.0,
       );
+
   static TextStyle extraBold20({Color? color}) => mainFamily.copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w700,
@@ -119,6 +120,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         height: 1.4,
         letterSpacing: 0,
       );
+
   static TextStyle semiBold12({Color? color}) => mainFamily.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w500,
@@ -182,6 +184,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         height: 1.0,
         letterSpacing: 0.3,
       );
+
   static TextStyle medium20({Color? color}) => secondaryFamily.copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w500,
@@ -189,6 +192,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         height: 1.0,
         letterSpacing: 0.3,
       );
+
   static TextStyle medium24({Color? color}) => secondaryFamily.copyWith(
         fontSize: 24,
         fontWeight: FontWeight.w500,
@@ -196,6 +200,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         height: 1.0,
         letterSpacing: 0.3,
       );
+
   static TextStyle medium16({Color? color}) => secondaryFamily.copyWith(
         fontSize: 16,
         fontWeight: FontWeight.w500,
@@ -232,85 +237,140 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         textBaseline: TextBaseline.alphabetic,
       );
 
-
   /// ---------------------------------- STYLES ----------------------------
 
-  static TextStyle summaryTitle({Color? color , required BuildContext context}) => mainFamily.copyWith(
-    fontSize: context.isLarge ? 40 : context.isMedium ? 32 : 24,
-    fontWeight: FontWeight.w700,
-    color: color ?? Colors.black,
-  );
+  static TextStyle summaryTitle(
+          {Color? color, required BuildContext context}) =>
+      secondaryFamily.copyWith(
+        fontSize: context.isLarge
+            ? 40
+            : context.isMedium
+                ? 32
+                : 24,
+        fontWeight: FontWeight.w700,
+        color: color ?? Colors.black,
+      );
 
-  static TextStyle summarySubTitle({Color? color , required BuildContext context}) => mainFamily.copyWith(
-    fontSize: context.isLarge ? 20 : context.isMedium ? 14 : 12,
-    fontWeight: FontWeight.w700,
-    color: color ?? Colors.black,
-  );
+  static TextStyle summarySubTitle(
+          {Color? color, required BuildContext context}) =>
+      mainFamily.copyWith(
+        fontSize: context.isLarge
+            ? 20
+            : context.isMedium
+                ? 14
+                : 12,
+        fontWeight: FontWeight.w700,
+        color: color ?? Colors.black,
+      );
 
-  static TextStyle title({Color? color , required BuildContext context}) => secondaryFamily.copyWith(
-    fontSize: context.isLarge? 14 : context.isMedium ? 12:10,
-    fontWeight: FontWeight.w500,
-    color: color ?? Colors.black,
-    textBaseline: TextBaseline.alphabetic,
-  );
+  static TextStyle title({Color? color, required BuildContext context}) =>
+      secondaryFamily.copyWith(
+        fontSize: context.isLarge ? 12 : 10,
+        fontWeight: FontWeight.w600,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
 
-  static TextStyle buttonLabel({Color? color , required BuildContext context}) => secondaryFamily.copyWith(
-    fontSize: context.isLarge? 12 : 10,
-    fontWeight: FontWeight.w400,
-    color: color ?? Colors.black,
-    textBaseline: TextBaseline.alphabetic,
-  );
+  static TextStyle buttonLabel({Color? color, required BuildContext context}) =>
+      secondaryFamily.copyWith(
+        fontSize: context.isLarge ? 12 : 10,
+        fontWeight: FontWeight.w400,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
 
+  static TextStyle body({Color? color, required BuildContext context}) =>
+      secondaryFamily.copyWith(
+        fontSize: context.isLarge ? 12 : 10,
+        fontWeight: FontWeight.w400,
+        color: color ?? Colors.black,
+      );
 
-  static TextStyle body({Color? color , required BuildContext context}) => secondaryFamily.copyWith(
-    fontSize: context.isLarge ? 14 : context.isMedium ? 12 : 10,
-    fontWeight: FontWeight.w400,
-    color: color ?? Colors.black,
-  );
-  static TextStyle cardBody({Color? color , required BuildContext context}) => secondaryFamily.copyWith(
-    fontSize: context.isLarge ? 10 :  8,
-    fontWeight: FontWeight.w300,
-    color: color ?? Colors.black,
-  );
+  static TextStyle cardBody({Color? color, required BuildContext context}) =>
+      secondaryFamily.copyWith(
+        fontSize: context.isLarge ? 10 : 8,
+        fontWeight: FontWeight.w300,
+        color: color ?? Colors.black,
+      );
 
-  static TextStyle titleCardSmall({Color? color , required BuildContext context}) => mainFamily.copyWith(
-    fontSize: context.isLarge? 10 : context.isMedium ? 10:8,
-    fontWeight: FontWeight.w400,
-    color: color ?? Colors.black,
-    textBaseline: TextBaseline.alphabetic,
-  );
+  static TextStyle titleCardSmall(
+          {Color? color, required BuildContext context}) =>
+      mainFamily.copyWith(
+        fontSize: context.isLarge
+            ? 10
+            : context.isMedium
+                ? 10
+                : 8,
+        fontWeight: FontWeight.w400,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
 
-  static TextStyle titleCard({Color? color , required BuildContext context}) => secondaryFamily.copyWith(
-    fontSize: context.isLarge? 14 : context.isMedium ? 12:10,
-    fontWeight: FontWeight.w500,
-    color: color ?? Colors.black,
-    textBaseline: TextBaseline.alphabetic,
-  );
-  static TextStyle subtitleCard({Color? color , required BuildContext context}) => secondaryFamily.copyWith(
-    fontSize:  10,
-    fontWeight: FontWeight.w600,
-    color: color ?? Colors.black,
-    textBaseline: TextBaseline.alphabetic,
-  );
+  static TextStyle titleCard({Color? color, required BuildContext context}) =>
+      mainFamily.copyWith(
+        fontSize: context.isLarge ? 12 : 10,
+        fontWeight: FontWeight.w600,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
 
-  static TextStyle label({Color? color , required BuildContext context}) => secondaryFamily.copyWith(
-    fontSize: context.isLarge? 12 :10,
-    fontWeight: FontWeight.w500,
-    color: color ?? Colors.black,
-    textBaseline: TextBaseline.alphabetic,
-  );
+  static TextStyle subtitleCard(
+          {Color? color, required BuildContext context}) =>
+      secondaryFamily.copyWith(
+        fontSize: 10,
+        fontWeight: FontWeight.w600,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
 
-  static TextStyle titleSmall({Color? color , required BuildContext context}) => mainFamily.copyWith(
-    fontSize: context.isLarge? 12 : 10,
-    fontWeight: FontWeight.w600,
-    color: color ?? Colors.black,
-    textBaseline: TextBaseline.alphabetic,
-  );
+  static TextStyle label({Color? color, required BuildContext context}) =>
+      secondaryFamily.copyWith(
+        fontSize: context.isLarge ? 12 : 10,
+        fontWeight: FontWeight.w500,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
 
-  static TextStyle sectionsTitle({Color? color , required BuildContext context}) => mainFamily.copyWith(
-    fontSize: context.isLarge? 12 : 10,
-    fontWeight: FontWeight.w700,
-    color: color ?? Colors.black,
-    textBaseline: TextBaseline.alphabetic,
-  );
+  static TextStyle titleSmall({Color? color, required BuildContext context}) =>
+      mainFamily.copyWith(
+        fontSize: context.isLarge ? 12 : 10,
+        fontWeight: FontWeight.w600,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
+
+  static TextStyle sectionsTitle(
+          {Color? color, required BuildContext context}) =>
+      mainFamily.copyWith(
+        fontSize: context.isLarge
+            ? 14
+            : context.isMedium
+                ? 12
+                : 10,
+        fontWeight: FontWeight.w700,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
+
+  static TextStyle summaryNumberLarge(
+          {Color? color, required BuildContext context}) =>
+      mainFamily.copyWith(
+        fontSize: context.isLarge ? 24 : 18,
+        fontWeight: FontWeight.w600,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
+
+  static TextStyle summaryNumberMedium(
+          {Color? color, required BuildContext context}) =>
+      secondaryFamily.copyWith(
+        fontSize: context.isLarge
+            ? 12
+            : context.isMedium
+                ? 10
+                : 8,
+        fontWeight: FontWeight.w400,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
 }

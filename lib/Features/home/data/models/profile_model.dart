@@ -13,6 +13,7 @@ class ProfileModel {
   final String? github;
   final String? linkedin;
   final String? image;
+  final double? experince;
 
   ProfileModel({
     this.id,
@@ -27,37 +28,39 @@ class ProfileModel {
     this.linkedin,
     this.image,
     this.cv,
+    this.experince,
   });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) => ProfileModel(
-        id: json['id'],
-        firstName: json['first_name'],
-        lastName: json['last_name'],
-        headline: json['headline'],
-        email: json['email'],
-        phone: json['phone'],
-        location: json['location'],
-        bio: json['bio'],
-        github: json['github'],
-        linkedin: json['linkedin'],
-        image: json['profile_image_url'],
-        cv: json['cv'],
-      );
+      id: json['id'],
+      firstName: json['first_name'],
+      lastName: json['last_name'],
+      headline: json['headline'],
+      email: json['email'],
+      phone: json['phone'],
+      location: json['location'],
+      bio: json['bio'],
+      github: json['github'],
+      linkedin: json['linkedin'],
+      image: json['profile_image_url'],
+      cv: json['cv'],
+      experince: json['experince']);
 
   ProfileModel toModel() => ProfileModel(
-        id: id,
-        firstName: firstName,
-        lastName: lastName,
-        headline: headline,
-        email: email,
-        phone: phone,
-        location: location,
-        bio: bio,
-        github: github,
-        linkedin: linkedin,
-        image: image,
-        cv: cv,
-      );
+      id: id,
+      firstName: firstName,
+      lastName: lastName,
+      headline: headline,
+      email: email,
+      phone: phone,
+      location: location,
+      bio: bio,
+      github: github,
+      linkedin: linkedin,
+      image: image,
+      cv: cv,
+      experince: experince);
+
   ProfileEntity toEntity() => ProfileEntity(
       id: id,
       firstName: firstName,
@@ -70,6 +73,7 @@ class ProfileModel {
       github: github,
       linkedin: linkedin,
       image: image,
+      experince: experince,
       cv: cv);
 
   Map<String, dynamic> toJson() => {

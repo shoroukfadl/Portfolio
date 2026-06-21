@@ -32,6 +32,7 @@ class MethodologyModel {
         category: category,
         conceptName: conceptName,
       );
+
   MethodologyEntity fromModel() => MethodologyEntity(
         id: id,
         profileId: profileId,

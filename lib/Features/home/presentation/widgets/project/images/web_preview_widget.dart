@@ -5,6 +5,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 class WebPreviewWidget extends StatelessWidget {
   final double width, height, border, circleRadius;
   final String projectName;
+
   const WebPreviewWidget(
       {super.key,
       this.border = 16,

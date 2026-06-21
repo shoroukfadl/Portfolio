@@ -352,7 +352,7 @@ class CustomTextFormField extends StatelessWidget {
         focusedErrorBorder:
             getBorder(context, radius: borderRadiusValue, color: Colors.red),
         isDense: isDense ?? false,
-        fillColor: backGroundColor ?? colors.surface,
+        fillColor: backGroundColor ?? colors.card,
         filled: true,
         hintText: hint,
         alignLabelWithHint: alignLabelWithHint,

@@ -6,18 +6,26 @@ import '../../../../../../../Widgets/rounded_image_widget.dart';
 class ThumbnailsWidget extends StatelessWidget {
   final double width, height;
   final List<String> images;
-  final Function(int i) onSelectOne ;
+  final Function(int i) onSelectOne;
+
   final int current;
-  const ThumbnailsWidget({super.key,this.images =const [],this.height=80,this.width=64, required this.onSelectOne, required this.current});
+
+  const ThumbnailsWidget(
+      {super.key,
+      this.images = const [],
+      this.height = 80,
+      this.width = 64,
+      required this.onSelectOne,
+      required this.current});
 
   @override
   Widget build(BuildContext context) {
-    final colors =context.colors;
-    return   Container(
+    final colors = context.colors;
+    return Container(
       height: height,
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(color:colors.text3.withValues(alpha: .07)),
+          top: BorderSide(color: colors.text3.withValues(alpha: .07)),
         ),
       ),
       child: ListView.builder(
@@ -47,7 +55,11 @@ class ThumbnailsWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(7),
                 child: Opacity(
                   opacity: isActive ? 1 : .45,
-                  child: RoundedImage(imagePath:images[i],fit: BoxFit.fill,radiusValue: 0,),
+                  child: RoundedImage(
+                    imagePath: images[i],
+                    fit: BoxFit.fill,
+                    radiusValue: 0,
+                  ),
                 ),
               ),
             ),

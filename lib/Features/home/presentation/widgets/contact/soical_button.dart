@@ -10,6 +10,7 @@ class SocialButtonWidget extends StatelessWidget {
   final void Function() onPressed;
 
   final String title;
+
   const SocialButtonWidget({
     super.key,
     required this.icon,
@@ -29,30 +30,36 @@ class SocialButtonWidget extends StatelessWidget {
       onTap: onPressed,
       hoverColor: Colors.transparent,
       child: ZoomOutAnimatedCardWidget(
-        paddingHoz: 0,
-        paddingVert: 0,
-        border: 8,
-        child:(h)=> Row(
-          spacing: 8,
+        paddingHoz: 4,
+        paddingVert: 4,
+        borderColor: iconColor ?? colors.secondary,
+        border: 100,
+        child: (h) => Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Card.filled(
-              color: colors.accent.withValues(alpha: 0.1),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+            Container(
+              width: size * 1.5,
+              height: size * 1.5,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: colors.secondary.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Center(
                 child: Icon(
                   icon,
-                  color: iconColor ?? colors.accent,
+                  color: iconColor ?? colors.secondary,
                   size: size,
                 ),
               ),
             ),
+            4.0.widthBox,
             Text(
               title,
-              style: AppTextStyles.medium12(color: colors.text1),
+              style: AppTextStyles.titleCardSmall(
+                  context: context, color: colors.secondary),
             ),
-            8.0.widthBox
+            4.0.widthBox,
           ],
         ),
       ),

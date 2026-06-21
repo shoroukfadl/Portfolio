@@ -19,6 +19,8 @@ extension WidgetsExtensions on Widget {
 
   Widget get expand => Expanded(child: this);
 
+  Widget get center => Center(child: this);
+
   Widget expandFlex(int flex) => Expanded(flex: flex, child: this);
 
   Widget paddingSymmetric({double vertical = 0.0, double horizontal = 0.0}) =>
@@ -89,11 +91,15 @@ extension LayoutExtensions on BuildContext {
       ResponsiveBreakpoints.of(this).isPhone ||
       ResponsiveBreakpoints.of(this).isMobile;
 
-  double get authDialogWidth => isLarge
-      ? 450
-      : isMedium
-          ? 350
-          : 300;
+  double matchedSize(
+      {required double large, required double medium, required double small}) {
+    if (isLarge) {
+      return large;
+    } else if (isMedium)
+      return medium;
+    else
+      return small;
+  }
 }
 
 extension ThemeHelper on BuildContext {
@@ -102,7 +108,10 @@ extension ThemeHelper on BuildContext {
 
 extension DateFormating on DateTime {
   String get yyyy_MM_dd => DateFormat("yyyy-MM-dd").format(this);
+
   String get yyyySlashMMSlahdd => DateFormat("yyyy/MM.dd").format(this);
+
   String get yyyyMM => DateFormat("MMM yyyy").format(this);
+
   String get yyyy => DateFormat("yyyy").format(this);
 }

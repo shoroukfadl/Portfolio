@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/education_entity.dart';
+import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
@@ -11,10 +12,11 @@ class EducationSection extends StatelessWidget {
   final EducationEntity? education;
   final double padding;
   final TextStyle? titleStyle;
+
   const EducationSection(
       {super.key,
       this.education,
-      this.padding = Constants.desktopHozPadding,
+      this.padding = desktopHozPadding,
       this.titleStyle});
 
   @override
@@ -24,6 +26,7 @@ class EducationSection extends StatelessWidget {
       children: [
         SectionsTitleWidget(
           title: Strings.education.translate,
+          key: GlobalKeys.education,
         ),
         EducationCard(
           item: education,

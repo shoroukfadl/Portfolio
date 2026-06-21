@@ -38,7 +38,7 @@ class CustomBaseCard extends StatelessWidget {
           color: colors.textSecondary
         ),*/
           borderRadius: BorderRadius.circular(8),
-          boxShadow: [Constants.defaultBoxShadow]),
+          boxShadow: [defaultBoxShadow]),
       child: child,
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
-import 'package:portfolio/Features/home/presentation/widgets/project/project_card_preview.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../../../../Utilities/Constants/global_keys.dart';
@@ -11,14 +10,14 @@ import 'newCard/project_card_widget.dart';
 class MyProjectsWidget extends StatelessWidget {
   final List<ProjectEntity> projects;
   final int perRow;
-  final double imageWidth, padding;
+  final double imageWidth, mainAxisExtent;
 
   const MyProjectsWidget(
       {super.key,
-      this.padding = 32,
+      this.mainAxisExtent = 360,
       this.projects = const [],
       this.imageWidth = 100,
-      this.perRow = 3});
+      this.perRow = 4});
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +29,14 @@ class MyProjectsWidget extends StatelessWidget {
           key: GlobalKeys.projects,
           title: Strings.projects.translate,
         ),
-        16.0.heightBox,
         GridView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: perRow, mainAxisExtent: 360),
+                crossAxisCount: perRow, mainAxisExtent: mainAxisExtent),
             itemCount: projects.length,
-            itemBuilder: (c, i) => ProjectCard(project: projects[i]).paddingSymmetric(horizontal: 16,vertical: 8))
+            itemBuilder: (c, i) => ProjectCard(project: projects[i])
+                .paddingSymmetric(horizontal: 8, vertical: 8))
       ],
     );
   }

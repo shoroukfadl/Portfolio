@@ -5,8 +5,8 @@ import '../Utilities/extensions.dart';
 
 class RoundedImage extends StatelessWidget {
   final Color? backgroundColor, borderColor;
-  final double?  borderWidth;
-  final double padding,  radiusValue, width, height;
+  final double? borderWidth;
+  final double padding, radiusValue, width, height;
   final String? imagePath;
   final BoxFit? fit;
 
@@ -16,11 +16,11 @@ class RoundedImage extends StatelessWidget {
     this.borderColor,
     this.imagePath,
     this.fit,
-    this.padding=0 ,
-    this.radiusValue=100,
-    this.width=100,
+    this.padding = 0,
+    this.radiusValue = 100,
+    this.width = 100,
     this.borderWidth,
-    this.height=100,
+    this.height = 100,
   });
 
   @override
@@ -42,7 +42,8 @@ class RoundedImage extends StatelessWidget {
       padding: padding,
       borderWidth: borderWidth,
       backgroundColor: backgroundColor,
-      borderColor: borderColor, // ✅ Fix: was passing backgroundColor by mistake
+      borderColor: borderColor,
+      // ✅ Fix: was passing backgroundColor by mistake
       fit: fit,
       radiusValue: radiusValue,
       height: height,
@@ -55,15 +56,15 @@ class RoundedImage extends StatelessWidget {
 // Placeholder (no image)
 // ---------------------------------------------------------------------------
 class _PlaceholderWidget extends StatelessWidget {
-  final double?  borderWidth;
-  final double padding,  radiusValue, width, height;
+  final double? borderWidth;
+  final double padding, radiusValue, width, height;
   final Color? backgroundColor, borderColor;
 
   const _PlaceholderWidget({
-    this.padding=0,
-    this.radiusValue=100,
-    this.width=100,
-    this.height=100,
+    this.padding = 0,
+    this.radiusValue = 100,
+    this.width = 100,
+    this.height = 100,
     this.borderWidth,
     this.backgroundColor,
     this.borderColor,
@@ -73,9 +74,9 @@ class _PlaceholderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return Container(
-      padding: EdgeInsets.all(padding ),
-      height: height ,
-      width: width ,
+      padding: EdgeInsets.all(padding),
+      height: height,
+      width: width,
       decoration: _buildDecoration(colors),
       child: Icon(
         Icons.photo,
@@ -86,15 +87,15 @@ class _PlaceholderWidget extends StatelessWidget {
   }
 
   BoxDecoration _buildDecoration(colors) => BoxDecoration(
-    borderRadius: BorderRadius.circular(radiusValue),
-    color: backgroundColor ?? colors.surface,
-    border: borderColor == null
-        ? null
-        : Border.all(
-      color: borderColor!,
-      width: borderWidth ?? 1,
-    ),
-  );
+        borderRadius: BorderRadius.circular(radiusValue),
+        color: backgroundColor ?? colors.surface,
+        border: borderColor == null
+            ? null
+            : Border.all(
+                color: borderColor!,
+                width: borderWidth ?? 1,
+              ),
+      );
 }
 
 // ---------------------------------------------------------------------------
@@ -102,8 +103,8 @@ class _PlaceholderWidget extends StatelessWidget {
 // ---------------------------------------------------------------------------
 class _ImageWidget extends StatelessWidget {
   final Color? backgroundColor, borderColor;
-  final double?  borderWidth;
-  final double padding,  radiusValue, width, height;
+  final double? borderWidth;
+  final double padding, radiusValue, width, height;
   final String imagePath;
   final BoxFit? fit;
 
@@ -112,10 +113,10 @@ class _ImageWidget extends StatelessWidget {
     this.backgroundColor,
     this.borderColor,
     this.fit,
-    this.padding=0,
-    this.radiusValue=100,
-    this.width=100,
-    this.height=100,
+    this.padding = 0,
+    this.radiusValue = 100,
+    this.width = 100,
+    this.height = 100,
     this.borderWidth,
   });
 
@@ -127,18 +128,18 @@ class _ImageWidget extends StatelessWidget {
     final colors = context.colors;
 
     return Container(
-      padding: EdgeInsets.all(padding ),
-      height: height ,
-      width: width ,
+      padding: EdgeInsets.all(padding),
+      height: height,
+      width: width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radiusValue),
         color: backgroundColor ?? colors.surface,
         border: borderColor == null
             ? null
             : Border.all(
-          color: borderColor!,
-          width: borderWidth ?? 1,
-        ),
+                color: borderColor!,
+                width: borderWidth ?? 1,
+              ),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(radiusValue),
@@ -148,13 +149,13 @@ class _ImageWidget extends StatelessWidget {
   }
 
   Widget _buildNetworkImage(colors) {
-    return  CachedNetworkImage(
+    return CachedNetworkImage(
       imageUrl: imagePath,
       width: width,
       height: height,
       fit: fit ?? BoxFit.cover,
-      memCacheHeight: height.toInt() ,
-      maxWidthDiskCache:width ==double.infinity ? 300: width.toInt() ,
+      memCacheHeight: height.toInt(),
+      maxWidthDiskCache: width == double.infinity ? 300 : width.toInt(),
       // Loading shimmer
       placeholder: (context, url) => _ShimmerBox(
         width: width,
@@ -177,7 +178,7 @@ class _ImageWidget extends StatelessWidget {
       fit: fit ?? BoxFit.cover,
       errorBuilder: (context, error, stackTrace) => Icon(
         Icons.broken_image_outlined,
-        size: (height ) * 0.5,
+        size: (height) * 0.5,
         color: Colors.grey,
       ),
     );
@@ -190,7 +191,7 @@ class _ImageWidget extends StatelessWidget {
 class _ShimmerBox extends StatefulWidget {
   final double? width, height, radiusValue;
 
-  const _ShimmerBox({this.width, this.height,  this.radiusValue});
+  const _ShimmerBox({this.width, this.height, this.radiusValue});
 
   @override
   State<_ShimmerBox> createState() => _ShimmerBoxState();
@@ -225,13 +226,12 @@ class _ShimmerBoxState extends State<_ShimmerBox>
         width: widget.width,
         height: widget.height ?? 100,
         decoration: BoxDecoration(
-          shape: widget.radiusValue == null
-              ? BoxShape.circle
-              : BoxShape.rectangle,
+          shape:
+              widget.radiusValue == null ? BoxShape.circle : BoxShape.rectangle,
           borderRadius: widget.radiusValue == null
               ? null
               : BorderRadius.circular(widget.radiusValue!),
-          color: Colors.grey.withValues(alpha:_anim.value),
+          color: Colors.grey.withValues(alpha: _anim.value),
         ),
       ),
     );

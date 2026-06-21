@@ -10,6 +10,7 @@ class CustomButtonWidget extends StatelessWidget {
   final Function()? onPressed;
   final Function(bool hover)? onHover;
 
+  final EdgeInsets? padding;
   final double? width, height, borderRadiusValue;
   final String? title;
   final FocusNode? focusNode;
@@ -29,6 +30,7 @@ class CustomButtonWidget extends StatelessWidget {
       this.btnColor,
       this.borderColor,
       this.titleColor,
+      this.padding,
       this.onHover});
 
   const CustomButtonWidget.outLined(
@@ -43,6 +45,7 @@ class CustomButtonWidget extends StatelessWidget {
       this.isLoading = false,
       this.onHover,
       this.borderColor,
+      this.padding,
       this.titleColor})
       : btnColor = Colors.transparent;
 
@@ -63,7 +66,8 @@ class CustomButtonWidget extends StatelessWidget {
       child: Container(
         alignment: Alignment.center,
         height: height ?? 36.0,
-        width: width ?? 108.0,
+        width: width,
+        padding: padding,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadiusValue ?? 100.0),
           color: btnColor ?? colors.accent,

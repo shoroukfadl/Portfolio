@@ -43,6 +43,7 @@ class TechnicalSkillModel {
         id: id,
         order: order,
       );
+
   TechnicalSkillEntity toEntity() => TechnicalSkillEntity(
         category: category,
         icon: icon,
@@ -83,6 +84,7 @@ class SkillModel {
         category: category,
         skillName: skillName,
       );
+
   SkillEntity toEntity() => SkillEntity(
         id: id,
         profileId: profileId,

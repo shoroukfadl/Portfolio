@@ -9,6 +9,7 @@ class CardWithText extends StatelessWidget {
   final double border, hozPadding, vertPadding;
   final TextStyle? style;
   final int maxLine;
+
   const CardWithText(
       {super.key,
       required this.text,

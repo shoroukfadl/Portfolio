@@ -6,6 +6,7 @@ import '../../../../../../Widgets/rounded_image_widget.dart';
 class MobilePreviewWidget extends StatelessWidget {
   final double width, height, border;
   final String image;
+
   const MobilePreviewWidget(
       {super.key,
       this.border = 16,
@@ -25,7 +26,6 @@ class MobilePreviewWidget extends StatelessWidget {
           height: height,
           width: width - 4,
           radiusValue: border,
-
           borderColor: colors.accent,
           borderWidth: 2,
         ),

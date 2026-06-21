@@ -145,7 +145,7 @@ class CustomDropDownWidget<T> extends StatelessWidget {
                             ),
                       ),
                 filled: true,
-                fillColor: enable ? colors.surface : colors.text2,
+                fillColor: enable ? colors.card : colors.text2,
                 hintText: hint,
                 hintStyle: context.isSmall
                     ? hintStyle?.copyWith(

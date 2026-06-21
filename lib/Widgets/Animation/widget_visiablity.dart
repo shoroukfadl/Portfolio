@@ -4,6 +4,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 class ScrollAnimatorWrapper extends StatefulWidget {
   final Widget child;
+
   const ScrollAnimatorWrapper({super.key, required this.child});
 
   @override
@@ -15,6 +16,7 @@ class _ScrollAnimatorWrapperState extends State<ScrollAnimatorWrapper> {
 
   @override
   Widget build(BuildContext context) {
+    return widget.child;
     return VisibilityDetector(
       key: UniqueKey(),
       onVisibilityChanged: (info) {

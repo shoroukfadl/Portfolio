@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
-import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
+import '../../../../../Utilities/Constants/constants.dart';
 import '../../../../../Utilities/extensions.dart';
 import '../../../../../Widgets/Animation/widget_visiablity.dart';
 import '../../widgets/aboutMe/about_me_widget.dart';
@@ -31,19 +31,28 @@ class LargeHomeView extends StatelessWidget {
                 return ScrollAnimatorWrapper(
                   child: SummarySection(
                     profile: s.data?.profile,
+                    projectProductionNumber:
+                        (s.data?.projects.length ?? 0).toDouble(),
                   ),
                 );
               }),
         ),
 
-        /// education
+        SliverToBoxAdapter(child: 64.0.heightBox),
+
+        /// skills
         SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              buildWhen: (c, p) => p.data?.education != c.data?.education,
-              builder: (c, s) => ScrollAnimatorWrapper(
-                  child: EducationSection(
-                      education: s.data?.education.firstOrNull))),
-        ),
+            child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (c, p) => p.data?.skills != c.data?.skills,
+                builder: (context, s) {
+                  return ScrollAnimatorWrapper(
+                    child: SkillsSection(
+                      skills: s.data?.skills ?? [],
+                    ),
+                  );
+                })),
+
+        SliverToBoxAdapter(child: 64.0.heightBox),
 
         /// experince
         SliverToBoxAdapter(
@@ -59,21 +68,9 @@ class LargeHomeView extends StatelessWidget {
         ),
         SliverToBoxAdapter(child: 64.0.heightBox),
 
-        /// skills
-        SliverToBoxAdapter(
-            child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                buildWhen: (c, p) => p.data?.skills != c.data?.skills,
-                builder: (context, s) {
-                  return ScrollAnimatorWrapper(
-                    child: SkillsSection(
-                      skills: s.data?.skills ?? [],
-                    ),
-                  );
-                })),
-
         /// Projects
         SliverPadding(
-            padding: const EdgeInsets.all(Constants.desktopHozPadding),
+            padding: const EdgeInsets.all(desktopHozPadding),
             sliver: SliverToBoxAdapter(
                 child: BlocBuilder<PortfolioCubit, PortfolioState>(
                     buildWhen: (c, p) => p.data?.projects != c.data?.projects,
@@ -82,6 +79,15 @@ class LargeHomeView extends StatelessWidget {
                             projects: s.data?.projects ?? [],
                           ),
                         )))),
+
+        /// education
+        SliverToBoxAdapter(
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => p.data?.education != c.data?.education,
+              builder: (c, s) => ScrollAnimatorWrapper(
+                  child: EducationSection(
+                      education: s.data?.education.firstOrNull))),
+        ),
 
         /// Contact
         SliverToBoxAdapter(
