@@ -9,6 +9,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+import 'Core/Api/keys.dart';
 import 'Core/Language/app_languages.dart';
 import 'Core/Language/locales.dart';
 import 'Core/Theme/theme_colors.dart';
@@ -20,11 +21,11 @@ import 'Utilities/router_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Supabase.initialize(url:SupabaseConfig.url, anonKey:SupabaseConfig.anonKey );
-  await Supabase.initialize(
-      url: 'https://itpuoirsozxiqrlngvlw.supabase.co',
-      anonKey:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml0cHVvaXJzb3p4aXFybG5ndmx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MTczODgsImV4cCI6MjA5MTQ5MzM4OH0.Dkgdkqf8YXkNQ09XlxvOSsTiv0Bmuvc9PXR5rPPIPe8');
+  await Supabase.initialize(url:SupabaseConfig.url, anonKey:SupabaseConfig.anonKey );
+  // await Supabase.initialize(
+  //     url: 'https://itpuoirsozxiqrlngvlw.supabase.co',
+  //     anonKey:
+  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml0cHVvaXJzb3p4aXFybG5ndmx3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5MTczODgsImV4cCI6MjA5MTQ5MzM4OH0.Dkgdkqf8YXkNQ09XlxvOSsTiv0Bmuvc9PXR5rPPIPe8');
   await GitIt.initGitIt();
   setPathUrlStrategy();
 
