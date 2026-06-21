@@ -4,6 +4,7 @@ import 'package:portfolio/Core/Layout/layout_handler.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Utilities/Constants/enums.dart';
 
+import '../../../../seo_helper.dart';
 import 'Layouts/l_home_view.dart';
 import 'Layouts/m_home_view.dart';
 import 'Layouts/s_home_view.dart';

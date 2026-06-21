@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shoroukfadl.github.io/Portfolio/sitemap.xml

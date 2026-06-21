@@ -5,6 +5,7 @@ import 'package:universal_html/html.dart' as html;
 import '../Features/Splash/splash_view.dart';
 import '../Features/home/presentation/pages/home_view.dart';
 import '../Widgets/MainLayout/main_layout_widget.dart';
+import '../seo_helper.dart';
 
 BuildContext? get CURRENT_CONTEXT =>
     GoRouterConfig.router.routerDelegate.navigatorKey.currentContext;
@@ -47,6 +48,13 @@ class GoRouterConfig {
     routes: <RouteBase>[
       GoRoute(
         path: SplashView.routeName,
+        redirect: (_,s){
+          SeoHelper.setMetaTags(
+            title: "Shorouk Fadl | شروق فضل",
+            description: "Flutter Developer With Experience in Flutter Framework , Scalable Application [Web , Ios ,Android] ",
+          );
+          return null;
+        },
         pageBuilder: (_, GoRouterState state) {
           return getCustomTransitionPage(
             state: state,
@@ -67,9 +75,17 @@ class GoRouterConfig {
             GoRoute(
               name: HomeView.routeName,
               path: "/${HomeView.routeName}",
+              redirect: (_,s){
+                SeoHelper.setMetaTags(
+                  title: "Shorouk Fadl | شروق فضل",
+                  description: "Flutter Developer With Experience in Flutter Framework , Scalable Application [Web , Ios ,Android] ",
+                );
+                return null;
+              },
               pageBuilder: (_, GoRouterState state) {
                 return getCustomTransitionPage(
                   state: state,
+
                   child: const HomeView(),
                 );
               },
