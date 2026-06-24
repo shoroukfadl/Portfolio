@@ -1,9 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -22,13 +25,20 @@ import 'Utilities/router_config.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(url:SupabaseConfig.url, anonKey:SupabaseConfig.anonKey );
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorageDirectory.web
+        : HydratedStorageDirectory(
+      (await getTemporaryDirectory()).path,
+    ),
+  );
     await GitIt.initGitIt();
   setPathUrlStrategy();
 
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()..getCurrentTheme()),
     BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
-    BlocProvider<PortfolioCubit>(create: (_) => sl<PortfolioCubit>()),
+    BlocProvider<PortfolioCubit>(create: (_) => sl<PortfolioCubit>()..getData()),
   ], child: const EntryPoint()));
 }
 

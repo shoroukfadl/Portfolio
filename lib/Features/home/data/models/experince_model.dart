@@ -54,22 +54,22 @@ class ExperienceModel {
   }
 
   // Convert Entity to Model (Static factory)
-  factory ExperienceModel.fromEntity(ExperienceEntity entity) {
+  static ExperienceModel toModel(ExperienceEntity? entity) {
     return ExperienceModel(
-      id: entity.id,
-      userId: entity.userId,
-      positionTitle: entity.positionTitle,
-      companyName: entity.companyName,
-      employmentType: entity.employmentType,
-      startDate: entity.startDate,
-      endDate: entity.endDate,
-      isCurrent: entity.isCurrent,
-      location: entity.location,
-      description: entity.description,
-      seniorityLevel: entity.seniorityLevel,
-      displayOrder: entity.displayOrder,
-      createdAt: entity.createdAt,
-      updatedAt: entity.updatedAt,
+      id: entity?.id,
+      userId: entity?.userId,
+      positionTitle: entity?.positionTitle,
+      companyName: entity?.companyName,
+      employmentType: entity?.employmentType,
+      startDate: entity?.startDate,
+      endDate: entity?.endDate,
+      isCurrent: entity?.isCurrent??false,
+      location: entity?.location,
+      description: entity?.description??[],
+      seniorityLevel: entity?.seniorityLevel,
+      displayOrder: entity?.displayOrder,
+      createdAt: entity?.createdAt,
+      updatedAt: entity?.updatedAt,
     );
   }
 

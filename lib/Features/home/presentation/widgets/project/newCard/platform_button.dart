@@ -32,7 +32,7 @@ class _PlatformButtonState extends State<PlatformButton> {
       };
 
   IconData get _icon => switch (widget.type) {
-        PlatformType.web => Portfolio.link,
+        PlatformType.web => Icons.language_outlined,
         PlatformType.ios => Portfolio.ios,
         PlatformType.android => Portfolio.andriod,
       };

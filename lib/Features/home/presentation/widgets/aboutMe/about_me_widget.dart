@@ -9,14 +9,14 @@ import 'floating_card_widget.dart';
 
 class SummarySection extends StatefulWidget {
   final ProfileEntity? profile;
-  final double projectProductionNumber;
+  final double projectProductionNumber,experience;
   final double padding;
 
   const SummarySection({
     super.key,
     this.profile,
     this.padding = desktopHozPadding,
-    required this.projectProductionNumber,
+    required this.projectProductionNumber, required this.experience,
   });
 
   @override
@@ -92,7 +92,7 @@ class _SummarySectionState extends State<SummarySection>
         summary: widget.profile?.summary ?? "",
         cv: widget.profile?.cv ?? "",
         email: widget.profile?.email ?? "",
-        experince: widget.profile?.experince ?? 1,
+        experince: widget.experience,
         projectNumber: widget.projectProductionNumber,
       );
 

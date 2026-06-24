@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/experince_entity.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Animation/animated_list.dart';
 
 import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
@@ -35,16 +36,10 @@ class ExperienceSection extends StatelessWidget {
           title: Strings.experience.translate,
           key: GlobalKeys.experince,
         ),
-        Column(
-          spacing: 32,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(experiences.length, (index) {
-            return ExperienceCard(
-              item: experiences[index],
-              index: index,
-            );
-          }),
-        )
+        AnimatedListView(items: experiences, buildChild: (index)=>ExperienceCard(
+          item: experiences[index],
+          index: index,
+        ))
       ],
     ).paddingSymmetric(horizontal: padding);
   }

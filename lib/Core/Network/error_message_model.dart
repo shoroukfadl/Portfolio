@@ -1,9 +1,8 @@
-import '../Api/http_request.dart';
 
 enum ExpectType { object, list, other }
 
 class ErrorMessageModel {
-  final HttpRequestHandler requestApi;
+  // final HttpRequestHandler requestApi;
   final Map<String, dynamic>? responseApi;
 
   final int statusCode;
@@ -48,7 +47,7 @@ class ErrorMessageModel {
       {required this.statusCode,
       String? statusMessage,
       String? errorMessage,
-      required this.requestApi,
+      // required this.requestApi,
       this.responseApi})
       : modelName = null,
         expectType = null,
@@ -58,7 +57,7 @@ class ErrorMessageModel {
   const ErrorMessageModel.parsing({
     required this.modelName,
     required this.expectType,
-    required this.requestApi,
+    // required this.requestApi,
     required this.statusMessage,
     required this.errorMessage,
     this.responseApi,
@@ -70,7 +69,7 @@ class ErrorMessageModel {
   })  : statusCode = 200,
         modelName = null,
         expectType = null,
-        requestApi = HttpRequestHandler.customMethod(method: "_", url: "_"),
+        // requestApi = HttpRequestHandler.customMethod(method: "_", url: "_"),
         responseApi = null;
 
   @override

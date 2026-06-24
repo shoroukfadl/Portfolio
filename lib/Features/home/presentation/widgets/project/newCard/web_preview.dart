@@ -104,8 +104,10 @@ class WebPreview extends StatelessWidget {
                 fit: BoxFit.cover,
                 height: height * (2 / 3),
                 width: imageWidth,
+                borderRadius:
+                BorderRadius.only(bottomLeft: Radius.circular(cardRadius/2),bottomRight: Radius.circular(cardRadius/2)),
                 backgroundColor: colors.background,
-                radiusValue: cardRadius / 2,
+                // radiusValue: cardRadius / 2,
               ),
             ],
           ),

@@ -46,20 +46,20 @@ class ProfileModel {
       cv: json['cv'],
       experince: json['experince']);
 
-  ProfileModel toModel() => ProfileModel(
-      id: id,
-      firstName: firstName,
-      lastName: lastName,
-      headline: headline,
-      email: email,
-      phone: phone,
-      location: location,
-      bio: bio,
-      github: github,
-      linkedin: linkedin,
-      image: image,
-      cv: cv,
-      experince: experince);
+  static ProfileModel toModel(ProfileEntity?  profile) => ProfileModel(
+      id:profile?. id,
+      firstName:profile?. firstName,
+      lastName:profile?. lastName,
+      headline:profile?.headline,
+      email:profile?. email,
+      phone:profile?. phone,
+      location:profile?. location,
+      bio:profile?.bio,
+      github:profile?. github,
+      linkedin:profile?. linkedin,
+      image:profile?. image,
+      cv:profile?. cv,
+      experince:profile?. experince);
 
   ProfileEntity toEntity() => ProfileEntity(
       id: id,
@@ -73,6 +73,8 @@ class ProfileModel {
       github: github,
       linkedin: linkedin,
       image: image,
+
+      headline: headline,
       experince: experince,
       cv: cv);
 

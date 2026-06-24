@@ -9,6 +9,7 @@ class RoundedImage extends StatelessWidget {
   final double padding, radiusValue, width, height;
   final String? imagePath;
   final BoxFit? fit;
+  final BorderRadiusGeometry? borderRadius;
 
   const RoundedImage({
     super.key,
@@ -20,7 +21,7 @@ class RoundedImage extends StatelessWidget {
     this.radiusValue = 100,
     this.width = 100,
     this.borderWidth,
-    this.height = 100,
+    this.height = 100, this.borderRadius,
   });
 
   @override
@@ -33,6 +34,7 @@ class RoundedImage extends StatelessWidget {
         borderColor: borderColor,
         borderWidth: borderWidth,
         height: height,
+        borderRadiusGeometry: borderRadius,
         width: width,
       );
     }
@@ -43,6 +45,7 @@ class RoundedImage extends StatelessWidget {
       borderWidth: borderWidth,
       backgroundColor: backgroundColor,
       borderColor: borderColor,
+      borderRadiusGeometry: borderRadius,
       // ✅ Fix: was passing backgroundColor by mistake
       fit: fit,
       radiusValue: radiusValue,
@@ -59,6 +62,7 @@ class _PlaceholderWidget extends StatelessWidget {
   final double? borderWidth;
   final double padding, radiusValue, width, height;
   final Color? backgroundColor, borderColor;
+  final BorderRadiusGeometry? borderRadiusGeometry;
 
   const _PlaceholderWidget({
     this.padding = 0,
@@ -67,7 +71,7 @@ class _PlaceholderWidget extends StatelessWidget {
     this.height = 100,
     this.borderWidth,
     this.backgroundColor,
-    this.borderColor,
+    this.borderColor, this.borderRadiusGeometry,
   });
 
   @override
@@ -87,7 +91,7 @@ class _PlaceholderWidget extends StatelessWidget {
   }
 
   BoxDecoration _buildDecoration(colors) => BoxDecoration(
-        borderRadius: BorderRadius.circular(radiusValue),
+        borderRadius:borderRadiusGeometry?? BorderRadius.circular(radiusValue),
         color: backgroundColor ?? colors.surface,
         border: borderColor == null
             ? null
@@ -107,6 +111,8 @@ class _ImageWidget extends StatelessWidget {
   final double padding, radiusValue, width, height;
   final String imagePath;
   final BoxFit? fit;
+  final BorderRadiusGeometry? borderRadiusGeometry;
+
 
   const _ImageWidget({
     required this.imagePath,
@@ -117,7 +123,7 @@ class _ImageWidget extends StatelessWidget {
     this.radiusValue = 100,
     this.width = 100,
     this.height = 100,
-    this.borderWidth,
+    this.borderWidth, this.borderRadiusGeometry,
   });
 
   bool get _isNetwork =>
@@ -132,7 +138,7 @@ class _ImageWidget extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(radiusValue),
+        borderRadius: borderRadiusGeometry ??BorderRadius.circular(radiusValue),
         color: backgroundColor ?? colors.surface,
         border: borderColor == null
             ? null
@@ -142,7 +148,7 @@ class _ImageWidget extends StatelessWidget {
               ),
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(radiusValue),
+        borderRadius:borderRadiusGeometry?? BorderRadius.circular(radiusValue),
         child: _isNetwork ? _buildNetworkImage(colors) : _buildAssetImage(),
       ),
     );

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../../Core/Language/app_styles.dart';
+import '../../Utilities/Constants/constants.dart';
 import '../../Utilities/extensions.dart';
-import '../Inputs/app_text_widget.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   final bool isLoading;
@@ -76,7 +76,7 @@ class CustomButtonWidget extends StatelessWidget {
         child: isLoading
             ? Center(child: SpinKitThreeBounce(color: colors.text2, size: 24.0))
             : child ??
-                AppTextWidget(
+                Text(
                   title ?? "",
                   style: AppTextStyles.regular14()
                       .copyWith(color: titleColor ?? colors.text1),
@@ -92,5 +92,103 @@ class CustomButtonWidget extends StatelessWidget {
   }) {
     if (isLoading) return;
     onPressed?.call();
+  }
+}
+
+class CustomZaraButton extends StatefulWidget {
+  final IconData icon;
+  final String title;
+  final Function() onTap;
+  final bool active;
+
+  const CustomZaraButton(
+      {super.key,
+      required this.icon,
+      required this.title,
+      required this.onTap,
+      this.active = false});
+
+  @override
+  State<CustomZaraButton> createState() => _CustomZaraButtonState();
+}
+
+class _CustomZaraButtonState extends State<CustomZaraButton> {
+  bool _hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    final iconSize = context.matchedSize(
+      large: largeButtonIcon,
+      medium: mediumButtonIcon,
+      small: smallButtonIcon,
+    );
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() => _hovered = false),
+      child: InkWell(
+        hoverColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+          height: iconSize,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: widget.active
+                ? colors.secondary
+                : _hovered
+                    ? colors.text3.withValues(alpha: 0.3)
+                    : colors.background,
+            border: Border.all(
+              color: widget.active ? colors.secondary : colors.text3,
+            ),
+          ),
+          child: Row(
+            spacing: 8,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AnimatedRotation(
+                duration: const Duration(milliseconds: 300),
+                turns: _hovered ? 0.083 : 0,
+                curve: Curves.easeOut,
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 250),
+                  transitionBuilder: (child, animation) {
+                    return RotationTransition(
+                      turns: animation,
+                      child: FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      ),
+                    );
+                  },
+                  child: Icon(
+                    widget.icon,
+                    size: iconSize / 2,
+                    color:widget.active ? Colors.white: colors.text3 ,
+                  ),
+                ),
+              ),
+              // Title
+              AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeOut,
+                style: AppTextStyles.buttonLabel(
+                    color:widget.active ? Colors.white: colors.text3 ,
+                    context: context),
+                child: Text(widget.title),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

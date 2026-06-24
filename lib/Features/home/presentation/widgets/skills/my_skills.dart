@@ -6,6 +6,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
 import '../../../../../Utilities/Constants/strings.dart';
+import '../../../../../Widgets/Animation/animated_list.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
 
 class SkillsSection extends StatelessWidget {
@@ -18,7 +19,7 @@ class SkillsSection extends StatelessWidget {
       {super.key,
       this.skills = const [],
       this.iconSize = 40,
-      this.mainAxisExtent = 300,
+      this.mainAxisExtent = 160,
       this.padding = desktopHozPadding,
       this.perRow = 4});
 
@@ -33,16 +34,11 @@ class SkillsSection extends StatelessWidget {
             title: Strings.skill.translate,
             key: GlobalKeys.skill,
           ),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: perRow,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 20,
-                mainAxisExtent: mainAxisExtent),
-            itemCount: skills.length,
-            itemBuilder: (context, index) {
+          AnimatedGridView<TechnicalSkillEntity>(
+            perRow: perRow,
+            mainAxisExtent: mainAxisExtent,
+            items: skills,
+            buildChild: (index) {
               return SkillCard(
                 skill: skills[index],
                 index: index,

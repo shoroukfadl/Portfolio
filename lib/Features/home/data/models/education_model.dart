@@ -67,20 +67,20 @@ class EducationModel {
     };
   }
 
-  factory EducationModel.fromEntity(EducationEntity entity) {
+  static EducationModel toModel(EducationEntity? entity) {
     return EducationModel(
-      id: entity.id,
-      userId: entity.userId,
-      degree: entity.degree,
-      fieldOfStudy: entity.fieldOfStudy,
-      institution: entity.institution,
-      startDate: entity.startDate,
-      endDate: entity.endDate,
-      isCurrent: entity.isCurrent,
-      gpa: entity.gpa,
-      description: entity.description,
-      displayOrder: entity.displayOrder,
-      icon: entity.icon,
+      id: entity?.id,
+      userId: entity?.userId,
+      degree: entity?.degree,
+      fieldOfStudy: entity?.fieldOfStudy,
+      institution: entity?.institution,
+      startDate: entity?.startDate,
+      endDate: entity?.endDate,
+      isCurrent: entity?.isCurrent??false,
+      gpa: entity?.gpa,
+      description: entity?.description,
+      displayOrder: entity?.displayOrder??0,
+      icon: entity?.icon,
     );
   }
 

@@ -32,3 +32,7 @@ const largeButtonHeight = 40.0;
 const smallCardWidth = 160.0;
 const mediumCardWidth = 180.0;
 const largeCardWidth = 200.0;
+
+const smallSectionSpacing = 20.0;
+const mediumSectionSpacing = 40.0;
+const largeSectionSpacing = 56.0;

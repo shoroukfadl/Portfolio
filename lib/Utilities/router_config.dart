@@ -47,7 +47,7 @@ class GoRouterConfig {
   static final GoRouter _router = GoRouter(
     routes: <RouteBase>[
       GoRoute(
-        path: SplashView.routeName,
+        path: SplashScreen.routeName,
         redirect: (_,s){
           SeoHelper.setMetaTags(
             title: "Shorouk Fadl | شروق فضل",
@@ -58,7 +58,7 @@ class GoRouterConfig {
         pageBuilder: (_, GoRouterState state) {
           return getCustomTransitionPage(
             state: state,
-            child: const SplashView(),
+            child: const SplashScreen(),
           );
         },
         routes: const <RouteBase>[],
