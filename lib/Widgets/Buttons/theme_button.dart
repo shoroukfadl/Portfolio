@@ -70,7 +70,7 @@ class _ThemeButtonState extends State<ThemeButton> {
                     );
                   },
                   child: Icon(
-                    theme.isDark ? Portfolio.sun : Portfolio.moon,
+                    (theme.isDark) ? Portfolio.sun : Portfolio.moon,
                     key: ValueKey(theme.isDark),
                     size: size / 1.5,
                     color: _hovered
@@ -88,5 +88,3 @@ class _ThemeButtonState extends State<ThemeButton> {
     );
   }
 }
-
-

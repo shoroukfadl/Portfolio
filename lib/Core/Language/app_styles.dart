@@ -241,7 +241,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle summaryTitle(
           {Color? color, required BuildContext context}) =>
-      secondaryFamily.copyWith(
+      mainFamily.copyWith(
         fontSize: context.isLarge
             ? 40
             : context.isMedium
