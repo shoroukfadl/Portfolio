@@ -4,30 +4,30 @@ import 'package:flutter/material.dart';
 class AppColors extends ThemeExtension<AppColors> {
 // ─── Dark Theme (Coral & Teal) ────────────────────────────────────────────
   static const darkValues = AppColors(
-    background: Color(0xFF1c1c1f),
-    surface: Color(0xFF19191C),
-    card: Color(0xFF171719),
-    accent: Color(0xFFA58D4B),
-    secondary: Color(0xFF494950),
-    success: Color(0xFF5FD89A),
-    warning: Color(0xFFFFC94D),
-    danger: Color(0xFFFF5C6C),
-    text1: Color(0xfffffefb),
-    text2: Color(0xFFFFFDFD),
-    text3: Color(0xFFFFFFFF),
+    card: Color(0xFF001021),
+    surface: Color(0xFF011020),
+    background: Color(0xFF000A13),
+    accent: Color(0xFFB7D7EA),
+    secondary: Color(0xFF64A4CE),
+    success: Color(0xFF4CAF7D),
+    warning: Color(0xFFFFB627),
+    danger: Color(0xFFE63950),
+    text1: Color(0xFFfafafa),
+    text2: Color(0xff94949E),
+    text3: Color(0xffD4D4D8),
   );
 
 // ─── Light Theme (Coral & Teal) ───────────────────────────────────────────
   static const lightValues = AppColors(
-    background: Color(0xfffffefb),
-    surface: Color(0xFFFFFDFD),
+    background: Color(0xFFfafafa),
+    surface: Color(0xFFF7FAFA),
     card: Color(0xFFFFFFFF),
-    accent: Color(0xFFb69d54),
-    secondary: Color(0xFF494950),
+    accent: Color(0xFFB7D7EA),
+    secondary: Color(0xFF64A4CE),
     success: Color(0xFF4CAF7D),
     warning: Color(0xFFFFB627),
     danger: Color(0xFFE63950),
-    text1: Color(0xff222225),
+    text1: Color(0xFF003A70),
     text2: Color(0xff94949E),
     text3: Color(0xffD4D4D8),
   );

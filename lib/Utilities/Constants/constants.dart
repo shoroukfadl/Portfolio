@@ -29,7 +29,7 @@ const smallButtonHeight = 32.0;
 const mediumButtonHeight = 32.0;
 const largeButtonHeight = 40.0;
 
-const smallCardWidth = 160.0;
+const smallCardWidth = 140.0;
 const mediumCardWidth = 180.0;
 const largeCardWidth = 200.0;
 

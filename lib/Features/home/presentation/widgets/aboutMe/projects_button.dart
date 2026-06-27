@@ -25,8 +25,15 @@ class _ProjectsButtonState extends State<ProjectsButton> {
         medium: mediumButtonHeight,
         small: smallButtonHeight);
     return HoverAnimatedWidget(
-      moveUp: true,
+      zoomOut: true,
       child: (hover) => CustomButtonWidget(
+        shadow: !hover
+            ? null
+            : BoxShadow(
+                color: colors.accent.withValues(alpha: 0.1),
+                offset: Offset(0, 2),
+                spreadRadius: 4,
+                blurRadius: 4),
         padding: EdgeInsets.symmetric(horizontal: 16),
         onPressed: () {
           Scrollable.ensureVisible(
@@ -36,8 +43,8 @@ class _ProjectsButtonState extends State<ProjectsButton> {
           );
         },
         height: height,
-        btnColor: Colors.transparent,
-        borderColor: colors.accent,
+        btnColor: colors.background,
+        borderColor: hover ? colors.text1 : colors.accent,
         borderRadiusValue: 100,
         child: Row(
           spacing: 4,
@@ -48,11 +55,11 @@ class _ProjectsButtonState extends State<ProjectsButton> {
               Strings.projects.translate,
               style: AppTextStyles.buttonLabel(
                   context: context,
-                  color: !hover ? colors.text1 : colors.accent),
+                  color: hover ? colors.text1 : colors.accent),
             ),
             Icon(
-              Icons.arrow_right_alt_outlined,
-              color: !hover ? colors.text1 : colors.accent,
+              Icons.keyboard_double_arrow_down,
+              color: hover ? colors.text1 : colors.accent,
               size: height / 2,
             ),
           ],

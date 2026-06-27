@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/about_me_title.dart';
+import 'package:portfolio/Features/home/presentation/widgets/aboutMe/projects_button.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Portfilio/animated_background.dart';
+import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
+import 'email_button.dart';
 import 'floating_card_widget.dart';
 
 class SummarySection extends StatefulWidget {
   final ProfileEntity? profile;
-  final double projectProductionNumber,experience;
+  final double projectProductionNumber, experience;
   final double padding;
 
   const SummarySection({
     super.key,
     this.profile,
     this.padding = desktopHozPadding,
-    required this.projectProductionNumber, required this.experience,
+    required this.projectProductionNumber,
+    required this.experience,
   });
 
   @override
@@ -56,31 +60,61 @@ class _SummarySectionState extends State<SummarySection>
 
   @override
   Widget build(BuildContext context) {
-    final height = context.matchedSize(large: 560, medium: 560, small: 620);
-    return AnimatedBackground(
+    final height = context.matchedSize(large: 520, medium: 560, small: 620);
+    final colors = context.colors;
+    return SizedBox(
       height: height,
-      child: Padding(
-        padding: EdgeInsetsDirectional.only(
-          start: widget.padding,
-          end: widget.padding,
-        ),
-        child: !context.isSmall
-            ? Row(
-                spacing: context.isLarge ? 60 : 0,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _Summary().expand,
-                  _FloatingCards().expand,
-                ],
-              )
-            : Column(
-                spacing: 100,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  _Summary(),
-                  _FloatingCards(),
-                ],
+      child: Stack(
+        alignment: Alignment.center,
+        clipBehavior: Clip.none,
+        children: [
+          AnimatedBackground(
+            height: height,
+            child: Padding(
+              padding: EdgeInsetsDirectional.only(
+                start: widget.padding,
+                end: widget.padding,
               ),
+              child: context.isLarge
+                  ? Row(
+                      spacing: context.isLarge ? 60 : 0,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _Summary().expand,
+                        _FloatingCards().expand,
+                      ],
+                    )
+                  : Column(
+                      spacing: 0,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _Summary().expand,
+                        _FloatingCards(),
+                      ],
+                    ),
+            ),
+          ),
+          Positioned(
+            bottom: -20,
+            left: 0,
+            right: 0,
+            child: Row(
+              spacing: 16,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                DividerWidget(
+                  thickness: 1,
+                  color: colors.accent,
+                ).expand,
+                ProjectsButton(),
+                DividerWidget(
+                  thickness: 1,
+                  color: colors.accent,
+                ).expand,
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

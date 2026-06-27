@@ -2,6 +2,8 @@
 //  STATS ROW
 // ──────────────────────────────────────────
 import 'package:flutter/material.dart';
+import 'package:portfolio/Utilities/Constants/constants.dart';
+import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
 import '../../../../../Utilities/extensions.dart';
@@ -15,16 +17,23 @@ class StatsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 32,
-      runSpacing: 20,
-      children: items
-          .map((s) => StatItem(
-                item: s,
-                titleStyle: titleStyle,
-                numStyle: numStyle,
-              ))
-          .toList(),
+    final colors = context.colors;
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(cardRadius),
+        border: Border.all(color: colors.accent),
+      ),
+      child: Wrap(
+        spacing: 32,
+        children: items
+            .map((s) => StatItem(
+                  item: s,
+                  titleStyle: titleStyle,
+                  numStyle: numStyle,
+                ))
+            .toList(),
+      ),
     );
   }
 }
@@ -49,25 +58,20 @@ class StatItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Gradient number
-        ShaderMask(
-          shaderCallback: (bounds) => LinearGradient(
-            colors: [colors.text1, colors.secondary],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ).createShader(bounds),
-          child: AnimatedCounter(
-            targetNumber: item.value ?? 0.0,
-            subtitle: item.subTitle,
-            style: (numStyle ?? AppTextStyles.medium12())
-                .copyWith(color: Colors.white),
-          ),
+        AnimatedCounter(
+          targetNumber: item.value ?? 0.0,
+          subtitle: item.subTitle,
+          style: numStyle,
         ),
         const SizedBox(height: 5),
-        Text(
-          item.name?.toUpperCase() ?? "",
-          style: (titleStyle ?? AppTextStyles.regular12())
-              .copyWith(color: colors.text3),
-        ),
+        Text(item.name?.toUpperCase() ?? "", style: (titleStyle)),
+        SizedBox(
+          width: 100,
+          child: DividerWidget(
+            thickness: 2,
+            color: colors.accent,
+          ),
+        )
       ],
     );
   }

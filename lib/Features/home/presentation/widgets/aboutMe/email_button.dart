@@ -34,6 +34,13 @@ class EmailButton extends StatelessWidget {
         btnColor: colors.secondary,
         borderRadiusValue: 100,
         height: height,
+        shadow: !hover
+            ? null
+            : BoxShadow(
+                color: colors.accent.withValues(alpha: 0.1),
+                offset: Offset(0, 2),
+                spreadRadius: 4,
+                blurRadius: 4),
         child: Row(
           spacing: 8,
           mainAxisSize: MainAxisSize.min,

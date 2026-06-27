@@ -38,19 +38,19 @@ class SummaryContent extends StatelessWidget {
                 width: 20,
                 child: DividerWidget(
                   thickness: 2,
-                  color: colors.accent,
+                  color: colors.secondary,
                 )),
             Text(role.toUpperCase(),
                 style: AppTextStyles.subtitleCard(
-                        context: context, color: colors.accent)
+                        context: context, color: colors.secondary)
                     .copyWith(letterSpacing: 1.3)),
           ],
         ),
         8.0.heightBox,
         Text(
           "$firstName $lastName",
-          style: AppTextStyles.summaryTitle(
-              context: context, color: colors.secondary),
+          style:
+              AppTextStyles.summaryTitle(context: context, color: colors.text1),
         ),
 
         const SizedBox(height: 8),
@@ -58,25 +58,17 @@ class SummaryContent extends StatelessWidget {
           summary,
           style: AppTextStyles.body(context: context, color: colors.text2),
         ),
-        const SizedBox(height: 24),
-        Row(
-          spacing: 16,
-          children: [EmailButton(email: email), ProjectsButton()],
-        ),
 
-        const SizedBox(height: 24),
-        DividerWidget(
-          thickness: 0.4,
-        ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 32),
 
         StatsRow(
-          numStyle: AppTextStyles.summaryNumberLarge(context: context),
-          titleStyle: AppTextStyles.summaryNumberMedium(context: context),
+          numStyle: AppTextStyles.summaryNumberLarge(
+              context: context, color: colors.text1),
+          titleStyle: AppTextStyles.summaryNumberMedium(
+              context: context, color: colors.accent),
           items: [
             Stat(
               value: experince,
-              subTitle: "+",
               name: 'YEARS SHIPPING',
             ),
             Stat(
@@ -88,7 +80,7 @@ class SummaryContent extends StatelessWidget {
               name: 'PLATFORMS',
             ),
           ],
-        )
+        ),
       ],
     );
   }

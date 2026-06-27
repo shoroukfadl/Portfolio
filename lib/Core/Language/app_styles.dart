@@ -8,6 +8,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   static TextStyle get mainFamily => GoogleFonts.spaceGrotesk();
 
   static TextStyle get secondaryFamily => GoogleFonts.inter();
+  static TextStyle get nameFamily => GoogleFonts.italianno();
 
   static TextStyle extraBold48({Color? color}) => mainFamily.copyWith(
         fontSize: 48,
@@ -241,12 +242,8 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle summaryTitle(
           {Color? color, required BuildContext context}) =>
-      mainFamily.copyWith(
-        fontSize: context.isLarge
-            ? 40
-            : context.isMedium
-                ? 32
-                : 24,
+      nameFamily.copyWith(
+        fontSize: context.matchedSize(large: 48, medium: 32, small: 24),
         fontWeight: FontWeight.w700,
         color: color ?? Colors.black,
       );
@@ -254,18 +251,14 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   static TextStyle summarySubTitle(
           {Color? color, required BuildContext context}) =>
       mainFamily.copyWith(
-        fontSize: context.isLarge
-            ? 20
-            : context.isMedium
-                ? 14
-                : 12,
         fontWeight: FontWeight.w700,
         color: color ?? Colors.black,
+        fontSize: context.matchedSize(large: 20, medium: 14, small: 12),
       );
 
   static TextStyle title({Color? color, required BuildContext context}) =>
       secondaryFamily.copyWith(
-        fontSize: context.isLarge ? 12 : 10,
+        fontSize: context.matchedSize(large: 12, medium: 10, small: 10),
         fontWeight: FontWeight.w600,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
@@ -273,7 +266,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle buttonLabel({Color? color, required BuildContext context}) =>
       secondaryFamily.copyWith(
-        fontSize: context.isLarge ? 12 : 10,
+        fontSize: context.matchedSize(large: 12, medium: 10, small: 10),
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
@@ -281,14 +274,14 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle body({Color? color, required BuildContext context}) =>
       secondaryFamily.copyWith(
-        fontSize: context.isLarge ? 12 : 10,
+        fontSize: context.matchedSize(large: 12, medium: 10, small: 10),
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
       );
 
   static TextStyle cardBody({Color? color, required BuildContext context}) =>
       secondaryFamily.copyWith(
-        fontSize: context.isLarge ? 10 : 8,
+        fontSize: context.matchedSize(large: 10, medium: 8, small: 8),
         fontWeight: FontWeight.w300,
         color: color ?? Colors.black,
       );
@@ -296,11 +289,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   static TextStyle titleCardSmall(
           {Color? color, required BuildContext context}) =>
       mainFamily.copyWith(
-        fontSize: context.isLarge
-            ? 10
-            : context.isMedium
-                ? 10
-                : 8,
+        fontSize: context.matchedSize(large: 10, medium: 10, small: 8),
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
@@ -308,7 +297,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle titleCard({Color? color, required BuildContext context}) =>
       mainFamily.copyWith(
-        fontSize: context.isLarge ? 12 : 10,
+        fontSize: context.matchedSize(large: 12, medium: 10, small: 10),
         fontWeight: FontWeight.w600,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
@@ -325,7 +314,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle label({Color? color, required BuildContext context}) =>
       secondaryFamily.copyWith(
-        fontSize: context.isLarge ? 12 : 10,
+        fontSize: context.matchedSize(large: 12, medium: 10, small: 10),
         fontWeight: FontWeight.w500,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
@@ -333,7 +322,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle titleSmall({Color? color, required BuildContext context}) =>
       mainFamily.copyWith(
-        fontSize: context.isLarge ? 12 : 10,
+        fontSize: context.matchedSize(large: 12, medium: 10, small: 10),
         fontWeight: FontWeight.w600,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
@@ -342,11 +331,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   static TextStyle sectionsTitle(
           {Color? color, required BuildContext context}) =>
       mainFamily.copyWith(
-        fontSize: context.isLarge
-            ? 14
-            : context.isMedium
-                ? 12
-                : 10,
+        fontSize: context.matchedSize(large: 14, medium: 12, small: 10),
         fontWeight: FontWeight.w700,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
@@ -354,8 +339,8 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle summaryNumberLarge(
           {Color? color, required BuildContext context}) =>
-      mainFamily.copyWith(
-        fontSize: context.isLarge ? 24 : 18,
+      nameFamily.copyWith(
+        fontSize: context.matchedSize(large: 40, medium: 28, small: 24),
         fontWeight: FontWeight.w600,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
@@ -364,11 +349,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   static TextStyle summaryNumberMedium(
           {Color? color, required BuildContext context}) =>
       secondaryFamily.copyWith(
-        fontSize: context.isLarge
-            ? 12
-            : context.isMedium
-                ? 10
-                : 8,
+        fontSize: context.matchedSize(large: 12, medium: 10, small: 8),
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,

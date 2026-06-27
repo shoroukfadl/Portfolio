@@ -47,7 +47,7 @@ class _ThemeButtonState extends State<ThemeButton> {
                 borderRadius: BorderRadius.circular(100),
                 color: _hovered
                     ? colors.text3
-                    : theme.isDark
+                    : !theme.isDark
                         ? colors.accent
                         : colors.secondary,
                 border: Border.all(
@@ -70,14 +70,10 @@ class _ThemeButtonState extends State<ThemeButton> {
                     );
                   },
                   child: Icon(
-                    (theme.isDark) ? Portfolio.sun : Portfolio.moon,
+                    Portfolio.dark,
                     key: ValueKey(theme.isDark),
                     size: size / 1.5,
-                    color: _hovered
-                        ? colors.background
-                        : theme.isDark
-                            ? colors.text1
-                            : colors.background,
+                    color: colors.background,
                   ),
                 ),
               ),

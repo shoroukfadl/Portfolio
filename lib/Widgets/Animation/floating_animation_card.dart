@@ -39,7 +39,7 @@ class AnimatedCard extends StatelessWidget {
             angle: rotation * 0.0175,
             child: Container(
               width: size,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 border: Border.all(

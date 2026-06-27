@@ -9,13 +9,13 @@ class CustomButtonWidget extends StatelessWidget {
   final bool isLoading;
   final Function()? onPressed;
   final Function(bool hover)? onHover;
-
   final EdgeInsets? padding;
   final double? width, height, borderRadiusValue;
   final String? title;
   final FocusNode? focusNode;
   final Widget? child;
   final Color? btnColor, titleColor, borderColor;
+  final BoxShadow? shadow;
 
   const CustomButtonWidget(
       {super.key,
@@ -31,7 +31,8 @@ class CustomButtonWidget extends StatelessWidget {
       this.borderColor,
       this.titleColor,
       this.padding,
-      this.onHover});
+      this.onHover,
+      this.shadow});
 
   const CustomButtonWidget.outLined(
       {super.key,
@@ -45,6 +46,7 @@ class CustomButtonWidget extends StatelessWidget {
       this.isLoading = false,
       this.onHover,
       this.borderColor,
+      this.shadow,
       this.padding,
       this.titleColor})
       : btnColor = Colors.transparent;
@@ -69,6 +71,7 @@ class CustomButtonWidget extends StatelessWidget {
         width: width,
         padding: padding,
         decoration: BoxDecoration(
+          boxShadow: shadow == null ? null : [shadow!],
           borderRadius: BorderRadius.circular(borderRadiusValue ?? 100.0),
           color: btnColor ?? colors.accent,
           border: Border.all(color: borderColor ?? Colors.transparent),
@@ -172,7 +175,7 @@ class _CustomZaraButtonState extends State<CustomZaraButton> {
                   child: Icon(
                     widget.icon,
                     size: iconSize / 2,
-                    color:widget.active ? Colors.white: colors.text3 ,
+                    color: widget.active ? Colors.white : colors.text3,
                   ),
                 ),
               ),
@@ -181,7 +184,7 @@ class _CustomZaraButtonState extends State<CustomZaraButton> {
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeOut,
                 style: AppTextStyles.buttonLabel(
-                    color:widget.active ? Colors.white: colors.text3 ,
+                    color: widget.active ? Colors.white : colors.text3,
                     context: context),
                 child: Text(widget.title),
               ),
