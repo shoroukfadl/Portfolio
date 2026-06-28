@@ -13,13 +13,11 @@ import 'grallery.dart';
 
 class ProjectCard extends StatelessWidget {
   final ProjectEntity project;
-  final double width, height;
 
-  const ProjectCard(
-      {super.key,
-      required this.project,
-      required this.width,
-      required this.height});
+  const ProjectCard({
+    super.key,
+    required this.project,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +25,6 @@ class ProjectCard extends StatelessWidget {
     return ZoomOutAnimatedCardWidget(
       paddingVert: 0,
       paddingHoz: 8,
-      width: width,
-      height: height,
       child: (h) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

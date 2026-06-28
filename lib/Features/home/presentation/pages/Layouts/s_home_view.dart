@@ -77,6 +77,8 @@ class SmallHomeView extends StatelessWidget {
                   buildWhen: (c, p) => p.data?.projects != c.data?.projects,
                   builder: (c, s) => MyProjectsWidget(
                         mainAxisExtent: 326,
+                        perRow: 1,
+                        padding: mobileHozPadding,
                         projects: s.data?.projects ?? [],
                       )),
             )),

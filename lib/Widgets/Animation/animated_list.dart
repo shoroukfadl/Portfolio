@@ -21,8 +21,8 @@ class AnimatedGridView<T> extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: perRow,
-          mainAxisSpacing: 20,
-          crossAxisSpacing: 20,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
           mainAxisExtent: mainAxisExtent),
       itemCount: items.length,
       itemBuilder: (context, index) {
@@ -57,45 +57,6 @@ class AnimatedListView<T> extends StatelessWidget {
             child: SlideAnimation(
                 verticalOffset: 50.0,
                 child: FadeInAnimation(child: buildChild(index))));
-      },
-    );
-  }
-}
-
-class AnimatedHozListView<T> extends StatelessWidget {
-  final List<T> items;
-  final Widget Function(int) buildChild;
-  final ScrollController? scrollController;
-  const AnimatedHozListView({
-    super.key,
-    required this.items,
-    required this.buildChild,
-    this.scrollController,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedList.separated(
-      scrollDirection: Axis.horizontal,
-      separatorBuilder: (c, i, anim) => 20.0.widthBox,
-      removedSeparatorBuilder: (c, i, a) => 20.0.widthBox,
-      padding: EdgeInsets.symmetric(vertical: 20),
-      initialItemCount: items.length,
-      controller: scrollController,
-      itemBuilder: (context, index, anim) {
-        return SlideTransition(
-          position: Tween<Offset>(
-            begin: const Offset(1, 0), // ← أفقي مش رأسي
-            end: Offset.zero,
-          ).animate(CurvedAnimation(
-            parent: anim,
-            curve: Curves.easeOut,
-          )),
-          child: FadeTransition(
-            opacity: anim,
-            child: buildChild(index),
-          ),
-        );
       },
     );
   }

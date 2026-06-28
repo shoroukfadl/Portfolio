@@ -15,11 +15,13 @@ import 'newCard/project_card_widget.dart';
 class MyProjectsWidget extends StatefulWidget {
   final List<ProjectEntity> projects;
   final double imageWidth, mainAxisExtent, padding;
+  final int perRow;
 
   const MyProjectsWidget(
       {super.key,
       this.mainAxisExtent = 360,
       this.projects = const [],
+      this.perRow = 4,
       this.imageWidth = 100,
       this.padding = desktopHozPadding});
 
@@ -53,8 +55,10 @@ class _MyProjectsWidgetState extends State<MyProjectsWidget> {
 
   Widget childWidget(List<ProjectEntity> items) {
     return ProjectsListWidget(
-            items: items, mainAxisExtent: widget.mainAxisExtent)
-        .paddingSymmetric(horizontal: widget.padding / 2);
+            perRow: widget.perRow,
+            items: items,
+            mainAxisExtent: widget.mainAxisExtent)
+        .paddingSymmetric(horizontal: widget.padding);
   }
 
   @override
