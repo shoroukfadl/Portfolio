@@ -1,11 +1,6 @@
-// ──────────────────────────────────────────
-//  STATS ROW
-// ──────────────────────────────────────────
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
-
-import '../../../../../Core/Language/app_styles.dart';
 import '../../../../../Utilities/extensions.dart';
 import '../Animation/animated_counter.dart';
 

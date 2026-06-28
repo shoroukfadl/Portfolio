@@ -8,8 +8,8 @@ class PortfolioState extends Equatable {
   final PortfolioEntity? data;
   final HomeSection section;
   final RequestStatus loading;
-   double get projectLEN => data?.projects.length.toDouble()??0.0;
-   double get experience => data?.profile?.experince?.toDouble()??0.0;
+  double get projectLEN => data?.projects.length.toDouble() ?? 0.0;
+  double get experience => data?.profile?.experince?.toDouble() ?? 0.0;
 
   const PortfolioState(
       {this.data,
@@ -26,7 +26,6 @@ class PortfolioState extends Equatable {
           data: data ?? this.data,
           loading: loading ?? this.loading,
           section: section ?? this.section);
-
 
   // ✅ fix toJson
   Map<String, dynamic> toJson(PortfolioState state) {
@@ -51,8 +50,5 @@ class PortfolioState extends Equatable {
     }
   }
 
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [data, loading, section,projectLEN,experience];
+  List<Object?> get props => [data, loading, section, projectLEN, experience];
 }

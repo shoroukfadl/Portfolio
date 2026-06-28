@@ -9,6 +9,8 @@ import 'package:portfolio/Utilities/helper_function.dart';
 import 'package:portfolio/Widgets/Buttons/close_button.dart';
 import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 
+import '../../newCard/arrow_button.dart';
+
 class GalleryPreviewDialog extends StatefulWidget {
   final List<String> images;
   final int initialIndex;
@@ -186,7 +188,7 @@ class _GalleryPreviewDialogState extends State<GalleryPreviewDialog> {
                 top: 0,
                 bottom: 0,
                 child: Center(
-                  child: _ArrowBtn(
+                  child: ArrowBtn(
                     icon: Icons.chevron_left_rounded,
                     onTap: _current > 0 ? _prev : null,
                   ),
@@ -200,7 +202,7 @@ class _GalleryPreviewDialogState extends State<GalleryPreviewDialog> {
                 top: 0,
                 bottom: 0,
                 child: Center(
-                  child: _ArrowBtn(
+                  child: ArrowBtn(
                     icon: Icons.chevron_right_rounded,
                     onTap: _current < widget.images.length - 1 ? _next : null,
                   ),
@@ -258,35 +260,6 @@ class _GalleryPreviewDialogState extends State<GalleryPreviewDialog> {
             onTap: () => Navigator.pop(context),
           ),
         ],
-      ),
-    );
-  }
-}
-
-// ── HELPER WIDGETS ───────────────────────────────────────────
-
-class _ArrowBtn extends StatelessWidget {
-  final IconData icon;
-  final VoidCallback? onTap;
-
-  const _ArrowBtn({required this.icon, this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedOpacity(
-      opacity: onTap != null ? 1 : .2,
-      duration: const Duration(milliseconds: 200),
-      child: Material(
-        color: Colors.black.withValues(alpha: .45),
-        borderRadius: BorderRadius.circular(40),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(40),
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Icon(icon, color: Colors.white, size: 28),
-          ),
-        ),
       ),
     );
   }

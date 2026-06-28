@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/presentation/widgets/project/newCard/version_item.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../Core/Language/app_styles.dart';
@@ -32,7 +33,7 @@ class _PlatformButtonState extends State<PlatformButton> {
       };
 
   IconData get _icon => switch (widget.type) {
-        PlatformType.web => Icons.language_outlined,
+        PlatformType.web => Portfolio.web,
         PlatformType.ios => Portfolio.ios,
         PlatformType.android => Portfolio.andriod,
       };
@@ -118,47 +119,17 @@ class _PlatformButtonState extends State<PlatformButton> {
       child: MouseRegion(
         onEnter: (_) => setState(() => _hovered = true),
         onExit: (_) => setState(() => _hovered = false),
-        child: InkWell(
-          onTap: _handleTap,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 160),
-            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
-            decoration: BoxDecoration(
-              color: !_hovered
-                  ? colors.secondary.withValues(alpha: 0.2)
-                  : colors.accent.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(100),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  _icon,
-                  size: 12,
-                  color: !_hovered ? colors.text1 : colors.accent,
-                ),
-                const SizedBox(width: 5),
-                Text(
-                  _label,
-                  style: AppTextStyles.titleCardSmall(
-                    context: context,
-                    color: !_hovered ? colors.text1 : colors.accent,
-                  ),
-                ),
-                if (widget.links.length > 1) ...[
-                  const SizedBox(width: 3),
-                  AnimatedRotation(
-                    turns: _menuOpen ? 0.5 : 0,
-                    duration: const Duration(milliseconds: 160),
-                    child: Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      size: 12,
-                      color: !_hovered ? colors.text1 : colors.accent,
-                    ),
-                  ),
-                ],
-              ],
-            ),
+        child: CustomButtonWidget(
+          onPressed: _handleTap,
+          btnColor:
+              _hovered ? colors.secondary.withValues(alpha: 0.2) : colors.card,
+          borderRadiusValue: 100,
+          height: 28,
+          padding: EdgeInsets.symmetric(horizontal: 4),
+          child: Icon(
+            _icon,
+            size: 20,
+            color: colors.text1,
           ),
         ),
       ),

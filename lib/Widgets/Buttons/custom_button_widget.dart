@@ -140,7 +140,7 @@ class _CustomZaraButtonState extends State<CustomZaraButton> {
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeOut,
           height: iconSize,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          width: iconSize,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
@@ -150,45 +150,30 @@ class _CustomZaraButtonState extends State<CustomZaraButton> {
                     ? colors.text3.withValues(alpha: 0.3)
                     : colors.background,
             border: Border.all(
-              color: widget.active ? colors.secondary : colors.text3,
+              color: widget.active ? colors.secondary : colors.accent,
             ),
           ),
-          child: Row(
-            spacing: 8,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              AnimatedRotation(
-                duration: const Duration(milliseconds: 300),
-                turns: _hovered ? 0.083 : 0,
-                curve: Curves.easeOut,
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 250),
-                  transitionBuilder: (child, animation) {
-                    return RotationTransition(
-                      turns: animation,
-                      child: FadeTransition(
-                        opacity: animation,
-                        child: child,
-                      ),
-                    );
-                  },
-                  child: Icon(
-                    widget.icon,
-                    size: iconSize / 2,
-                    color: widget.active ? Colors.white : colors.text3,
+          child: AnimatedRotation(
+            duration: const Duration(milliseconds: 300),
+            turns: _hovered ? 0.083 : 0,
+            curve: Curves.easeOut,
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 250),
+              transitionBuilder: (child, animation) {
+                return RotationTransition(
+                  turns: animation,
+                  child: FadeTransition(
+                    opacity: animation,
+                    child: child,
                   ),
-                ),
+                );
+              },
+              child: Icon(
+                widget.icon,
+                size: iconSize / 2,
+                color: widget.active ? Colors.white : colors.accent,
               ),
-              // Title
-              AnimatedDefaultTextStyle(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeOut,
-                style: AppTextStyles.buttonLabel(
-                    color: widget.active ? Colors.white : colors.text3,
-                    context: context),
-                child: Text(widget.title),
-              ),
-            ],
+            ),
           ),
         ),
       ),

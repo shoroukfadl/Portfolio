@@ -7,11 +7,16 @@ class IconToolTipButtonWidget extends StatelessWidget {
   final IconData icon;
   final String tooltip;
   final VoidCallback onTap;
+  final Color? color, iconColor;
+  final double size;
 
   const IconToolTipButtonWidget({
     required this.icon,
     required this.tooltip,
     required this.onTap,
+    this.color,
+    this.iconColor,
+    this.size = 18,
   });
 
   @override
@@ -29,10 +34,10 @@ class IconToolTipButtonWidget extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: colors.accent,
+            color: color ?? colors.secondary,
             borderRadius: BorderRadius.circular(100),
           ),
-          child: Icon(icon, color: Colors.white, size: 18),
+          child: Icon(icon, color: iconColor ?? Colors.white, size: size),
         ),
       ),
     );

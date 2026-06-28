@@ -53,7 +53,7 @@ class _ProjectsButtonState extends State<ProjectsButton> {
           children: [
             Text(
               Strings.projects.translate,
-              style: AppTextStyles.buttonLabel(
+              style: AppTextStyles.buttonLabelS(
                   context: context,
                   color: hover ? colors.text1 : colors.accent),
             ),

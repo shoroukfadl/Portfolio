@@ -28,7 +28,7 @@ class FloatingCards extends StatelessWidget {
             offset2: const Offset(100, 60),
             offset3: const Offset(-20, 180)),
       );
-    } else if (context.isMedium)
+    } else if (context.isMedium) {
       return Row(
         children: cards(
             colors: colors,
@@ -36,6 +36,7 @@ class FloatingCards extends StatelessWidget {
             offset2: const Offset(10, -40),
             offset3: const Offset(20, -40)),
       );
+    }
     return Wrap(
       children: cards(
           colors: colors,

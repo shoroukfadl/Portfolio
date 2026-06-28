@@ -15,6 +15,7 @@ class AnimatedCard extends StatelessWidget {
   final double rotation;
 
   const AnimatedCard({
+    super.key,
     required this.title,
     required this.description,
     required this.color,

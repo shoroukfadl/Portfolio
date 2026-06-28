@@ -76,10 +76,9 @@ class MediumHomeView extends StatelessWidget {
                 child: BlocBuilder<PortfolioCubit, PortfolioState>(
                     buildWhen: (c, p) => p.data?.projects != c.data?.projects,
                     builder: (c, s) => MyProjectsWidget(
-                      perRow: 2,
-                      mainAxisExtent: 326,
-                      projects: s.data?.projects ?? [],
-                    )))),
+                          mainAxisExtent: 326,
+                          projects: s.data?.projects ?? [],
+                        )))),
 
         /// education
         SliverToBoxAdapter(
@@ -95,13 +94,13 @@ class MediumHomeView extends StatelessWidget {
             child: BlocBuilder<PortfolioCubit, PortfolioState>(
                 buildWhen: (c, p) => p.data?.profile != c.data?.profile,
                 builder: (c, s) => ContactMeWidget(
-                  email: s.data?.profile?.email ?? "",
-                  linkedIN: s.data?.profile?.linkedin ?? "",
-                  phoneNumber: s.data?.profile?.phone ?? "",
-                  github: s.data?.profile?.github ?? "",
-                  cv: s.data?.profile?.cv ?? "",
-                  padding: tabletHozPadding,
-                ))),
+                      email: s.data?.profile?.email ?? "",
+                      linkedIN: s.data?.profile?.linkedin ?? "",
+                      phoneNumber: s.data?.profile?.phone ?? "",
+                      github: s.data?.profile?.github ?? "",
+                      cv: s.data?.profile?.cv ?? "",
+                      padding: tabletHozPadding,
+                    ))),
         SliverToBoxAdapter(child: 16.0.heightBox),
       ],
     );

@@ -272,6 +272,17 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         textBaseline: TextBaseline.alphabetic,
       );
 
+  static TextStyle buttonLabelS(
+          {Color? color, required BuildContext context}) =>
+      nameFamily.copyWith(
+        fontSize: context.matchedSize(large: 16, medium: 10, small: 10),
+        fontWeight: FontWeight.w600,
+        color: color ?? Colors.black,
+        letterSpacing: 2,
+        wordSpacing: 1.4,
+        textBaseline: TextBaseline.alphabetic,
+      );
+
   static TextStyle body({Color? color, required BuildContext context}) =>
       secondaryFamily.copyWith(
         fontSize: context.matchedSize(large: 12, medium: 10, small: 10),
