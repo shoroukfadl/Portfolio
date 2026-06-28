@@ -8,34 +8,36 @@ class PortfolioState extends Equatable {
   final PortfolioEntity? data;
   final HomeSection section;
   final RequestStatus loading;
+
   double get projectLEN => data?.projects.length.toDouble() ?? 0.0;
   double get experience => data?.profile?.experince?.toDouble() ?? 0.0;
 
-  const PortfolioState(
-      {this.data,
-      this.section = HomeSection.about,
-      this.loading = RequestStatus.init});
+  const PortfolioState({
+    this.data,
+    this.section = HomeSection.about,
+    this.loading = RequestStatus.init,
+  });
 
   factory PortfolioState.init() => const PortfolioState();
 
-  PortfolioState copyWith(
-          {PortfolioEntity? data,
-          RequestStatus? loading,
-          HomeSection? section}) =>
+  PortfolioState copyWith({
+    PortfolioEntity? data,
+    RequestStatus? loading,
+    HomeSection? section,
+  }) =>
       PortfolioState(
-          data: data ?? this.data,
-          loading: loading ?? this.loading,
-          section: section ?? this.section);
+        data: data ?? this.data,
+        loading: loading ?? this.loading,
+        section: section ?? this.section,
+      );
 
-  // ✅ fix toJson
   Map<String, dynamic> toJson(PortfolioState state) {
-    if (state.data == null) return {};
+    if (data == null) return {};
     return {
-      'data': PortfolioModel.toModel(state.data).toFullJson(),
+      'data': PortfolioModel.toModel(data!).toFullJson(),
     };
   }
 
-// ✅ fix fromJson
   static PortfolioState fromJson(Map<String, dynamic> json) {
     try {
       if (json.isEmpty || json['data'] == null) return PortfolioState.init();
@@ -46,9 +48,11 @@ class PortfolioState extends Equatable {
         loading: RequestStatus.init,
       );
     } catch (e) {
+      print('❌ fromJson error: $e');
       return PortfolioState.init();
     }
   }
 
-  List<Object?> get props => [data, loading, section, projectLEN, experience];
+  @override
+  List<Object?> get props => [data, loading, section];
 }
