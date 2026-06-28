@@ -29,9 +29,10 @@ class PortfolioCubit extends HydratedCubit<PortfolioState> {
   }
 
   void changeSection(HomeSection section) {
-    if (section == state.section)
+    if (section == state.section) {
       return;
-    else
+    } else {
       emit(state.copyWith(section: section));
+    }
   }
 }

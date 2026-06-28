@@ -22,7 +22,6 @@ class RemoteDataSourceImp implements RemoteDataSource {
       'get_portfolio_by_id',
       params: {'p_id': firstId},
     );
-    print('Json :: ${(response['projects'] as List)[0]}');
     if (response == null) {
       return Either.left(ServerFailure(ErrorMessageModel.local(
           statusMessage: 'No Data Found', errorMessage: 'No Data Found')));

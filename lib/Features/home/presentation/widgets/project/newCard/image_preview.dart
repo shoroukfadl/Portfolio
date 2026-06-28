@@ -49,7 +49,7 @@ class ImagePreview extends StatelessWidget {
                 color: colors.text1,
                 borderColor: Colors.transparent,
                 style: AppTextStyles.titleCardSmall(
-                    context: context, color: Colors.white)),
+                    context: context, color: colors.background)),
           ),
         ),
         Positioned(
