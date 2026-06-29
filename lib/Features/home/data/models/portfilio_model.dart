@@ -41,7 +41,6 @@ class PortfolioModel {
           : (json['experience'] as List)
               .map((e) => ExperienceModel.fromJson(e))
               .toList(),
-
       skills: json['skills'] == null
           ? []
           : (json['skills'] as List)
@@ -52,6 +51,7 @@ class PortfolioModel {
 
   Map<String, dynamic> toFullJson() => {
         'profile_id': profile?.id,
+        'profile': profile?.toJson(),
         'education': education.map((e) => e.toJson()).toList(),
         'experience': experience.map((e) => e.toJson()).toList(),
         'projects': projects.map((e) => e.toJson()).toList(),
@@ -68,9 +68,15 @@ class PortfolioModel {
 
   static PortfolioModel toModel(PortfolioEntity? pr) => PortfolioModel(
         profile: ProfileModel.toModel(pr?.profile),
-        education: pr?.education.map((e) =>EducationModel.toModel(e)).toList()??[],
-        projects: pr?.projects.map((e) =>ProjectModel.toModel(e)).toList()??[],
-        experience: pr?.experience.map((e) => ExperienceModel.toModel(e)).toList()??[],
-        skills: pr?.skills.map((e) => TechnicalSkillModel.toModel(e)).toList()??[],
+        education:
+            pr?.education.map((e) => EducationModel.toModel(e)).toList() ?? [],
+        projects:
+            pr?.projects.map((e) => ProjectModel.toModel(e)).toList() ?? [],
+        experience:
+            pr?.experience.map((e) => ExperienceModel.toModel(e)).toList() ??
+                [],
+        skills:
+            pr?.skills.map((e) => TechnicalSkillModel.toModel(e)).toList() ??
+                [],
       );
 }

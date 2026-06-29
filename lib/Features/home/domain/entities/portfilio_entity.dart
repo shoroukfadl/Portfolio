@@ -13,18 +13,14 @@ class PortfolioEntity extends Equatable {
   final List<EducationEntity> education;
   final List<ExperienceEntity> experience;
   final List<ProjectEntity> projects;
-  final List<CertificateEntity> certificates;
   final List<TechnicalSkillEntity> skills;
-  final List<MethodologyEntity> methodologies;
 
   PortfolioEntity({
     this.profile,
     this.education = const [],
     this.projects = const [],
     this.experience = const [],
-    this.certificates = const [],
     this.skills = const [],
-    this.methodologies = const [],
   });
 
   @override
@@ -34,8 +30,6 @@ class PortfolioEntity extends Equatable {
         education,
         projects,
         experience,
-        certificates,
         skills,
-        methodologies,
       ];
 }

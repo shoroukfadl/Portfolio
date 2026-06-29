@@ -314,6 +314,14 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         textBaseline: TextBaseline.alphabetic,
       );
 
+  static TextStyle tabTitle({Color? color, required BuildContext context}) =>
+      mainFamily.copyWith(
+        fontSize: context.matchedSize(large: 10, medium: 8, small: 8),
+        fontWeight: FontWeight.w600,
+        color: color ?? Colors.black,
+        textBaseline: TextBaseline.alphabetic,
+      );
+
   static TextStyle subtitleCard(
           {Color? color, required BuildContext context}) =>
       secondaryFamily.copyWith(

@@ -55,6 +55,7 @@ class ZoomOutAnimatedCardWidget extends StatelessWidget {
   final Color? cardColor, borderColor, hoverColor;
   final Widget Function(bool hover) child;
   final double paddingHoz, paddingVert, border;
+  final BorderRadiusGeometry? borderR;
   final double? width, height;
 
   const ZoomOutAnimatedCardWidget({
@@ -68,6 +69,7 @@ class ZoomOutAnimatedCardWidget extends StatelessWidget {
     this.border = cardRadius,
     this.hoverColor,
     this.height,
+    this.borderR,
   });
 
   @override
@@ -82,9 +84,10 @@ class ZoomOutAnimatedCardWidget extends StatelessWidget {
                 width: width,
                 height: height,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(border),
-                  ),
+                  borderRadius: borderR ??
+                      BorderRadius.all(
+                        Radius.circular(border),
+                      ),
                   boxShadow: [
                     if (h)
                       BoxShadow(
@@ -104,6 +107,52 @@ class ZoomOutAnimatedCardWidget extends StatelessWidget {
                     horizontal: paddingHoz, vertical: paddingVert),
                 child: child(h),
               ),
+            ));
+  }
+}
+
+class BorderHoverdCardWidget extends StatelessWidget {
+  final Color? cardColor, borderColor, hoverColor;
+  final Widget Function(bool hover) child;
+  final double paddingHoz, paddingVert, border;
+  final double? width, height;
+
+  const BorderHoverdCardWidget({
+    super.key,
+    this.cardColor,
+    this.borderColor,
+    required this.child,
+    this.paddingHoz = 16,
+    this.paddingVert = 12,
+    this.width,
+    this.border = cardRadius,
+    this.hoverColor,
+    this.height,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.colors;
+    return InteractiveCard(
+        child: (h) => AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(border),
+                ),
+                border: Border.all(
+                  color: h
+                      ? (hoverColor ?? colors.secondary)
+                      : borderColor ?? colors.text3,
+                  width: h ? 0.4 : 0.1,
+                ),
+                color: (cardColor ?? colors.card),
+              ),
+              padding: EdgeInsets.symmetric(
+                  horizontal: paddingHoz, vertical: paddingVert),
+              child: child(h),
             ));
   }
 }

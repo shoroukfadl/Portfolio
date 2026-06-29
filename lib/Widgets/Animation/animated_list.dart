@@ -4,6 +4,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 
 class AnimatedGridView<T> extends StatelessWidget {
   final int perRow;
+  final double hozSpace, vertSpace;
   final double mainAxisExtent;
   final List<T> items;
   final Widget Function(int) buildChild;
@@ -12,6 +13,8 @@ class AnimatedGridView<T> extends StatelessWidget {
       required this.perRow,
       required this.mainAxisExtent,
       required this.items,
+      this.hozSpace = 8,
+      this.vertSpace = 8,
       required this.buildChild});
 
   @override
@@ -21,8 +24,8 @@ class AnimatedGridView<T> extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: perRow,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
+          mainAxisSpacing: vertSpace,
+          crossAxisSpacing: hozSpace,
           mainAxisExtent: mainAxisExtent),
       itemCount: items.length,
       itemBuilder: (context, index) {
