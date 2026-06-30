@@ -64,3 +64,30 @@ class AnimatedListView<T> extends StatelessWidget {
     );
   }
 }
+
+class AnimatedWrapView<T> extends StatelessWidget {
+  final List<T> items;
+  final Widget Function(int) buildChild;
+  const AnimatedWrapView(
+      {super.key, required this.items, required this.buildChild});
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      runSpacing: 20,
+      spacing: 20,
+      children: List.generate(items.length, (index) {
+        bool isFullWidth = (index + 1) % 3 == 0;
+        return SizedBox(
+          width: isFullWidth ? double.infinity : (context.width / 2.3),
+          child: AnimationConfiguration.staggeredList(
+              position: index,
+              duration: Duration(milliseconds: 1000),
+              child: SlideAnimation(
+                  verticalOffset: 50.0,
+                  child: FadeInAnimation(child: buildChild(index)))),
+        );
+      }),
+    );
+  }
+}

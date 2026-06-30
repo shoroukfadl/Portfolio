@@ -40,17 +40,13 @@ class ImagePreview extends StatelessWidget {
         ),
         Positioned(
           bottom: -12,
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-            decoration: BoxDecoration(
-                color: colors.card, borderRadius: BorderRadius.circular(100)),
-            child: CardWithText(
-                text: project.projectName?.toUpperCase() ?? "",
-                color: colors.text1,
-                borderColor: Colors.transparent,
-                style: AppTextStyles.titleCardSmall(
-                    context: context, color: colors.background)),
-          ),
+          child: CardWithText(
+              text: project.projectName?.toUpperCase() ?? "",
+              color: colors.text1,
+              borderColor: colors.card,
+              borderWidth: 4,
+              style: AppTextStyles.titleCardSmall(
+                  context: context, color: colors.background)),
         ),
         Positioned(
           right: 0,

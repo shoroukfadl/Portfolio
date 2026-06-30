@@ -6,7 +6,7 @@ class CardWithText extends StatelessWidget {
   final String text;
   final Color color, borderColor;
   final Color? textColor;
-  final double border, hozPadding, vertPadding;
+  final double border, hozPadding, borderWidth, vertPadding;
   final TextStyle? style;
   final int maxLine;
 
@@ -18,6 +18,7 @@ class CardWithText extends StatelessWidget {
       this.border = 100,
       this.hozPadding = 12,
       this.vertPadding = 4,
+      this.borderWidth = 4,
       this.style,
       this.maxLine = 1,
       this.textColor});
@@ -30,7 +31,7 @@ class CardWithText extends StatelessWidget {
       decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(border),
-          border: Border.all(color: borderColor)),
+          border: Border.all(color: borderColor, width: borderWidth)),
       child: Text(
         text,
         style: style ??

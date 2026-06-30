@@ -22,7 +22,7 @@ class EducationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 16,
+      spacing: 24,
       children: [
         SectionsTitleWidget(
           title: Strings.education.translate,

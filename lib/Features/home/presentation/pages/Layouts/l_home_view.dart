@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
-import 'package:portfolio/Features/home/presentation/widgets/skills/skill_tab_bar.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';

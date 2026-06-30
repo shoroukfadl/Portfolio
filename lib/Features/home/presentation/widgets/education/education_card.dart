@@ -3,6 +3,7 @@ import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/education_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Custom/card_with_animation.dart';
+import 'package:portfolio/Widgets/Custom/card_with_floating_title.dart';
 import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
 
@@ -17,39 +18,20 @@ class EducationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return AnimatedCardWidget(
+    return CardWithFloatingTitle(
       paddingHoz: !context.isSmall ? 24 : 8,
-      paddingVert: 20,
+      paddingVert: 16,
       width: double.infinity,
-      child: (h) => Column(
+      postionTop: -12,
+      title: item?.degree ?? "",
+      subTitle: FloatingTitle(
+        title: '${item?.startDate?.yyyy} - ${item?.endDate?.yyyy ?? ""}',
+        backgroundColor: colors.success.withValues(alpha: 0.8),
+        fontColor: Colors.white,
+      ),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header
-          Row(
-            spacing: 16,
-            children: [
-              Text(
-                item?.degree ?? "",
-                style: AppTextStyles.titleCard(
-                  context: context,
-                  color: colors.text1,
-                ),
-              ).expand,
-              CardWithText(
-                text: '${item?.startDate?.yyyy} - ${item?.endDate?.yyyy ?? ""}',
-                color: colors.accent.withValues(alpha: 0.1),
-                border: 8,
-                borderColor: Colors.transparent,
-                hozPadding: 8,
-                vertPadding: 4,
-                style: AppTextStyles.titleCardSmall(
-                  context: context,
-                  color: colors.accent,
-                ),
-              ),
-            ],
-          ),
-          8.0.heightBox,
           Row(
             spacing: 4,
             children: [
@@ -57,7 +39,7 @@ class EducationCard extends StatelessWidget {
                 item?.institution ?? "",
                 style: AppTextStyles.subtitleCard(
                   context: context,
-                  color: colors.text2,
+                  color: colors.text1,
                 ),
               ),
               VerticalGradientDivider(
@@ -72,32 +54,30 @@ class EducationCard extends StatelessWidget {
                 maxLines: 2,
                 style: AppTextStyles.subtitleCard(
                   context: context,
-                  color: colors.text2,
+                  color: colors.text1,
                 ),
               ).expand,
             ],
           ),
-
           8.0.heightBox,
           CardWithText(
             text: '✨ GPA : ${item?.gpa}/4 ',
-            color: colors.accent.withValues(alpha: 0.1),
-            border: 8,
-            borderColor: Colors.transparent,
+            borderColor: colors.accent,
+            color: Colors.transparent,
             hozPadding: 12,
             vertPadding: 6,
+            borderWidth: 0.2,
             style: AppTextStyles.titleCardSmall(
               context: context,
               color: colors.accent,
             ),
           ),
           8.0.heightBox,
-
           Text(
             item?.description ?? "",
             style: AppTextStyles.cardBody(
               context: context,
-              color: colors.text3,
+              color: colors.text2,
             ),
           ),
         ],

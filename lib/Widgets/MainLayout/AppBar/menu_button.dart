@@ -124,6 +124,7 @@ class _MenuButtonState extends State<MenuButton>
     final padding = context.isMedium ? tabletHozPadding : mobileHozPadding;
 
     return Stack(
+      alignment: Alignment.center,
       clipBehavior: Clip.none, // ← اتنقل لبره الـ Container
       children: [
         // ── AppBar ──
@@ -150,16 +151,17 @@ class _MenuButtonState extends State<MenuButton>
         // ── Dropdown overlay ──
         Positioned(
           left: 0,
-          right: 0,
+          width: 180,
           top: size,
           child: FadeTransition(
             opacity: _fadeAnim,
             child: ScaleTransition(
               scale: _scaleAnim,
-              alignment: Alignment.topCenter,
+              alignment: Alignment.center,
               child: AnimatedBackground(
                 height: 180,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: paths,
                 ),
               ),

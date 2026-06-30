@@ -46,8 +46,9 @@ class SmallHomeView extends StatelessWidget {
                 builder: (context, s) {
                   return SkillsSection(
                     padding: mobileHozPadding,
+                    vertSpacing: 24,
+                    mainAxisExtent: 88,
                     perRow: 1,
-                    mainAxisExtent: 120,
                     skills: s.data?.skills ?? [],
                   );
                 })),

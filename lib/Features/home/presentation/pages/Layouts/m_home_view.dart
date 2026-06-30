@@ -47,6 +47,8 @@ class MediumHomeView extends StatelessWidget {
                   return SkillsSection(
                     padding: tabletHozPadding,
                     perRow: 2,
+                    vertSpacing: 24,
+                    mainAxisExtent: 140,
                     skills: s.data?.skills ?? [],
                   );
                 })),

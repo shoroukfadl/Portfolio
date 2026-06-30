@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/tech_skill_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/skills/skill_card.dart';
-import 'package:portfolio/Features/home/presentation/widgets/skills/skill_tab_bar.dart';
 import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
@@ -13,7 +12,7 @@ import '../../../../../Widgets/sections_title_widget.dart';
 class SkillsSection extends StatelessWidget {
   final List<TechnicalSkillEntity> skills;
   final double padding, mainAxisExtent;
-  final double iconSize;
+  final double iconSize, vertSpacing, hozSpacing;
   final int perRow;
 
   const SkillsSection(
@@ -21,6 +20,8 @@ class SkillsSection extends StatelessWidget {
       this.skills = const [],
       this.iconSize = 40,
       this.mainAxisExtent = 168,
+      this.hozSpacing = 16,
+      this.vertSpacing = 16,
       this.padding = desktopHozPadding,
       this.perRow = 4});
 
@@ -39,6 +40,8 @@ class SkillsSection extends StatelessWidget {
             perRow: perRow,
             mainAxisExtent: mainAxisExtent,
             items: skills,
+            vertSpace: vertSpacing,
+            hozSpace: hozSpacing,
             buildChild: (index) {
               return SkillCard(
                 skill: skills[index],
