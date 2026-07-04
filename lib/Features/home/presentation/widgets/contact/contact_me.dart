@@ -66,8 +66,7 @@ class ContactMeWidget extends StatelessWidget {
         ),
         SocialButtonWidget(
           onPressed: () {
-            onTap:
-            () => HelperFunctions.openUrl(cv, context);
+          HelperFunctions.openUrl(cv, context);
           },
           size: iconSize,
           title: 'CV',

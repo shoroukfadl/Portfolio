@@ -29,6 +29,7 @@ class SocialButtonWidget extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       hoverColor: Colors.transparent,
+      borderRadius: BorderRadius.circular(100),
       child: ZoomOutAnimatedCardWidget(
         paddingHoz: 4,
         paddingVert: 4,
