@@ -1,9 +1,12 @@
-name: Deploy Flutter Web to GitHub Pages
+name: Deploy Flutter Web & Keep Supabase Alive
 
 on:
   push:
     branches:
       - Shorouk
+  schedule:
+    # كل 3 أيام - بيمنع Supabase من الـ auto-pause بعد 7 أيام خمول
+    - cron: '0 0 */3 * *'
   workflow_dispatch:
 
 # Prevent concurrent deployments
@@ -12,7 +15,11 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # ---------------------------------------------------------
+  # بيشتغل بس لما يحصل push على الـ branch (مش مع الجدولة)
+  # ---------------------------------------------------------
   build:
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
 
     steps:
@@ -58,6 +65,7 @@ jobs:
 
   deploy:
     needs: build
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
 
     permissions:
@@ -72,3 +80,16 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # ---------------------------------------------------------
+  # بيشتغل بس مع الجدولة (كل 3 أيام) عشان يفضل Supabase صاحي
+  # ---------------------------------------------------------
+  keep-supabase-alive:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase project
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/" \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}"
