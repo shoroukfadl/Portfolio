@@ -3,10 +3,8 @@ import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
 import 'package:portfolio/Features/home/domain/entities/tech_skill_entity.dart';
 
-import 'certificate_entity.dart';
 import 'education_entity.dart';
 import 'experince_entity.dart';
-import 'methodologies_entity.dart';
 
 class PortfolioEntity extends Equatable {
   final ProfileEntity? profile;
