@@ -54,7 +54,7 @@ class ProjectsSideListWidget extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
+              ).paddingOnly(start: 8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 4,

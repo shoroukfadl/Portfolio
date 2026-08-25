@@ -34,6 +34,7 @@ class SocialButtonWidget extends StatelessWidget {
         paddingHoz: 4,
         paddingVert: 4,
         cardColor: colors.background,
+        hoverColor: colors.text3,
         borderColor: iconColor ?? colors.text3,
         border: 8,
         child: (h) => Row(

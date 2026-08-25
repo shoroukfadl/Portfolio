@@ -91,7 +91,8 @@ class ZoomOutAnimatedCardWidget extends StatelessWidget {
                   boxShadow: [
                     if (h)
                       BoxShadow(
-                          color: colors.secondary.withValues(alpha: 0.28),
+                          color: (hoverColor ?? colors.secondary)
+                              .withValues(alpha: 0.28),
                           blurRadius: 10,
                           spreadRadius: 4)
                   ],

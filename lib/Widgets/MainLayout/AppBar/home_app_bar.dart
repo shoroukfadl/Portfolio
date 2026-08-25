@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Buttons/theme_button.dart';
 import 'package:portfolio/Widgets/MainLayout/AppBar/appbar_helper.dart';
+import 'package:portfolio/Widgets/MainLayout/AppBar/resume_button.dart';
 
 import '../../../Features/home/presentation/cubit/cubit.dart';
 import '../../../Features/home/presentation/cubit/state.dart';
@@ -28,7 +29,7 @@ class FloatingAppBar extends StatelessWidget {
       height: size,
       padding: EdgeInsetsDirectional.symmetric(horizontal: padding),
       decoration: BoxDecoration(
-        color: colors.surface,
+        color: colors.background,
       ),
       child: Row(
         children: [
@@ -36,6 +37,8 @@ class FloatingAppBar extends StatelessWidget {
           Spacer(),
           ...paths,
           Spacer(),
+          const CustomResumeButton(),
+          8.0.widthBox,
           const ThemeButton()
         ],
       ),

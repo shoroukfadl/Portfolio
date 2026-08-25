@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 import '../../../../../../Widgets/rounded_image_widget.dart';
@@ -47,13 +46,12 @@ class _WebPreviewState extends State<WebPreview> {
       width: widget.width,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [colors.surface, colors.background],
-        ),
-        borderRadius: BorderRadius.circular(cardRadius),
-      ),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [colors.surface, colors.background],
+          ),
+          border: BoxBorder.fromSTEB(bottom: BorderSide(color: colors.text3))),
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -64,13 +62,10 @@ class _WebPreviewState extends State<WebPreview> {
             itemBuilder: (context, index) {
               return RoundedImage(
                 imagePath: widget.urls[index],
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
                 height: widget.height * (2 / 3),
                 width: widget.imageWidth,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(cardRadius / 2),
-                  bottomRight: Radius.circular(cardRadius / 2),
-                ),
+                radiusValue: 0,
                 backgroundColor: colors.background,
               );
             },

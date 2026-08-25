@@ -47,9 +47,9 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
                 curve: Curves.easeOut,
                 style: AppTextStyles.title(
                   context: context,
-                  color: active ? colors.accent : colors.text2,
+                  color: active ? colors.text1 : colors.text3,
                 ),
-                child: Text(widget.title.toUpperCase()),
+                child: Text(widget.title),
               ),
               const SizedBox(height: 4),
               AnimatedContainer(
@@ -59,7 +59,7 @@ class _HomeAppBarItemState extends State<HomeAppBarItem> {
                 width: active ? 80 : 0,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  color: colors.accent,
+                  color: colors.secondary,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),

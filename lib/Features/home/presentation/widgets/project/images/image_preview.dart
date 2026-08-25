@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/project/images/mobile_preview.dart';
 import 'package:portfolio/Features/home/presentation/widgets/project/images/web_preview.dart';
-
-import '../../../../../../Utilities/Constants/enums.dart';
-import '../../../../../../Utilities/extensions.dart';
-import '../../../../domain/entities/project_entity.dart';
+import 'package:portfolio/Utilities/Constants/enums.dart';
 
 class ImagePreview extends StatelessWidget {
   final ProjectEntity project;
@@ -13,7 +11,6 @@ class ImagePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     bool mobile = project.projectType?.toLowerCase() == PreviewType.mobile.name;
     return SizedBox(
       height: double.infinity,

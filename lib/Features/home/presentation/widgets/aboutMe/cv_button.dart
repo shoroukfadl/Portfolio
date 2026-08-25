@@ -83,7 +83,7 @@ class _CvButtonState extends State<CvButton>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  Strings.resume.translate,
+                  Strings.cv.translate,
                   style: AppTextStyles.buttonLabel(
                       context: context, color: Colors.white),
                 ),

@@ -23,8 +23,9 @@ class MobilePreview extends StatelessWidget {
       ),
       alignment: Alignment.center,
       child: Container(
-        width: 80,
-        height: 148,
+        width: 200,
+        height: double.infinity,
+        margin: EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(13),
@@ -48,8 +49,8 @@ class MobilePreview extends StatelessWidget {
               RoundedImage(
                 imagePath: url,
                 fit: BoxFit.fill,
-                width: 120,
-                height: 170,
+                width: 200,
+                height: 600,
                 backgroundColor: colors.background,
                 radiusValue: 0,
               ),
