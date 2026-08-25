@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/education_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/Custom/card_with_animation.dart';
 import 'package:portfolio/Widgets/Custom/card_with_floating_title.dart';
 import 'package:portfolio/Widgets/Custom/card_with_text.dart';
-import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
 
 class EducationCard extends StatelessWidget {
   final EducationEntity? item;
@@ -18,64 +16,60 @@ class EducationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
 
-    return CardWithFloatingTitle(
+    return CardWithTitle(
       paddingHoz: !context.isSmall ? 24 : 8,
       paddingVert: 16,
       width: double.infinity,
-      postionTop: -12,
-      title: item?.degree ?? "",
-      subTitle: FloatingTitle(
-        title: '${item?.startDate?.yyyy} - ${item?.endDate?.yyyy ?? ""}',
-        backgroundColor: colors.success.withValues(alpha: 0.8),
-        fontColor: Colors.white,
-      ),
+      cardColor: colors.background,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            item?.degree ?? "",
+            style: AppTextStyles.titleCard2(
+              context: context,
+              color: colors.text1,
+            ),
+          ),
           Row(
             spacing: 4,
             children: [
               Text(
-                item?.institution ?? "",
+                "${item?.institution ?? ""} — ${item?.fieldOfStudy ?? ""}",
                 style: AppTextStyles.subtitleCard(
                   context: context,
-                  color: colors.text1,
-                ),
-              ),
-              VerticalGradientDivider(
-                color1: colors.accent,
-                width: 8,
-                height: 2,
-                color2: colors.secondary,
-                repation: 2,
-              ),
-              Text(
-                item?.fieldOfStudy ?? "",
-                maxLines: 2,
-                style: AppTextStyles.subtitleCard(
-                  context: context,
-                  color: colors.text1,
+                  color: colors.text3,
                 ),
               ).expand,
+              CardWithText(
+                text: '${item?.startDate?.yyyy} - ${item?.endDate?.yyyy ?? ""}',
+                color: colors.accent.withValues(alpha: 0.1),
+                borderColor: Colors.transparent,
+                textColor: colors.accent,
+                border: 4,
+                style: AppTextStyles.titleCardSmall(
+                        context: context, color: colors.accent)
+                    .copyWith(fontSize: 10),
+              ),
             ],
           ),
           8.0.heightBox,
           CardWithText(
             text: '✨ GPA : ${item?.gpa}/4 ',
-            borderColor: colors.accent,
-            color: Colors.transparent,
-            hozPadding: 12,
-            vertPadding: 6,
-            borderWidth: 0.2,
+            color: colors.secondary.withValues(alpha: 0.1),
+            borderColor: Colors.transparent,
+            hozPadding: 4,
+            vertPadding: 4,
+            border: 4,
             style: AppTextStyles.titleCardSmall(
               context: context,
-              color: colors.accent,
+              color: colors.secondary,
             ),
           ),
           8.0.heightBox,
           Text(
             item?.description ?? "",
-            style: AppTextStyles.cardBody(
+            style: AppTextStyles.cardBodyL(
               context: context,
               color: colors.text2,
             ),

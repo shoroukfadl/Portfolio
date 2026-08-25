@@ -84,7 +84,8 @@ class _CvButtonState extends State<CvButton>
               children: [
                 Text(
                   Strings.resume.translate,
-                  style: AppTextStyles.medium14(color: Colors.white),
+                  style: AppTextStyles.buttonLabel(
+                      context: context, color: Colors.white),
                 ),
                 const SizedBox(width: 8),
                 const Icon(Portfolio.download, size: 14, color: Colors.white),

@@ -9,7 +9,7 @@ import 'package:portfolio/Utilities/helper_function.dart';
 import 'package:portfolio/Widgets/Buttons/close_button.dart';
 import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 
-import '../../newCard/arrow_button.dart';
+import 'arrow_button.dart';
 
 class GalleryPreviewDialog extends StatefulWidget {
   final List<String> images;

@@ -29,12 +29,13 @@ class SocialButtonWidget extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       hoverColor: Colors.transparent,
-      borderRadius: BorderRadius.circular(100),
+      borderRadius: BorderRadius.circular(8),
       child: ZoomOutAnimatedCardWidget(
         paddingHoz: 4,
         paddingVert: 4,
-        borderColor: iconColor ?? colors.secondary,
-        border: 100,
+        cardColor: colors.background,
+        borderColor: iconColor ?? colors.text3,
+        border: 8,
         child: (h) => Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -43,13 +44,13 @@ class SocialButtonWidget extends StatelessWidget {
               height: size * 1.5,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: colors.secondary.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(100),
+                color: colors.card,
+                borderRadius: BorderRadius.circular(8),
               ),
               child: Center(
                 child: Icon(
                   icon,
-                  color: iconColor ?? colors.secondary,
+                  color: iconColor ?? colors.accent,
                   size: size,
                 ),
               ),
@@ -58,7 +59,7 @@ class SocialButtonWidget extends StatelessWidget {
             Text(
               title,
               style: AppTextStyles.titleCardSmall(
-                  context: context, color: colors.secondary),
+                  context: context, color: colors.accent),
             ),
             4.0.widthBox,
           ],

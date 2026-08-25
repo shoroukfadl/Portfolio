@@ -83,12 +83,12 @@ class CardWidget extends StatelessWidget {
         boxShadow: [
           if (hover)
             BoxShadow(
-                color: colors.secondary.withValues(alpha: 0.28),
+                color: colors.text3.withValues(alpha: 0.28),
                 blurRadius: 10,
                 spreadRadius: 4)
         ],
         border: Border.all(
-          color: hover ? (colors.secondary) : borderColor ?? colors.text3,
+          color: borderColor ?? colors.text3,
           width: hover ? 0.4 : 0.1,
         ),
       ),
@@ -144,8 +144,7 @@ class _CardWithFloatingTitleState extends State<CardWithFloatingTitle> {
         scale: _isHovering ? 1.03 : 1.0,
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeOut,
-        child: Stack(
-          clipBehavior: Clip.none,
+        child: Column(
           children: [
             CardWidget(
               hover: _isHovering,
@@ -174,6 +173,55 @@ class _CardWithFloatingTitleState extends State<CardWithFloatingTitle> {
               Positioned(
                   top: widget.postionTop, right: 8, child: widget.subTitle!),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CardWithTitle extends StatefulWidget {
+  final Color? cardColor, borderColor;
+  final Widget child;
+  final double paddingHoz, paddingVert, border;
+  final BorderRadiusGeometry? borderR;
+  final double? width, height;
+
+  const CardWithTitle({
+    super.key,
+    this.cardColor,
+    this.borderColor,
+    required this.child,
+    this.paddingHoz = 8,
+    this.paddingVert = 8,
+    this.border = cardRadius,
+    this.borderR,
+    this.width,
+    this.height,
+  });
+
+  @override
+  State<CardWithTitle> createState() => _CardWithTitleState();
+}
+
+class _CardWithTitleState extends State<CardWithTitle> {
+  @override
+  Widget build(BuildContext context) {
+    return InteractiveCard(
+      child: (hover) => AnimatedScale(
+        scale: hover ? 1.03 : 1.0,
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeOut,
+        child: CardWidget(
+          hover: hover,
+          borderColor: widget.borderColor,
+          borderR: widget.borderR,
+          border: widget.border,
+          cardColor: widget.cardColor,
+          paddingHoz: widget.paddingHoz,
+          paddingVert: widget.paddingVert,
+          width: widget.width,
+          height: widget.height,
+          child: widget.child,
         ),
       ),
     );

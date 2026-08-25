@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
+import 'package:portfolio/Features/home/presentation/widgets/contact/contact_me.dart';
+import 'package:portfolio/Features/home/presentation/widgets/education/education_widget.dart';
+import 'package:portfolio/Features/home/presentation/widgets/experince/experince_card_widget.dart';
+import 'package:portfolio/Features/home/presentation/widgets/project/my_projects_widget.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
 import '../../../../../Utilities/extensions.dart';
 import '../../widgets/aboutMe/about_me_widget.dart';
-import '../../widgets/contact/contact_me.dart';
-import '../../widgets/education/education_widget.dart';
-import '../../widgets/experince/experince_card_widget.dart';
-import '../../widgets/project/my_projects_widget.dart';
 import '../../widgets/skills/my_skills.dart';
 
 class LargeHomeView extends StatelessWidget {

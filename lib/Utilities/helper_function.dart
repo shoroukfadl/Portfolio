@@ -69,7 +69,8 @@ abstract class HelperFunctions {
       backgroundColor: Colors.transparent,
       content: AwesomeSnackbarContent(
         title: message ?? "",
-        titleTextStyle: AppTextStyles.semiBold14(
+        titleTextStyle: AppTextStyles.titleCard(
+          context: context,
           color: Colors.white,
         ),
         message: "",

@@ -25,6 +25,7 @@ class EducationSection extends StatelessWidget {
       spacing: 24,
       children: [
         SectionsTitleWidget(
+          index: 4,
           title: Strings.education.translate,
           key: GlobalKeys.education,
         ),

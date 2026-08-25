@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
-import 'package:portfolio/Features/home/presentation/widgets/aboutMe/email_button.dart';
-import 'package:portfolio/Features/home/presentation/widgets/aboutMe/projects_button.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
 
 import '../../../../../Widgets/Portfilio/stat_widget.dart';
 
 class SummaryContent extends StatelessWidget {
-  final String firstName, lastName, role, summary, cv, email;
+  final String firstName, lastName, location, role, summary, cv, email;
   final double projectNumber, experince;
 
   const SummaryContent({
@@ -21,6 +19,7 @@ class SummaryContent extends StatelessWidget {
     required this.email,
     required this.experince,
     required this.projectNumber,
+    required this.location,
   });
 
   @override
@@ -38,9 +37,9 @@ class SummaryContent extends StatelessWidget {
                 width: 20,
                 child: DividerWidget(
                   thickness: 2,
-                  color: colors.secondary,
+                  color: colors.accent,
                 )),
-            Text(role.toUpperCase(),
+            Text(role.toUpperCase() + '. ${location.toUpperCase()}',
                 style: AppTextStyles.subtitleCard(
                         context: context, color: colors.secondary)
                     .copyWith(letterSpacing: 1.3)),
@@ -65,7 +64,7 @@ class SummaryContent extends StatelessWidget {
           numStyle: AppTextStyles.summaryNumberLarge(
               context: context, color: colors.text1),
           titleStyle: AppTextStyles.summaryNumberMedium(
-              context: context, color: colors.accent),
+              context: context, color: colors.text2),
           items: [
             Stat(
               value: experince,

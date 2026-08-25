@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/aboutMe/about_me_title.dart';
-import 'package:portfolio/Features/home/presentation/widgets/aboutMe/projects_button.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Portfilio/animated_background.dart';
-import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
-import 'email_button.dart';
 import 'floating_card_widget.dart';
 
 class SummarySection extends StatefulWidget {
@@ -27,100 +24,30 @@ class SummarySection extends StatefulWidget {
   State<SummarySection> createState() => _SummarySectionState();
 }
 
-class _SummarySectionState extends State<SummarySection>
-    with TickerProviderStateMixin {
-  late AnimationController _floatController;
-  late List<AnimationController> _cardControllers;
-
-  @override
-  void initState() {
-    super.initState();
-    _floatController = AnimationController(
-      duration: const Duration(seconds: 6),
-      vsync: this,
-    )..repeat(reverse: true);
-
-    _cardControllers = List.generate(
-      3,
-      (index) => AnimationController(
-        duration: Duration(seconds: 7 + (index * 1)),
-        vsync: this,
-      )..repeat(reverse: true),
-    );
-  }
-
-  @override
-  void dispose() {
-    _floatController.dispose();
-    for (var controller in _cardControllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
-
+class _SummarySectionState extends State<SummarySection> {
   @override
   Widget build(BuildContext context) {
     final height = context.matchedSize(large: 520, medium: 560, small: 620);
     final colors = context.colors;
-    return SizedBox(
+    return AnimatedBackground(
       height: height,
-      child: Stack(
-        alignment: Alignment.center,
-        clipBehavior: Clip.none,
-        children: [
-          AnimatedBackground(
-            height: height,
-            child: Padding(
-              padding: EdgeInsetsDirectional.only(
-                start: widget.padding,
-                end: widget.padding,
-              ),
-              child: context.isLarge
-                  ? Row(
-                      spacing: context.isLarge ? 60 : 0,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        _Summary().expand,
-                        _FloatingCards().expand,
-                      ],
-                    )
-                  : Column(
-                      spacing: 0,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        _Summary().expand,
-                        _FloatingCards(),
-                      ],
-                    ),
-            ),
-          ),
-          Positioned(
-            bottom: -20,
-            left: 0,
-            right: 0,
-            child: Row(
-              spacing: 16,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                DividerWidget(
-                  thickness: 1,
-                  color: colors.accent,
-                ).expand,
-                ProjectsButton(),
-                DividerWidget(
-                  thickness: 1,
-                  color: colors.accent,
-                ).expand,
-              ],
-            ),
-          ),
-        ],
+      child: Padding(
+        padding: EdgeInsetsDirectional.only(
+          start: widget.padding,
+          end: widget.padding,
+        ),
+        child: Column(
+          spacing: 40,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [_summary(), const FloatingCards()],
+        ),
       ),
     );
   }
 
-  Widget _Summary() => SummaryContent(
+  Widget _summary() => SummaryContent(
         firstName: widget.profile?.firstName ?? "",
+        location: widget.profile?.location ?? "",
         lastName: widget.profile?.lastName ?? "",
         role: widget.profile?.jobTitle ?? "",
         summary: widget.profile?.summary ?? "",
@@ -128,11 +55,5 @@ class _SummarySectionState extends State<SummarySection>
         email: widget.profile?.email ?? "",
         experince: widget.experience,
         projectNumber: widget.projectProductionNumber,
-      );
-
-  Widget _FloatingCards() => FloatingCards(
-        floatController: _floatController,
-        cardControllers: _cardControllers,
-        isMobile: context.isSmall,
       );
 }

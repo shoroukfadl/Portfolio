@@ -6,8 +6,10 @@ import '../Core/Language/app_styles.dart';
 
 class SectionsTitleWidget extends StatelessWidget {
   final String title;
+  final int index;
 
-  const SectionsTitleWidget({super.key, required this.title});
+  const SectionsTitleWidget(
+      {super.key, required this.title, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -15,21 +17,22 @@ class SectionsTitleWidget extends StatelessWidget {
 
     return Row(
       spacing: 16,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        VerticalGradientDivider(
-          height: 2,
-          width: 32,
-          begin: AlignmentGeometry.centerLeft,
-          end: AlignmentGeometry.centerRight,
-          color1: colors.accent,
-          color2: colors.secondary,
-          repation: 2,
-        ),
         Text(
-          title.toUpperCase(),
-          style: AppTextStyles.sectionsTitle(
+          '0${index}',
+          style: AppTextStyles.sectionsSubTitle(
               context: context, color: colors.secondary),
         ),
+        Text(
+          title,
+          style: AppTextStyles.sectionsTitle(
+              context: context, color: colors.text1),
+        ),
+        DividerWidget(
+          thickness: 0.5,
+          color: colors.text3,
+        ).expand,
       ],
     );
   }

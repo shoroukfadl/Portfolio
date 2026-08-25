@@ -24,21 +24,23 @@ import 'Utilities/router_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Supabase.initialize(url:SupabaseConfig.url, anonKey:SupabaseConfig.anonKey );
+  await Supabase.initialize(
+      url: SupabaseConfig.url, anonKey: SupabaseConfig.anonKey);
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorageDirectory.web
         : HydratedStorageDirectory(
-      (await getTemporaryDirectory()).path,
-    ),
+            (await getTemporaryDirectory()).path,
+          ),
   );
-    await GitIt.initGitIt();
+  await GitIt.initGitIt();
   setPathUrlStrategy();
 
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()..getCurrentTheme()),
     BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
-    BlocProvider<PortfolioCubit>(create: (_) => sl<PortfolioCubit>()..getData()),
+    BlocProvider<PortfolioCubit>(
+        create: (_) => sl<PortfolioCubit>()..getData()),
   ], child: const EntryPoint()));
 }
 
@@ -67,42 +69,38 @@ class _EntryPointState extends State<EntryPoint> {
           ],
         );
 
-        return GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: ResponsiveBreakpoints.builder(
-            breakpoints: [
-              const Breakpoint(start: 0, end: 599, name: MOBILE),
-              const Breakpoint(start: 600, end: 1439, name: TABLET),
-              const Breakpoint(
-                  start: 1440, end: double.infinity, name: DESKTOP),
+        return ResponsiveBreakpoints.builder(
+          breakpoints: [
+            const Breakpoint(start: 0, end: 599, name: MOBILE),
+            const Breakpoint(start: 600, end: 1439, name: TABLET),
+            const Breakpoint(start: 1440, end: double.infinity, name: DESKTOP),
+          ],
+          child: MaterialApp.router(
+            locale: Locale(appLan.appLang.name),
+            supportedLocales:
+                Languages.values.map((e) => Locale(e.name)).toList(),
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              DefaultCupertinoLocalizations.delegate,
             ],
-            child: MaterialApp.router(
-              locale: Locale(appLan.appLang.name),
-              supportedLocales:
-                  Languages.values.map((e) => Locale(e.name)).toList(),
-              localizationsDelegates: const [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-                DefaultCupertinoLocalizations.delegate,
-              ],
-              builder: (context, child) {
-                return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(
-                    textScaler: TextScaler.noScaling,
-                    boldText: false,
-                  ),
-                  child: child!,
-                );
-              },
-              scrollBehavior: MyCustomScrollBehavior(),
-              routerConfig: GoRouterConfig.router,
-              theme: currentTheme,
-              themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
-              debugShowCheckedModeBanner: false,
-              title: "Portfolio",
-            ),
+            builder: (context, child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                  textScaler: TextScaler.noScaling,
+                  boldText: false,
+                ),
+                child: child!,
+              );
+            },
+            scrollBehavior: MyCustomScrollBehavior(),
+            routerConfig: GoRouterConfig.router,
+            theme: currentTheme,
+            themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+            debugShowCheckedModeBanner: false,
+            title: "Portfolio",
           ),
         );
       },

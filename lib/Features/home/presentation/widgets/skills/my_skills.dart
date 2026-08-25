@@ -19,9 +19,9 @@ class SkillsSection extends StatelessWidget {
       {super.key,
       this.skills = const [],
       this.iconSize = 40,
-      this.mainAxisExtent = 168,
+      this.mainAxisExtent = 240,
       this.hozSpacing = 16,
-      this.vertSpacing = 16,
+      this.vertSpacing = 24,
       this.padding = desktopHozPadding,
       this.perRow = 4});
 
@@ -33,7 +33,8 @@ class SkillsSection extends StatelessWidget {
         spacing: 32,
         children: [
           SectionsTitleWidget(
-            title: Strings.skill.translate,
+            index: 1,
+            title: Strings.mySkill.translate,
             key: GlobalKeys.skill,
           ),
           AnimatedGridView<TechnicalSkillEntity>(

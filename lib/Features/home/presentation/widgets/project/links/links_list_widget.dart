@@ -53,9 +53,11 @@ class LinksListWidget extends StatelessWidget {
           hoverColor: Colors.transparent,
           child: Text(
             '+ ${links.length - 2} More',
-            style: AppTextStyles.regular12(color: colors.text1).copyWith(
-                decoration: TextDecoration.underline,
-                decorationColor: colors.text1),
+            style:
+                AppTextStyles.titleCard(context: context, color: colors.text1)
+                    .copyWith(
+                        decoration: TextDecoration.underline,
+                        decorationColor: colors.text1),
           ),
         )
     ]);

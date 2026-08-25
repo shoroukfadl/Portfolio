@@ -66,7 +66,7 @@ class ContactMeWidget extends StatelessWidget {
         ),
         SocialButtonWidget(
           onPressed: () {
-          HelperFunctions.openUrl(cv, context);
+            HelperFunctions.openUrl(cv, context);
           },
           size: iconSize,
           title: 'CV',
@@ -83,7 +83,7 @@ class ContactMeWidget extends StatelessWidget {
       children: [
         DividerWidget(
           thickness: 0.3,
-          color: colors.secondary,
+          color: colors.text3,
         ),
         if (context.isLarge)
           Row(
@@ -99,7 +99,7 @@ class ContactMeWidget extends StatelessWidget {
           ).paddingSymmetric(horizontal: padding),
         Text(
           '© 2026 Shorouk Fadl. Built with Flutter. All rights reserved.',
-          style: AppTextStyles.label(context: context, color: colors.accent),
+          style: AppTextStyles.label(context: context, color: colors.text1),
         ).paddingSymmetric(horizontal: padding),
       ],
     );

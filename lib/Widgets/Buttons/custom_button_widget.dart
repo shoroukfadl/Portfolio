@@ -81,8 +81,8 @@ class CustomButtonWidget extends StatelessWidget {
             : child ??
                 Text(
                   title ?? "",
-                  style: AppTextStyles.regular14()
-                      .copyWith(color: titleColor ?? colors.text1),
+                  style: AppTextStyles.titleCard(
+                      context: context, color: titleColor ?? colors.text1),
                 ),
       ),
     );

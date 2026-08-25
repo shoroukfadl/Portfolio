@@ -19,17 +19,17 @@ class AppColors extends ThemeExtension<AppColors> {
 
 // ─── Light Theme (Coral & Teal) ───────────────────────────────────────────
   static const lightValues = AppColors(
-    background: Color(0xFFfafafa),
+    background: Color(0xFFF5F6F1),
     surface: Color(0xFFF7FAFA),
-    card: Color(0xFFFFFFFF),
-    accent: Color(0xFFB7D7EA),
-    secondary: Color(0xFF64A4CE),
+    card: Color(0xFFECEEE6),
+    secondary: Color(0xff2F5DE3),
+    accent: Color(0xFF049C82),
     success: Color(0xFF4CAF7D),
     warning: Color(0xFFFFB627),
     danger: Color(0xFFE63950),
-    text1: Color(0xFF003A70),
-    text2: Color(0xff94949E),
-    text3: Color(0xffD4D4D8),
+    text1: Color(0xFF15181B),
+    text2: Color(0xff5C6167),
+    text3: Color(0xff8A8F92),
   );
 
   // ─── Fields ───────────────────────────────────────────────────────────────

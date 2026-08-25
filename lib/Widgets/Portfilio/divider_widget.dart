@@ -63,3 +63,25 @@ class _VerticalGradientDividerState extends State<VerticalGradientDivider> {
     );
   }
 }
+
+class VerticalDividerWidget extends StatelessWidget {
+  final double? width, height;
+  final Color color;
+
+  const VerticalDividerWidget({
+    super.key,
+    this.width,
+    this.height,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width ?? 0.4,
+      height: height,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(100), color: color),
+    );
+  }
+}

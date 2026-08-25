@@ -1,60 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Features/home/presentation/widgets/project/images/web_preview_widget.dart';
-import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Features/home/presentation/widgets/project/images/mobile_preview.dart';
+import 'package:portfolio/Features/home/presentation/widgets/project/images/web_preview.dart';
 
-import '../../../../../../Widgets/rounded_image_widget.dart';
-import 'mobile_preview_widget.dart';
+import '../../../../../../Utilities/Constants/enums.dart';
+import '../../../../../../Utilities/extensions.dart';
+import '../../../../domain/entities/project_entity.dart';
 
-class ImagePreviewWidget extends StatelessWidget {
-  final double width, height, cardWidth;
-  final bool mobile;
-  final String image, name;
+class ImagePreview extends StatelessWidget {
+  final ProjectEntity project;
 
-  const ImagePreviewWidget(
-      {super.key,
-      required this.width,
-      required this.height,
-      required this.mobile,
-      required this.image,
-      required this.cardWidth,
-      required this.name});
+  const ImagePreview({super.key, required this.project});
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    if (mobile) {
-      return Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        decoration: BoxDecoration(
-            color: colors.accent,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            )),
-        child: MobilePreviewWidget(
-          image: image,
-          height: height,
-          width: width,
-        ),
-      );
-    } else {
-      return Column(
-        children: [
-          WebPreviewWidget(
-            projectName: name,
-            width: cardWidth,
-          ),
-          RoundedImage(
-            imagePath: image,
-            fit: BoxFit.fill,
-            height: double.infinity,
-            width: double.infinity,
-            backgroundColor: colors.background,
-            radiusValue: 0,
-          ).expand,
-        ],
-      );
-    }
+    bool mobile = project.projectType?.toLowerCase() == PreviewType.mobile.name;
+    return SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: mobile
+          ? MobilePreview(
+              url: project.images.firstOrNull ?? '',
+            )
+          : WebPreview(
+              height: 170,
+              imageWidth: 260,
+              width: double.infinity,
+              urls: project.images,
+              logoText: project.projectName ?? '',
+            ),
+    );
   }
 }

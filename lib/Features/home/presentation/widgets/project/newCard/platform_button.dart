@@ -4,7 +4,6 @@ import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../../../Core/Language/app_styles.dart';
 import '../../../../../../Utilities/Constants/enums.dart';
 import '../../../../../../Utilities/portifilo_icons.dart';
 import '../../../../domain/entities/project_entity.dart';
@@ -12,8 +11,13 @@ import '../../../../domain/entities/project_entity.dart';
 class PlatformButton extends StatefulWidget {
   final List<LinkEntity> links;
   final PlatformType type;
+  final Color color;
 
-  const PlatformButton({super.key, required this.links, required this.type});
+  const PlatformButton(
+      {super.key,
+      required this.color,
+      required this.links,
+      required this.type});
 
   @override
   State<PlatformButton> createState() => _PlatformButtonState();
@@ -64,7 +68,7 @@ class _PlatformButtonState extends State<PlatformButton> {
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.15),
+                      color: colors.secondary.withValues(alpha: 0.15),
                       blurRadius: 24,
                       offset: const Offset(0, 8),
                     ),
@@ -121,15 +125,14 @@ class _PlatformButtonState extends State<PlatformButton> {
         onExit: (_) => setState(() => _hovered = false),
         child: CustomButtonWidget(
           onPressed: _handleTap,
-          btnColor:
-              _hovered ? colors.secondary.withValues(alpha: 0.2) : colors.card,
+          btnColor: widget.color.withValues(alpha: 0.1),
           borderRadiusValue: 100,
           height: 28,
           padding: EdgeInsets.symmetric(horizontal: 4),
           child: Icon(
             _icon,
             size: 20,
-            color: colors.text1,
+            color: widget.color,
           ),
         ),
       ),

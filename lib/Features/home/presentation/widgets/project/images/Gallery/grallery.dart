@@ -4,7 +4,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/portifilo_icons.dart';
 import 'package:portfolio/Widgets/Buttons/close_button.dart';
 
-import '../images/Gallery/gallery_preview.dart';
+import 'gallery_preview.dart';
 
 class GalleryWidget extends StatelessWidget {
   final ProjectEntity project;
