@@ -23,6 +23,7 @@ class ProjectsSideListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CardWidget(
       paddingHoz: 0,
+      height: double.infinity,
       borderR: context.isLarge
           ? BorderRadiusDirectional.only(
               topStart: Radius.circular(cardRadius),
@@ -34,15 +35,13 @@ class ProjectsSideListWidget extends StatelessWidget {
             ),
       child: SingleChildScrollView(
           child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 24,
-        children: [
-
-          ...items.entries.map((entry) {
-            return tree(entry);
-          }).toList(),
-        ]
-      )),
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 24,
+              children: [
+            ...items.entries.map((entry) {
+              return tree(entry);
+            }).toList(),
+          ])),
     );
   }
 
