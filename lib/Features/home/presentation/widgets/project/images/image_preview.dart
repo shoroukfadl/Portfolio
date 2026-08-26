@@ -16,8 +16,11 @@ class ImagePreview extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: mobile
-          ? MobilePreview(
-              url: project.images.firstOrNull ?? '',
+          ? Center(
+              child: MobilePreview(
+                urls: project.images,
+                width: 140,
+              ),
             )
           : WebPreview(
               height: 170,

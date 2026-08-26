@@ -19,20 +19,22 @@ class CustomResumeButton extends StatelessWidget {
         medium: mediumButtonIcon,
         small: smallButtonIcon);
     return CustomButtonWidget(
-      onPressed: () {
-        final cv = context.read<PortfolioCubit>().state.data?.profile?.cv;
-        if (cv == null || cv.isEmpty) return;
-        HelperFunctions.openUrl(cv, context);
-      },
-      btnColor: colors.text1,
-      height: size,
-      padding: EdgeInsets.symmetric(horizontal: 8),
-      borderRadiusValue: 8,
-      child: Text(
-        Strings.resume.translate,
-        style: AppTextStyles.buttonLabel(
-            context: context, color: colors.background),
-      ),
-    );
+        onPressed: () {
+          final cv = context.read<PortfolioCubit>().state.data?.profile?.cv;
+          if (cv == null || cv.isEmpty) return;
+          HelperFunctions.openUrl(cv, context);
+        },
+        btnColor: colors.text1,
+        height: size,
+        padding: EdgeInsets.symmetric(horizontal: 8),
+        borderRadiusValue: 8,
+        child: Row(spacing: 4, children: [
+          Text(
+            Strings.resume.translate,
+            style: AppTextStyles.buttonLabel(
+                context: context, color: colors.background),
+          ),
+          Icon(Icons.arrow_downward, size: 14, color: colors.background),
+        ]));
   }
 }

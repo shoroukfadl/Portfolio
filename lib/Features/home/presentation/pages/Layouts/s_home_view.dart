@@ -47,7 +47,7 @@ class SmallHomeView extends StatelessWidget {
                   return SkillsSection(
                     padding: mobileHozPadding,
                     vertSpacing: 24,
-                    mainAxisExtent: 88,
+                    mainAxisExtent: 110,
                     perRow: 1,
                     skills: s.data?.skills ?? [],
                   );
@@ -69,20 +69,15 @@ class SmallHomeView extends StatelessWidget {
         SliverToBoxAdapter(child: smallSectionSpacing.heightBox),
 
         /// Projects
-        SliverPadding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: mobileHozPadding,
-            ),
-            sliver: SliverToBoxAdapter(
-              child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                  buildWhen: (c, p) => p.data?.projects != c.data?.projects,
-                  builder: (c, s) => MyProjectsWidget(
-                        mainAxisExtent: 326,
-                        perRow: 1,
-                        padding: mobileHozPadding,
-                        projects: s.data?.projects ?? [],
-                      )),
-            )),
+        SliverToBoxAdapter(
+          child: BlocBuilder<PortfolioCubit, PortfolioState>(
+              buildWhen: (c, p) => p.data?.projects != c.data?.projects,
+              builder: (c, s) => MyProjectsWidget(
+                    perRow: 1,
+                    padding: mobileHozPadding,
+                    projects: s.data?.projects ?? [],
+                  )),
+        ),
 
         /// education
         SliverToBoxAdapter(

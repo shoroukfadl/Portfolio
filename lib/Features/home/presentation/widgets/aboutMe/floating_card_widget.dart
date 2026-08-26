@@ -13,43 +13,69 @@ class FloatingCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Container(
-      height: 140,
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 32, vertical: 0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(cardRadius),
-        border: Border.all(color: colors.text3, width: 0.5),
-      ),
-      child: Row(
-          spacing: 32,
-          children: cards(
-            colors: colors,
-          )),
+    if (!context.isSmall) {
+      return Row(
+        children: [
+          ...List.generate(items(colors: colors).length, (e) {
+            final borderR = e == 0
+                ? BorderRadiusDirectional.only(
+                    topStart: Radius.circular(cardRadius),
+                    bottomStart: Radius.circular(cardRadius))
+                : (e == items(colors: colors).length - 1)
+                    ? BorderRadiusDirectional.only(
+                        topEnd: Radius.circular(cardRadius),
+                        bottomEnd: Radius.circular(cardRadius))
+                    : BorderRadius.zero;
+            return InfoCardWidget(
+              item: items(colors: colors)[e],
+              borderRadius: borderR,
+            ).expand;
+          })
+        ],
+      );
+    }
+    return Column(
+      children: [
+        ...List.generate(items(colors: colors).length, (e) {
+          final borderR = e == 0
+              ? BorderRadiusDirectional.only(
+                  topStart: Radius.circular(cardRadius),
+                  topEnd: Radius.circular(cardRadius))
+              : (e == items(colors: colors).length - 1)
+                  ? BorderRadiusDirectional.only(
+                      bottomStart: Radius.circular(cardRadius),
+                      bottomEnd: Radius.circular(cardRadius))
+                  : BorderRadius.zero;
+          return InfoCardWidget(
+            item: items(colors: colors)[e],
+            borderRadius: borderR,
+          );
+        })
+      ],
     );
   }
 
-  List<Widget> cards({
+  List<InfoCard> items({
     required AppColors colors,
   }) =>
       [
-        AnimatedCard(
+        InfoCard(
           title: 'Focused',
           description: 'Pixel-perfect apps with attention to detail',
           iconColor: colors.accent,
           icon: Icons.check,
-        ).expand,
-        AnimatedCard(
+        ),
+        InfoCard(
           title: 'Fast',
           description: 'Optimized performance and smooth 60fps animations',
           iconColor: colors.warning,
           icon: Icons.flash_on_outlined,
-        ).expand,
-        AnimatedCard(
+        ),
+        InfoCard(
           title: 'Modern',
           description: 'Latest Flutter patterns and best practices',
           iconColor: colors.secondary,
           icon: Icons.rocket_launch_outlined,
-        ).expand,
+        ),
       ];
 }

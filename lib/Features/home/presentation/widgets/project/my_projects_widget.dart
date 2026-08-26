@@ -11,13 +11,11 @@ import '../../../../../Widgets/sections_title_widget.dart';
 class MyProjectsWidget extends StatefulWidget {
   final List<ProjectEntity> projects;
   final double imageWidth;
-  final double mainAxisExtent;
   final double padding;
   final int perRow;
 
   const MyProjectsWidget({
     super.key,
-    this.mainAxisExtent = 360,
     this.projects = const [],
     this.perRow = 4,
     this.imageWidth = 100,
@@ -68,7 +66,7 @@ class _MyProjectsWidgetState extends State<MyProjectsWidget> {
       children: [
         SectionsTitleWidget(
           key: GlobalKeys.projects,
-          index: 4,
+          index: 3,
           title: Strings.projects.translate,
         ),
         ProjectsFrame(

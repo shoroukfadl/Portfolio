@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
+import 'package:portfolio/Features/home/presentation/widgets/project/sideMenu/items.dart';
+import 'package:portfolio/Features/home/presentation/widgets/project/sideMenu/title.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Custom/card_with_floating_title.dart';
@@ -19,62 +21,42 @@ class ProjectsSideListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     return CardWidget(
       paddingHoz: 0,
-      borderR: BorderRadiusDirectional.only(
-        topStart: Radius.circular(cardRadius),
-        bottomStart: Radius.circular(cardRadius),
-      ),
-      child: Column(
+      borderR: context.isLarge
+          ? BorderRadiusDirectional.only(
+              topStart: Radius.circular(cardRadius),
+              bottomStart: Radius.circular(cardRadius),
+            )
+          : BorderRadiusDirectional.only(
+              topStart: Radius.circular(cardRadius),
+              topEnd: Radius.circular(cardRadius),
+            ),
+      child: SingleChildScrollView(
+          child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 24,
-        children: items.entries.map((entry) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 4,
-            children: [
-              Row(
-                spacing: 8,
-                children: [
-                  Icon(
-                    Icons.folder_rounded,
-                    color: colors.warning,
-                    size: 16,
-                  ),
-                  Expanded(
-                    child: Text(
-                      entry.key,
-                      style: AppTextStyles.titleCardSmall(
-                        context: context,
-                        color: colors.text2,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ).paddingOnly(start: 8),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 4,
-                children: entry.value.map(
-                  (project) {
-                    return ProjectSideItemWidget(
-                      key: ValueKey(project.id),
-                      project: project,
-                      onTapProject: () => onTapProject(project),
-                      isSelected: project.id == selectedProject.id,
-                    );
-                  },
-                ).toList(),
-              ),
-            ],
-          );
-        }).toList(),
-      ),
+        children: [
+
+          ...items.entries.map((entry) {
+            return tree(entry);
+          }).toList(),
+        ]
+      )),
     );
   }
+
+  Widget tree(MapEntry<String, List<ProjectEntity>> entry) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 4,
+        children: [
+          ProjectTitle(title: entry.key).paddingOnly(start: 8),
+          ProjectSideItems(
+              items: entry.value,
+              onTapProject: onTapProject,
+              selectedProject: selectedProject)
+        ],
+      );
 }
 
 class ProjectSideItemWidget extends StatefulWidget {

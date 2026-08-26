@@ -31,7 +31,7 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
       backgroundColor: colors.background,
       floatingActionButton:
           context.isLarge ? const FloatingAppBar() : const MenuButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterTop,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
       body: AnimatedScale(
         scale: scale,
         duration: Duration(milliseconds: 400),

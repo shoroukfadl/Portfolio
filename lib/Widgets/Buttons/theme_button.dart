@@ -49,16 +49,16 @@ class _ThemeButtonState extends State<ThemeButton> {
                       ? colors.card
                       : !theme.isDark
                           ? colors.background
-                          : colors.accent,
+                          : colors.secondary,
                   border: Border.all(
-                    color: colors.accent,
+                    color: colors.secondary,
                   ),
                 ),
                 child: Icon(
                   Portfolio.light,
                   key: ValueKey(theme.isDark),
                   size: size / 1.5,
-                  color: colors.accent,
+                  color: theme.isDark ? colors.background : colors.secondary,
                 )),
           ),
         );

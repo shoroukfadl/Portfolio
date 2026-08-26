@@ -98,7 +98,7 @@ class ContactMeWidget extends StatelessWidget {
             children: contactList(context),
           ).paddingSymmetric(horizontal: padding),
         Text(
-          '© 2026 Shorouk Fadl. Built with Flutter. All rights reserved.',
+          '© 2026 Shorouk Fadl.All rights reserved.',
           style: AppTextStyles.label(context: context, color: colors.text1),
         ).paddingSymmetric(horizontal: padding),
       ],

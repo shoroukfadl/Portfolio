@@ -47,9 +47,10 @@ class EducationCard extends StatelessWidget {
                 borderColor: Colors.transparent,
                 textColor: colors.accent,
                 border: 4,
+                hozPadding: 4,
+                vertPadding: 2,
                 style: AppTextStyles.titleCardSmall(
-                        context: context, color: colors.accent)
-                    .copyWith(fontSize: 10),
+                    context: context, color: colors.accent),
               ),
             ],
           ),

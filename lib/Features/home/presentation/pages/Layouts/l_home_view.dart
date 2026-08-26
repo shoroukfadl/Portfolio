@@ -22,6 +22,12 @@ class LargeHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenLayoutWidget(
       children: [
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 40,
+          ),
+        ),
+
         /// about
         SliverToBoxAdapter(
           child: BlocBuilder<PortfolioCubit, PortfolioState>(

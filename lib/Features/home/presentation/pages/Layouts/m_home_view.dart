@@ -77,7 +77,6 @@ class MediumHomeView extends StatelessWidget {
                 child: BlocBuilder<PortfolioCubit, PortfolioState>(
                     buildWhen: (c, p) => p.data?.projects != c.data?.projects,
                     builder: (c, s) => MyProjectsWidget(
-                          mainAxisExtent: 326,
                           padding: tabletHozPadding,
                           perRow: 2,
                           projects: s.data?.projects ?? [],

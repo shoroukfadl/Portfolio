@@ -12,9 +12,26 @@ class PointText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Text("• " + point,
-        maxLines: 2,
-        style: style ??
-            AppTextStyles.cardBody(context: context, color: colors.text2));
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Card(
+          color: colors.secondary,
+          child: const SizedBox(
+            height: 4,
+            width: 4,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(1),
+          ),
+        ),
+        Text(point,
+                maxLines: 4,
+                style: style ??
+                    AppTextStyles.cardBody(
+                        context: context, color: colors.text2))
+            .expand
+      ],
+    ).paddingOnly(bottom: 4);
   }
 }

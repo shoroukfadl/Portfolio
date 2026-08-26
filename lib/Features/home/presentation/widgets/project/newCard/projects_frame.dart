@@ -38,7 +38,11 @@ class _ProjectsFrameState extends State<ProjectsFrame> {
       paddingVert: 0,
       paddingHoz: 0,
       height: 600,
-      child: Row(
+      child: context.isLarge ? LargePreview() : SmallPreview(),
+    );
+  }
+
+  Widget LargePreview() => Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ProjectsSideListWidget(
@@ -51,7 +55,19 @@ class _ProjectsFrameState extends State<ProjectsFrame> {
             child: ProjectContentWidget(selectedProject: selectedProject),
           ),
         ],
-      ),
-    );
-  }
+      );
+  Widget SmallPreview() => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ProjectsSideListWidget(
+            items: widget.items,
+            selectedProject: selectedProject,
+            onTapProject: (p) => _onProjectTap(p),
+          ).expand,
+          Expanded(
+            flex: 3,
+            child: ProjectContentWidget(selectedProject: selectedProject),
+          ),
+        ],
+      );
 }

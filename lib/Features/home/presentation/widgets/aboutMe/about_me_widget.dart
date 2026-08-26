@@ -27,7 +27,7 @@ class SummarySection extends StatefulWidget {
 class _SummarySectionState extends State<SummarySection> {
   @override
   Widget build(BuildContext context) {
-    final height = context.matchedSize(large: 520, medium: 560, small: 620);
+    final height = context.matchedSize(large: 520, medium: 560, small: 860);
     final colors = context.colors;
     return AnimatedBackground(
       height: height,
@@ -37,9 +37,9 @@ class _SummarySectionState extends State<SummarySection> {
           end: widget.padding,
         ),
         child: Column(
-          spacing: 40,
+          spacing: 24,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [_summary(), const FloatingCards()],
+          children: [_summary(), const FloatingCards().expand],
         ),
       ),
     );

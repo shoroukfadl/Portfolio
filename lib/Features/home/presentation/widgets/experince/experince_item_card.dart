@@ -55,26 +55,33 @@ class ExperienceCard extends StatelessWidget {
                 color: colors.text2,
               ),
             ).expand,
-            CardWithText(
-              text: "${item.startDate?.yyyyMM ?? ""}"
-                      " - "
-                      "${item.endDate?.yyyyMM ?? "Present"}" +
-                  " . ${item.employmentType ?? ""}",
-              color: colors.accent.withValues(alpha: 0.1),
-              borderColor: Colors.transparent,
-              textColor: colors.accent,
-              border: 4,
-              style: AppTextStyles.titleCardSmall(
-                      context: context, color: colors.accent)
-                  .copyWith(fontSize: 10),
-            ),
+            if (!context.isSmall) location(colors, context),
           ],
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
+        if (context.isSmall) ...[
+          location(colors, context),
+          const SizedBox(height: 8),
+        ],
         ...item.description.map(
           (e) => PointText(point: e),
         ),
       ],
     );
   }
+
+  Widget location(AppColors colors, BuildContext context) => CardWithText(
+        text: "${item.startDate?.yyyyMM ?? ""}"
+                " - "
+                "${item.endDate?.yyyyMM ?? "Present"}" +
+            " . ${item.employmentType ?? ""}",
+        color: colors.accent.withValues(alpha: 0.1),
+        borderColor: Colors.transparent,
+        textColor: colors.accent,
+        border: 4,
+        hozPadding: 4,
+        vertPadding: 4,
+        style: AppTextStyles.titleCardSmall(
+            context: context, color: colors.accent),
+      );
 }

@@ -14,12 +14,14 @@ class ProjectContentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final hozPadding = context.matchedSize(large: 40, medium: 20, small: 8);
+    final verPadding = context.matchedSize(large: 24, medium: 16, small: 4);
 
     return Column(
       children: [
         ImagePreview(
           project: selectedProject,
-        ).expandFlex(2),
+        ).expandFlex(context.isLarge ? 1 : 3),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 8,
@@ -75,7 +77,9 @@ class ProjectContentWidget extends StatelessWidget {
                 ],
               ).expand
           ],
-        ).paddingSymmetric(horizontal: 40, vertical: 24).expand,
+        )
+            .paddingSymmetric(horizontal: hozPadding, vertical: verPadding)
+            .expandFlex(context.isLarge ? 1 : 2),
       ],
     );
   }

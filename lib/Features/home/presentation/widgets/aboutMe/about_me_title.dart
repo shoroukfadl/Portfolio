@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Animation/floating_animation_card.dart';
 import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
 
 import '../../../../../Widgets/Portfilio/stat_widget.dart';
@@ -29,6 +30,10 @@ class SummaryContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        SizedBox(
+          height: 88,
+        ),
+
         /// Role
         Row(
           spacing: 4,
@@ -60,26 +65,33 @@ class SummaryContent extends StatelessWidget {
 
         const SizedBox(height: 32),
 
-        StatsRow(
-          numStyle: AppTextStyles.summaryNumberLarge(
-              context: context, color: colors.text1),
-          titleStyle: AppTextStyles.summaryNumberMedium(
-              context: context, color: colors.text2),
-          items: [
-            Stat(
-              value: experince,
-              name: 'YEARS SHIPPING',
-            ),
-            Stat(
-              value: projectNumber,
-              name: 'PRODUCTION APPS',
-            ),
-            const Stat(
-              value: 3,
-              name: 'PLATFORMS',
-            ),
-          ],
-        ),
+        SizedBox(
+          width: context.isLarge
+              ? (MediaQuery.sizeOf(context).width * 1 / 3)
+              : context.isMedium
+                  ? (MediaQuery.sizeOf(context).width * 2 / 3)
+                  : null,
+          child: StatsRow(
+            numStyle: AppTextStyles.summaryNumberLarge(
+                context: context, color: colors.text1),
+            titleStyle: AppTextStyles.summaryNumberMedium(
+                context: context, color: colors.text2),
+            items: [
+              Stat(
+                value: experince,
+                name: 'YEARS SHIPPING',
+              ),
+              Stat(
+                value: projectNumber,
+                name: 'PRODUCTION APPS',
+              ),
+              const Stat(
+                value: 3,
+                name: 'PLATFORMS',
+              ),
+            ],
+          ),
+        )
       ],
     );
   }

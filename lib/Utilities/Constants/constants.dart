@@ -15,7 +15,7 @@ BoxShadow get defaultBoxShadow => const BoxShadow(
 
 const desktopHozPadding = 160.0;
 const tabletHozPadding = 16.0;
-const mobileHozPadding = 8.0;
+const mobileHozPadding = 20.0;
 const cardRadius = 16.0;
 const smallButtonRadius = 6.0;
 const mediumButtonRadius = 12.0;

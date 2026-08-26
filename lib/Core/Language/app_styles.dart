@@ -90,14 +90,14 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle cardBodyL({Color? color, required BuildContext context}) =>
       secondaryFamily.copyWith(
-        fontSize: context.matchedSize(large: 12, medium: 10, small: 8),
+        fontSize: context.matchedSize(large: 12, medium: 10, small: 9),
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
       );
 
   static TextStyle cardBody({Color? color, required BuildContext context}) =>
       thirdFamily.copyWith(
-        fontSize: context.matchedSize(large: 10, medium: 8, small: 8),
+        fontSize: context.matchedSize(large: 11, medium: 10, small: 9),
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
       );
@@ -138,7 +138,11 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   static TextStyle subtitleCard(
           {Color? color, required BuildContext context}) =>
       secondaryFamily.copyWith(
-        fontSize: 12,
+        fontSize: context.isLarge
+            ? 12
+            : context.isMedium
+                ? 10
+                : 8,
         fontWeight: FontWeight.w600,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
@@ -146,7 +150,11 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle location({Color? color, required BuildContext context}) =>
       secondaryFamily.copyWith(
-        fontSize: 12,
+        fontSize: context.isLarge
+            ? 12
+            : context.isMedium
+                ? 10
+                : 9,
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
@@ -171,7 +179,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   static TextStyle summaryNumberLarge(
           {Color? color, required BuildContext context}) =>
       thirdFamily.copyWith(
-        fontSize: context.matchedSize(large: 24, medium: 20, small: 20),
+        fontSize: context.matchedSize(large: 24, medium: 20, small: 18),
         fontWeight: FontWeight.w600,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
@@ -180,7 +188,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   static TextStyle summaryNumberMedium(
           {Color? color, required BuildContext context}) =>
       thirdFamily.copyWith(
-        fontSize: context.matchedSize(large: 10, medium: 10, small: 8),
+        fontSize: context.matchedSize(large: 10, medium: 10, small: 10),
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
         textBaseline: TextBaseline.alphabetic,
