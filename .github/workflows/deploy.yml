@@ -5,7 +5,6 @@ on:
     branches:
       - Shorouk
   schedule:
-    # كل 3 أيام - بيمنع Supabase من الـ auto-pause بعد 7 أيام خمول
     - cron: '0 0 */3 * *'
   workflow_dispatch:
 

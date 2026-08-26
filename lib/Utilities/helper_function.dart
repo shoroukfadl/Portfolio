@@ -3,30 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../Core/Language/app_styles.dart';
-
 abstract class HelperFunctions {
-  static void showBottomSheet(BuildContext context,
-      {required Widget widget,
-      Color? backgroundColor,
-      bool isFullScreen = true}) {
-    final colors = context.colors;
-    showModalBottomSheet(
-        useSafeArea: true,
-        isScrollControlled: isFullScreen,
-        backgroundColor: backgroundColor ?? colors.accent,
-        showDragHandle: true,
-        context: context,
-        builder: (context) {
-          return BottomSheet(
-              onClosing: () {},
-              backgroundColor: backgroundColor ?? colors.accent,
-              builder: (context) {
-                return widget;
-              });
-        });
-  }
-
   static Future<void> showDialogHelper(BuildContext context,
       {required Widget contentWidget,
       Color? backgroundColor,
@@ -69,10 +46,6 @@ abstract class HelperFunctions {
       backgroundColor: Colors.transparent,
       content: AwesomeSnackbarContent(
         title: message ?? "",
-        titleTextStyle: AppTextStyles.titleCard(
-          context: context,
-          color: Colors.white,
-        ),
         message: "",
         contentType: type ?? ContentType.success,
       ),
