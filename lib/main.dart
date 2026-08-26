@@ -79,7 +79,7 @@ class _EntryPointState extends State<EntryPoint> {
             locale: Locale(appLan.appLang.name),
             supportedLocales:
                 Languages.values.map((e) => Locale(e.name)).toList(),
-            localizationsDelegates: const [
+            localizationsDelegates:  [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
