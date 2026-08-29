@@ -30,7 +30,7 @@ class HamburgerBtn extends StatelessWidget {
           height: size,
           decoration: BoxDecoration(
               color: colors.secondary.withValues(alpha: 0.2),
-              borderRadius: const BorderRadius.all(Radius.circular(100))),
+              borderRadius: const BorderRadius.all(Radius.circular(4))),
           child: Icon(isOpen ? Portfolio.close : Icons.menu,
               key: ValueKey<bool>(isOpen),
               color: colors.secondary,

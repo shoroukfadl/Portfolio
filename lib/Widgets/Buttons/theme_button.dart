@@ -44,7 +44,7 @@ class _ThemeButtonState extends State<ThemeButton> {
                 height: size,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(4),
                   color: _hovered
                       ? colors.card
                       : !theme.isDark

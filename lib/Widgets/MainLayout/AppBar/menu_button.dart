@@ -130,6 +130,7 @@ class _MenuButtonState extends State<MenuButton>
         // ── AppBar ──
         Container(
           height: size,
+          width: double.infinity,
           padding:
               EdgeInsetsDirectional.symmetric(horizontal: padding, vertical: 8),
           decoration: BoxDecoration(
