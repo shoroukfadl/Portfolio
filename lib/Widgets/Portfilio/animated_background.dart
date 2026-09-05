@@ -148,6 +148,7 @@ class _DeveloperAnimatedBackgroundState
 class DeveloperBackgroundPainter extends CustomPainter {
   final Color backgroundColor;
   final Color shapeColor;
+
   DeveloperBackgroundPainter(
       {required this.animation,
       this.particleCount = 40,

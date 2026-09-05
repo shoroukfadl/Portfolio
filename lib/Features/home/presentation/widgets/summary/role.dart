@@ -6,6 +6,7 @@ import '../../../../../Widgets/Portfilio/divider_widget.dart';
 
 class RoleWidget extends StatelessWidget {
   final String role, location;
+
   const RoleWidget({super.key, required this.role, required this.location});
 
   @override

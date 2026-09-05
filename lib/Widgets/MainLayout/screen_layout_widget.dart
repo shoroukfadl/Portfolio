@@ -23,7 +23,6 @@ class _ScreenLayoutWidgetState extends State<ScreenLayoutWidget> {
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
-
   }
 
   @override
@@ -51,8 +50,7 @@ class _ScreenLayoutWidgetState extends State<ScreenLayoutWidget> {
 
       final box = ctx.findRenderObject() as RenderBox;
 
-      final position =
-          box.localToGlobal(Offset.zero).dy;
+      final position = box.localToGlobal(Offset.zero).dy;
 
       if (position > 0 && position < 250) {
         cubit.changeSection(entry.key);
@@ -60,14 +58,14 @@ class _ScreenLayoutWidgetState extends State<ScreenLayoutWidget> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return RawScrollbar(
       thumbVisibility: true,
       trackVisibility: true,
       controller: _scrollController,
-      child: CustomScrollView(
-          controller: _scrollController, slivers: [
+      child: CustomScrollView(controller: _scrollController, slivers: [
         ...widget.children,
       ]),
     );

@@ -6,6 +6,7 @@ import '../../Core/Language/app_styles.dart';
 class CustomTooltipWidget extends StatelessWidget {
   final String title;
   final Widget child;
+
   const CustomTooltipWidget(
       {super.key, required this.title, required this.child});
 

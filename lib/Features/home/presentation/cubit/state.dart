@@ -10,6 +10,7 @@ class PortfolioState extends Equatable {
   final RequestStatus loading;
 
   double get projectLEN => data?.projects.length.toDouble() ?? 0.0;
+
   double get experience => data?.profile?.experince?.toDouble() ?? 0.0;
 
   const PortfolioState({

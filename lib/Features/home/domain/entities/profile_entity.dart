@@ -31,7 +31,9 @@ class ProfileEntity extends Equatable {
       this.linkedin,
       this.image,
       this.cv,
-      this.experince, this.headline, this.bio});
+      this.experince,
+      this.headline,
+      this.bio});
 
   @override
   List<Object?> get props => [
@@ -48,7 +50,7 @@ class ProfileEntity extends Equatable {
         cv,
         image,
         experince,
-    bio,
-    headline
+        bio,
+        headline
       ];
 }

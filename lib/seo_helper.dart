@@ -16,8 +16,8 @@ class SeoHelper {
   }
 
   static void _setMeta(String name, String content) {
-    html.MetaElement? meta = html.document
-        .querySelector('meta[name="$name"]') as html.MetaElement?;
+    html.MetaElement? meta =
+        html.document.querySelector('meta[name="$name"]') as html.MetaElement?;
 
     if (meta == null) {
       meta = html.MetaElement()..name = name;

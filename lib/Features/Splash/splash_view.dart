@@ -34,18 +34,13 @@ class _SplashScreenState extends State<SplashScreen> {
         listenWhen: (p, n) => p.loading != n.loading,
         child: Scaffold(
           backgroundColor: colors.background,
-          body:
-              AnimatedBackground(child:
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    24.0.heightBox,
-                    const LoadingTextWidget()
-                  ],
-                ),
+          body: AnimatedBackground(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [24.0.heightBox, const LoadingTextWidget()],
               ),
-
+            ),
           ),
         ));
   }

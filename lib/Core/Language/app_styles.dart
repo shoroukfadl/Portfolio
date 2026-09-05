@@ -6,6 +6,7 @@ import 'package:portfolio/Utilities/extensions.dart';
 abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
   // ─── Base font families ───────────────────────────────────────────────────
   static TextStyle get baseFamily => GoogleFonts.ptSerif();
+
   static TextStyle get secondaryFamily => GoogleFonts.inter();
 
   /// -------------------------------- Basic Function -----------------------------------------
@@ -170,6 +171,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
         fontWeight: FontWeight.w500,
         color: color ?? Colors.black,
       );
+
   static TextStyle l3({Color? color, required BuildContext context}) =>
       baseStyle(
         size: context.matchedSize(large: 10, medium: 10, small: 9),

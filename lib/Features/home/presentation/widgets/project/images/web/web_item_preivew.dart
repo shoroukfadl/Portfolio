@@ -40,6 +40,7 @@ class WebItemPreview extends StatelessWidget {
 
 class WebBarWidget extends StatelessWidget {
   final double width;
+
   const WebBarWidget({super.key, required this.width});
 
   @override

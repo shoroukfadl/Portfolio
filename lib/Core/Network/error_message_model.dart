@@ -1,4 +1,3 @@
-
 enum ExpectType { object, list, other }
 
 class ErrorMessageModel {

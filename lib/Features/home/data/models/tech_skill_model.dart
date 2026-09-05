@@ -36,12 +36,13 @@ class TechnicalSkillModel {
         'order': order
       };
 
-  static TechnicalSkillModel toModel(TechnicalSkillEntity? en) => TechnicalSkillModel(
-        category:en?. category,
-        skills:en?.skills.map((e)=>SkillModel.toModel(e)).toList()??[],
-        icon:en?. icon,
-        id:en?. id,
-        order:en?. order,
+  static TechnicalSkillModel toModel(TechnicalSkillEntity? en) =>
+      TechnicalSkillModel(
+        category: en?.category,
+        skills: en?.skills.map((e) => SkillModel.toModel(e)).toList() ?? [],
+        icon: en?.icon,
+        id: en?.id,
+        order: en?.order,
       );
 
   TechnicalSkillEntity toEntity() => TechnicalSkillEntity(
@@ -79,10 +80,10 @@ class SkillModel {
       };
 
   static SkillModel toModel(SkillEntity? skill) => SkillModel(
-        id:skill?. id,
-        profileId:skill?. profileId,
-        category:skill?. category,
-        skillName:skill?. skillName,
+        id: skill?.id,
+        profileId: skill?.profileId,
+        category: skill?.category,
+        skillName: skill?.skillName,
       );
 
   SkillEntity toEntity() => SkillEntity(

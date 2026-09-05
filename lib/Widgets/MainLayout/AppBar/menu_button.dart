@@ -84,24 +84,22 @@ class BottomNavigationBarWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ..._items
-              .map(
-                (item) => Expanded(
-                  child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                    buildWhen: (previous, current) =>
-                        previous.section != current.section,
-                    builder: (context, state) {
-                      return HomeAppBarItem(
-                        onTap: () => _onItemTap(context, item),
-                        selected: state.section == item.section,
-                        title: item.title,
-                        icon: item.icon,
-                      ).center;
-                    },
-                  ),
-                ),
-              )
-              ,
+          ..._items.map(
+            (item) => Expanded(
+              child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (previous, current) =>
+                    previous.section != current.section,
+                builder: (context, state) {
+                  return HomeAppBarItem(
+                    onTap: () => _onItemTap(context, item),
+                    selected: state.section == item.section,
+                    title: item.title,
+                    icon: item.icon,
+                  ).center;
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );

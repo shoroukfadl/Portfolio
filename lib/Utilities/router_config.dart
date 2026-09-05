@@ -48,10 +48,11 @@ class GoRouterConfig {
     routes: <RouteBase>[
       GoRoute(
         path: SplashScreen.routeName,
-        redirect: (_,s){
+        redirect: (_, s) {
           SeoHelper.setMetaTags(
             title: "Shorouk Fadl | شروق فضل",
-            description: "Flutter Developer With Experience in Flutter Framework , Scalable Application [Web , Ios ,Android] ",
+            description:
+                "Flutter Developer With Experience in Flutter Framework , Scalable Application [Web , Ios ,Android] ",
           );
           return null;
         },
@@ -75,17 +76,17 @@ class GoRouterConfig {
             GoRoute(
               name: HomeView.routeName,
               path: "/${HomeView.routeName}",
-              redirect: (_,s){
+              redirect: (_, s) {
                 SeoHelper.setMetaTags(
                   title: "Shorouk Fadl | شروق فضل",
-                  description: "Flutter Developer With Experience in Flutter Framework , Scalable Application [Web , Ios ,Android] ",
+                  description:
+                      "Flutter Developer With Experience in Flutter Framework , Scalable Application [Web , Ios ,Android] ",
                 );
                 return null;
               },
               pageBuilder: (_, GoRouterState state) {
                 return getCustomTransitionPage(
                   state: state,
-
                   child: const HomeView(),
                 );
               },

@@ -11,6 +11,7 @@ class ShortcutWidget extends StatefulWidget {
     required this.nextPress,
     required this.previousPress,
   });
+
   @override
   State<ShortcutWidget> createState() => _ShortcutWidgetState();
 }

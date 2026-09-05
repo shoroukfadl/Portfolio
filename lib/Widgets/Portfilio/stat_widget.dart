@@ -8,7 +8,8 @@ class StatsRow extends StatelessWidget {
   final List<Stat> items;
   final TextStyle? numStyle, titleStyle;
 
-  const StatsRow({super.key, this.items = const [], this.numStyle, this.titleStyle});
+  const StatsRow(
+      {super.key, this.items = const [], this.numStyle, this.titleStyle});
 
   @override
   Widget build(BuildContext context) {

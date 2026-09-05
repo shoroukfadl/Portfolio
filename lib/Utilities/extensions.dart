@@ -84,6 +84,7 @@ extension DoubleExtensions on double {
 
 extension LayoutExtensions on BuildContext {
   double get width => ResponsiveBreakpoints.of(this).screenWidth;
+
   bool get isLarge => ResponsiveBreakpoints.of(this).isDesktop;
 
   bool get isMedium => ResponsiveBreakpoints.of(this).isTablet;

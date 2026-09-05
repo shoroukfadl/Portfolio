@@ -17,6 +17,7 @@ class CustomResumeButton extends StatefulWidget {
 
 class _CustomResumeButtonState extends State<CustomResumeButton> {
   bool hover = false;
+
   void onHover(bool value) {
     if (value == hover) {
       return;

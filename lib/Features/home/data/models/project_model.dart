@@ -57,33 +57,34 @@ class ProjectModel {
       );
 
   Map<String, dynamic> toJson() => {
-    'project_id': id,
-    'profile_id': profileId,
-    'project_name': projectName,
-    'project_type': projectType,
-    'technical_tools': technicalTools,
-    'android_links': androidLinks.map((e) => e.toJson()).toList(),
-    'ios_links': iosLinks.map((e) => e.toJson()).toList(),
-    'web_links': webLinks.map((e) => e.toJson()).toList(),
-    'content': content,
-    'images': images,
-    'company': company,
-    'industry': industry,
-  };
+        'project_id': id,
+        'profile_id': profileId,
+        'project_name': projectName,
+        'project_type': projectType,
+        'technical_tools': technicalTools,
+        'android_links': androidLinks.map((e) => e.toJson()).toList(),
+        'ios_links': iosLinks.map((e) => e.toJson()).toList(),
+        'web_links': webLinks.map((e) => e.toJson()).toList(),
+        'content': content,
+        'images': images,
+        'company': company,
+        'industry': industry,
+      };
 
   static ProjectModel toModel(ProjectEntity? en) => ProjectModel(
-      id:en?. id,
-      profileId:en?. profileId,
-      projectName:en?. projectName,
-      projectType:en?. projectType,
-      technicalTools:en?. technicalTools??[],
-      androidLinks:en?. androidLinks.map((e)=>LinkModel.toModel(e)).toList()??[],
-      iosLinks:en?. iosLinks.map((e)=>LinkModel.toModel(e)).toList()??[],
-      webLinks:en?. webLinks.map((e)=>LinkModel.toModel(e)).toList()??[],
-      images:en?. images??[],
-      company:en?. company,
-      industry:en?. industry,
-      content:en?. content??[]);
+      id: en?.id,
+      profileId: en?.profileId,
+      projectName: en?.projectName,
+      projectType: en?.projectType,
+      technicalTools: en?.technicalTools ?? [],
+      androidLinks:
+          en?.androidLinks.map((e) => LinkModel.toModel(e)).toList() ?? [],
+      iosLinks: en?.iosLinks.map((e) => LinkModel.toModel(e)).toList() ?? [],
+      webLinks: en?.webLinks.map((e) => LinkModel.toModel(e)).toList() ?? [],
+      images: en?.images ?? [],
+      company: en?.company,
+      industry: en?.industry,
+      content: en?.content ?? []);
 
   ProjectEntity fromModel() => ProjectEntity(
         id: id,
@@ -111,9 +112,9 @@ class LinkModel {
       LinkModel(url: json['url'], name: json['name']);
 
   Map<String, dynamic> toJson() => {
-    'url': url,
-    'name': name,
-  };
+        'url': url,
+        'name': name,
+      };
 
   static LinkModel toModel(LinkEntity? entity) =>
       LinkModel(url: entity?.url, name: entity?.name);

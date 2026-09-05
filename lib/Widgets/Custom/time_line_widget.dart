@@ -32,6 +32,7 @@ class TimeLineItemWidget extends StatelessWidget {
 
 class LineWidget extends StatelessWidget {
   final bool hover;
+
   const LineWidget({
     this.hover = false,
     super.key,

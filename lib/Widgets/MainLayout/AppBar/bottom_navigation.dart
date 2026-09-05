@@ -8,7 +8,8 @@ class HamburgerBtn extends StatelessWidget {
   final bool isOpen;
   final Function() onTap;
 
-  const HamburgerBtn({super.key, 
+  const HamburgerBtn({
+    super.key,
     required this.isOpen,
     required this.onTap,
   });

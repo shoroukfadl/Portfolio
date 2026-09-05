@@ -29,7 +29,8 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
     return Scaffold(
       key: GlobalKeys.scaffoldKey,
       backgroundColor: colors.background,
-      bottomNavigationBar:   (!context.isLarge)? BottomNavigationBarWidget():null,
+      bottomNavigationBar:
+          (!context.isLarge) ? BottomNavigationBarWidget() : null,
       body: AnimatedScale(
         scale: scale,
         duration: Duration(milliseconds: 400),
