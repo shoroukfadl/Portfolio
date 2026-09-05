@@ -8,7 +8,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
-import 'package:portfolio/Utilities/animation_configaration.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -99,7 +98,7 @@ class _EntryPointState extends State<EntryPoint> {
             scrollBehavior: MyCustomScrollBehavior(),
             routerConfig: GoRouterConfig.router,
             theme: currentTheme,
-            themeAnimationDuration: PortfolioAnimationConfig.duration(context),
+            themeAnimationDuration: Duration(milliseconds: 300),
             themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
             debugShowCheckedModeBanner: false,
             title: "Portfolio",
