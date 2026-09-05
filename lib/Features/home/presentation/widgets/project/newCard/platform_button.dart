@@ -109,9 +109,7 @@ class _PlatformButtonState extends State<PlatformButton> {
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri);
       }
-    } catch (_) {
-      // لو الرابط فشل يفتح، مفيش داعي نكسر التطبيق — ممكن تحط snackbar هنا لو حابب تبلّغ اليوزر
-    }
+    } catch (_) {}
   }
 
   @override
@@ -123,7 +121,7 @@ class _PlatformButtonState extends State<PlatformButton> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final borderColor = _hovered ? widget.color : colors.border;
+    final borderColor = _hovered ? colors.accent : colors.border;
 
     return CompositedTransformTarget(
       link: _layerLink,
@@ -141,12 +139,14 @@ class _PlatformButtonState extends State<PlatformButton> {
             children: [
               Text(
                 widget.links.firstOrNull?.name ?? '',
-                style: AppTextStyles.t1(context: context, color: colors.text2),
+                style: AppTextStyles.t1(
+                    context: context,
+                    color: _hovered ? colors.accent : colors.text2),
               ),
               Icon(
                 Portfolio.link,
                 size: context.isLarge ? 14 : 12,
-                color: _hovered ? widget.color : colors.text2,
+                color: _hovered ? colors.accent : colors.text2,
               ),
             ],
           ),

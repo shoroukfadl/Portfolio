@@ -21,13 +21,13 @@ class PointText extends StatelessWidget {
         CircleAvatar(
           backgroundColor: colors.secondary,
           radius: 3,
-        ),
+        ).paddingOnly(top: 4),
         Text(point,
                 maxLines: 4,
                 style: style ??
                     AppTextStyles.bc2(context: context, color: colors.text2))
             .expand
       ],
-    ).paddingOnly(bottom: 4);
+    ).paddingOnly(bottom: 8);
   }
 }

@@ -5,30 +5,36 @@ import 'package:portfolio/Widgets/rounded_image_widget.dart';
 class WebItemPreview extends StatelessWidget {
   final double height, width;
   final String url;
+  final bool hover;
+
   const WebItemPreview(
       {super.key,
       required this.width,
       required this.height,
+      this.hover = false,
       required this.url});
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return Column(
-      children: [
-        WebBarWidget(width: width),
-        RoundedImage(
-          imagePath: url,
-          fit: BoxFit.fill,
-          height: 600,
-          width: width,
-          radiusValue: 0,
-          borderColor: Colors.transparent,
-          padding: 0,
-          backgroundColor: colors.background,
-        ).expand
-      ],
-    );
+    return AnimatedScale(
+        scale: hover ? 1.03 : 1,
+        duration: Duration(milliseconds: 300),
+        child: Column(
+          children: [
+            WebBarWidget(width: width),
+            RoundedImage(
+              imagePath: url,
+              fit: BoxFit.fill,
+              height: 600,
+              width: width,
+              radiusValue: 0,
+              borderColor: Colors.transparent,
+              padding: 0,
+              backgroundColor: colors.background,
+            ).expand
+          ],
+        ));
   }
 }
 

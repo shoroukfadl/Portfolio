@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Features/home/presentation/widgets/project/images/mobile/mobile_item_preview.dart';
 import 'package:portfolio/Features/home/presentation/widgets/project/images/web/web_item_preivew.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
-class WebPreview extends StatefulWidget {
-  const WebPreview({
+class ImagePreview extends StatefulWidget {
+  const ImagePreview({
     super.key,
     required this.urls,
-    required this.height,
     required this.width,
+    this.hover = false,
+    this.height = 220,
+    this.isMobile = false,
   });
 
   final List<String> urls;
-  final double height;
   final double width;
+  final bool hover, isMobile;
+  final double height;
 
   @override
-  State<WebPreview> createState() => _WebPreviewState();
+  State<ImagePreview> createState() => _ImagePreviewState();
 }
 
-class _WebPreviewState extends State<WebPreview> {
+class _ImagePreviewState extends State<ImagePreview> {
   late final PageController _pageController;
   int _currentPage = 0;
 
@@ -46,8 +50,9 @@ class _WebPreviewState extends State<WebPreview> {
     }
 
     return Container(
-      width: double.infinity,
       height: widget.height,
+      width: double.infinity,
+      alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -63,18 +68,28 @@ class _WebPreviewState extends State<WebPreview> {
         alignment: Alignment.bottomCenter,
         children: [
           PageView.builder(
-            controller: _pageController,
-            itemCount: widget.urls.length,
-            physics: _hasMultipleImages
-                ? const PageScrollPhysics()
-                : const NeverScrollableScrollPhysics(),
-            onPageChanged: (index) => setState(() => _currentPage = index),
-            itemBuilder: (context, index) => WebItemPreview(
-              width: widget.width,
-              height: widget.height,
-              url: widget.urls[index],
-            ),
-          ),
+              controller: _pageController,
+              itemCount: widget.urls.length,
+              physics: _hasMultipleImages
+                  ? const PageScrollPhysics()
+                  : const NeverScrollableScrollPhysics(),
+              onPageChanged: (index) => setState(() => _currentPage = index),
+              itemBuilder: (context, index) {
+                if (widget.isMobile) {
+                  return Center(
+                    child: MobileItemPreviewWidget(
+                        width: widget.width,
+                        height: widget.height,
+                        url: widget.urls[index],
+                        hover: widget.hover),
+                  );
+                }
+                return WebItemPreview(
+                    width: widget.width,
+                    height: widget.height,
+                    url: widget.urls[index],
+                    hover: widget.hover);
+              }),
           if (_hasMultipleImages) _buildPageIndicator(),
         ],
       ),

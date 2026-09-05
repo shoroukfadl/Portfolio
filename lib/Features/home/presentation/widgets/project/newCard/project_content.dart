@@ -49,7 +49,7 @@ class ProjectContentWidget extends StatelessWidget {
       children: [
         Text(
           project.projectName ?? '',
-          style: AppTextStyles.hc2(context: context, color: colors.text2),
+          style: AppTextStyles.hc1(context: context, color: colors.text1),
           maxLines: 2,
         ).expand,
         CardWithText(

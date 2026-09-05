@@ -47,7 +47,7 @@ class ExperienceCard extends StatelessWidget {
           children: [
             Text(
               item.positionTitle ?? '',
-              style: AppTextStyles.hc2(context: context, color: colors.text1),
+              style: AppTextStyles.hc1(context: context, color: colors.text1),
             ).expand,
             _buildDateBadge(context),
           ],

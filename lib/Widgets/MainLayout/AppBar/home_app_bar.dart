@@ -108,6 +108,6 @@ class HomeAppBar extends StatelessWidget {
       const NameAppBar(),
       const Spacer(),
       const ThemeButton(),
-    ]).paddingSymmetric(vertical: 20, horizontal: mobileHozPadding);
+    ]).paddingSymmetric(vertical: 0, horizontal: mobileHozPadding);
   }
 }

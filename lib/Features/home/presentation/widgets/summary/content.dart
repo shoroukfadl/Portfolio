@@ -6,7 +6,7 @@ import 'package:portfolio/Widgets/Animation/Summary/number_card_item.dart';
 
 import '../../../../../Widgets/Portfilio/stat_widget.dart';
 
-class SummaryContent extends StatelessWidget {
+class SummaryContent extends StatefulWidget {
   final String firstName, lastName, location, role, summary, cv, email;
   final double projectNumber, experince;
 
@@ -24,68 +24,200 @@ class SummaryContent extends StatelessWidget {
   });
 
   @override
+  State<SummaryContent> createState() => _SummaryContentState();
+}
+
+class _SummaryContentState extends State<SummaryContent>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  late final Animation<double> _roleAnimation;
+  late final Animation<double> _nameAnimation;
+  late final Animation<double> _summaryAnimation;
+  late final Animation<double> _statsAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
+
+    _roleAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(
+        0.00,
+        0.25,
+        curve: Curves.easeOutCubic,
+      ),
+    );
+
+    _nameAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(
+        0.15,
+        0.50,
+        curve: Curves.easeOutCubic,
+      ),
+    );
+
+    _summaryAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(
+        0.35,
+        0.70,
+        curve: Curves.easeOutCubic,
+      ),
+    );
+
+    _statsAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(
+        0.60,
+        1.00,
+        curve: Curves.easeOutCubic,
+      ),
+    );
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Widget _animatedItem({
+    required Animation<double> animation,
+    required Widget child,
+    double offset = 20,
+  }) {
+    return FadeTransition(
+      opacity: animation,
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: Offset(0, offset / 100),
+          end: Offset.zero,
+        ).animate(animation),
+        child: child,
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     final maxWidth = MediaQuery.sizeOf(context).width;
+
     final width = context.matchedSize(
-        large: maxWidth * 2 / 3, medium: maxWidth * 3.2 / 4, small: maxWidth);
+      large: maxWidth * 2 / 3,
+      medium: maxWidth * 3.2 / 4,
+      small: maxWidth,
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const SizedBox(height: 40),
 
-        /// Role
-        RoleWidget(
-          location: location,
-          role: role,
+        // Role
+        _animatedItem(
+          animation: _roleAnimation,
+          child: RoleWidget(
+            location: widget.location,
+            role: widget.role,
+          ),
         ),
+
         8.0.heightBox,
-        Text(
-          firstName,
-          style: AppTextStyles.h1(context: context, color: colors.text1),
-        ),
-        Text(
-          lastName,
-          style: AppTextStyles.h1(context: context, color: colors.secondary),
-        ),
 
-        const SizedBox(height: 24),
-        SizedBox(
-            width: width,
-            child: Text(
-              summary,
-              style: AppTextStyles.b1(context: context, color: colors.text2),
-            )),
-
-        const SizedBox(height: 40),
-
-        SizedBox(
-          width: context.isLarge
-              ? (MediaQuery.sizeOf(context).width * 1 / 2)
-              : context.isMedium
-                  ? (MediaQuery.sizeOf(context).width * 2 / 3)
-                  : null,
-          child: StatsRow(
-            numStyle: AppTextStyles.h3(context: context, color: colors.accent),
-            titleStyle: AppTextStyles.h5(context: context, color: colors.text3),
-            items: [
-              Stat(
-                  value: experince,
-                  name: 'YEARS SHIPPING',
-                  hasDigit: true,
-                  sign: '+'),
-              Stat(
-                value: projectNumber,
-                name: 'PRODUCTION APPS',
+        // Name
+        _animatedItem(
+          animation: _nameAnimation,
+          offset: 24,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.firstName,
+                style: AppTextStyles.h1(
+                  context: context,
+                  color: colors.text1,
+                ),
               ),
-              const Stat(
-                value: 3,
-                name: 'PLATFORMS',
+              Text(
+                widget.lastName,
+                style: AppTextStyles.h1(
+                  context: context,
+                  color: colors.secondary,
+                ),
               ),
             ],
           ),
-        )
+        ),
+
+        const SizedBox(height: 24),
+
+        // Summary
+        _animatedItem(
+          animation: _summaryAnimation,
+          offset: 18,
+          child: SizedBox(
+            width: width,
+            child: Text(
+              widget.summary,
+              style: AppTextStyles.b1(
+                context: context,
+                color: colors.text2,
+              ),
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 40),
+
+        // Stats
+        _animatedItem(
+          animation: _statsAnimation,
+          offset: 14,
+          child: SizedBox(
+            width: context.isLarge
+                ? maxWidth * 1 / 2
+                : context.isMedium
+                    ? maxWidth * 2 / 3
+                    : null,
+            child: StatsRow(
+              numStyle: AppTextStyles.h3(
+                context: context,
+                color: colors.accent,
+              ),
+              titleStyle: AppTextStyles.h5(
+                context: context,
+                color: colors.text3,
+              ),
+              items: [
+                Stat(
+                  value: widget.experince,
+                  name: 'YEARS SHIPPING',
+                  hasDigit: true,
+                  sign: '+',
+                ),
+                Stat(
+                  value: widget.projectNumber,
+                  name: 'PRODUCTION APPS',
+                ),
+                const Stat(
+                  value: 3,
+                  name: 'PLATFORMS',
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
