@@ -50,15 +50,20 @@ class SkillsSection extends StatelessWidget {
             paddingHoz: 0,
             width: width,
             paddingVert: 0,
-            child: (h) => AnimatedListView<TechnicalSkillEntity>(
-              items: skills,
-              spacing: 0,
-              buildChild: (index) {
-                return SkillCard(
-                  skill: skills[index],
-                  isLast: index == skills.length - 1,
-                );
-              },
+            child: (h) => Column(
+              children: List.generate(
+                skills.length,
+                (index) {
+                  return SkillReveal(
+                    key: ValueKey('skill-$index'),
+                    index: index,
+                    child: SkillCard(
+                      skill: skills[index],
+                      isLast: index == skills.length - 1,
+                    ),
+                  );
+                },
+              ),
             ),
           )
         ],

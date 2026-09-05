@@ -37,14 +37,22 @@ class ExperienceSection extends StatelessWidget {
           title: Strings.experience.translate,
           key: GlobalKeys.experince,
         ),
-        AnimatedListView<ExperienceEntity>(
-          items: experiences,
-          spacing: 24,
-          buildChild: (index) {
-            return ExperienceCard(
-              item: experiences[index],
-            );
-          },
+        Column(
+          children: List.generate(
+            experiences.length,
+            (index) => Padding(
+              padding: EdgeInsets.only(
+                bottom: index == experiences.length - 1 ? 0 : 24,
+              ),
+              child: ExperienceReveal(
+                key: ValueKey('experience-$index'),
+                index: index,
+                child: ExperienceCard(
+                  item: experiences[index],
+                ),
+              ),
+            ),
+          ),
         ),
       ],
     ).paddingSymmetric(horizontal: padding);

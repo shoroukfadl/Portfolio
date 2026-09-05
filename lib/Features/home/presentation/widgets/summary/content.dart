@@ -34,7 +34,6 @@ class _SummaryContentState extends State<SummaryContent>
   late final Animation<double> _roleAnimation;
   late final Animation<double> _nameAnimation;
   late final Animation<double> _summaryAnimation;
-  late final Animation<double> _statsAnimation;
 
   @override
   void initState() {
@@ -42,7 +41,7 @@ class _SummaryContentState extends State<SummaryContent>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 900),
+      duration: const Duration(milliseconds: 1800),
     );
 
     _roleAnimation = CurvedAnimation(
@@ -57,8 +56,8 @@ class _SummaryContentState extends State<SummaryContent>
     _nameAnimation = CurvedAnimation(
       parent: _controller,
       curve: const Interval(
-        0.15,
-        0.50,
+        0.30,
+        0.55,
         curve: Curves.easeOutCubic,
       ),
     );
@@ -66,17 +65,8 @@ class _SummaryContentState extends State<SummaryContent>
     _summaryAnimation = CurvedAnimation(
       parent: _controller,
       curve: const Interval(
-        0.35,
-        0.70,
-        curve: Curves.easeOutCubic,
-      ),
-    );
-
-    _statsAnimation = CurvedAnimation(
-      parent: _controller,
-      curve: const Interval(
         0.60,
-        1.00,
+        0.85,
         curve: Curves.easeOutCubic,
       ),
     );
@@ -181,41 +171,37 @@ class _SummaryContentState extends State<SummaryContent>
         const SizedBox(height: 40),
 
         // Stats
-        _animatedItem(
-          animation: _statsAnimation,
-          offset: 14,
-          child: SizedBox(
-            width: context.isLarge
-                ? maxWidth * 1 / 2
-                : context.isMedium
-                    ? maxWidth * 2 / 3
-                    : null,
-            child: StatsRow(
-              numStyle: AppTextStyles.h3(
-                context: context,
-                color: colors.accent,
-              ),
-              titleStyle: AppTextStyles.h5(
-                context: context,
-                color: colors.text3,
-              ),
-              items: [
-                Stat(
-                  value: widget.experince,
-                  name: 'YEARS SHIPPING',
-                  hasDigit: true,
-                  sign: '+',
-                ),
-                Stat(
-                  value: widget.projectNumber,
-                  name: 'PRODUCTION APPS',
-                ),
-                const Stat(
-                  value: 3,
-                  name: 'PLATFORMS',
-                ),
-              ],
+        SizedBox(
+          width: context.isLarge
+              ? maxWidth * 1 / 2
+              : context.isMedium
+                  ? maxWidth * 2 / 3
+                  : null,
+          child: StatsRow(
+            numStyle: AppTextStyles.h3(
+              context: context,
+              color: colors.accent,
             ),
+            titleStyle: AppTextStyles.h5(
+              context: context,
+              color: colors.text3,
+            ),
+            items: [
+              Stat(
+                value: widget.experince,
+                name: 'YEARS SHIPPING',
+                hasDigit: true,
+                sign: '+',
+              ),
+              Stat(
+                value: widget.projectNumber,
+                name: 'PRODUCTION APPS',
+              ),
+              const Stat(
+                value: 3,
+                name: 'PLATFORMS',
+              ),
+            ],
           ),
         ),
       ],
