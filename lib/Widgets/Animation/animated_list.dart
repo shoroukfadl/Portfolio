@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Utilities/animation_configaration.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class ScrollReveal extends StatefulWidget {
@@ -30,7 +31,6 @@ class _ScrollRevealState extends State<ScrollReveal>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 600),
     );
 
     _opacity = CurvedAnimation(
@@ -47,6 +47,13 @@ class _ScrollRevealState extends State<ScrollReveal>
         curve: Curves.easeOutCubic,
       ),
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    _controller.duration = PortfolioAnimationConfig.duration(context);
   }
 
   void _handleVisibility(VisibilityInfo info) {
@@ -151,7 +158,6 @@ class _CustomTimelineAnimationWidgetState
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 600),
     );
 
     _opacity = CurvedAnimation(
@@ -168,6 +174,13 @@ class _CustomTimelineAnimationWidgetState
         curve: Curves.easeOutCubic,
       ),
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    _controller.duration = PortfolioAnimationConfig.duration(context);
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
@@ -239,7 +252,6 @@ class _CustomSlideAnimationWidgetState extends State<CustomSlideAnimationWidget>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 600),
     );
 
     final curve = CurvedAnimation(
@@ -253,6 +265,13 @@ class _CustomSlideAnimationWidgetState extends State<CustomSlideAnimationWidget>
       begin: const Offset(0, 0.08),
       end: Offset.zero,
     ).animate(curve);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    _controller.duration = PortfolioAnimationConfig.duration(context);
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
