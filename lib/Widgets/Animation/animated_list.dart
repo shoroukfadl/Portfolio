@@ -1,55 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Utilities/extensions.dart';
 import 'package:visibility_detector/visibility_detector.dart';
-
-class AnimatedGridView<T> extends StatelessWidget {
-  final int perRow;
-  final double hozSpace, vertSpace;
-  final double mainAxisExtent;
-  final List<T> items;
-  final Widget Function(int) buildChild;
-
-  const AnimatedGridView({
-    super.key,
-    required this.perRow,
-    required this.mainAxisExtent,
-    required this.items,
-    this.hozSpace = 8,
-    this.vertSpace = 8,
-    required this.buildChild,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: perRow,
-        mainAxisSpacing: vertSpace,
-        crossAxisSpacing: hozSpace,
-        mainAxisExtent: mainAxisExtent,
-      ),
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        return ScrollReveal(
-          offset: 20,
-          key: ValueKey('project-reveal-grid-$index'),
-          child: buildChild(index),
-        );
-      },
-    );
-  }
-}
 
 class ScrollReveal extends StatefulWidget {
   final Widget child;
-  final Duration duration;
   final double offset;
 
   const ScrollReveal({
     super.key,
     required this.child,
-    this.duration = const Duration(milliseconds: 900),
     this.offset = 20,
   });
 
@@ -64,15 +23,19 @@ class _ScrollRevealState extends State<ScrollReveal>
   late final Animation<double> _opacity;
   late final Animation<Offset> _slide;
 
+  late final Duration duration;
   bool _hasAnimated = false;
 
   @override
   void initState() {
     super.initState();
 
+    duration =
+        context.isLarge ? Duration(seconds: 1) : Duration(milliseconds: 800);
+
     _controller = AnimationController(
       vsync: this,
-      duration: widget.duration,
+      duration: duration,
     );
 
     _opacity = CurvedAnimation(
@@ -122,6 +85,46 @@ class _ScrollRevealState extends State<ScrollReveal>
   }
 }
 
+class AnimatedGridView<T> extends StatelessWidget {
+  final int perRow;
+  final double hozSpace, vertSpace;
+  final double mainAxisExtent;
+  final List<T> items;
+  final Widget Function(int) buildChild;
+
+  const AnimatedGridView({
+    super.key,
+    required this.perRow,
+    required this.mainAxisExtent,
+    required this.items,
+    this.hozSpace = 8,
+    this.vertSpace = 8,
+    required this.buildChild,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: perRow,
+        mainAxisSpacing: vertSpace,
+        crossAxisSpacing: hozSpace,
+        mainAxisExtent: mainAxisExtent,
+      ),
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        return ScrollReveal(
+          offset: 20,
+          key: ValueKey('project-reveal-grid-$index'),
+          child: buildChild(index),
+        );
+      },
+    );
+  }
+}
+
 class CustomTimelineAnimationWidget extends StatefulWidget {
   final Widget child;
   final int index;
@@ -153,7 +156,9 @@ class _CustomTimelineAnimationWidgetState
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: context.isLarge
+          ? const Duration(seconds: 1)
+          : const Duration(milliseconds: 700),
     );
 
     _opacity = CurvedAnimation(
@@ -179,7 +184,9 @@ class _CustomTimelineAnimationWidgetState
       _hasAnimated = true;
 
       Future.delayed(
-        Duration(milliseconds: widget.index * 300),
+        context.isLarge
+            ? Duration(milliseconds: widget.index * 300)
+            : Duration(milliseconds: widget.index * 200),
         () {
           if (mounted) {
             _controller.forward();
@@ -241,7 +248,9 @@ class _CustomSlideAnimationWidgetState extends State<CustomSlideAnimationWidget>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: context.isLarge
+          ? const Duration(seconds: 1)
+          : const Duration(milliseconds: 700),
     );
 
     final curve = CurvedAnimation(
@@ -264,7 +273,9 @@ class _CustomSlideAnimationWidgetState extends State<CustomSlideAnimationWidget>
       _hasAnimated = true;
 
       Future.delayed(
-        Duration(milliseconds: widget.index * 300),
+        context.isLarge
+            ? Duration(milliseconds: widget.index * 300)
+            : Duration(milliseconds: widget.index * 200),
         () {
           if (mounted) {
             _controller.forward();
