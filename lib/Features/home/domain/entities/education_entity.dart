@@ -10,7 +10,7 @@ class EducationEntity extends Equatable {
   final DateTime? endDate;
   final bool isCurrent;
   final double? gpa;
-  final String? description;
+  final List<String> description;
   final int displayOrder;
   final String? icon;
 
@@ -24,7 +24,7 @@ class EducationEntity extends Equatable {
     this.endDate,
     this.isCurrent = false,
     this.gpa,
-    this.description,
+    this.description = const [],
     this.displayOrder = 0,
     this.icon,
   });

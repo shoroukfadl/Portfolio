@@ -43,15 +43,19 @@ class AnimatedGridView<T> extends StatelessWidget {
 class AnimatedListView<T> extends StatelessWidget {
   final List<T> items;
   final Widget Function(int) buildChild;
+  final double spacing;
   const AnimatedListView(
-      {super.key, required this.items, required this.buildChild});
+      {super.key,
+      required this.items,
+      this.spacing = 20,
+      required this.buildChild});
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      separatorBuilder: (c, i) => 20.0.heightBox,
+      separatorBuilder: (c, i) => spacing.heightBox,
       itemCount: items.length,
       itemBuilder: (context, index) {
         return AnimationConfiguration.staggeredList(

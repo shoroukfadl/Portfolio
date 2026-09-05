@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Theme/theme_colors.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/Custom/card_with_floating_title.dart';
 import 'package:portfolio/Widgets/Custom/card_with_text.dart';
+import 'package:portfolio/Widgets/Custom/top_line_animated_card.dart';
 import 'package:portfolio/Widgets/Portfilio/point_text.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
@@ -19,12 +19,19 @@ class ExperienceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return CardWithTitle(
-        paddingHoz: !context.isSmall ? 24 : 8,
-        paddingVert: 16,
-        cardColor: colors.background,
-        width: double.infinity,
-        child: _content(context, colors));
+    final maxWidth = MediaQuery.sizeOf(context).width;
+    final space = context.matchedSize(large: 32, medium: 24, small: 16);
+    final width = context.matchedSize(
+        large: maxWidth * 2 / 3, medium: maxWidth * 3.2 / 4, small: maxWidth);
+
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: TopLineCardWidget(
+          width: width,
+          paddingHoz: space,
+          paddingVert: space,
+          child: (h) => _content(context, colors)),
+    );
   }
 
   Widget _content(
@@ -35,34 +42,27 @@ class ExperienceCard extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        8.0.heightBox,
-        Text(
-          item.positionTitle ?? "",
-          style: AppTextStyles.titleCard2(
-            context: context,
-            color: colors.text1,
-          ),
-        ),
-        const SizedBox(height: 4),
         Row(
-          spacing: 8,
-          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "${item.companyName ?? ""} . ${item.location ?? ""}",
-              style: AppTextStyles.location(
+              item.positionTitle ?? "",
+              style: AppTextStyles.hc2(
                 context: context,
-                color: colors.text2,
+                color: colors.text1,
               ),
             ).expand,
-            if (!context.isSmall) location(colors, context),
+            date(colors, context),
           ],
         ),
-        const SizedBox(height: 8),
-        if (context.isSmall) ...[
-          location(colors, context),
-          const SizedBox(height: 8),
-        ],
+        const SizedBox(height: 4),
+        Text(
+          "${item.companyName ?? ""} . ${item.location ?? ""}",
+          style: AppTextStyles.bl1(
+            context: context,
+            color: colors.text2,
+          ),
+        ),
+        const SizedBox(height: 12),
         ...item.description.map(
           (e) => PointText(point: e),
         ),
@@ -70,18 +70,16 @@ class ExperienceCard extends StatelessWidget {
     );
   }
 
-  Widget location(AppColors colors, BuildContext context) => CardWithText(
+  Widget date(AppColors colors, BuildContext context) => CardWithText(
         text: "${item.startDate?.yyyyMM ?? ""}"
-                " - "
-                "${item.endDate?.yyyyMM ?? "Present"}" +
-            " . ${item.employmentType ?? ""}",
+            " - "
+            "${item.endDate?.yyyyMM ?? "Present"}",
         color: colors.accent.withValues(alpha: 0.1),
         borderColor: Colors.transparent,
         textColor: colors.accent,
         border: 4,
         hozPadding: 4,
         vertPadding: 4,
-        style: AppTextStyles.titleCardSmall(
-            context: context, color: colors.accent),
+        style: AppTextStyles.l3(context: context, color: colors.accent),
       );
 }

@@ -9,9 +9,10 @@ class DividerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Divider(
-      thickness: thickness,
-      color: color ?? context.colors.text3,
+    return Container(
+      height: thickness,
+      width: double.infinity,
+      color: color ?? context.colors.border,
     );
   }
 }

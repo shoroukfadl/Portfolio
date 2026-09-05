@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/presentation/widgets/project/newCard/version_item.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Utilities/portifilo_icons.dart';
 import 'package:portfolio/Widgets/Buttons/custom_button_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../Utilities/Constants/enums.dart';
-import '../../../../../../Utilities/portifilo_icons.dart';
 import '../../../../domain/entities/project_entity.dart';
 
 class PlatformButton extends StatefulWidget {
@@ -29,18 +30,6 @@ class _PlatformButtonState extends State<PlatformButton> {
 
   final LayerLink _layerLink = LayerLink();
   OverlayEntry? _overlayEntry;
-
-  String get _label => switch (widget.type) {
-        PlatformType.web => 'Web',
-        PlatformType.ios => 'iOS',
-        PlatformType.android => 'Android',
-      };
-
-  IconData get _icon => switch (widget.type) {
-        PlatformType.web => Portfolio.web,
-        PlatformType.ios => Portfolio.ios,
-        PlatformType.android => Portfolio.andriod,
-      };
 
   OverlayEntry _createOverlayEntry() {
     final colors = context.colors;
@@ -68,7 +57,7 @@ class _PlatformButtonState extends State<PlatformButton> {
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
-                      color: colors.secondary.withValues(alpha: 0.15),
+                      color: colors.accentSoft.withValues(alpha: 0.15),
                       blurRadius: 24,
                       offset: const Offset(0, 8),
                     ),
@@ -123,18 +112,27 @@ class _PlatformButtonState extends State<PlatformButton> {
       child: MouseRegion(
         onEnter: (_) => setState(() => _hovered = true),
         onExit: (_) => setState(() => _hovered = false),
-        child: CustomButtonWidget(
-          onPressed: _handleTap,
-          btnColor: widget.color.withValues(alpha: 0.1),
-          borderRadiusValue: 100,
-          height: 28,
-          padding: EdgeInsets.symmetric(horizontal: 4),
-          child: Icon(
-            _icon,
-            size: 20,
-            color: widget.color,
-          ),
-        ),
+        child: CustomButtonWidget.outLined(
+            onPressed: _handleTap,
+            borderRadiusValue: 8,
+            height: 32,
+            borderColor: colors.border,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              spacing: 4,
+              children: [
+                Text(
+                  widget.links.firstOrNull?.name ?? '',
+                  style:
+                      AppTextStyles.t1(context: context, color: colors.text2),
+                ),
+                Icon(
+                  Portfolio.link,
+                  size: context.isLarge ? 14 : 12,
+                  color: colors.text2,
+                ),
+              ],
+            )),
       ),
     );
   }

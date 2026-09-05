@@ -13,6 +13,12 @@ class Portfolio {
 
   static const String _fontFamily = 'portifilo';
 
+  static const IconData education = IconData(0xf017, fontFamily: _fontFamily);
+  static const IconData skills = IconData(0xf014, fontFamily: _fontFamily);
+  static const IconData summary = IconData(0xf00d, fontFamily: _fontFamily);
+  static const IconData experience = IconData(0xf00a, fontFamily: _fontFamily);
+  static const IconData projects = IconData(0xf007, fontFamily: _fontFamily);
+  static const IconData certifcate = IconData(0xf005, fontFamily: _fontFamily);
   static const IconData menu = IconData(0xf003, fontFamily: _fontFamily);
   static const IconData gallery = IconData(0xf013, fontFamily: _fontFamily);
   static const IconData web = IconData(0xf00f, fontFamily: _fontFamily);
@@ -22,7 +28,6 @@ class Portfolio {
   static const IconData github = IconData(0xf00b, fontFamily: _fontFamily);
   static const IconData linkedIn = IconData(0xf004, fontFamily: _fontFamily);
   static const IconData download = IconData(0xf000, fontFamily: _fontFamily);
-  static const IconData copy = IconData(0xf002, fontFamily: _fontFamily);
   static const IconData link = IconData(0xf006, fontFamily: _fontFamily);
   static const IconData email = IconData(0xf008, fontFamily: _fontFamily);
   static const IconData dark = IconData(0xf009, fontFamily: _fontFamily);

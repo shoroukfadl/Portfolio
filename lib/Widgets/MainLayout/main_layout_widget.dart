@@ -29,13 +29,21 @@ class _MainLayoutWidgetState extends State<MainLayoutWidget> {
     return Scaffold(
       key: GlobalKeys.scaffoldKey,
       backgroundColor: colors.background,
-      floatingActionButton:
-          context.isLarge ? const FloatingAppBar() : const MenuButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
+      bottomNavigationBar: BottomNavigationBarWidget(),
       body: AnimatedScale(
         scale: scale,
         duration: Duration(milliseconds: 400),
-        child: widget.child,
+        child: Row(
+          children: [
+            if (context.isLarge) const MenuSideWidget(),
+            Column(
+              children: [
+                if (!context.isLarge) const HomeAppBar(),
+                widget.child.expand
+              ],
+            ).expand
+          ],
+        ),
       ),
     );
   }

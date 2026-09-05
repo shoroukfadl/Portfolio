@@ -4,93 +4,68 @@ import 'package:flutter/material.dart';
 class AppColors extends ThemeExtension<AppColors> {
 // ─── Dark Theme (Coral & Teal) ────────────────────────────────────────────
   static const darkValues = AppColors(
-    card: Color(0xFF001021),
-    surface: Color(0xFF011020),
-    background: Color(0xFF000A13),
-    secondary: Color(0xff2F5DE3),
-    accent: Color(0xFF049C82),
-    success: Color(0xFF4CAF7D),
-    warning: Color(0xFFFFB627),
-    danger: Color(0xFFE63950),
-    text1: Color(0xFFfafafa),
-    text2: Color(0xff94949E),
-    text3: Color(0xffD4D4D8),
-  );
+      background: Color(0xff121218),
+      card: Color(0xff1c1c26),
+      accent: Color(0xff6d78c9),
+      accentSoft: Color(0xff2a2c47),
+      secondary: Color(0xff9a8dc4),
+      secondarySoft: Color(0xff26243a),
+      success: Color(0xFF5FCB94),
+      warning: Color(0xFFFFC94A),
+      danger: Color(0xFFFF5C72),
+      text1: Color(0xfff4f4f8),
+      text2: Color(0xffc4c6d8),
+      text3: Color(0xff8b8fa8),
+      border: Color(0xff2c2d3a));
 
 // ─── Light Theme (Coral & Teal) ───────────────────────────────────────────
   static const lightValues = AppColors(
-    background: Color(0xFFF5F6F1),
-    surface: Color(0xFFF7FAFA),
-    card: Color(0xFFECEEE6),
-    secondary: Color(0xff2F5DE3),
-    accent: Color(0xFF049C82),
-    success: Color(0xFF4CAF7D),
-    warning: Color(0xFFFFB627),
-    danger: Color(0xFFE63950),
-    text1: Color(0xFF15181B),
-    text2: Color(0xff5C6167),
-    text3: Color(0xff8A8F92),
-  );
+      background: Color(0xfff4f4f8),
+      card: Color(0xFFFFFFFF),
+      accent: Color(0xff4753a8),
+      accentSoft: Color(0xffe2e4ee),
+      secondary: Color(0xff79699e),
+      secondarySoft: Color(0xfff0edf7),
+      success: Color(0xFF4CAF7D),
+      warning: Color(0xFFFFB627),
+      danger: Color(0xFFE63950),
+      text1: Color(0xff1a1d33),
+      text2: Color(0xff3f4661),
+      text3: Color(0xff6d7288),
+      border: Color(0xffe2e3ec));
 
   // ─── Fields ───────────────────────────────────────────────────────────────
   final Color background;
-  final Color surface;
   final Color card;
   final Color text3;
   final Color accent;
+  final Color accentSoft;
   final Color secondary;
+  final Color secondarySoft;
   final Color success;
   final Color warning;
   final Color danger;
   final Color text1;
   final Color text2;
+  final Color border;
 
   const AppColors({
     required this.background,
-    required this.surface,
     required this.card,
     required this.text3,
     required this.accent,
-    required this.secondary,
+    required this.accentSoft,
     required this.success,
     required this.warning,
     required this.danger,
     required this.text1,
     required this.text2,
+    required this.secondary,
+    required this.border,
+    required this.secondarySoft,
   });
 
-  // Badge colours
-  static const appBadgeBg = Color(0xFFE8F4ED);
-  static const appBadgeText = Color(0xFF2D7A4F);
-  static const webBadgeBg = Color(0xFFE8EEFA);
-  static const webBadgeText = Color(0xFF2D4FA0);
-  static const ecommBadgeBg = Color(0xFFFAF0E8);
-  static const ecommBadgeText = Color(0xFFA06020);
-  static const healthBadgeBg = Color(0xFFFAE8EE);
-  static const healthBadgeText = Color(0xFFA0203A);
-
   // ─── Gradient Helpers ─────────────────────────────────────────────────────
-
-  /// Subtle card depth (dark theme only)
-  static const gradientCardDark = LinearGradient(
-    colors: [
-      Color(0xFF0F1715),
-      Color(0xFF17211E),
-      Color(0xFF1E2A26),
-    ],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
-
-  static const gradientCardLight = LinearGradient(
-    colors: [
-      Color(0xFFFAF8F0),
-      Color(0xFFFBF9E9),
-      Color(0xffedece3),
-    ],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
 
   // ─── copyWith ─────────────────────────────────────────────────────────────
   @override
@@ -98,27 +73,32 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? background,
     Color? surface,
     Color? surfaceElevated,
-    Color? border,
+    Color? text3,
     Color? accent,
-    Color? secondary,
+    Color? accentSoft,
     Color? success,
     Color? warning,
     Color? danger,
     Color? textPrimary,
     Color? textSecondary,
+    Color? secondary,
+    Color? secondarySoft,
+    Color? border,
   }) {
     return AppColors(
       background: background ?? this.background,
-      surface: surface ?? this.surface,
-      card: surfaceElevated ?? this.card,
-      text3: border ?? this.text3,
+      card: surface ?? this.card,
+      text3: text3 ?? this.text3,
       accent: accent ?? this.accent,
-      secondary: secondary ?? this.secondary,
+      accentSoft: accentSoft ?? this.accentSoft,
       success: success ?? this.success,
       warning: warning ?? this.warning,
       danger: danger ?? this.danger,
       text1: textPrimary ?? this.text1,
       text2: textSecondary ?? this.text2,
+      secondary: secondary ?? this.secondary,
+      secondarySoft: secondarySoft ?? this.secondarySoft,
+      border: border ?? this.border,
     );
   }
 
@@ -128,16 +108,18 @@ class AppColors extends ThemeExtension<AppColors> {
     if (other is! AppColors) return this;
     return AppColors(
       background: Color.lerp(background, other.background, t)!,
-      surface: Color.lerp(surface, other.surface, t)!,
       card: Color.lerp(card, other.card, t)!,
       text3: Color.lerp(text3, other.text3, t)!,
       accent: Color.lerp(accent, other.accent, t)!,
-      secondary: Color.lerp(secondary, other.secondary, t)!,
+      accentSoft: Color.lerp(accentSoft, other.accentSoft, t)!,
       success: Color.lerp(success, other.success, t)!,
       warning: Color.lerp(warning, other.warning, t)!,
       danger: Color.lerp(danger, other.danger, t)!,
       text1: Color.lerp(text1, other.text1, t)!,
       text2: Color.lerp(text2, other.text2, t)!,
+      secondary: Color.lerp(secondary, other.secondary, t)!,
+      secondarySoft: Color.lerp(secondarySoft, other.secondarySoft, t)!,
+      border: Color.lerp(border, other.border, t)!,
     );
   }
 }

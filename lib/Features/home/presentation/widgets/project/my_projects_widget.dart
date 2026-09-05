@@ -3,65 +3,36 @@ import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
 import 'package:portfolio/Features/home/presentation/widgets/project/newCard/projects_frame.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Animation/animated_list.dart';
 
 import '../../../../../Utilities/Constants/global_keys.dart';
 import '../../../../../Utilities/Constants/strings.dart';
 import '../../../../../Widgets/sections_title_widget.dart';
 
-class MyProjectsWidget extends StatefulWidget {
+class MyProjectsWidget extends StatelessWidget {
   final List<ProjectEntity> projects;
   final double imageWidth;
   final double padding;
   final int perRow;
+  final double mainMaxExtent;
 
   const MyProjectsWidget({
     super.key,
     this.projects = const [],
-    this.perRow = 4,
     this.imageWidth = 100,
+    this.perRow = 2,
+    this.mainMaxExtent = 340,
     this.padding = desktopHozPadding,
   });
 
   @override
-  State<MyProjectsWidget> createState() => _MyProjectsWidgetState();
-}
-
-class _MyProjectsWidgetState extends State<MyProjectsWidget> {
-  late Map<String, List<ProjectEntity>> items;
-
-  @override
-  void initState() {
-    super.initState();
-    items = _groupProjectsByCompany();
-  }
-
-  Map<String, List<ProjectEntity>> _groupProjectsByCompany() {
-    final result = <String, List<ProjectEntity>>{};
-
-    for (final project in widget.projects) {
-      final company = project.company?.trim();
-
-      if (company == null || company.isEmpty) continue;
-
-      result.putIfAbsent(company, () => []).add(project);
-    }
-
-    return result;
-  }
-
-  @override
-  void didUpdateWidget(covariant MyProjectsWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (oldWidget.projects != widget.projects) {
-      items = _groupProjectsByCompany();
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final maxWidth = MediaQuery.sizeOf(context).width;
+    final width = context.matchedSize(
+        large: maxWidth * 2 / 3, medium: maxWidth * 3.2 / 4, small: maxWidth);
+    final space = context.matchedSize(large: 32, medium: 24, small: 16);
     return Column(
-      spacing: 16,
+      spacing: 32,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionsTitleWidget(
@@ -69,12 +40,25 @@ class _MyProjectsWidgetState extends State<MyProjectsWidget> {
           index: 3,
           title: Strings.projects.translate,
         ),
-        ProjectsFrame(
-          items: items,
-        ),
+        SizedBox(
+          width: width,
+          child: AnimatedGridView<ProjectEntity>(
+            items: projects,
+            perRow: perRow,
+            mainAxisExtent: mainMaxExtent,
+            hozSpace: space,
+            vertSpace: space,
+            buildChild: (index) {
+              return ProjectsFrame(
+                index: index,
+                project: projects[index],
+              );
+            },
+          ),
+        )
       ],
     ).paddingSymmetric(
-      horizontal: widget.padding,
+      horizontal: padding,
     );
   }
 }

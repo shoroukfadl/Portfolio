@@ -6,12 +6,12 @@ import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
 import '../../../../../Utilities/extensions.dart';
-import '../../widgets/aboutMe/about_me_widget.dart';
 import '../../widgets/contact/contact_me.dart';
 import '../../widgets/education/education_widget.dart';
 import '../../widgets/experince/experince_card_widget.dart';
 import '../../widgets/project/my_projects_widget.dart';
 import '../../widgets/skills/my_skills.dart';
+import '../../widgets/summary/summary_section.dart';
 
 class MediumHomeView extends StatelessWidget {
   const MediumHomeView({
@@ -69,18 +69,14 @@ class MediumHomeView extends StatelessWidget {
         SliverToBoxAdapter(child: mediumSectionSpacing.heightBox),
 
         /// Projects
-        SliverPadding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: tabletHozPadding,
-            ),
-            sliver: SliverToBoxAdapter(
-                child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                    buildWhen: (c, p) => p.data?.projects != c.data?.projects,
-                    builder: (c, s) => MyProjectsWidget(
-                          padding: tabletHozPadding,
-                          perRow: 2,
-                          projects: s.data?.projects ?? [],
-                        )))),
+        SliverToBoxAdapter(
+            child: BlocBuilder<PortfolioCubit, PortfolioState>(
+                buildWhen: (c, p) => p.data?.projects != c.data?.projects,
+                builder: (c, s) => MyProjectsWidget(
+                      padding: tabletHozPadding,
+                      perRow: 1,
+                      projects: s.data?.projects ?? [],
+                    ))),
 
         /// education
         SliverToBoxAdapter(

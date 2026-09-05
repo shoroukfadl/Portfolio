@@ -24,9 +24,8 @@ class IconToolTipButtonWidget extends StatelessWidget {
     final colors = context.colors;
     return Tooltip(
       decoration: BoxDecoration(
-          color: colors.text3, borderRadius: BorderRadius.circular(100)),
-      textStyle:
-          AppTextStyles.titleCardSmall(context: context, color: Colors.white),
+          color: colors.border, borderRadius: BorderRadius.circular(100)),
+      textStyle: AppTextStyles.hsub3(context: context, color: Colors.white),
       message: tooltip,
       child: InkWell(
         borderRadius: BorderRadius.circular(100),
@@ -34,7 +33,7 @@ class IconToolTipButtonWidget extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: color ?? colors.secondary,
+            color: color ?? colors.accentSoft,
             borderRadius: BorderRadius.circular(100),
           ),
           child: Icon(icon, color: iconColor ?? Colors.white, size: size),

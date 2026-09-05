@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
-import 'package:portfolio/Features/home/presentation/widgets/aboutMe/about_me_title.dart';
+import 'package:portfolio/Features/home/presentation/widgets/summary/content.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Portfilio/animated_background.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
-import 'floating_card_widget.dart';
 
 class SummarySection extends StatefulWidget {
   final ProfileEntity? profile;
@@ -27,8 +26,7 @@ class SummarySection extends StatefulWidget {
 class _SummarySectionState extends State<SummarySection> {
   @override
   Widget build(BuildContext context) {
-    final height = context.matchedSize(large: 520, medium: 560, small: 860);
-    final colors = context.colors;
+    final height = context.matchedSize(large: 480, medium: 560, small: 680);
     return AnimatedBackground(
       height: height,
       child: Padding(
@@ -36,11 +34,7 @@ class _SummarySectionState extends State<SummarySection> {
           start: widget.padding,
           end: widget.padding,
         ),
-        child: Column(
-          spacing: 24,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [_summary(), const FloatingCards().expand],
-        ),
+        child: _summary(),
       ),
     );
   }

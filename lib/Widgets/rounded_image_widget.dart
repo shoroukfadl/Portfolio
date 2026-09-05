@@ -21,7 +21,8 @@ class RoundedImage extends StatelessWidget {
     this.radiusValue = 100,
     this.width = 100,
     this.borderWidth,
-    this.height = 100, this.borderRadius,
+    this.height = 100,
+    this.borderRadius,
   });
 
   @override
@@ -71,7 +72,8 @@ class _PlaceholderWidget extends StatelessWidget {
     this.height = 100,
     this.borderWidth,
     this.backgroundColor,
-    this.borderColor, this.borderRadiusGeometry,
+    this.borderColor,
+    this.borderRadiusGeometry,
   });
 
   @override
@@ -91,8 +93,9 @@ class _PlaceholderWidget extends StatelessWidget {
   }
 
   BoxDecoration _buildDecoration(colors) => BoxDecoration(
-        borderRadius:borderRadiusGeometry?? BorderRadius.circular(radiusValue),
-        color: backgroundColor ?? colors.surface,
+        borderRadius:
+            borderRadiusGeometry ?? BorderRadius.circular(radiusValue),
+        color: backgroundColor ?? colors.card,
         border: borderColor == null
             ? null
             : Border.all(
@@ -113,7 +116,6 @@ class _ImageWidget extends StatelessWidget {
   final BoxFit? fit;
   final BorderRadiusGeometry? borderRadiusGeometry;
 
-
   const _ImageWidget({
     required this.imagePath,
     this.backgroundColor,
@@ -123,7 +125,8 @@ class _ImageWidget extends StatelessWidget {
     this.radiusValue = 100,
     this.width = 100,
     this.height = 100,
-    this.borderWidth, this.borderRadiusGeometry,
+    this.borderWidth,
+    this.borderRadiusGeometry,
   });
 
   bool get _isNetwork =>
@@ -138,8 +141,9 @@ class _ImageWidget extends StatelessWidget {
       height: height,
       width: width,
       decoration: BoxDecoration(
-        borderRadius: borderRadiusGeometry ??BorderRadius.circular(radiusValue),
-        color: backgroundColor ?? colors.surface,
+        borderRadius:
+            borderRadiusGeometry ?? BorderRadius.circular(radiusValue),
+        color: backgroundColor ?? colors.card,
         border: borderColor == null
             ? null
             : Border.all(
@@ -148,7 +152,8 @@ class _ImageWidget extends StatelessWidget {
               ),
       ),
       child: ClipRRect(
-        borderRadius:borderRadiusGeometry?? BorderRadius.circular(radiusValue),
+        borderRadius:
+            borderRadiusGeometry ?? BorderRadius.circular(radiusValue),
         child: _isNetwork ? _buildNetworkImage(colors) : _buildAssetImage(),
       ),
     );
@@ -257,7 +262,7 @@ class _ErrorFallback extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: (radius ?? 32) / 2,
-      backgroundColor: colors.surface,
+      backgroundColor: colors.card,
       child: Icon(
         Icons.photo,
         size: (radius ?? 32) * 0.45,

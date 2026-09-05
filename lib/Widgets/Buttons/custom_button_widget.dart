@@ -65,7 +65,8 @@ class CustomButtonWidget extends StatelessWidget {
       onHover: onHover,
       hoverColor: Colors.transparent,
       splashColor: Colors.transparent,
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
         alignment: Alignment.center,
         height: height ?? 36.0,
         width: width,
@@ -81,7 +82,7 @@ class CustomButtonWidget extends StatelessWidget {
             : child ??
                 Text(
                   title ?? "",
-                  style: AppTextStyles.titleCard(
+                  style: AppTextStyles.hc1(
                       context: context, color: titleColor ?? colors.text1),
                 ),
       ),
@@ -145,12 +146,12 @@ class _CustomZaraButtonState extends State<CustomZaraButton> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
             color: widget.active
-                ? colors.secondary
+                ? colors.accentSoft
                 : _hovered
-                    ? colors.text3.withValues(alpha: 0.3)
+                    ? colors.border.withValues(alpha: 0.3)
                     : colors.background,
             border: Border.all(
-              color: widget.active ? colors.secondary : colors.accent,
+              color: widget.active ? colors.accentSoft : colors.accent,
             ),
           ),
           child: AnimatedRotation(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
+import 'package:portfolio/Features/home/presentation/widgets/summary/role.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/Animation/floating_animation_card.dart';
-import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
+import 'package:portfolio/Widgets/Animation/Summary/number_card_item.dart';
 
 import '../../../../../Widgets/Portfilio/stat_widget.dart';
 
@@ -26,61 +26,55 @@ class SummaryContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final maxWidth = MediaQuery.sizeOf(context).width;
+    final width = context.matchedSize(
+        large: maxWidth * 2 / 3, medium: maxWidth * 3.2 / 4, small: maxWidth);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          height: 88,
-        ),
+        const SizedBox(height: 40),
 
         /// Role
-        Row(
-          spacing: 4,
-          children: [
-            SizedBox(
-                width: 20,
-                child: DividerWidget(
-                  thickness: 2,
-                  color: colors.accent,
-                )),
-            Text(role.toUpperCase() + '. ${location.toUpperCase()}',
-                style: AppTextStyles.subtitleCard(
-                        context: context, color: colors.secondary)
-                    .copyWith(letterSpacing: 1.3)),
-          ],
+        RoleWidget(
+          location: location,
+          role: role,
         ),
         8.0.heightBox,
         Text(
-          "$firstName $lastName",
-          style:
-              AppTextStyles.summaryTitle(context: context, color: colors.text1),
+          firstName,
+          style: AppTextStyles.h1(context: context, color: colors.text1),
         ),
-
-        const SizedBox(height: 8),
         Text(
-          summary,
-          style: AppTextStyles.body(context: context, color: colors.text2),
+          lastName,
+          style: AppTextStyles.h1(context: context, color: colors.secondary),
         ),
 
-        const SizedBox(height: 32),
+        const SizedBox(height: 24),
+        SizedBox(
+            width: width,
+            child: Text(
+              summary,
+              style: AppTextStyles.b1(context: context, color: colors.text2),
+            )),
+
+        const SizedBox(height: 40),
 
         SizedBox(
           width: context.isLarge
-              ? (MediaQuery.sizeOf(context).width * 1 / 3)
+              ? (MediaQuery.sizeOf(context).width * 1 / 2)
               : context.isMedium
                   ? (MediaQuery.sizeOf(context).width * 2 / 3)
                   : null,
           child: StatsRow(
-            numStyle: AppTextStyles.summaryNumberLarge(
-                context: context, color: colors.text1),
-            titleStyle: AppTextStyles.summaryNumberMedium(
-                context: context, color: colors.text2),
+            numStyle: AppTextStyles.h3(context: context, color: colors.accent),
+            titleStyle: AppTextStyles.h5(context: context, color: colors.text3),
             items: [
               Stat(
-                value: experince,
-                name: 'YEARS SHIPPING',
-              ),
+                  value: experince,
+                  name: 'YEARS SHIPPING',
+                  hasDigit: true,
+                  sign: '+'),
               Stat(
                 value: projectNumber,
                 name: 'PRODUCTION APPS',

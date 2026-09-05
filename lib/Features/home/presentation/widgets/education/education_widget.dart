@@ -22,7 +22,8 @@ class EducationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 24,
+      spacing: 32,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionsTitleWidget(
           index: 4,
@@ -31,6 +32,7 @@ class EducationSection extends StatelessWidget {
         ),
         EducationCard(
           item: education,
+          isLast: true,
         )
       ],
     ).paddingSymmetric(vertical: 40, horizontal: padding);

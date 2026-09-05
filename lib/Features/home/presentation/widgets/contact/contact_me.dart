@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Features/home/presentation/widgets/contact/contact_me_title.dart';
 import 'package:portfolio/Features/home/presentation/widgets/contact/soical_button.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/Portfilio/divider_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
@@ -41,6 +41,15 @@ class ContactMeWidget extends StatelessWidget {
         ),
         SocialButtonWidget(
           onPressed: () {
+            HelperFunctions.openWhatsApp(
+                phoneNumber: phoneNumber, message: 'Hi');
+          },
+          size: iconSize,
+          title: 'WhatsApp',
+          icon: Portfolio.phone,
+        ),
+        SocialButtonWidget(
+          onPressed: () {
             HelperFunctions.openUrl(linkedIN, context);
           },
           size: iconSize,
@@ -57,19 +66,10 @@ class ContactMeWidget extends StatelessWidget {
         ),
         SocialButtonWidget(
           onPressed: () {
-            HelperFunctions.openWhatsApp(
-                phoneNumber: phoneNumber, message: 'Hi');
-          },
-          size: iconSize,
-          title: 'WhatsApp',
-          icon: Portfolio.phone,
-        ),
-        SocialButtonWidget(
-          onPressed: () {
             HelperFunctions.openUrl(cv, context);
           },
           size: iconSize,
-          title: 'CV',
+          title: 'Resume',
           icon: Portfolio.download,
         ),
       ];
@@ -77,29 +77,52 @@ class ContactMeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final maxWidth = MediaQuery.sizeOf(context).width;
+    final width = context.matchedSize(
+        large: maxWidth * 2 / 3, medium: maxWidth * 3.2 / 4, small: maxWidth);
     return Column(
-      spacing: 16,
-      mainAxisAlignment: MainAxisAlignment.center,
+      spacing: 32,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        DividerWidget(
-          thickness: 0.3,
-          color: colors.text3,
-        ),
-        if (context.isLarge)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 16,
-            children: contactList(context),
-          ).paddingSymmetric(horizontal: padding)
-        else
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: contactList(context),
-          ).paddingSymmetric(horizontal: padding),
+        Container(
+            width: width,
+            padding: EdgeInsetsGeometry.symmetric(
+                horizontal: padding / 2, vertical: 20),
+            margin: EdgeInsetsGeometry.symmetric(horizontal: padding),
+            decoration: BoxDecoration(
+                color: colors.secondarySoft,
+                border: Border.all(color: colors.secondary, width: 0.2),
+                borderRadius: BorderRadius.circular(cardRadius)),
+            child: context.isLarge
+                ? Row(
+                    spacing: 32,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      ContactMeTitle().expand,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        spacing: 16,
+                        children: contactList(context),
+                      )
+                    ],
+                  )
+                : Column(
+                    spacing: 16,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ContactMeTitle(),
+                      Wrap(
+                        spacing: 16,
+                        runSpacing: 16,
+                        children: [
+                          ...contactList(context),
+                        ],
+                      )
+                    ],
+                  )),
         Text(
           '© 2026 Shorouk Fadl.All rights reserved.',
-          style: AppTextStyles.label(context: context, color: colors.text1),
+          style: AppTextStyles.l2(context: context, color: colors.text1),
         ).paddingSymmetric(horizontal: padding),
       ],
     );

@@ -1,73 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/project_entity.dart';
+import 'package:portfolio/Features/home/presentation/widgets/project/images/mobile/mobile_preview.dart';
+import 'package:portfolio/Features/home/presentation/widgets/project/images/web/web_preview.dart';
 import 'package:portfolio/Features/home/presentation/widgets/project/newCard/project_content.dart';
-import 'package:portfolio/Features/home/presentation/widgets/project/projects_side_item_widget.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Custom/card_with_floating_title.dart';
 
-class ProjectsFrame extends StatefulWidget {
-  final Map<String, List<ProjectEntity>> items;
+class ProjectsFrame extends StatelessWidget {
+  final ProjectEntity project;
+  final int index;
 
-  const ProjectsFrame({super.key, required this.items});
+  const ProjectsFrame({super.key, this.index = 0, required this.project});
 
   @override
-  State<ProjectsFrame> createState() => _ProjectsFrameState();
-}
-
-class _ProjectsFrameState extends State<ProjectsFrame> {
-  late ProjectEntity selectedProject;
-  @override
-  void initState() {
-    super.initState();
-    selectedProject = widget.items.entries.first.value.first;
-  }
-
-  void _onProjectTap(ProjectEntity project) {
-    setState(() {
-      selectedProject = project;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
-
-    return CardWidget(
-      cardColor: colors.background,
-      borderColor: colors.text3,
-      paddingVert: 0,
-      paddingHoz: 0,
-      height: 600,
-      child: context.isLarge ? LargePreview() : SmallPreview(),
-    );
+    return CardWithTitle(
+        paddingHoz: 0,
+        paddingVert: 0,
+        cardColor: context.colors.card,
+        child: !context.isLarge ? smallPreview() : largePreview(context));
   }
 
-  Widget LargePreview() => Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  Widget smallPreview() => Column(
+        spacing: 20,
         children: [
-          ProjectsSideListWidget(
-            items: widget.items,
-            selectedProject: selectedProject,
-            onTapProject: (p) => _onProjectTap(p),
-          ).expand,
-          Expanded(
-            flex: 3,
-            child: ProjectContentWidget(selectedProject: selectedProject),
-          ),
+          imageWidget(),
+          ProjectContentWidget(project: project),
         ],
       );
-  Widget SmallPreview() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  Widget largePreview(BuildContext context) => Column(
+        spacing: 8,
         children: [
-          ProjectsSideListWidget(
-            items: widget.items,
-            selectedProject: selectedProject,
-            onTapProject: (p) => _onProjectTap(p),
-          ).expand,
-          Expanded(
-            flex: 3,
-            child: ProjectContentWidget(selectedProject: selectedProject),
-          ),
+          imageWidget(),
+          ProjectContentWidget(project: project).expand,
         ],
       );
+
+  Widget imageWidget() {
+    if (project.projectType?.toLowerCase() == 'mobile') {
+      return MobilePreview(
+        urls: project.images,
+        width: 72,
+        height: 140,
+      );
+    } else {
+      return WebPreview(urls: project.images, height: 140, width: 200);
+    }
+  }
 }

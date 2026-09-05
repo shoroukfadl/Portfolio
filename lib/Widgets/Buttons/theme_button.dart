@@ -37,29 +37,29 @@ class _ThemeButtonState extends State<ThemeButton> {
             onTap: () {
               context.read<ThemeCubit>().changeTheme();
             },
-            child: AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeOut,
-                width: size,
-                height: size,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: _hovered
-                      ? colors.card
-                      : !theme.isDark
-                          ? colors.background
-                          : colors.secondary,
-                  border: Border.all(
-                    color: colors.secondary,
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              switchInCurve: Curves.easeOutCubic,
+              switchOutCurve: Curves.easeInCubic,
+              transitionBuilder: (child, animation) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: ScaleTransition(
+                    scale: Tween<double>(
+                      begin: 0.7,
+                      end: 1.0,
+                    ).animate(animation),
+                    child: child,
                   ),
-                ),
-                child: Icon(
-                  Portfolio.light,
-                  key: ValueKey(theme.isDark),
-                  size: size / 1.5,
-                  color: theme.isDark ? colors.background : colors.secondary,
-                )),
+                );
+              },
+              child: Icon(
+                theme.isDark ? Portfolio.light : Portfolio.dark,
+                key: ValueKey(theme.isDark),
+                size: size / 2,
+                color: colors.text1,
+              ),
+            ),
           ),
         );
       },

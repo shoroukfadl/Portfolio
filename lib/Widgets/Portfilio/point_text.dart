@@ -13,23 +13,16 @@ class PointText extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 8,
       children: [
-        Card(
-          color: colors.secondary,
-          child: const SizedBox(
-            height: 4,
-            width: 4,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(1),
-          ),
+        CircleAvatar(
+          backgroundColor: colors.secondary,
+          radius: 3,
         ),
         Text(point,
                 maxLines: 4,
                 style: style ??
-                    AppTextStyles.cardBody(
-                        context: context, color: colors.text2))
+                    AppTextStyles.bc2(context: context, color: colors.text2))
             .expand
       ],
     ).paddingOnly(bottom: 4);

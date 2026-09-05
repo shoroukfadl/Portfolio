@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
-import 'package:portfolio/Widgets/Animation/floating_animation_card.dart';
+import 'package:portfolio/Widgets/Animation/Summary/number_card_item.dart';
 
 import '../../../../../Utilities/extensions.dart';
 
@@ -12,20 +12,14 @@ class StatsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     if (!context.isSmall) {
       return Row(
+        spacing: 8,
         children: [
           ...List.generate(items.length, (e) {
-            final borderR = e == 0
-                ? BorderRadiusDirectional.only(
-                    topStart: Radius.circular(cardRadius),
-                    bottomStart: Radius.circular(cardRadius))
-                : (e == items.length - 1)
-                    ? BorderRadiusDirectional.only(
-                        topEnd: Radius.circular(cardRadius),
-                        bottomEnd: Radius.circular(cardRadius))
-                    : BorderRadius.zero;
+            final borderR = BorderRadiusDirectional.all(
+              Radius.circular(cardRadius),
+            );
             return StatItem(
               item: items[e],
               borderRadius: borderR,

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Widgets/Animation/animated_counter.dart';
 
-import '../../Core/Language/app_styles.dart';
-import '../../Utilities/extensions.dart';
+import '../../../Core/Language/app_styles.dart';
+import '../../../Utilities/extensions.dart';
 
 class InfoCardWidget extends StatelessWidget {
   final InfoCard item;
@@ -23,7 +22,7 @@ class InfoCardWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 32, vertical: 0),
         decoration: BoxDecoration(
           borderRadius: borderRadius,
-          border: Border.all(color: colors.text3, width: 0.5),
+          border: Border.all(color: colors.border, width: 0.5),
         ),
         child: Column(
           spacing: 8,
@@ -40,7 +39,7 @@ class InfoCardWidget extends StatelessWidget {
                 ),
                 Text(
                   item.title ?? "",
-                  style: AppTextStyles.titleCard(
+                  style: AppTextStyles.hc1(
                     context: context,
                     color: colors.text1,
                   ),
@@ -49,7 +48,7 @@ class InfoCardWidget extends StatelessWidget {
             ),
             Text(
               item.description ?? "",
-              style: AppTextStyles.cardBodyL(
+              style: AppTextStyles.bc1(
                 context: context,
                 color: colors.text2,
               ),
@@ -57,56 +56,6 @@ class InfoCardWidget extends StatelessWidget {
           ],
         ));
   }
-}
-
-class StatItem extends StatelessWidget {
-  final Stat item;
-  final BorderRadiusGeometry borderRadius;
-
-  final TextStyle? numStyle, titleStyle;
-
-  const StatItem({
-    required this.item,
-    this.numStyle,
-    this.titleStyle,
-    required this.borderRadius,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.colors;
-    return Container(
-      height: 88,
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 32, vertical: 0),
-      decoration: BoxDecoration(
-        borderRadius: borderRadius,
-        border: Border.all(color: colors.text3, width: 0.5),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AnimatedCounter(
-            targetNumber: item.value ?? 0.0,
-            subtitle: item.subTitle,
-            style: numStyle,
-          ),
-          const SizedBox(height: 6),
-          Text(item.name?.toUpperCase() ?? "", style: (titleStyle)),
-        ],
-      ),
-    );
-  }
-}
-
-class Stat {
-  final String? name;
-  final String? subTitle;
-  final double? value;
-
-  const Stat({this.name, this.value, this.subTitle});
 }
 
 class InfoCard {

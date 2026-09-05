@@ -10,7 +10,7 @@ class EducationModel {
   final DateTime? endDate;
   final bool isCurrent;
   final double? gpa;
-  final String? description;
+  final List<String> description;
   final String? icon;
   final int displayOrder;
 
@@ -24,7 +24,7 @@ class EducationModel {
     this.endDate,
     this.isCurrent = false,
     this.gpa,
-    this.description,
+    this.description = const [],
     this.displayOrder = 0,
     this.icon,
   });
@@ -45,7 +45,9 @@ class EducationModel {
           json['end_date'] != null ? DateTime.parse(json['end_date']) : null,
       isCurrent: json['is_current'] ?? false,
       gpa: json['gpa'] != null ? double.tryParse(json['gpa'].toString()) : null,
-      description: json['description'] as String?,
+      description: json['description'] == null
+          ? []
+          : List<String>.from(json['description']!),
       displayOrder: json['display_order'] ?? 0,
     );
   }
@@ -76,10 +78,10 @@ class EducationModel {
       institution: entity?.institution,
       startDate: entity?.startDate,
       endDate: entity?.endDate,
-      isCurrent: entity?.isCurrent??false,
+      isCurrent: entity?.isCurrent ?? false,
       gpa: entity?.gpa,
-      description: entity?.description,
-      displayOrder: entity?.displayOrder??0,
+      description: entity?.description ?? [],
+      displayOrder: entity?.displayOrder ?? 0,
       icon: entity?.icon,
     );
   }
@@ -96,7 +98,7 @@ class EducationModel {
       endDate: endDate,
       isCurrent: isCurrent,
       gpa: gpa,
-      description: description,
+      description: description ?? [],
       displayOrder: displayOrder,
     );
   }

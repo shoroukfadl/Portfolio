@@ -10,8 +10,8 @@ import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
 import '../../../../../Utilities/extensions.dart';
-import '../../widgets/aboutMe/about_me_widget.dart';
 import '../../widgets/skills/my_skills.dart';
+import '../../widgets/summary/summary_section.dart';
 
 class LargeHomeView extends StatelessWidget {
   const LargeHomeView({
@@ -22,12 +22,6 @@ class LargeHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenLayoutWidget(
       children: [
-        SliverToBoxAdapter(
-          child: SizedBox(
-            height: 40,
-          ),
-        ),
-
         /// about
         SliverToBoxAdapter(
           child: BlocBuilder<PortfolioCubit, PortfolioState>(
@@ -73,6 +67,7 @@ class LargeHomeView extends StatelessWidget {
                 builder: (c, s) => MyProjectsWidget(
                       projects: s.data?.projects ?? [],
                     ))),
+        SliverToBoxAdapter(child: largeSectionSpacing.heightBox),
 
         /// education
         SliverToBoxAdapter(
@@ -81,6 +76,8 @@ class LargeHomeView extends StatelessWidget {
               builder: (c, s) =>
                   EducationSection(education: s.data?.education.firstOrNull)),
         ),
+
+        SliverToBoxAdapter(child: largeSectionSpacing.heightBox),
 
         /// Contact
         SliverToBoxAdapter(

@@ -41,7 +41,7 @@ class _LinkCardWidgetState extends State<LinkCardWidget> {
               widget.link.name ?? "",
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: AppTextStyles.titleCard(
+              style: AppTextStyles.hc1(
                 context: context,
                 color: !hover ? widget.color : Colors.white,
               ),

@@ -37,9 +37,9 @@ class _LoadingTextWidgetState extends State<LoadingTextWidget>
 
     _typeController.addListener(() {
       final newCount = (_typeController.value * _fullText.length).floor().clamp(
-        0,
-        _fullText.length,
-      );
+            0,
+            _fullText.length,
+          );
       if (newCount != _visibleChars) {
         setState(() => _visibleChars = newCount);
       }
@@ -78,10 +78,9 @@ class _LoadingTextWidgetState extends State<LoadingTextWidget>
       children: [
         Text(
           _fullText.substring(0, _visibleChars),
-          style: AppTextStyles.title(context: context).copyWith(
+          style: AppTextStyles.h4(context: context).copyWith(
             color: colors.text1,
-            fontSize:
-            14,
+            fontSize: 14,
             fontWeight: FontWeight.w300,
             letterSpacing: 4,
           ),
@@ -92,7 +91,7 @@ class _LoadingTextWidgetState extends State<LoadingTextWidget>
           child: SizedBox(
             width: 200,
             child: LinearProgressIndicator(
-              backgroundColor: colors.text3,
+              backgroundColor: colors.border,
               borderRadius: BorderRadius.circular(8),
               valueColor: AlwaysStoppedAnimation<Color>(
                 colors.accent.withValues(alpha: 0.7),
