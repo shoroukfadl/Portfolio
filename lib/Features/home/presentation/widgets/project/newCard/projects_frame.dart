@@ -7,45 +7,59 @@ import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Custom/card_with_floating_title.dart';
 
 class ProjectsFrame extends StatelessWidget {
+  const ProjectsFrame({
+    super.key,
+    this.index = 0,
+    required this.project,
+  });
+
   final ProjectEntity project;
   final int index;
 
-  const ProjectsFrame({super.key, this.index = 0, required this.project});
+  static const _mobilePreviewSize = Size(72, 140);
+  static const _webPreviewSize = Size(200, 140);
 
-  @override
   @override
   Widget build(BuildContext context) {
     return CardWithTitle(
-        paddingHoz: 0,
-        paddingVert: 0,
-        cardColor: context.colors.card,
-        child: !context.isLarge ? smallPreview() : largePreview(context));
+      paddingHoz: 0,
+      paddingVert: 0,
+      cardColor: context.colors.card,
+      child: context.isLarge ? _largePreview() : _smallPreview(),
+    );
   }
 
-  Widget smallPreview() => Column(
+  Widget _smallPreview() => Column(
         spacing: 20,
         children: [
-          imageWidget(),
+          _imageWidget(),
           ProjectContentWidget(project: project),
         ],
       );
-  Widget largePreview(BuildContext context) => Column(
+
+  Widget _largePreview() => Column(
         spacing: 8,
         children: [
-          imageWidget(),
+          _imageWidget(),
           ProjectContentWidget(project: project).expand,
         ],
       );
 
-  Widget imageWidget() {
-    if (project.projectType?.toLowerCase() == 'mobile') {
+  Widget _imageWidget() {
+    final isMobile = project.projectType?.toLowerCase() == 'mobile';
+
+    if (isMobile) {
       return MobilePreview(
         urls: project.images,
-        width: 72,
-        height: 140,
+        width: _mobilePreviewSize.width,
+        height: _mobilePreviewSize.height,
       );
-    } else {
-      return WebPreview(urls: project.images, height: 140, width: 200);
     }
+
+    return WebPreview(
+      urls: project.images,
+      width: _webPreviewSize.width,
+      height: _webPreviewSize.height,
+    );
   }
 }

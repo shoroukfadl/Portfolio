@@ -8,123 +8,140 @@ import '../../../../../Core/Language/app_styles.dart';
 import '../../../../../Utilities/Constants/constants.dart';
 import '../../../../../Utilities/helper_function.dart';
 import '../../../../../Utilities/portifilo_icons.dart';
+import '../../../data/models/social_model.dart';
 
 class ContactMeWidget extends StatelessWidget {
-  final String linkedIN, github, email, phoneNumber, cv;
-  final double iconSize, padding;
-  final TextStyle? copyRightStyle, contactMeStyle;
-
   const ContactMeWidget({
     super.key,
     required this.linkedIN,
     required this.github,
     required this.email,
     required this.phoneNumber,
+    required this.cv,
     this.iconSize = 20,
     this.padding = desktopHozPadding,
-    this.copyRightStyle,
-    this.contactMeStyle,
-    required this.cv,
   });
 
-  List<Widget> contactList(BuildContext context) => [
-        SocialButtonWidget(
-          onPressed: () async {
-            final Uri emailUri = Uri(scheme: 'mailto', path: email);
-            if (await canLaunchUrl(emailUri)) {
-              await launchUrl(emailUri);
-            }
-          },
-          size: iconSize,
+  final String linkedIN;
+  final String github;
+  final String email;
+  final String phoneNumber;
+  final String cv;
+  final double iconSize;
+  final double padding;
+
+  Future<void> _sendEmail() async {
+    final Uri emailUri = Uri(scheme: 'mailto', path: email);
+    if (await canLaunchUrl(emailUri)) {
+      await launchUrl(emailUri);
+    }
+  }
+
+  List<SocialModel> _socialLinks(BuildContext context) => [
+        SocialModel(
           title: 'Email',
           icon: Portfolio.email,
+          onPressed: _sendEmail,
         ),
-        SocialButtonWidget(
-          onPressed: () {
-            HelperFunctions.openWhatsApp(
-                phoneNumber: phoneNumber, message: 'Hi');
-          },
-          size: iconSize,
+        SocialModel(
           title: 'WhatsApp',
           icon: Portfolio.phone,
+          onPressed: () => HelperFunctions.openWhatsApp(
+            phoneNumber: phoneNumber,
+            message: 'Hi',
+          ),
         ),
-        SocialButtonWidget(
-          onPressed: () {
-            HelperFunctions.openUrl(linkedIN, context);
-          },
-          size: iconSize,
-          icon: Portfolio.linkedIn,
+        SocialModel(
           title: 'LinkedIN',
+          icon: Portfolio.linkedIn,
+          onPressed: () => HelperFunctions.openUrl(linkedIN, context),
         ),
-        SocialButtonWidget(
-          onPressed: () {
-            HelperFunctions.openUrl(github, context);
-          },
-          title: 'Git Hub',
-          size: iconSize,
+        SocialModel(
+          title: 'Github',
           icon: Portfolio.github,
+          onPressed: () => HelperFunctions.openUrl(github, context),
         ),
-        SocialButtonWidget(
-          onPressed: () {
-            HelperFunctions.openUrl(cv, context);
-          },
-          size: iconSize,
+        SocialModel(
           title: 'Resume',
           icon: Portfolio.download,
+          onPressed: () => HelperFunctions.openUrl(cv, context),
         ),
       ];
+
+  List<Widget> _buildSocialButtons(BuildContext context) =>
+      _socialLinks(context)
+          .map((link) => SocialButtonWidget(
+                title: link.title,
+                icon: link.icon,
+                size: iconSize,
+                onPressed: link.onPressed,
+              ))
+          .toList();
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
     final maxWidth = MediaQuery.sizeOf(context).width;
     final width = context.matchedSize(
-        large: maxWidth * 2 / 3, medium: maxWidth * 3.2 / 4, small: maxWidth);
+      large: maxWidth * 2 / 3,
+      medium: maxWidth * 3.2 / 4,
+      small: maxWidth,
+    );
+
     return Column(
       spacing: 32,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-            width: width,
-            padding: EdgeInsetsGeometry.symmetric(
-                horizontal: padding / 2, vertical: 20),
-            margin: EdgeInsetsGeometry.symmetric(horizontal: padding),
-            decoration: BoxDecoration(
-                color: colors.secondarySoft,
-                border: Border.all(color: colors.secondary, width: 0.2),
-                borderRadius: BorderRadius.circular(cardRadius)),
-            child: context.isLarge
-                ? Row(
-                    spacing: 32,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      ContactMeTitle().expand,
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        spacing: 16,
-                        children: contactList(context),
-                      )
-                    ],
-                  )
-                : Column(
-                    spacing: 16,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ContactMeTitle(),
-                      Wrap(
-                        spacing: 16,
-                        runSpacing: 16,
-                        children: [
-                          ...contactList(context),
-                        ],
-                      )
-                    ],
-                  )),
+        _buildCard(context, width),
         Text(
-          '© 2026 Shorouk Fadl.All rights reserved.',
+          '© ${DateTime.now().year} Shorouk Fadl. All rights reserved.',
           style: AppTextStyles.l2(context: context, color: colors.text1),
         ).paddingSymmetric(horizontal: padding),
       ],
+    );
+  }
+
+  Widget _buildCard(BuildContext context, double width) {
+    final colors = context.colors;
+    final buttons = _buildSocialButtons(context);
+
+    return Container(
+      width: width,
+      padding: EdgeInsetsGeometry.symmetric(
+        horizontal: padding / 2,
+        vertical: 20,
+      ),
+      margin: EdgeInsetsGeometry.symmetric(horizontal: padding),
+      decoration: BoxDecoration(
+        color: colors.secondarySoft,
+        border: Border.all(color: colors.secondary, width: 0.2),
+        borderRadius: BorderRadius.circular(cardRadius),
+      ),
+      child: context.isLarge
+          ? Row(
+              spacing: 32,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                const ContactMeTitle().expand,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 16,
+                  children: buttons,
+                ),
+              ],
+            )
+          : Column(
+              spacing: 16,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const ContactMeTitle(),
+                Wrap(
+                  spacing: 16,
+                  runSpacing: 16,
+                  children: buttons,
+                ),
+              ],
+            ),
     );
   }
 }

@@ -29,7 +29,7 @@ class LargeHomeView extends StatelessWidget {
             return SummarySection(
               profile: s.data?.profile,
               projectProductionNumber: s.projectLEN,
-              experience: s.experience ?? 0.0,
+              experience: s.experience,
             );
           }),
         ),

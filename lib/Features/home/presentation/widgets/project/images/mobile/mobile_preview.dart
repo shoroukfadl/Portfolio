@@ -4,16 +4,16 @@ import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 
 class MobilePreview extends StatefulWidget {
-  final List<String> urls;
-  final double width;
-  final double height;
-
   const MobilePreview({
     super.key,
     required this.urls,
     required this.width,
     this.height = 220,
   });
+
+  final List<String> urls;
+  final double width;
+  final double height;
 
   @override
   State<MobilePreview> createState() => _MobilePreviewState();
@@ -22,6 +22,8 @@ class MobilePreview extends StatefulWidget {
 class _MobilePreviewState extends State<MobilePreview> {
   late final PageController _pageController;
   int _currentPage = 0;
+
+  bool get _hasMultipleImages => widget.urls.length > 1;
 
   @override
   void initState() {
@@ -38,44 +40,80 @@ class _MobilePreviewState extends State<MobilePreview> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+
     if (widget.urls.isEmpty) {
-      return SizedBox(
-        width: widget.width,
-        height: widget.height,
-      );
+      return SizedBox(width: widget.width, height: widget.height);
     }
 
     return Container(
       height: widget.height,
       width: double.infinity,
       alignment: Alignment.center,
-      padding: EdgeInsetsGeometry.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-          gradient:
-              LinearGradient(colors: [colors.secondarySoft, colors.accentSoft]),
-          border: Border(bottom: BorderSide(color: colors.border)),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(cardRadius),
-            topRight: Radius.circular(cardRadius),
-          )),
-      child: PageView.builder(
-        controller: _pageController,
-        itemCount: widget.urls.length,
-        physics: const PageScrollPhysics(),
-        onPageChanged: (index) {
-          setState(() {
-            _currentPage = index;
-          });
-        },
-        itemBuilder: (context, index) {
-          return Center(
-            child: MobileItemPreviewWidget(
-              width: widget.width,
-              height: widget.height,
-              url: widget.urls[index],
+        gradient: LinearGradient(
+          colors: [colors.secondarySoft, colors.accentSoft],
+        ),
+        border: Border(bottom: BorderSide(color: colors.border)),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(cardRadius),
+          topRight: Radius.circular(cardRadius),
+        ),
+      ),
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          PageView.builder(
+            controller: _pageController,
+            itemCount: widget.urls.length,
+            physics: _hasMultipleImages
+                ? const PageScrollPhysics()
+                : const NeverScrollableScrollPhysics(),
+            onPageChanged: (index) => setState(() => _currentPage = index),
+            itemBuilder: (context, index) => Center(
+              child: MobileItemPreviewWidget(
+                width: widget.width,
+                height: widget.height,
+                url: widget.urls[index],
+              ),
             ),
-          );
-        },
+          ),
+          if (_hasMultipleImages) _buildPageIndicator(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPageIndicator() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: Colors.black.withValues(alpha: 0.25),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: List.generate(widget.urls.length, (index) {
+              final isActive = index == _currentPage;
+              return AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeOut,
+                margin: const EdgeInsets.symmetric(horizontal: 3),
+                width: isActive ? 16 : 6,
+                height: 6,
+                decoration: BoxDecoration(
+                  color: isActive
+                      ? Colors.white
+                      : Colors.white.withValues(alpha: 0.45),
+                  borderRadius: BorderRadius.circular(3),
+                ),
+              );
+            }),
+          ),
+        ),
       ),
     );
   }

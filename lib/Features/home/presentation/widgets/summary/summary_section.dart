@@ -6,11 +6,7 @@ import 'package:portfolio/Widgets/Portfilio/animated_background.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
 
-class SummarySection extends StatefulWidget {
-  final ProfileEntity? profile;
-  final double projectProductionNumber, experience;
-  final double padding;
-
+class SummarySection extends StatelessWidget {
   const SummarySection({
     super.key,
     this.profile,
@@ -19,35 +15,31 @@ class SummarySection extends StatefulWidget {
     required this.experience,
   });
 
-  @override
-  State<SummarySection> createState() => _SummarySectionState();
-}
+  final ProfileEntity? profile;
+  final double projectProductionNumber;
+  final double experience;
+  final double padding;
 
-class _SummarySectionState extends State<SummarySection> {
   @override
   Widget build(BuildContext context) {
     final height = context.matchedSize(large: 480, medium: 560, small: 680);
+
     return AnimatedBackground(
       height: height,
       child: Padding(
-        padding: EdgeInsetsDirectional.only(
-          start: widget.padding,
-          end: widget.padding,
+        padding: EdgeInsetsDirectional.only(start: padding, end: padding),
+        child: SummaryContent(
+          firstName: profile?.firstName ?? '',
+          lastName: profile?.lastName ?? '',
+          location: profile?.location ?? '',
+          role: profile?.jobTitle ?? '',
+          summary: profile?.summary ?? '',
+          cv: profile?.cv ?? '',
+          email: profile?.email ?? '',
+          experince: experience,
+          projectNumber: projectProductionNumber,
         ),
-        child: _summary(),
       ),
     );
   }
-
-  Widget _summary() => SummaryContent(
-        firstName: widget.profile?.firstName ?? "",
-        location: widget.profile?.location ?? "",
-        lastName: widget.profile?.lastName ?? "",
-        role: widget.profile?.jobTitle ?? "",
-        summary: widget.profile?.summary ?? "",
-        cv: widget.profile?.cv ?? "",
-        email: widget.profile?.email ?? "",
-        experince: widget.experience,
-        projectNumber: widget.projectProductionNumber,
-      );
 }
