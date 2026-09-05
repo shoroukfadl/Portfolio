@@ -13,6 +13,9 @@ class PointText extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return Row(
+      crossAxisAlignment: context.isLarge
+          ? CrossAxisAlignment.center
+          : CrossAxisAlignment.start,
       spacing: 8,
       children: [
         CircleAvatar(
