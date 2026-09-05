@@ -129,9 +129,10 @@ class ContactMeWidget extends StatelessWidget {
                   spacing: 16,
                   children: buttons
                       .map((e) => CustomSlideAnimationWidget(
-                          key: ValueKey('Button-${buttons.indexOf(e)}'),
-                          child: e,
-                          index: buttons.indexOf(e)))
+                            key: ValueKey('Button-${buttons.indexOf(e)}'),
+                            index: buttons.indexOf(e),
+                            child: e,
+                          ))
                       .toList(),
                 ),
               ],
@@ -146,9 +147,10 @@ class ContactMeWidget extends StatelessWidget {
                   runSpacing: 16,
                   children: buttons
                       .map((e) => CustomSlideAnimationWidget(
-                          key: ValueKey('Button-${buttons.indexOf(e)}'),
-                          child: e,
-                          index: buttons.indexOf(e)))
+                            key: ValueKey('Button-${buttons.indexOf(e)}'),
+                            index: buttons.indexOf(e),
+                            child: e,
+                          ))
                       .toList(),
                 ),
               ],
