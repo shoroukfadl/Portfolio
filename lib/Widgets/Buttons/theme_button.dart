@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/Core/Theme/theme_cubit.dart';
 import 'package:portfolio/Core/Theme/theme_state.dart';
-import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/portifilo_icons.dart';
 
@@ -19,10 +18,7 @@ class _ThemeButtonState extends State<ThemeButton> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final size = context.matchedSize(
-        large: largeButtonIcon,
-        medium: mediumButtonIcon,
-        small: smallButtonIcon);
+    final size = 40;
 
     return BlocBuilder<ThemeCubit, ThemeState>(
       builder: (context, theme) {

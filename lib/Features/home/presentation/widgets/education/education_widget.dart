@@ -21,8 +21,9 @@ class EducationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final space = context.matchedSize(large: 32, medium: 24, small: 20);
     return Column(
-      spacing: 32,
+      spacing: space,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionsTitleWidget(

@@ -30,9 +30,10 @@ class MyProjectsWidget extends StatelessWidget {
     final maxWidth = MediaQuery.sizeOf(context).width;
     final width = context.matchedSize(
         large: maxWidth * 2 / 3, medium: maxWidth * 3.2 / 4, small: maxWidth);
-    final space = context.matchedSize(large: 32, medium: 24, small: 16);
+    final itemSpace = context.matchedSize(large: 32, medium: 24, small: 16);
+    final space = context.matchedSize(large: 32, medium: 24, small: 20);
     return Column(
-      spacing: 32,
+      spacing: space,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionsTitleWidget(
@@ -46,8 +47,8 @@ class MyProjectsWidget extends StatelessWidget {
             items: projects,
             perRow: perRow,
             mainAxisExtent: mainMaxExtent,
-            hozSpace: space,
-            vertSpace: space,
+            hozSpace: itemSpace,
+            vertSpace: itemSpace,
             buildChild: (index) {
               return ProjectsFrame(
                 index: index,

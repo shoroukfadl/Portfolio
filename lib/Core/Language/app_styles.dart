@@ -82,7 +82,7 @@ abstract class AppTextStyles extends ThemeExtension<AppTextStyles> {
 
   static TextStyle hc3({Color? color, required BuildContext context}) =>
       baseStyle(
-        size: context.matchedSize(large: 14, medium: 10, small: 8),
+        size: context.matchedSize(large: 14, medium: 12, small: 10),
         fontWeight: FontWeight.w400,
         color: color ?? Colors.black,
       );

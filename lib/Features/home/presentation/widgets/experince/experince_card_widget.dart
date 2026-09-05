@@ -27,9 +27,10 @@ class ExperienceSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final space = context.matchedSize(large: 32, medium: 24, small: 20);
     return Column(
+      spacing: space,
       crossAxisAlignment: CrossAxisAlignment.start,
-      spacing: 32,
       children: [
         SectionsTitleWidget(
           index: 2,

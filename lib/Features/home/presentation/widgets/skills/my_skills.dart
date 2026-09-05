@@ -32,11 +32,12 @@ class SkillsSection extends StatelessWidget {
     final width = context.matchedSize(
         large: maxWidth * 2 / 3, medium: maxWidth * 3.2 / 4, small: maxWidth);
     final colors = context.colors;
+    final space = context.matchedSize(large: 32, medium: 24, small: 20);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: padding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 32,
+        spacing: space,
         children: [
           SectionsTitleWidget(
             index: 1,
