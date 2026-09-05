@@ -44,7 +44,7 @@ class ExperienceSection extends StatelessWidget {
               padding: EdgeInsets.only(
                 bottom: index == experiences.length - 1 ? 0 : 24,
               ),
-              child: ExperienceReveal(
+              child: CustomTimelineAnimationWidget(
                 key: ValueKey('experience-$index'),
                 index: index,
                 child: ExperienceCard(

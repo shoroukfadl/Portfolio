@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/presentation/widgets/contact/contact_me_title.dart';
 import 'package:portfolio/Features/home/presentation/widgets/contact/soical_button.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Animation/animated_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../Core/Language/app_styles.dart';
@@ -126,7 +127,12 @@ class ContactMeWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 16,
-                  children: buttons,
+                  children: buttons
+                      .map((e) => CustomSlideAnimationWidget(
+                          key: ValueKey('Button-${buttons.indexOf(e)}'),
+                          child: e,
+                          index: buttons.indexOf(e)))
+                      .toList(),
                 ),
               ],
             )
@@ -138,7 +144,12 @@ class ContactMeWidget extends StatelessWidget {
                 Wrap(
                   spacing: 16,
                   runSpacing: 16,
-                  children: buttons,
+                  children: buttons
+                      .map((e) => CustomSlideAnimationWidget(
+                          key: ValueKey('Button-${buttons.indexOf(e)}'),
+                          child: e,
+                          index: buttons.indexOf(e)))
+                      .toList(),
                 ),
               ],
             ),

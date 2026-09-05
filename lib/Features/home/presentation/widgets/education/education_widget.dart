@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Features/home/domain/entities/education_entity.dart';
 import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Widgets/Animation/animated_list.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
 import '../../../../../Utilities/Constants/strings.dart';
@@ -31,10 +32,12 @@ class EducationSection extends StatelessWidget {
           title: Strings.education.translate,
           key: GlobalKeys.education,
         ),
-        EducationCard(
-          item: education,
-          isLast: true,
-        )
+        CustomTimelineAnimationWidget(
+            index: 0,
+            child: EducationCard(
+              item: education,
+              isLast: true,
+            ))
       ],
     ).paddingSymmetric(vertical: 40, horizontal: padding);
   }

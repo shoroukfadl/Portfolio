@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Utilities/extensions.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class AnimatedGridView<T> extends StatelessWidget {
@@ -35,34 +34,6 @@ class AnimatedGridView<T> extends StatelessWidget {
         return ScrollReveal(
           offset: 20,
           key: ValueKey('project-reveal-grid-$index'),
-          child: buildChild(index),
-        );
-      },
-    );
-  }
-}
-
-class AnimatedListView<T> extends StatelessWidget {
-  final List<T> items;
-  final Widget Function(int) buildChild;
-  final double spacing;
-  const AnimatedListView(
-      {super.key,
-      required this.items,
-      this.spacing = 20,
-      required this.buildChild});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      separatorBuilder: (c, i) => spacing.heightBox,
-      itemCount: items.length,
-      itemBuilder: (context, index) {
-        return ScrollReveal(
-          offset: 20,
-          key: ValueKey('project-reveal-$index'),
           child: buildChild(index),
         );
       },
@@ -151,21 +122,23 @@ class _ScrollRevealState extends State<ScrollReveal>
   }
 }
 
-class ExperienceReveal extends StatefulWidget {
+class CustomTimelineAnimationWidget extends StatefulWidget {
   final Widget child;
   final int index;
 
-  const ExperienceReveal({
+  const CustomTimelineAnimationWidget({
     super.key,
     required this.child,
     required this.index,
   });
 
   @override
-  State<ExperienceReveal> createState() => _ExperienceRevealState();
+  State<CustomTimelineAnimationWidget> createState() =>
+      _CustomTimelineAnimationWidgetState();
 }
 
-class _ExperienceRevealState extends State<ExperienceReveal>
+class _CustomTimelineAnimationWidgetState
+    extends State<CustomTimelineAnimationWidget>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
@@ -180,7 +153,7 @@ class _ExperienceRevealState extends State<ExperienceReveal>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 650),
+      duration: const Duration(seconds: 1),
     );
 
     _opacity = CurvedAnimation(
@@ -206,7 +179,7 @@ class _ExperienceRevealState extends State<ExperienceReveal>
       _hasAnimated = true;
 
       Future.delayed(
-        Duration(milliseconds: widget.index * 120),
+        Duration(milliseconds: widget.index * 300),
         () {
           if (mounted) {
             _controller.forward();
@@ -225,7 +198,7 @@ class _ExperienceRevealState extends State<ExperienceReveal>
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
-      key: ValueKey('experience-reveal-${widget.index}'),
+      key: ValueKey(widget.key),
       onVisibilityChanged: _onVisibilityChanged,
       child: FadeTransition(
         opacity: _opacity,
@@ -238,21 +211,22 @@ class _ExperienceRevealState extends State<ExperienceReveal>
   }
 }
 
-class SkillReveal extends StatefulWidget {
+class CustomSlideAnimationWidget extends StatefulWidget {
   final Widget child;
   final int index;
 
-  const SkillReveal({
+  const CustomSlideAnimationWidget({
     super.key,
     required this.child,
     required this.index,
   });
 
   @override
-  State<SkillReveal> createState() => _SkillRevealState();
+  State<CustomSlideAnimationWidget> createState() =>
+      _CustomSlideAnimationWidgetState();
 }
 
-class _SkillRevealState extends State<SkillReveal>
+class _CustomSlideAnimationWidgetState extends State<CustomSlideAnimationWidget>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
@@ -267,7 +241,7 @@ class _SkillRevealState extends State<SkillReveal>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 600),
+      duration: const Duration(seconds: 1),
     );
 
     final curve = CurvedAnimation(
@@ -290,7 +264,7 @@ class _SkillRevealState extends State<SkillReveal>
       _hasAnimated = true;
 
       Future.delayed(
-        Duration(milliseconds: widget.index * 100),
+        Duration(milliseconds: widget.index * 300),
         () {
           if (mounted) {
             _controller.forward();
@@ -309,7 +283,7 @@ class _SkillRevealState extends State<SkillReveal>
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
-      key: ValueKey('skill-reveal-${widget.index}'),
+      key: ValueKey(widget.key),
       onVisibilityChanged: _onVisibilityChanged,
       child: FadeTransition(
         opacity: _opacity,

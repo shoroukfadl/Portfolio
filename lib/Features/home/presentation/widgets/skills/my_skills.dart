@@ -51,10 +51,11 @@ class SkillsSection extends StatelessWidget {
             width: width,
             paddingVert: 0,
             child: (h) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: List.generate(
                 skills.length,
                 (index) {
-                  return SkillReveal(
+                  return CustomSlideAnimationWidget(
                     key: ValueKey('skill-$index'),
                     index: index,
                     child: SkillCard(

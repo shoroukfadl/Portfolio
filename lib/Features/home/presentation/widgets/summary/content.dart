@@ -41,7 +41,7 @@ class _SummaryContentState extends State<SummaryContent>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1800),
+      duration: const Duration(seconds: 2),
     );
 
     _roleAnimation = CurvedAnimation(
