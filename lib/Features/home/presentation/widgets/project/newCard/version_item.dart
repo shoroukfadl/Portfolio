@@ -8,7 +8,7 @@ import '../../../../../../Core/Language/app_styles.dart';
 class VersionItem extends StatefulWidget {
   final LinkEntity version;
 
-  const VersionItem({required this.version});
+  const VersionItem({super.key, required this.version});
 
   @override
   State<VersionItem> createState() => _VersionItemState();

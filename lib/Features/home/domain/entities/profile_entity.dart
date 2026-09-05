@@ -18,7 +18,7 @@ class ProfileEntity extends Equatable {
 
   final double? experince;
 
-  ProfileEntity(
+  const ProfileEntity(
       {this.id,
       this.firstName,
       this.lastName,

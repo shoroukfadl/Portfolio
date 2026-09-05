@@ -38,7 +38,7 @@ class TechnicalSkillModel {
 
   static TechnicalSkillModel toModel(TechnicalSkillEntity? en) => TechnicalSkillModel(
         category:en?. category,
-        skills:en?.skills?.map((e)=>SkillModel.toModel(e)).toList()??[],
+        skills:en?.skills.map((e)=>SkillModel.toModel(e)).toList()??[],
         icon:en?. icon,
         id:en?. id,
         order:en?. order,

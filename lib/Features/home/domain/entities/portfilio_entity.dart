@@ -13,7 +13,7 @@ class PortfolioEntity extends Equatable {
   final List<ProjectEntity> projects;
   final List<TechnicalSkillEntity> skills;
 
-  PortfolioEntity({
+  const PortfolioEntity({
     this.profile,
     this.education = const [],
     this.projects = const [],

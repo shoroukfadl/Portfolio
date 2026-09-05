@@ -87,15 +87,15 @@ class AppColors extends ThemeExtension<AppColors> {
   }) {
     return AppColors(
       background: background ?? this.background,
-      card: surface ?? this.card,
+      card: surface ?? card,
       text3: text3 ?? this.text3,
       accent: accent ?? this.accent,
       accentSoft: accentSoft ?? this.accentSoft,
       success: success ?? this.success,
       warning: warning ?? this.warning,
       danger: danger ?? this.danger,
-      text1: textPrimary ?? this.text1,
-      text2: textSecondary ?? this.text2,
+      text1: textPrimary ?? text1,
+      text2: textSecondary ?? text2,
       secondary: secondary ?? this.secondary,
       secondarySoft: secondarySoft ?? this.secondarySoft,
       border: border ?? this.border,

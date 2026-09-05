@@ -10,6 +10,7 @@ class RepoImp implements Repo {
 
   const RepoImp(this.dataSource);
 
+  @override
   Future<Either<Failure, PortfolioEntity>> getData() async {
     final res = await dataSource.getData();
     print('r : #${res.right?.profile?.firstName}');

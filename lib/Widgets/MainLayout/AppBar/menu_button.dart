@@ -101,7 +101,7 @@ class BottomNavigationBarWidget extends StatelessWidget {
                   ),
                 ),
               )
-              .toList(),
+              ,
         ],
       ),
     );

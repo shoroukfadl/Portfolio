@@ -31,8 +31,9 @@ class _ShortcutWidgetState extends State<ShortcutWidget> {
   bool _onKey(KeyEvent event) {
     if (event is KeyDownEvent) {
       if (event.logicalKey == LogicalKeyboardKey.arrowRight) widget.nextPress();
-      if (event.logicalKey == LogicalKeyboardKey.arrowLeft)
+      if (event.logicalKey == LogicalKeyboardKey.arrowLeft) {
         widget.previousPress();
+      }
       if (event.logicalKey == LogicalKeyboardKey.escape) Navigator.pop(context);
     }
     return false;

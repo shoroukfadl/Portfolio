@@ -16,7 +16,7 @@ class GoRouterConfig {
     Uri uri = Uri.parse(completeUrl);
     String serverUrl =
         '${uri.scheme}://${uri.host}${uri.hasPort ? ":${uri.port}" : ""}';
-    print("com :${completeUrl}");
+    print("com :$completeUrl");
     return serverUrl;
   }
 
@@ -196,6 +196,7 @@ class GoRouterConfig {
     ],
     redirect: (BuildContext context, GoRouterState state) {
       print("redirecting to ${state.fullPath}");
+      return null;
     },
   );
 

@@ -14,7 +14,7 @@ class ProjectEntity extends Equatable {
   final List<String> technicalTools;
   final List<String> content;
 
-  ProjectEntity({
+  const ProjectEntity({
     this.id,
     this.profileId,
     this.projectName,
@@ -51,7 +51,7 @@ class LinkEntity extends Equatable {
   final String? url;
   final String? name;
 
-  LinkEntity({
+  const LinkEntity({
     this.url,
     this.name,
   });

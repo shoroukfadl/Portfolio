@@ -60,9 +60,10 @@ abstract class HelperFunctions {
     final Uri uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
-    } else
+    } else {
       showCustomToast(context,
           message: "Could not launch $url", type: ContentType.failure);
+    }
   }
 
   static Future<void> openWhatsApp({

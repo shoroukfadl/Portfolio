@@ -42,10 +42,11 @@ class _VerticalGradientDividerState extends State<VerticalGradientDivider> {
   List<Color> getColorsList() {
     final List<Color> colors = [];
     for (int i = 0; i < widget.repation; i++) {
-      if (i % 2 == 0)
+      if (i % 2 == 0) {
         colors.add(widget.color1);
-      else
+      } else {
         colors.add(widget.color2);
+      }
     }
     return colors;
   }
