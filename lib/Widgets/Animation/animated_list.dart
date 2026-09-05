@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Utilities/extensions.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class ScrollReveal extends StatefulWidget {
@@ -23,19 +22,15 @@ class _ScrollRevealState extends State<ScrollReveal>
   late final Animation<double> _opacity;
   late final Animation<Offset> _slide;
 
-  late final Duration duration;
   bool _hasAnimated = false;
 
   @override
   void initState() {
     super.initState();
 
-    duration =
-        context.isLarge ? Duration(seconds: 1) : Duration(milliseconds: 800);
-
     _controller = AnimationController(
       vsync: this,
-      duration: duration,
+      duration: const Duration(milliseconds: 600),
     );
 
     _opacity = CurvedAnimation(
@@ -156,9 +151,7 @@ class _CustomTimelineAnimationWidgetState
 
     _controller = AnimationController(
       vsync: this,
-      duration: context.isLarge
-          ? const Duration(seconds: 1)
-          : const Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 600),
     );
 
     _opacity = CurvedAnimation(
@@ -184,9 +177,7 @@ class _CustomTimelineAnimationWidgetState
       _hasAnimated = true;
 
       Future.delayed(
-        context.isLarge
-            ? Duration(milliseconds: widget.index * 300)
-            : Duration(milliseconds: widget.index * 200),
+        Duration(milliseconds: widget.index * 80),
         () {
           if (mounted) {
             _controller.forward();
@@ -248,9 +239,7 @@ class _CustomSlideAnimationWidgetState extends State<CustomSlideAnimationWidget>
 
     _controller = AnimationController(
       vsync: this,
-      duration: context.isLarge
-          ? const Duration(seconds: 1)
-          : const Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 600),
     );
 
     final curve = CurvedAnimation(
@@ -273,9 +262,7 @@ class _CustomSlideAnimationWidgetState extends State<CustomSlideAnimationWidget>
       _hasAnimated = true;
 
       Future.delayed(
-        context.isLarge
-            ? Duration(milliseconds: widget.index * 300)
-            : Duration(milliseconds: widget.index * 200),
+        Duration(milliseconds: widget.index * 80),
         () {
           if (mounted) {
             _controller.forward();
