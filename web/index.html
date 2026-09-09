@@ -1,328 +1,49 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <base href="$FLUTTER_BASE_HREF">
+
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="My App">
+
+  <meta
+          name="description"
+          content="Shorouk Fadl — Flutter Developer"
+  >
+
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-  <link rel="icon" type="image/png" href="favicon.png"/>
-  <title>My App</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <title>Shorouk Fadl | Flutter Developer</title>
+
   <link rel="manifest" href="manifest.json">
 
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background-color: #F4F4F8; /* colors.background */
-      overflow: hidden;
-    }
-
-    #splash {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #F4F4F8;
-      z-index: 9999;
-      transition: opacity 0.4s ease-out;
-    }
-
-    #splash.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #particle-canvas {
-      position: absolute;
-      top: 0; left: 0;
+    html,
+    body {
       width: 100%;
       height: 100%;
-    }
-
-    .blob-accent {
-      position: absolute;
-      left: 20px;
-      bottom: 80px;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(71,83,168,0.15) 0%, rgba(71,83,168,0) 70%);
-      animation: drift1 20s ease-in-out infinite;
-    }
-
-    .blob-secondary {
-      position: absolute;
-      right: 20px;
-      bottom: 20px;
-      width: 350px;
-      height: 350px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(121,105,158,0.1) 0%, rgba(121,105,158,0) 70%);
-      animation: drift2 20s ease-in-out infinite;
-    }
-
-    @keyframes drift1 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50%      { transform: translate(15px, -20px) scale(1.05); }
-    }
-
-    @keyframes drift2 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50%      { transform: translate(-15px, 15px) scale(1.05); }
-    }
-
-    /* ───── LoadingTextWidget ───── */
-    .loading-wrap {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    #typewriter-text {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-size: 14px;
-      font-weight: 300;
-      letter-spacing: 4px;
-      color: #1A1D33; /* colors.text1 */
-      white-space: pre;
-      min-height: 18px;
-    }
-
-    #progress-wrap {
-      position: relative;
-      width: 200px;
-      height: 4px;
-      margin-top: 20px;
-      border-radius: 8px;
-      background-color: #E2E3EC; /* colors.border */
+      margin: 0;
+      padding: 0;
+      background-color: #F4F4F8;
       overflow: hidden;
-      opacity: 0;
-      transition: opacity 0.6s ease-in;
     }
 
-    #progress-wrap.visible {
-      opacity: 1;
+    body {
+      min-height: 100vh;
     }
 
-
-    .progress-bar-inner {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      border-radius: 8px;
-      background-color: rgba(71,83,168,0.7); /* colors.accent alpha 0.7 */
-    }
-
-    .progress-bar-inner.bar1 {
-      animation: indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
-    }
-
-    .progress-bar-inner.bar2 {
-      animation: indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
-      animation-delay: 1.15s;
-    }
-
-    @keyframes indeterminate1 {
-      0%   { left: -35%; right: 100%; }
-      60%  { left: 100%;  right: -90%; }
-      100% { left: 100%;  right: -90%; }
-    }
-
-    @keyframes indeterminate2 {
-      0%   { left: -200%; right: 100%; }
-      60%  { left: 107%;  right: -8%; }
-      100% { left: 107%;  right: -8%; }
+    flt-glass-pane {
+      background-color: #F4F4F8 !important;
     }
   </style>
 </head>
+
 <body>
-
-<div id="splash">
-  <canvas id="particle-canvas"></canvas>
-  <div class="blob-accent"></div>
-  <div class="blob-secondary"></div>
-
-  <div class="loading-wrap">
-    <div id="typewriter-text"></div>
-    <div id="progress-wrap">
-      <div class="progress-bar-inner bar1"></div>
-      <div class="progress-bar-inner bar2"></div>
-    </div>
-  </div>
-</div>
 
 <script src="flutter_bootstrap.js" async></script>
 
-<script>
-  // ───── Particle network background ─────
-  (function () {
-    var canvas = document.getElementById('particle-canvas');
-    var ctx = canvas.getContext('2d');
-    var accent = { r: 71, g: 83, b: 168 };
-
-    var particleCount = 45;
-    var particles = [];
-    var dpr = window.devicePixelRatio || 1;
-    var running = true;
-
-    function resize() {
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      canvas.style.width = window.innerWidth + 'px';
-      canvas.style.height = window.innerHeight + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    function seededRandom(seed) {
-      var s = seed;
-      return function () {
-        s = (s * 9301 + 49297) % 233280;
-        return s / 233280;
-      };
-    }
-    var rand = seededRandom(42);
-
-    function generateParticles() {
-      particles = [];
-      for (var i = 0; i < particleCount; i++) {
-        particles.push({
-          x: rand() * window.innerWidth,
-          y: rand() * window.innerHeight,
-          radius: 1 + rand() * 2.2,
-          speed: 0.15 + rand() * 0.45,
-          phase: rand() * Math.PI * 2
-        });
-      }
-    }
-    generateParticles();
-
-    var symbols = ['< />', '{ }', '( )', '=>', '01', '&&', '///', ';'];
-    function symbolPositions() {
-      var w = window.innerWidth, h = window.innerHeight;
-      return [
-        { x: w * 0.12, y: h * 0.20 },
-        { x: w * 0.82, y: h * 0.18 },
-        { x: w * 0.18, y: h * 0.70 },
-        { x: w * 0.76, y: h * 0.72 },
-        { x: w * 0.48, y: h * 0.15 },
-        { x: w * 0.90, y: h * 0.50 },
-        { x: w * 0.08, y: h * 0.45 },
-        { x: w * 0.55, y: h * 0.85 }
-      ];
-    }
-
-    var startTime = performance.now();
-
-    function draw(now) {
-      if (!running) return;
-      var elapsedSec = (now - startTime) / 1000;
-      var t = (elapsedSec % 20) / 20;
-      var currentTime = t * 2 * Math.PI;
-
-      var w = window.innerWidth, h = window.innerHeight;
-      ctx.clearRect(0, 0, w, h);
-
-      var positions = particles.map(function (p) {
-        var dx = p.x + Math.sin(currentTime * p.speed + p.phase) * 25;
-        var dy = p.y + Math.cos(currentTime * p.speed + p.phase) * 35;
-        return {
-          x: Math.min(Math.max(dx, 0), w),
-          y: Math.min(Math.max(dy, 0), h)
-        };
-      });
-
-      ctx.lineWidth = 0.6;
-      for (var i = 0; i < positions.length; i++) {
-        for (var j = i + 1; j < positions.length; j++) {
-          var dxp = positions[i].x - positions[j].x;
-          var dyp = positions[i].y - positions[j].y;
-          var distance = Math.sqrt(dxp * dxp + dyp * dyp);
-          if (distance < 130) {
-            var opacity = (1 - distance / 130) * 0.18;
-            ctx.strokeStyle = 'rgba(' + accent.r + ',' + accent.g + ',' + accent.b + ',' + opacity + ')';
-            ctx.beginPath();
-            ctx.moveTo(positions[i].x, positions[i].y);
-            ctx.lineTo(positions[j].x, positions[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      for (var k = 0; k < positions.length; k++) {
-        var particle = particles[k];
-        var pos = positions[k];
-        var pulse = (Math.sin(currentTime * 1.5 + particle.phase) + 1) / 2;
-
-        ctx.save();
-        ctx.filter = 'blur(4px)';
-        ctx.fillStyle = 'rgba(' + accent.r + ',' + accent.g + ',' + accent.b + ',' + (0.04 + pulse * 0.05) + ')';
-        ctx.beginPath();
-        ctx.arc(pos.x, pos.y, particle.radius * 4, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-
-        ctx.fillStyle = 'rgba(' + accent.r + ',' + accent.g + ',' + accent.b + ',' + (0.25 + pulse * 0.3) + ')';
-        ctx.beginPath();
-        ctx.arc(pos.x, pos.y, particle.radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      var symPositions = symbolPositions();
-      for (var s = 0; s < symbols.length; s++) {
-        var floatY = Math.sin(currentTime * 0.8 + s) * 12;
-        var opacity2 = 0.035 + ((Math.sin(currentTime + s) + 1) / 2) * 0.025;
-        ctx.font = (18 + (s % 3) * 4) + 'px monospace';
-        ctx.fillStyle = 'rgba(' + accent.r + ',' + accent.g + ',' + accent.b + ',' + opacity2 + ')';
-        ctx.fillText(symbols[s], symPositions[s].x, symPositions[s].y + floatY);
-      }
-
-      if (running) requestAnimationFrame(draw);
-    }
-    requestAnimationFrame(draw);
-
-    window.addEventListener('flutter-first-frame', function () {
-      running = false;
-    });
-  })();
-
-  // ───── Typewriter + indeterminate progress bar (LoadingTextWidget) ─────
-  (function () {
-    var fullText = "Loading Portfolio...";
-    var el = document.getElementById('typewriter-text');
-    var progressWrap = document.getElementById('progress-wrap');
-    var durationMs = fullText.length * 80; // نفس معادلة الدارت: length * 80ms
-    var startTime = null;
-
-    function step(now) {
-      if (!startTime) startTime = now;
-      var elapsed = now - startTime;
-      var progress = Math.min(elapsed / durationMs, 1);
-      var visibleChars = Math.floor(progress * fullText.length);
-      el.textContent = fullText.substring(0, visibleChars);
-
-      if (progress < 1) {
-        requestAnimationFrame(step);
-      } else {
-        // خلص الكتابة -> يظهر شريط التحميل بـ fade (زي FadeTransition)
-        progressWrap.classList.add('visible');
-      }
-    }
-    requestAnimationFrame(step);
-  })();
-
-  window.addEventListener('flutter-first-frame', function () {
-    var splash = document.getElementById('splash');
-    splash.classList.add('fade-out');
-    setTimeout(function () {
-      splash.remove();
-    }, 400);
-  });
-</script>
-
 </body>
 </html>
+
