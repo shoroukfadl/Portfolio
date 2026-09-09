@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/Features/home/domain/entities/profile_entity.dart';
+import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
+import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Features/home/presentation/widgets/contact/contact_me_title.dart';
 import 'package:portfolio/Features/home/presentation/widgets/contact/soical_button.dart';
 import 'package:portfolio/Utilities/extensions.dart';
@@ -14,97 +18,89 @@ import '../../../data/models/social_model.dart';
 class ContactMeWidget extends StatelessWidget {
   const ContactMeWidget({
     super.key,
-    required this.linkedIN,
-    required this.github,
-    required this.email,
-    required this.phoneNumber,
-    required this.cv,
-    this.iconSize = 20,
     this.padding = desktopHozPadding,
   });
 
-  final String linkedIN;
-  final String github;
-  final String email;
-  final String phoneNumber;
-  final String cv;
-  final double iconSize;
   final double padding;
 
-  Future<void> _sendEmail() async {
+  Future<void> _sendEmail(String email) async {
     final Uri emailUri = Uri(scheme: 'mailto', path: email);
     if (await canLaunchUrl(emailUri)) {
       await launchUrl(emailUri);
     }
   }
 
-  List<SocialModel> _socialLinks(BuildContext context) => [
-        SocialModel(
-          title: 'Email',
-          icon: Portfolio.email,
-          onPressed: _sendEmail,
-        ),
-        SocialModel(
-          title: 'WhatsApp',
-          icon: Portfolio.phone,
-          onPressed: () => HelperFunctions.openWhatsApp(
-            phoneNumber: phoneNumber,
-            message: 'Hi',
+  List<SocialModel> _socialLinks(
+          BuildContext context, ProfileEntity? profile) =>
+      [
+        if (profile?.email != null)
+          SocialModel(
+            title: 'Email',
+            icon: Portfolio.email,
+            onPressed: () => _sendEmail(profile!.email!),
           ),
-        ),
-        SocialModel(
-          title: 'LinkedIN',
-          icon: Portfolio.linkedIn,
-          onPressed: () => HelperFunctions.openUrl(linkedIN, context),
-        ),
-        SocialModel(
-          title: 'Github',
-          icon: Portfolio.github,
-          onPressed: () => HelperFunctions.openUrl(github, context),
-        ),
-        SocialModel(
-          title: 'Resume',
-          icon: Portfolio.download,
-          onPressed: () => HelperFunctions.openUrl(cv, context),
-        ),
+        if (profile?.phone != null)
+          SocialModel(
+            title: 'WhatsApp',
+            icon: Portfolio.phone,
+            onPressed: () => HelperFunctions.openWhatsApp(
+              phoneNumber: profile!.phone!,
+              message: 'Hi',
+            ),
+          ),
+        if (profile?.linkedin != null)
+          SocialModel(
+            title: 'LinkedIN',
+            icon: Portfolio.linkedIn,
+            onPressed: () =>
+                HelperFunctions.openUrl(profile!.linkedin!, context),
+          ),
+        if (profile?.github != null)
+          SocialModel(
+            title: 'Github',
+            icon: Portfolio.github,
+            onPressed: () => HelperFunctions.openUrl(profile!.github!, context),
+          ),
+        if (profile?.cv != null)
+          SocialModel(
+            title: 'Resume',
+            icon: Portfolio.download,
+            onPressed: () => HelperFunctions.openUrl(profile!.cv!, context),
+          ),
       ];
-
-  List<Widget> _buildSocialButtons(BuildContext context) =>
-      _socialLinks(context)
-          .map((link) => SocialButtonWidget(
-                title: link.title,
-                icon: link.icon,
-                size: iconSize,
-                onPressed: link.onPressed,
-              ))
-          .toList();
 
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final maxWidth = MediaQuery.sizeOf(context).width;
-    final width = context.matchedSize(
-      large: maxWidth * 2 / 3,
-      medium: maxWidth * 3.2 / 4,
-      small: maxWidth,
-    );
-
-    return Column(
-      spacing: 32,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildCard(context, width),
-        Text(
-          '© ${DateTime.now().year} Shorouk Fadl. All rights reserved.',
-          style: AppTextStyles.l2(context: context, color: colors.text1),
-        ).paddingSymmetric(horizontal: padding),
-      ],
-    );
+    final width = HelperFunctions.getWidth(context);
+    return BlocSelector<PortfolioCubit, PortfolioState, ProfileEntity?>(
+        selector: (s) => s.data?.profile,
+        builder: (c, profile) {
+          return Column(
+            spacing: 32,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildCard(context, width, profile),
+              Text(
+                '© ${DateTime.now().year} Shorouk Fadl. All rights reserved.',
+                style: AppTextStyles.l2(context: context, color: colors.text1),
+              ).paddingSymmetric(horizontal: padding),
+            ],
+          );
+        });
   }
 
-  Widget _buildCard(BuildContext context, double width) {
+  Widget _buildCard(
+      BuildContext context, double width, ProfileEntity? profile) {
     final colors = context.colors;
-    final buttons = _buildSocialButtons(context);
+    final buttons = _socialLinks(context, profile)
+        .map((link) => SocialButtonWidget(
+              title: link.title,
+              icon: link.icon,
+              size: 20,
+              onPressed: link.onPressed,
+            ))
+        .toList();
 
     return Container(
       width: width,

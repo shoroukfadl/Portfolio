@@ -92,4 +92,10 @@ abstract class HelperFunctions {
       print('Error: $e');
     }
   }
+
+  static double getWidth(BuildContext context) {
+    final maxWidth = MediaQuery.sizeOf(context).width;
+    return context.matchedSize(
+        large: maxWidth * 2 / 3, medium: maxWidth * 3.2 / 4, small: maxWidth);
+  }
 }

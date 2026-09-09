@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Utilities/helper_function.dart';
 import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 import 'package:portfolio/Widgets/Custom/top_line_animated_card.dart';
 import 'package:portfolio/Widgets/Portfilio/point_text.dart';
@@ -17,13 +18,8 @@ class ExperienceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final maxWidth = MediaQuery.sizeOf(context).width;
     final space = context.matchedSize(large: 32, medium: 24, small: 16);
-    final width = context.matchedSize(
-      large: maxWidth * 2 / 3,
-      medium: maxWidth * 3.2 / 4,
-      small: maxWidth,
-    );
+    final width = HelperFunctions.getWidth(context);
 
     return Align(
       alignment: AlignmentDirectional.centerStart,

@@ -5,15 +5,17 @@ import 'package:portfolio/Features/home/presentation/widgets/project/newCard/pro
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Custom/card_with_floating_title.dart';
 
-class ProjectsFrame extends StatelessWidget {
-  const ProjectsFrame({
+class ProjectItemWidget extends StatelessWidget {
+  const ProjectItemWidget({
     super.key,
     this.index = 0,
     required this.project,
+    required this.width,
   });
 
   final ProjectEntity project;
   final int index;
+  final double width;
 
   static const _mobilePreviewSize = Size(72, 140);
   static const _webPreviewSize = Size(200, 140);
@@ -23,9 +25,11 @@ class ProjectsFrame extends StatelessWidget {
     return AnimatedGlowWidget(
       paddingHoz: 0,
       paddingVert: 0,
+      width: width,
       cardColor: context.colors.card,
       child: (h) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 8,
           children: [
             _imageWidget(h),

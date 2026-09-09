@@ -1,23 +1,19 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
+import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Animation/animated_counter.dart';
 
 class StatItem extends StatelessWidget {
   final Stat item;
   final BorderRadiusGeometry borderRadius;
 
-  final TextStyle? numStyle, titleStyle;
-
-  const StatItem(
-      {required this.item,
-      this.numStyle,
-      this.titleStyle,
-      required this.borderRadius,
-      super.key});
+  const StatItem({required this.item, required this.borderRadius, super.key});
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
     return AnimatedBorderCard(
       borderRadius: borderRadius,
       borderWidth: 1.5,
@@ -32,14 +28,20 @@ class StatItem extends StatelessWidget {
             AnimatedCounter(
               targetNumber: item.value ?? 0.0,
               subtitle: item.subTitle,
-              style: numStyle,
+              style: AppTextStyles.h3(
+                context: context,
+                color: colors.accent,
+              ),
               hasDigits: item.hasDigit,
               sign: item.sign,
             ),
             const SizedBox(height: 6),
             Text(
               item.name?.toUpperCase() ?? "",
-              style: titleStyle,
+              style: AppTextStyles.h5(
+                context: context,
+                color: colors.text3,
+              ),
             ),
           ],
         ),

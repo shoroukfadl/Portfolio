@@ -37,10 +37,10 @@ void main() async {
   setPathUrlStrategy();
 
   runApp(MultiBlocProvider(providers: [
-    BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()..getCurrentTheme()),
-    BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
     BlocProvider<PortfolioCubit>(
         create: (_) => sl<PortfolioCubit>()..getData()),
+    BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()..getCurrentTheme()),
+    BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
   ], child: const EntryPoint()));
 }
 
@@ -56,7 +56,6 @@ class _EntryPointState extends State<EntryPoint> {
   Widget build(BuildContext context) {
     final appLan = context.watch<AppLanguage>();
     final bool isArabic = appLan.appLang.name == 'ar';
-
     return BlocBuilder<ThemeCubit, ThemeState>(
       builder: (context, themeState) {
         final bool isDark = themeState.isDark;

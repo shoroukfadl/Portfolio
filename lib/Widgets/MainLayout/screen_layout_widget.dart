@@ -65,9 +65,10 @@ class _ScreenLayoutWidgetState extends State<ScreenLayoutWidget> {
       thumbVisibility: true,
       trackVisibility: true,
       controller: _scrollController,
-      child: CustomScrollView(controller: _scrollController, slivers: [
-        ...widget.children,
-      ]),
+      child: CustomScrollView(
+        controller: _scrollController,
+        slivers: widget.children,
+      ),
     );
   }
 }

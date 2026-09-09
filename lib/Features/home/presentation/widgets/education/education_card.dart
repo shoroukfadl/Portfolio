@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/domain/entities/education_entity.dart';
 import 'package:portfolio/Utilities/extensions.dart';
+import 'package:portfolio/Utilities/helper_function.dart';
 import 'package:portfolio/Widgets/Custom/card_with_text.dart';
 import 'package:portfolio/Widgets/Custom/top_line_animated_card.dart';
 import 'package:portfolio/Widgets/Portfilio/point_text.dart';
@@ -18,21 +19,17 @@ class EducationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final maxWidth = MediaQuery.sizeOf(context).width;
-    final width = context.matchedSize(
-      large: maxWidth * 2 / 3,
-      medium: maxWidth * 3.2 / 4,
-      small: maxWidth,
-    );
-
-    return TopLineCardWidget(
-      width: width,
-      paddingHoz: 32,
-      paddingVert: 32,
-      child: (h) => Padding(
-        padding: EdgeInsets.only(bottom: isLast ? 0 : 24),
-        child: Column(
+    final width = HelperFunctions.getWidth(context);
+    return Align(
+      alignment: AlignmentDirectional.centerStart,
+      child: TopLineCardWidget(
+        width: width,
+        key: ValueKey('education-0'),
+        paddingHoz: 32,
+        paddingVert: 32,
+        child: (h) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             _buildHeader(context),
             8.0.heightBox,

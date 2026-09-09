@@ -49,7 +49,6 @@ class PortfolioState extends Equatable {
         loading: RequestStatus.init,
       );
     } catch (e) {
-      print('❌ fromJson error: $e');
       return PortfolioState.init();
     }
   }

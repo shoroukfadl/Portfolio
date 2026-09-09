@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/Core/Layout/layout_handler.dart';
+import 'package:portfolio/Utilities/Constants/enums.dart';
 
 import 'Layouts/l_home_view.dart';
 import 'Layouts/m_home_view.dart';
 import 'Layouts/s_home_view.dart';
 
 class HomeView extends StatefulWidget {
-  static String routeName = "/";
+  static String routeName = ScreenRoutes.home.name;
 
   const HomeView({
     super.key,

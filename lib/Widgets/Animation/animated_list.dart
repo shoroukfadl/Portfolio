@@ -106,9 +106,7 @@ class AnimatedGridView<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+    return SliverGrid.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: perRow,
         mainAxisSpacing: vertSpace,
@@ -116,6 +114,7 @@ class AnimatedGridView<T> extends StatelessWidget {
         mainAxisExtent: mainAxisExtent,
       ),
       itemCount: items.length,
+      addRepaintBoundaries: true,
       itemBuilder: (context, index) {
         return ScrollReveal(
           offset: 20,

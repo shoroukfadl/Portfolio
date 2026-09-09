@@ -1,26 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/Core/Language/app_styles.dart';
 import 'package:portfolio/Features/home/presentation/widgets/summary/role.dart';
 import 'package:portfolio/Utilities/extensions.dart';
-import 'package:portfolio/Widgets/Animation/Summary/number_card_item.dart';
 
 import '../../../../../Widgets/Portfilio/stat_widget.dart';
 
 class SummaryContent extends StatefulWidget {
-  final String firstName, lastName, location, role, summary, cv, email;
-  final double projectNumber, experince;
-
   const SummaryContent({
     super.key,
-    required this.firstName,
-    required this.role,
-    required this.summary,
-    required this.lastName,
-    required this.cv,
-    required this.email,
-    required this.experince,
-    required this.projectNumber,
-    required this.location,
   });
 
   @override
@@ -31,9 +17,10 @@ class _SummaryContentState extends State<SummaryContent>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
-  late final Animation<double> _roleAnimation;
-  late final Animation<double> _nameAnimation;
-  late final Animation<double> _summaryAnimation;
+  late final Animation<double> _roleAnim;
+  late final Animation<double> _nameAnim;
+  late final Animation<double> _summaryAnim;
+  late final Animation<double> _statsAnim;
 
   @override
   void initState() {
@@ -41,10 +28,10 @@ class _SummaryContentState extends State<SummaryContent>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(milliseconds: 1000),
     );
 
-    _roleAnimation = CurvedAnimation(
+    _roleAnim = CurvedAnimation(
       parent: _controller,
       curve: const Interval(
         0.00,
@@ -53,20 +40,29 @@ class _SummaryContentState extends State<SummaryContent>
       ),
     );
 
-    _nameAnimation = CurvedAnimation(
+    _nameAnim = CurvedAnimation(
       parent: _controller,
       curve: const Interval(
-        0.30,
-        0.55,
+        0.18,
+        0.43,
         curve: Curves.easeOutCubic,
       ),
     );
 
-    _summaryAnimation = CurvedAnimation(
+    _summaryAnim = CurvedAnimation(
       parent: _controller,
       curve: const Interval(
-        0.60,
-        0.85,
+        0.36,
+        0.68,
+        curve: Curves.easeOutCubic,
+      ),
+    );
+
+    _statsAnim = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(
+        0.62,
+        1.00,
         curve: Curves.easeOutCubic,
       ),
     );
@@ -83,23 +79,32 @@ class _SummaryContentState extends State<SummaryContent>
   Widget _animatedItem({
     required Animation<double> animation,
     required Widget child,
-    double offset = 20,
+    double offset = 12,
   }) {
-    return FadeTransition(
-      opacity: animation,
-      child: SlideTransition(
-        position: Tween<Offset>(
-          begin: Offset(0, offset / 100),
-          end: Offset.zero,
-        ).animate(animation),
+    return RepaintBoundary(
+      child: AnimatedBuilder(
+        animation: animation,
         child: child,
+        builder: (context, child) {
+          final value = animation.value;
+
+          return Opacity(
+            opacity: value,
+            child: Transform.translate(
+              offset: Offset(
+                0,
+                (1 - value) * offset,
+              ),
+              child: child,
+            ),
+          );
+        },
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.colors;
     final maxWidth = MediaQuery.sizeOf(context).width;
 
     final width = context.matchedSize(
@@ -116,92 +121,41 @@ class _SummaryContentState extends State<SummaryContent>
 
         // Role
         _animatedItem(
-          animation: _roleAnimation,
-          child: RoleWidget(
-            location: widget.location,
-            role: widget.role,
-          ),
+          animation: _roleAnim,
+          offset: 10,
+          child: const RoleWidget(),
         ),
 
         8.0.heightBox,
 
         // Name
         _animatedItem(
-          animation: _nameAnimation,
-          offset: 24,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.firstName,
-                style: AppTextStyles.h1(
-                  context: context,
-                  color: colors.text1,
-                ),
-              ),
-              Text(
-                widget.lastName,
-                style: AppTextStyles.h1(
-                  context: context,
-                  color: colors.secondary,
-                ),
-              ),
-            ],
-          ),
+          animation: _nameAnim,
+          offset: 14,
+          child: const NameWidget(),
         ),
 
-        const SizedBox(height: 24),
+        24.0.heightBox,
 
         // Summary
         _animatedItem(
-          animation: _summaryAnimation,
-          offset: 18,
+          animation: _summaryAnim,
+          offset: 12,
           child: SizedBox(
             width: width,
-            child: Text(
-              widget.summary,
-              style: AppTextStyles.b1(
-                context: context,
-                color: colors.text2,
-              ),
-            ),
+            child: const SummaryWidget(),
           ),
         ),
 
         const SizedBox(height: 40),
 
         // Stats
-        SizedBox(
-          width: context.isLarge
-              ? maxWidth * 1 / 2
-              : context.isMedium
-                  ? maxWidth * 2 / 3
-                  : null,
-          child: StatsRow(
-            numStyle: AppTextStyles.h3(
-              context: context,
-              color: colors.accent,
-            ),
-            titleStyle: AppTextStyles.h5(
-              context: context,
-              color: colors.text3,
-            ),
-            items: [
-              Stat(
-                value: widget.experince,
-                name: 'YEARS SHIPPING',
-                hasDigit: true,
-                sign: '+',
-              ),
-              Stat(
-                value: widget.projectNumber,
-                name: 'PRODUCTION APPS',
-              ),
-              const Stat(
-                value: 3,
-                name: 'PLATFORMS',
-              ),
-            ],
+        _animatedItem(
+          animation: _statsAnim,
+          offset: 10,
+          child: SizedBox(
+            width: width,
+            child: const StatsRow(),
           ),
         ),
       ],

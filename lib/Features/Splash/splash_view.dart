@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
+import 'package:portfolio/Features/home/presentation/pages/home_view.dart';
+import 'package:portfolio/Utilities/Constants/enums.dart';
 import 'package:portfolio/Widgets/Portfilio/animated_background.dart';
 
 import '../../../../Utilities/extensions.dart';
@@ -23,7 +26,11 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return BlocListener<PortfolioCubit, PortfolioState>(
-        listener: (c, state) {},
+        listener: (c, state) {
+          if (state.data != null && state.loading == RequestStatus.success) {
+            context.goNamed(HomeView.routeName);
+          }
+        },
         listenWhen: (p, n) => p.loading != n.loading,
         child: Scaffold(
           backgroundColor: colors.background,

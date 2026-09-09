@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
-import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Features/home/presentation/widgets/contact/contact_me.dart';
 import 'package:portfolio/Features/home/presentation/widgets/education/education_widget.dart';
 import 'package:portfolio/Features/home/presentation/widgets/experince/experince_card_widget.dart';
 import 'package:portfolio/Features/home/presentation/widgets/project/my_projects_widget.dart';
+import 'package:portfolio/Utilities/Constants/constants.dart';
+import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
-import '../../../../../Utilities/Constants/constants.dart';
-import '../../../../../Utilities/extensions.dart';
 import '../../widgets/skills/my_skills.dart';
 import '../../widgets/summary/summary_section.dart';
 
@@ -24,72 +21,35 @@ class LargeHomeView extends StatelessWidget {
       children: [
         /// about
         SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              builder: (context, s) {
-            return SummarySection(
-              profile: s.data?.profile,
-              projectProductionNumber: s.projectLEN,
-              experience: s.experience,
-            );
-          }),
+          child: const SummarySection(),
         ),
 
         SliverToBoxAdapter(child: largeSectionSpacing.heightBox),
 
         /// skills
-        SliverToBoxAdapter(
-            child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                buildWhen: (c, p) => p.data?.skills != c.data?.skills,
-                builder: (context, s) {
-                  return SkillsSection(
-                    skills: s.data?.skills ?? [],
-                  );
-                })),
+
+        const SkillsSection(),
 
         SliverToBoxAdapter(child: largeSectionSpacing.heightBox),
 
         /// experince
-        SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              buildWhen: (c, p) => p.data?.experience != c.data?.experience,
-              builder: (context, s) {
-                return ExperienceSection(
-                  experiences: s.data?.experience ?? [],
-                );
-              }),
-        ),
+        const ExperienceSection(),
         SliverToBoxAdapter(child: largeSectionSpacing.heightBox),
 
-        /// Projects
-        SliverToBoxAdapter(
-            child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                buildWhen: (c, p) => p.data?.projects != c.data?.projects,
-                builder: (c, s) => MyProjectsWidget(
-                      projects: s.data?.projects ?? [],
-                    ))),
+        // /// Projects
+        const MyProjectsWidget(),
+
         SliverToBoxAdapter(child: largeSectionSpacing.heightBox),
 
         /// education
-        SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              buildWhen: (c, p) => p.data?.education != c.data?.education,
-              builder: (c, s) =>
-                  EducationSection(education: s.data?.education.firstOrNull)),
-        ),
+
+        const EducationSection(),
 
         SliverToBoxAdapter(child: largeSectionSpacing.heightBox),
 
-        /// Contact
-        SliverToBoxAdapter(
-            child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                buildWhen: (c, p) => p.data?.profile != c.data?.profile,
-                builder: (c, s) => ContactMeWidget(
-                      email: s.data?.profile?.email ?? "",
-                      linkedIN: s.data?.profile?.linkedin ?? "",
-                      phoneNumber: s.data?.profile?.phone ?? "",
-                      github: s.data?.profile?.github ?? "",
-                      cv: s.data?.profile?.cv ?? "",
-                    ))),
+        const SliverToBoxAdapter(
+          child: ContactMeWidget(),
+        ),
         SliverToBoxAdapter(child: 16.0.heightBox),
       ],
     );

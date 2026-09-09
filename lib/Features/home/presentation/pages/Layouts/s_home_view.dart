@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
-import 'package:portfolio/Features/home/presentation/cubit/state.dart';
+import 'package:portfolio/Features/home/presentation/widgets/skills/my_skills.dart';
 import 'package:portfolio/Widgets/MainLayout/screen_layout_widget.dart';
 
 import '../../../../../Utilities/Constants/constants.dart';
@@ -10,7 +8,6 @@ import '../../widgets/contact/contact_me.dart';
 import '../../widgets/education/education_widget.dart';
 import '../../widgets/experince/experince_card_widget.dart';
 import '../../widgets/project/my_projects_widget.dart';
-import '../../widgets/skills/my_skills.dart';
 import '../../widgets/summary/summary_section.dart';
 
 class SmallHomeView extends StatelessWidget {
@@ -24,82 +21,49 @@ class SmallHomeView extends StatelessWidget {
       children: [
         /// about
         SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              buildWhen: (c, p) => p.data?.profile != c.data?.profile,
-              builder: (context, s) {
-                return SummarySection(
-                  experience: s.experience,
-                  profile: s.data?.profile,
-                  padding: mobileHozPadding,
-                  projectProductionNumber:
-                      (s.data?.projects.length ?? 0).toDouble(),
-                );
-              }),
+          child: const SummarySection(
+            padding: mobileHozPadding,
+          ),
         ),
 
         SliverToBoxAdapter(child: smallSectionSpacing.heightBox),
 
         /// skills
-        SliverToBoxAdapter(
-            child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                buildWhen: (c, p) => p.data?.skills != c.data?.skills,
-                builder: (context, s) {
-                  return SkillsSection(
-                    padding: mobileHozPadding,
-                    vertSpacing: 24,
-                    mainAxisExtent: 110,
-                    perRow: 1,
-                    skills: s.data?.skills ?? [],
-                  );
-                })),
+        const SkillsSection(
+          padding: mobileHozPadding,
+          vertSpacing: 24,
+        ),
 
         SliverToBoxAdapter(child: smallSectionSpacing.heightBox),
 
         /// experince
-        SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              buildWhen: (c, p) => p.data?.experience != c.data?.experience,
-              builder: (context, s) {
-                return ExperienceSection(
-                  padding: mobileHozPadding,
-                  experiences: s.data?.experience ?? [],
-                );
-              }),
+        const ExperienceSection(
+          padding: mobileHozPadding,
         ),
+
         SliverToBoxAdapter(child: smallSectionSpacing.heightBox),
 
         /// Projects
-        SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              buildWhen: (c, p) => p.data?.projects != c.data?.projects,
-              builder: (c, s) => MyProjectsWidget(
-                    padding: mobileHozPadding,
-                    perRow: 1,
-                    projects: s.data?.projects ?? [],
-                  )),
+        const MyProjectsWidget(
+          padding: mobileHozPadding,
+          perRow: 1,
         ),
+
+        SliverToBoxAdapter(child: smallSectionSpacing.heightBox),
 
         /// education
-        SliverToBoxAdapter(
-          child: BlocBuilder<PortfolioCubit, PortfolioState>(
-              buildWhen: (c, p) => p.data?.education != c.data?.education,
-              builder: (c, s) => EducationSection(
-                  padding: mobileHozPadding,
-                  education: s.data?.education.firstOrNull)),
+        const EducationSection(
+          padding: mobileHozPadding,
         ),
 
+        SliverToBoxAdapter(child: smallSectionSpacing.heightBox),
+
         /// Contact
-        SliverToBoxAdapter(
-            child: BlocBuilder<PortfolioCubit, PortfolioState>(
-                buildWhen: (c, p) => p.data?.profile != c.data?.profile,
-                builder: (c, s) => ContactMeWidget(
-                      email: s.data?.profile?.email ?? "",
-                      linkedIN: s.data?.profile?.linkedin ?? "",
-                      phoneNumber: s.data?.profile?.phone ?? "",
-                      github: s.data?.profile?.github ?? "",
-                      cv: s.data?.profile?.cv ?? "",
-                      padding: mobileHozPadding,
-                    ))),
+        const SliverToBoxAdapter(
+          child: ContactMeWidget(
+            padding: mobileHozPadding,
+          ),
+        ),
         SliverToBoxAdapter(child: 16.0.heightBox),
       ],
     );

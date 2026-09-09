@@ -53,7 +53,7 @@ class ProjectContentWidget extends StatelessWidget {
           maxLines: 2,
         ).expand,
         CardWithText(
-          text: project.projectType ?? '',
+          text: project.projectType?.toLowerCase() ?? '',
           style: AppTextStyles.l3(context: context, color: typeColor),
           borderColor: typeColor.withValues(alpha: 0.1),
           color: typeColor.withValues(alpha: 0.1),
