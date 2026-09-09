@@ -48,26 +48,29 @@ class SkillsSection extends StatelessWidget {
                     List<TechnicalSkillEntity>>(
                 selector: (state) => state.data?.skills ?? [],
                 builder: (c, skills) => SliverToBoxAdapter(
-                      child: ShadowHoverCardWidget(
-                          cardColor: colors.card,
-                          borderColor: colors.border,
-                          paddingHoz: 0,
-                          width: width,
-                          paddingVert: 0,
-                          child: (h) => Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: List.generate(
-                                skills.length,
-                                (index) {
-                                  return CustomSlideAnimationWidget(
-                                      key: ValueKey('skill-$index'),
-                                      index: index,
-                                      child: SkillCard(
-                                        skill: skills[index],
-                                        isLast: index == skills.length - 1,
-                                      ));
-                                },
-                              ))),
+                      child: Align(
+                        alignment: AlignmentDirectional.topStart,
+                        child: ShadowHoverCardWidget(
+                            cardColor: colors.card,
+                            borderColor: colors.border,
+                            paddingHoz: 0,
+                            width: width,
+                            paddingVert: 0,
+                            child: (h) => Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: List.generate(
+                                  skills.length,
+                                  (index) {
+                                    return CustomSlideAnimationWidget(
+                                        key: ValueKey('skill-$index'),
+                                        index: index,
+                                        child: SkillCard(
+                                          skill: skills[index],
+                                          isLast: index == skills.length - 1,
+                                        ));
+                                  },
+                                ))),
+                      ),
                     ))
           ],
         ));
