@@ -76,12 +76,6 @@ class MenuSideWidget extends StatelessWidget {
             key: GlobalKeys.education,
             title: Strings.education.translate,
             icon: Portfolio.education),
-        sectionsWidget(
-          section: HomeSection.contact,
-          key: GlobalKeys.contactMe,
-          title: Strings.contactMe.translate,
-          icon: Portfolio.contact,
-        ),
       ];
 
   Widget sectionsWidget({

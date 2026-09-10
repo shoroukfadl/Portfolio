@@ -52,12 +52,6 @@ class BottomNavigationBarWidget extends StatelessWidget {
       title: Strings.education.translate,
       icon: Portfolio.education,
     ),
-    _NavItemData(
-      section: HomeSection.contact,
-      sectionKey: GlobalKeys.contactMe,
-      title: Strings.contactMe.translate,
-      icon: Portfolio.contact,
-    ),
   ];
 
   void _onItemTap(BuildContext context, _NavItemData item) {

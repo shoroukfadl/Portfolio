@@ -97,6 +97,7 @@ class _EntryPointState extends State<EntryPoint> {
             scrollBehavior: MyCustomScrollBehavior(),
             routerConfig: GoRouterConfig.router,
             theme: currentTheme,
+            themeAnimationCurve: Curves.easeInOut,
             themeAnimationDuration: Duration(milliseconds: 300),
             themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
             debugShowCheckedModeBanner: false,
