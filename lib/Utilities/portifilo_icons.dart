@@ -13,6 +13,7 @@ class Portfolio {
 
   static const String _fontFamily = 'portifilo';
 
+  static const IconData contact = IconData(0xf002, fontFamily: _fontFamily);
   static const IconData education = IconData(0xf017, fontFamily: _fontFamily);
   static const IconData skills = IconData(0xf014, fontFamily: _fontFamily);
   static const IconData summary = IconData(0xf00d, fontFamily: _fontFamily);

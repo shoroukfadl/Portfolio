@@ -18,6 +18,9 @@ class NameAppBar extends StatelessWidget {
             c.data?.profile?.lastName != p.data?.profile?.lastName,
         builder: (context, state) {
           final profile = state.data?.profile;
+          final name =
+              "${(profile?.firstName) == null ? "" : (profile!.firstName!).substring(0, 1)}${(profile?.lastName) == null ? "" : (profile!.lastName!).substring(0, 1)}.";
+
           return Card(
             color: colors.secondary,
             shape: RoundedRectangleBorder(
@@ -26,7 +29,7 @@ class NameAppBar extends StatelessWidget {
             child: Padding(
                 padding: EdgeInsetsGeometry.all(8),
                 child: Text(
-                  "${(profile?.firstName) == null ? "" : (profile!.firstName!).substring(0, 1)}${(profile?.lastName) == null ? "" : (profile!.lastName!).substring(0, 1)}.",
+                  name,
                   style: AppTextStyles.hc3(
                     context: context,
                     color: colors.secondarySoft,

@@ -24,6 +24,7 @@ class EducationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final space = context.matchedSize(large: 32, medium: 24, small: 20);
     return SliverPadding(
+        key: GlobalKeys.education,
         padding: EdgeInsetsGeometry.symmetric(horizontal: padding),
         sliver: SliverMainAxisGroup(
           slivers: [
@@ -31,15 +32,16 @@ class EducationSection extends StatelessWidget {
                 child: SectionsTitleWidget(
               index: 4,
               title: Strings.education.translate,
-              key: GlobalKeys.education,
             )),
             SliverToBoxAdapter(child: space.heightBox),
             SliverToBoxAdapter(
                 child: BlocSelector<PortfolioCubit, PortfolioState,
                     EducationEntity?>(
               selector: (state) => state.data?.education.firstOrNull,
-              builder: (context, education) => CustomTimelineAnimationWidget(
+              builder: (context, education) => ScrollReveal(
                   index: 0,
+                  offset: 20,
+                  axis: Axis.horizontal,
                   child: EducationCard(
                     item: education,
                     isLast: true,

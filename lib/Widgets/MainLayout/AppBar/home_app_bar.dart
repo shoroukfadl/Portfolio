@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:portfolio/Utilities/Constants/constants.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Utilities/portifilo_icons.dart';
@@ -23,33 +24,38 @@ class MenuSideWidget extends StatelessWidget {
 
     return Container(
       width: size,
-      padding: EdgeInsetsDirectional.symmetric(horizontal: 8),
+      padding: EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 24),
       decoration: BoxDecoration(
           color: colors.card,
           border: Border(
               right: BorderSide(
             color: colors.border,
           ))),
-      child: Column(
-        children: [
-          16.0.heightBox,
-          const NameAppBar(),
-          const Spacer(),
-          ...paths,
-          const Spacer(),
-          const ThemeButton(),
-          16.0.heightBox
-        ],
+      child: AnimationLimiter(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: AnimationConfiguration.toStaggeredList(
+            duration: const Duration(milliseconds: 400),
+            delay: const Duration(milliseconds: 100),
+            childAnimationBuilder: (widget) => SlideAnimation(
+              verticalOffset: 24.0,
+              child: FadeInAnimation(child: widget),
+            ),
+            children: [
+              const NameAppBar(),
+              Column(
+                spacing: 16,
+                children: paths,
+              ),
+              const ThemeButton(),
+            ],
+          ),
+        ),
       ),
     );
   }
 
   List<Widget> get paths => [
-        sectionsWidget(
-            section: HomeSection.about,
-            key: GlobalKeys.aboutMe,
-            title: Strings.aboutMe.translate,
-            icon: Portfolio.summary),
         sectionsWidget(
             section: HomeSection.skills,
             key: GlobalKeys.skill,
@@ -70,6 +76,12 @@ class MenuSideWidget extends StatelessWidget {
             key: GlobalKeys.education,
             title: Strings.education.translate,
             icon: Portfolio.education),
+        sectionsWidget(
+          section: HomeSection.contact,
+          key: GlobalKeys.contactMe,
+          title: Strings.contactMe.translate,
+          icon: Portfolio.contact,
+        ),
       ];
 
   Widget sectionsWidget({
@@ -104,10 +116,20 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      const NameAppBar(),
-      const Spacer(),
-      const ThemeButton(),
-    ]).paddingSymmetric(vertical: 0, horizontal: mobileHozPadding);
+    return AnimationLimiter(
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: AnimationConfiguration.toStaggeredList(
+                    duration: const Duration(milliseconds: 400),
+                    delay: const Duration(milliseconds: 100),
+                    childAnimationBuilder: (widget) => SlideAnimation(
+                          horizontalOffset: 24.0,
+                          child: FadeInAnimation(child: widget),
+                        ),
+                    children: [
+                      const NameAppBar(),
+                      const ThemeButton(),
+                    ])))
+        .paddingSymmetric(vertical: 24, horizontal: mobileHozPadding);
   }
 }

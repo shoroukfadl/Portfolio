@@ -29,12 +29,6 @@ class BottomNavigationBarWidget extends StatelessWidget {
 
   static final List<_NavItemData> _items = [
     _NavItemData(
-      section: HomeSection.about,
-      sectionKey: GlobalKeys.aboutMe,
-      title: Strings.aboutMe.translate,
-      icon: Portfolio.summary,
-    ),
-    _NavItemData(
       section: HomeSection.skills,
       sectionKey: GlobalKeys.skill,
       title: Strings.mySkill.translate,
@@ -57,6 +51,12 @@ class BottomNavigationBarWidget extends StatelessWidget {
       sectionKey: GlobalKeys.education,
       title: Strings.education.translate,
       icon: Portfolio.education,
+    ),
+    _NavItemData(
+      section: HomeSection.contact,
+      sectionKey: GlobalKeys.contactMe,
+      title: Strings.contactMe.translate,
+      icon: Portfolio.contact,
     ),
   ];
 

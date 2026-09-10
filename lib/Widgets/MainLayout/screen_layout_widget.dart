@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:portfolio/Widgets/MainLayout/Home/home_button.dart';
 
 import '../../Features/home/presentation/cubit/cubit.dart';
 import '../../Utilities/Constants/enums.dart';
@@ -48,9 +49,12 @@ class _ScreenLayoutWidgetState extends State<ScreenLayoutWidget> {
 
       if (ctx == null) continue;
 
-      final box = ctx.findRenderObject() as RenderBox;
+      final renderObject = ctx.findRenderObject();
 
-      final position = box.localToGlobal(Offset.zero).dy;
+      if (renderObject == null) continue;
+
+      final transform = renderObject.getTransformTo(null);
+      final position = MatrixUtils.transformPoint(transform, Offset.zero).dy;
 
       if (position > 0 && position < 250) {
         cubit.changeSection(entry.key);
@@ -61,14 +65,21 @@ class _ScreenLayoutWidgetState extends State<ScreenLayoutWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return RawScrollbar(
-      thumbVisibility: true,
-      trackVisibility: true,
-      controller: _scrollController,
-      child: CustomScrollView(
-        controller: _scrollController,
-        slivers: widget.children,
-      ),
+    return Stack(
+      children: [
+        RawScrollbar(
+          thumbVisibility: true,
+          trackVisibility: true,
+          controller: _scrollController,
+          child: CustomScrollView(
+            controller: _scrollController,
+            slivers: widget.children,
+          ),
+        ),
+        FloatingScrollToTop(
+          controller: _scrollController,
+        ),
+      ],
     );
   }
 }

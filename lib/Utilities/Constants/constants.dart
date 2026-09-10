@@ -20,4 +20,4 @@ const largeCardWidth = 200.0;
 
 const smallSectionSpacing = 40.0;
 const mediumSectionSpacing = 60.0;
-const largeSectionSpacing = 80.0;
+const largeSectionSpacing = 160.0;

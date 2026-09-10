@@ -24,6 +24,7 @@ class ExperienceSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final space = context.matchedSize(large: 32, medium: 24, small: 20);
     return SliverPadding(
+      key: GlobalKeys.experince,
       padding: EdgeInsetsGeometry.symmetric(horizontal: padding),
       sliver: SliverMainAxisGroup(
         slivers: [
@@ -31,7 +32,6 @@ class ExperienceSection extends StatelessWidget {
               child: SectionsTitleWidget(
             index: 2,
             title: Strings.experience.translate,
-            key: GlobalKeys.experince,
           )),
           SliverToBoxAdapter(child: space.heightBox),
           BlocSelector<PortfolioCubit, PortfolioState, List<ExperienceEntity>>(
@@ -43,9 +43,10 @@ class ExperienceSection extends StatelessWidget {
                   separatorBuilder: (ctx, index) => SizedBox(
                     height: index == experiences.length - 1 ? 0 : 24,
                   ),
-                  itemBuilder: (ctx, index) => CustomTimelineAnimationWidget(
-                    key: ValueKey('experience-$index'),
+                  itemBuilder: (ctx, index) => ScrollReveal(
+                    axis: Axis.horizontal,
                     index: index,
+                    offset: 8,
                     child: ExperienceCard(
                       item: experiences[index],
                     ),

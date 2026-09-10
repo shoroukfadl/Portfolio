@@ -32,6 +32,7 @@ class MyProjectsWidget extends StatelessWidget {
     final rowWidth = HelperFunctions.getWidth(context);
     final width = (rowWidth / perRow) - itemSpace;
     return SliverPadding(
+      key: GlobalKeys.projects,
       padding: EdgeInsetsGeometry.symmetric(horizontal: padding),
       sliver: SliverMainAxisGroup(
         slivers: [
@@ -39,7 +40,6 @@ class MyProjectsWidget extends StatelessWidget {
               child: SectionsTitleWidget(
             index: 3,
             title: Strings.projects.translate,
-            key: GlobalKeys.projects,
           )),
           SliverToBoxAdapter(child: space.heightBox),
           BlocSelector<PortfolioCubit, PortfolioState, List<ProjectEntity>>(

@@ -5,6 +5,7 @@ import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Features/home/presentation/widgets/contact/contact_me_title.dart';
 import 'package:portfolio/Features/home/presentation/widgets/contact/soical_button.dart';
+import 'package:portfolio/Utilities/Constants/global_keys.dart';
 import 'package:portfolio/Utilities/extensions.dart';
 import 'package:portfolio/Widgets/Animation/animated_list.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -77,6 +78,7 @@ class ContactMeWidget extends StatelessWidget {
         selector: (s) => s.data?.profile,
         builder: (c, profile) {
           return Column(
+            key: GlobalKeys.contactMe,
             spacing: 32,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -124,8 +126,9 @@ class ContactMeWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 16,
                   children: buttons
-                      .map((e) => CustomSlideAnimationWidget(
-                            key: ValueKey('Button-${buttons.indexOf(e)}'),
+                      .map((e) => ScrollReveal(
+                            axis: Axis.horizontal,
+                            offset: 8,
                             index: buttons.indexOf(e),
                             child: e,
                           ))
@@ -142,8 +145,9 @@ class ContactMeWidget extends StatelessWidget {
                   spacing: 16,
                   runSpacing: 16,
                   children: buttons
-                      .map((e) => CustomSlideAnimationWidget(
-                            key: ValueKey('Button-${buttons.indexOf(e)}'),
+                      .map((e) => ScrollReveal(
+                            axis: Axis.horizontal,
+                            offset: 8,
                             index: buttons.indexOf(e),
                             child: e,
                           ))
