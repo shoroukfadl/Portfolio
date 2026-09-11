@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:portfolio/Features/Splash/splash_view.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -22,26 +23,85 @@ import 'Utilities/app_themes.dart';
 import 'Utilities/git_it.dart';
 import 'Utilities/router_config.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await Supabase.initialize(
-      url: SupabaseConfig.url, anonKey: SupabaseConfig.anonKey);
-  HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: kIsWeb
-        ? HydratedStorageDirectory.web
-        : HydratedStorageDirectory(
-            (await getTemporaryDirectory()).path,
-          ),
-  );
-  await GitIt.initGitIt();
   setPathUrlStrategy();
 
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider<PortfolioCubit>(
-        create: (_) => sl<PortfolioCubit>()..getData()),
-    BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()..getCurrentTheme()),
-    BlocProvider<AppLanguage>(create: (_) => AppLanguage()),
-  ], child: const EntryPoint()));
+  runApp(const AppMiddleware());
+}
+
+class AppMiddleware extends StatefulWidget {
+  const AppMiddleware({super.key});
+
+  @override
+  State<AppMiddleware> createState() => _AppMiddlewareState();
+}
+
+class _AppMiddlewareState extends State<AppMiddleware> {
+  late final Future<void> _initialization;
+
+  @override
+  void initState() {
+    super.initState();
+    _initialization = _initialize();
+  }
+
+  Future<void> _initialize() async {
+    await Supabase.initialize(
+      url: SupabaseConfig.url,
+      anonKey: SupabaseConfig.anonKey,
+    );
+
+    HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory: kIsWeb
+          ? HydratedStorageDirectory.web
+          : HydratedStorageDirectory(
+              (await getTemporaryDirectory()).path,
+            ),
+    );
+
+    await GitIt.initGitIt();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<void>(
+      future: _initialization,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return const MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: SplashContent(),
+          );
+        }
+
+        if (snapshot.hasError) {
+          print(snapshot.error);
+          return MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: Text(
+                  'Initialization failed',
+                ),
+              ),
+            ),
+          );
+        }
+
+        return MultiBlocProvider(providers: [
+          BlocProvider<PortfolioCubit>(
+            create: (_) => sl<PortfolioCubit>()..getData(),
+          ),
+          BlocProvider<ThemeCubit>(
+            create: (_) => ThemeCubit()..getCurrentTheme(),
+          ),
+          BlocProvider<AppLanguage>(
+            create: (_) => AppLanguage(),
+          ),
+        ], child: const EntryPoint());
+      },
+    );
+  }
 }
 
 class EntryPoint extends StatefulWidget {

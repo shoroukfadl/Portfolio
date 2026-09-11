@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:portfolio/Features/home/presentation/cubit/state.dart';
 import 'package:portfolio/Features/home/presentation/pages/home_view.dart';
 import 'package:portfolio/Utilities/Constants/enums.dart';
-import 'package:portfolio/Widgets/Portfilio/animated_background.dart';
 
 import '../../../../Utilities/extensions.dart';
 import '../../Widgets/Animation/loading_text_animation.dart';
@@ -32,16 +31,28 @@ class _SplashScreenState extends State<SplashScreen> {
           }
         },
         listenWhen: (p, n) => p.loading != n.loading,
-        child: Scaffold(
-          backgroundColor: colors.background,
-          body: AnimatedBackground(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [24.0.heightBox, const LoadingTextWidget()],
-              ),
-            ),
-          ),
-        ));
+        child: const SplashContent());
+  }
+}
+
+class SplashContent extends StatelessWidget {
+  const SplashContent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // final colors = context.colors;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            24.0.heightBox,
+            const LoadingTextWidget(),
+          ],
+        ),
+      ),
+    );
   }
 }
