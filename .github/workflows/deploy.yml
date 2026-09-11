@@ -44,11 +44,18 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # 5. Build Flutter Web
+      # 5. Build Flutter Web (optimized)
+      #    ملحوظة: --web-renderer html بقى deprecated/محذوف من Flutter الحديث،
+      #    فمش بنستخدمه. بدل كده بنفعّل تحسينات تقلل حجم وزمن التحميل:
+      #    - --release: تفعيل التحسينات الافتراضية (minify + tree-shaking للأيقونات تلقائيًا)
+      #    - --no-source-maps: يقلل حجم ملفات الإخراج (مش محتاجينها في production)
+      #    - --pwa-strategy=offline-first: يخلي الزيارات المتكررة تحمّل من الكاش فورًا
       - name: Build Flutter Web
         run: |
           flutter build web --release \
             --base-href "/Portfolio/" \
+            --no-source-maps \
+            --pwa-strategy=offline-first \
             --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
             --dart-define=SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
 
