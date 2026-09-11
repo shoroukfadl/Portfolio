@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:portfolio/Core/Language/app_styles.dart';
+
+import '../../../../Utilities/extensions.dart';
 
 class LoadingTextWidget extends StatefulWidget {
   const LoadingTextWidget({
@@ -69,18 +72,18 @@ class _LoadingTextWidgetState extends State<LoadingTextWidget>
 
   @override
   Widget build(BuildContext context) {
-    // final colors = context.colors;
+    final colors = context.colors;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           _fullText.substring(0, _visibleChars),
-          // style: AppTextStyles.h4(context: context).copyWith(
-          //   color: Colors.amber,
-          //   fontSize: 14,
-          //   fontWeight: FontWeight.w300,
-          //   letterSpacing: 4,
-          // ),
+          style: AppTextStyles.h4(context: context).copyWith(
+            color: colors.text1,
+            fontSize: 14,
+            fontWeight: FontWeight.w300,
+            letterSpacing: 4,
+          ),
         ),
         const SizedBox(height: 20),
         FadeTransition(
@@ -88,10 +91,10 @@ class _LoadingTextWidgetState extends State<LoadingTextWidget>
           child: SizedBox(
             width: 200,
             child: LinearProgressIndicator(
-              backgroundColor: Colors.green,
+              backgroundColor: colors.border,
               borderRadius: BorderRadius.circular(8),
               valueColor: AlwaysStoppedAnimation<Color>(
-                Colors.black.withValues(alpha: 0.7),
+                colors.accent.withValues(alpha: 0.7),
               ),
             ),
           ),
