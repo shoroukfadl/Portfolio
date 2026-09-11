@@ -24,12 +24,12 @@ class ExperienceSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final space = context.matchedSize(large: 32, medium: 24, small: 20);
     return SliverPadding(
-      key: GlobalKeys.experince,
       padding: EdgeInsetsGeometry.symmetric(horizontal: padding),
       sliver: SliverMainAxisGroup(
         slivers: [
           SliverToBoxAdapter(
               child: SectionsTitleWidget(
+            key: GlobalKeys.experince,
             index: 2,
             title: Strings.experience.translate,
           )),

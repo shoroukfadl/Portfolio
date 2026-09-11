@@ -31,12 +31,12 @@ class SkillsSection extends StatelessWidget {
     final space = context.matchedSize(large: 32, medium: 24, small: 20);
     final width = HelperFunctions.getWidth(context);
     return SliverPadding(
-        key: GlobalKeys.skill,
         padding: EdgeInsets.symmetric(horizontal: padding),
         sliver: SliverMainAxisGroup(
           slivers: [
             SliverToBoxAdapter(
               child: SectionsTitleWidget(
+                key: GlobalKeys.skill,
                 index: 1,
                 title: Strings.mySkill.translate,
               ),

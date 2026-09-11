@@ -8,10 +8,10 @@ import '../../../Features/home/presentation/cubit/state.dart';
 import '../../../Utilities/Constants/enums.dart';
 import '../../../Utilities/Constants/global_keys.dart';
 import '../../../Utilities/Constants/strings.dart';
-import 'home_app_bar_item.dart';
+import '../AppBar/home_app_bar_item.dart';
 
-class _NavItemData {
-  const _NavItemData({
+class SectionModel {
+  const SectionModel({
     required this.section,
     required this.sectionKey,
     required this.title,
@@ -22,50 +22,33 @@ class _NavItemData {
   final GlobalKey sectionKey;
   final String title;
   final IconData icon;
+  static List<SectionModel> get paths => [
+        SectionModel(
+            section: HomeSection.skills,
+            sectionKey: GlobalKeys.skill,
+            title: Strings.mySkill.translate,
+            icon: Portfolio.skills),
+        SectionModel(
+            section: HomeSection.experience,
+            sectionKey: GlobalKeys.experince,
+            title: Strings.experience.translate,
+            icon: Portfolio.experience),
+        SectionModel(
+            section: HomeSection.projects,
+            sectionKey: GlobalKeys.projects,
+            title: Strings.projects.translate,
+            icon: Portfolio.projects),
+        SectionModel(
+            section: HomeSection.education,
+            sectionKey: GlobalKeys.education,
+            title: Strings.education.translate,
+            icon: Portfolio.education),
+      ];
 }
 
 class BottomNavigationBarWidget extends StatelessWidget {
-  const BottomNavigationBarWidget({super.key});
-
-  static final List<_NavItemData> _items = [
-    _NavItemData(
-      section: HomeSection.skills,
-      sectionKey: GlobalKeys.skill,
-      title: Strings.mySkill.translate,
-      icon: Portfolio.skills,
-    ),
-    _NavItemData(
-      section: HomeSection.experience,
-      sectionKey: GlobalKeys.experince,
-      title: Strings.experience.translate,
-      icon: Portfolio.experience,
-    ),
-    _NavItemData(
-      section: HomeSection.projects,
-      sectionKey: GlobalKeys.projects,
-      title: Strings.projects.translate,
-      icon: Portfolio.projects,
-    ),
-    _NavItemData(
-      section: HomeSection.education,
-      sectionKey: GlobalKeys.education,
-      title: Strings.education.translate,
-      icon: Portfolio.education,
-    ),
-  ];
-
-  void _onItemTap(BuildContext context, _NavItemData item) {
-    context.read<PortfolioCubit>().changeSection(item.section);
-
-    final targetContext = item.sectionKey.currentContext;
-    if (targetContext == null) return;
-
-    Scrollable.ensureVisible(
-      targetContext,
-      duration: const Duration(milliseconds: 600),
-      curve: Curves.easeInOut,
-    );
-  }
+  final void Function(GlobalKey key) onSectionTap;
+  const BottomNavigationBarWidget({super.key, required this.onSectionTap});
 
   @override
   Widget build(BuildContext context) {
@@ -78,14 +61,14 @@ class BottomNavigationBarWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ..._items.map(
+          ...SectionModel.paths.map(
             (item) => Expanded(
               child: BlocBuilder<PortfolioCubit, PortfolioState>(
                 buildWhen: (previous, current) =>
                     previous.section != current.section,
                 builder: (context, state) {
                   return HomeAppBarItem(
-                    onTap: () => _onItemTap(context, item),
+                    onTap: () => onSectionTap(item.sectionKey),
                     selected: state.section == item.section,
                     title: item.title,
                     icon: item.icon,

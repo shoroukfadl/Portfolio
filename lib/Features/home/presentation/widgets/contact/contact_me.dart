@@ -79,14 +79,13 @@ class ContactMeWidget extends StatelessWidget {
         builder: (c, profile) {
           return Column(
             key: GlobalKeys.contactMe,
-            spacing: 32,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildCard(context, width, profile),
               Text(
                 '© ${DateTime.now().year} Shorouk Fadl. All rights reserved.',
                 style: AppTextStyles.l2(context: context, color: colors.text1),
-              ).paddingSymmetric(horizontal: padding),
+              ).paddingSymmetric(horizontal: padding, vertical: 40),
             ],
           );
         });

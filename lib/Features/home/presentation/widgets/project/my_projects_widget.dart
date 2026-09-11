@@ -32,12 +32,12 @@ class MyProjectsWidget extends StatelessWidget {
     final rowWidth = HelperFunctions.getWidth(context);
     final width = (rowWidth / perRow) - itemSpace;
     return SliverPadding(
-      key: GlobalKeys.projects,
       padding: EdgeInsetsGeometry.symmetric(horizontal: padding),
       sliver: SliverMainAxisGroup(
         slivers: [
           SliverToBoxAdapter(
               child: SectionsTitleWidget(
+            key: GlobalKeys.projects,
             index: 3,
             title: Strings.projects.translate,
           )),
