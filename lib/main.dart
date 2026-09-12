@@ -8,6 +8,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:portfolio/Features/home/presentation/cubit/cubit.dart';
+import 'package:portfolio/Features/home/presentation/cubit/state.dart';
+import 'package:portfolio/Utilities/Constants/enums.dart';
+import 'package:portfolio/Widgets/splash_interop.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -53,58 +56,78 @@ class EntryPoint extends StatefulWidget {
 
 class _EntryPointState extends State<EntryPoint> {
   @override
+  void initState() {
+    super.initState();
+    final cachedState = context.read<PortfolioCubit>().state;
+    if (cachedState.data != null) {
+      hideSplashScreen();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final appLan = context.watch<AppLanguage>();
     final bool isArabic = appLan.appLang.name == 'ar';
-    return BlocBuilder<ThemeCubit, ThemeState>(
-      builder: (context, themeState) {
-        final bool isDark = themeState.isDark;
-        final currentTheme = AppThemes.createTheme(
-          isArabic: isArabic,
-          isDark: isDark,
-        ).copyWith(
-          extensions: <ThemeExtension<dynamic>>[
-            isDark ? AppColors.darkValues : AppColors.lightValues,
-          ],
-        );
 
-        return ResponsiveBreakpoints.builder(
-          breakpoints: [
-            const Breakpoint(start: 0, end: 599, name: MOBILE),
-            const Breakpoint(start: 600, end: 1439, name: TABLET),
-            const Breakpoint(start: 1440, end: double.infinity, name: DESKTOP),
-          ],
-          child: MaterialApp.router(
-            locale: Locale(appLan.appLang.name),
-            supportedLocales:
-                Languages.values.map((e) => Locale(e.name)).toList(),
-            localizationsDelegates: [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              DefaultCupertinoLocalizations.delegate,
-            ],
-            builder: (context, child) {
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(
-                  textScaler: TextScaler.noScaling,
-                  boldText: false,
-                ),
-                child: child!,
-              );
-            },
-            scrollBehavior: MyCustomScrollBehavior(),
-            routerConfig: GoRouterConfig.router,
-            theme: currentTheme,
-            themeAnimationCurve: Curves.easeInOut,
-            themeAnimationDuration: Duration(milliseconds: 300),
-            themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
-            debugShowCheckedModeBanner: false,
-            title: "Portfolio",
-          ),
-        );
+    return BlocListener<PortfolioCubit, PortfolioState>(
+      listenWhen: (previous, current) => previous.loading != current.loading,
+      listener: (context, state) {
+        if ((state.loading == RequestStatus.success && state.data != null) ||
+            state.loading == RequestStatus.error) {
+          hideSplashScreen();
+        }
       },
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, themeState) {
+          final bool isDark = themeState.isDark;
+          final currentTheme = AppThemes.createTheme(
+            isArabic: isArabic,
+            isDark: isDark,
+          ).copyWith(
+            extensions: <ThemeExtension<dynamic>>[
+              isDark ? AppColors.darkValues : AppColors.lightValues,
+            ],
+          );
+
+          return ResponsiveBreakpoints.builder(
+            breakpoints: [
+              const Breakpoint(start: 0, end: 599, name: MOBILE),
+              const Breakpoint(start: 600, end: 1439, name: TABLET),
+              const Breakpoint(
+                  start: 1440, end: double.infinity, name: DESKTOP),
+            ],
+            child: MaterialApp.router(
+              locale: Locale(appLan.appLang.name),
+              supportedLocales:
+                  Languages.values.map((e) => Locale(e.name)).toList(),
+              localizationsDelegates: [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                DefaultCupertinoLocalizations.delegate,
+              ],
+              builder: (context, child) {
+                return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(
+                    textScaler: TextScaler.noScaling,
+                    boldText: false,
+                  ),
+                  child: child!,
+                );
+              },
+              scrollBehavior: MyCustomScrollBehavior(),
+              routerConfig: GoRouterConfig.router,
+              theme: currentTheme,
+              themeAnimationCurve: Curves.easeInOut,
+              themeAnimationDuration: Duration(milliseconds: 300),
+              themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+              debugShowCheckedModeBanner: false,
+              title: "Portfolio",
+            ),
+          );
+        },
+      ),
     );
   }
 }

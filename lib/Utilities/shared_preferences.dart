@@ -5,7 +5,6 @@ class SharedPref {
   static SharedPreferences get prefs => GetIt.instance.get<SharedPreferences>();
   static const String loginStatusKey = "loginStatus";
   static const String _theme = "theme";
-  static const String menuModeKey = "menuMode";
   static const String _language = "language";
 
   static String? getLanguage() {
@@ -23,9 +22,4 @@ class SharedPref {
   static bool? getTheme() {
     return prefs.getBool(_theme);
   }
-
-  static Future setMenuMode(bool menuModeValue) async =>
-      await prefs.setBool(menuModeKey, menuModeValue);
-
-  static bool getMenuMode() => prefs.getBool(menuModeKey) ?? false;
 }

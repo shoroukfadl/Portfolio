@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:portfolio/Features/Splash/splash_view.dart';
 import 'package:universal_html/html.dart' as html;
 
 import '../Features/home/presentation/pages/home_view.dart';
@@ -46,24 +45,24 @@ class GoRouterConfig {
   static GoRouter get router => _router;
   static final GoRouter _router = GoRouter(
     routes: <RouteBase>[
-      GoRoute(
-        name: SplashScreen.routeName,
-        path: SplashScreen.routeName,
-        redirect: (_, s) {
-          SeoHelper.setMetaTags(
-            title: "Shorouk Fadl | شروق فضل",
-            description:
-                "Flutter Developer With Experience in Flutter Framework , Scalable Application [Web , Ios ,Android] ",
-          );
-          return null;
-        },
-        pageBuilder: (_, GoRouterState state) {
-          return getCustomTransitionPage(
-            state: state,
-            child: const SplashScreen(),
-          );
-        },
-      ),
+      // GoRoute(
+      //   name: SplashScreen.routeName,
+      //   path: SplashScreen.routeName,
+      //   redirect: (_, s) {
+      //     SeoHelper.setMetaTags(
+      //       title: "Shorouk Fadl | شروق فضل",
+      //       description:
+      //           "Flutter Developer With Experience in Flutter Framework , Scalable Application [Web , Ios ,Android] ",
+      //     );
+      //     return null;
+      //   },
+      //   pageBuilder: (_, GoRouterState state) {
+      //     return getCustomTransitionPage(
+      //       state: state,
+      //       child: const SplashScreen(),
+      //     );
+      //   },
+      // ),
       ShellRoute(
           builder: (context, state, child) {
             return MainLayoutWidget(
@@ -74,7 +73,7 @@ class GoRouterConfig {
           routes: [
             GoRoute(
               name: HomeView.routeName,
-              path: "/${HomeView.routeName}",
+              path: HomeView.routeName,
               redirect: (_, s) {
                 SeoHelper.setMetaTags(
                   title: "Shorouk Fadl | شروق فضل",
