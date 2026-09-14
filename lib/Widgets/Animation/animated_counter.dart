@@ -39,7 +39,7 @@ class _AnimatedCounterState extends State<AnimatedCounter>
       end: widget.targetNumber.toDouble(),
     ).animate(CurvedAnimation(
       parent: _controller,
-      curve: Curves.easeOut, // بيبدأ سريع وبيتباطأ في الآخر
+      curve: Curves.easeOut,
     ));
 
     _controller.forward();
@@ -49,6 +49,24 @@ class _AnimatedCounterState extends State<AnimatedCounter>
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant AnimatedCounter oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.targetNumber != widget.targetNumber) {
+      _animation = Tween<double>(
+        begin: _animation.value,
+        end: widget.targetNumber,
+      ).animate(CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeOut,
+      ));
+
+      _controller
+        ..reset()
+        ..forward();
+    }
   }
 
   @override
